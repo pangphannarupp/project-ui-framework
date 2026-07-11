@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <!-- AppKhmerCalendarView with custom attributes -->
+    <kh.mcnc.lib.ui.components.calendar.AppKhmerCalendarView
+        android:id="@+id/khmerCalendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:akc_firstDayOfWeek="sunday"
+        app:akc_showAdjacentMonths="true"
+        app:akc_selectionMode="range"
+        app:akc_extraWeeksBefore="0"
+        app:akc_extraWeeksAfter="0" />
+
+</LinearLayout>

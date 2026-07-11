@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="app_primary">#0052CC</color>
+    <color name="app_on_primary">#FFFFFF</color>
+    <color name="app_primary_container">#D6E4FF</color>
+    <color name="app_on_primary_container">#001945</color>
+
+    <!-- Secondary Brand Colors -->
+    <color name="app_secondary">#00875A</color>
+    <color name="app_on_secondary">#FFFFFF</color>
+    <color name="app_secondary_container">#D4F6E6</color>
+    <color name="app_on_secondary_container">#002112</color>
+
+    <!-- Background and Surface Colors -->
+    <color name="app_background">#F4F5F7</color>
+    <color name="app_on_background">#172B4D</color>
+    <color name="app_surface">#FFFFFF</color>
+    <color name="app_on_surface">#172B4D</color>
+
+    <!-- Error Colors -->
+    <color name="app_error">#DE350B</color>
+    <color name="app_on_error">#FFFFFF</color>
+    
+    <!-- Neutral/Disabled Colors -->
+    <color name="app_outline">#DFE1E6</color>
+    <color name="app_disabled">#DFE1E6</color>
+    <color name="app_on_disabled">#A5ADBA</color>
+    
+    <!-- Text Colors -->
+    <color name="app_text_primary">#172B4D</color>
+    <color name="app_text_secondary">#5E6C84</color>
+    <color name="app_text_hint">#7A869A</color>
+</resources>

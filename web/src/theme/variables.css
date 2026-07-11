@@ -1,0 +1,19 @@
+/* For information on how to create your own theme, please refer to:
+http://ionicframework.com/docs/theming/ */
+
+:root {
+  --biz-primary: #003399;
+  --biz-primary-variant: #1a2a5e;
+  --biz-primary-light: #3880ff;
+  --biz-background: #f4f6fa;
+}
+
+/* Global overrides for BizCollapsingToolbar */
+.biz-collapsing-inner-content {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.biz-collapsing-header {
+  box-shadow: none !important;
+}

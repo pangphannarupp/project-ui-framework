@@ -1,0 +1,41 @@
+{
+  "name": "@bizmob-core/ui-framework",
+  "version": "1.0.0",
+  "description": "Reusable UI Framework",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ui-framework.umd.cjs",
+  "module": "./dist/ui-framework.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ui-framework.js",
+      "require": "./dist/ui-framework.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./web-components": {
+      "import": "./dist/wc/ui-framework-wc.es.js",
+      "require": "./dist/wc/ui-framework-wc.umd.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./dist/KhmerDate": "./dist/KhmerDate.ts"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:wc": "vite build --config vite.wc.config.ts",
+    "build": "vite build && npm run build:wc && vue-tsc",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "typescript": "~5.9.0",
+    "vite": "^5.0.0",
+    "vue": "^3.3.0",
+    "vue-tsc": "^2.1.10"
+  }
+}

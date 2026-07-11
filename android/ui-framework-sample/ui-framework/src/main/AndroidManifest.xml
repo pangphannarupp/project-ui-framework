@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name="kh.mcnc.lib.ui.ComponentGalleryActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App" />
+        <activity
+            android:name="kh.mcnc.lib.ui.ComponentListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App" />
+        <activity
+            android:name="kh.mcnc.lib.ui.ComponentDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.App" />
+        <activity
+            android:name="kh.mcnc.lib.ui.components.calendar.CalendarSampleActivity"
+            android:exported="false"
+            android:theme="@style/Theme.App" />
+    </application>
+</manifest>

@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+:root {
+	--status-bar-height: 0px;
+	--ion-safe-area-top: 0px;
+	--ion-safe-area-bottom: 0px;
+	--keyboard-offset: 0px;
+	--safeArea: 0px;
+}
+
+ion-header {
+	ion-toolbar { --min-height: calc(60px + var(--safeArea)); --padding-start: 16px; --padding-end: 16px; --padding-top: var(--safeArea); --border-width: 0 !important; --background: #FFFFFF;
+		ion-title { font-size: var(--font16); font-weight: 700; color: #000000;
+			&.title_left { padding-inline-start: 16px; text-align: left;}
+		}
+		ion-button-back
+		ion-button { font-size: var(--font14);}
+    }
+}
