@@ -5,11 +5,7 @@ plugins {
 
 android {
     namespace = "mcnc.app.ui_framework_sample"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "mcnc.app.ui_framework_sample"
@@ -51,6 +47,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.12.0")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
     

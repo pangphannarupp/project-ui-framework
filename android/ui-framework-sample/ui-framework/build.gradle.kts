@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "kh.mcnc.lib"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24

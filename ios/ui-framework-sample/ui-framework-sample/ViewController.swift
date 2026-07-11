@@ -16,18 +16,37 @@ struct UIComponent {
     let viewFactory: () -> UIViewController
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
     private let tableView = UITableView()
     private var components: [UIComponent] = []
+    private var filteredComponents: [UIComponent] = []
+    private let searchController = UISearchController(searchResultsController: nil)
+    
+    private var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "UI Framework Components"
         view.backgroundColor = .systemBackground
         
+        setupSearchController()
         setupComponents()
         setupTableView()
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search components..."
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     private func setupComponents() {
@@ -37,7 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 description: "A modern SwiftUI button designed for the Biz platform. It utilizes View modifiers to achieve consistent padding, rounded corners, and background color.",
                 codeSnippet: "BizButton(text: \"Biz SwiftUI Button\") { print(\"Tapped\") }",
                 viewFactory: {
-                    return UIHostingController(rootView: BizButton(text: "Biz SwiftUI Button") { print("Tapped") })
+                    return UIHostingController(rootView: BizButton("Biz SwiftUI Button") { print("Tapped") })
                 }
             ),
             UIComponent(
@@ -328,6 +347,276 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 viewFactory: {
                     return UIHostingController(rootView: BizLineChartDemo())
                 }
+            ),
+            UIComponent(
+                name: "BizCalendar",
+                description: "A standard Gregorian calendar with selection capabilities.",
+                codeSnippet: "BizCalendar()",
+                viewFactory: {
+                    return UIHostingController(rootView: BizCalendarDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizMonthPicker",
+                description: "A month picker for selecting single or range of months.",
+                codeSnippet: "BizMonthPicker()",
+                viewFactory: {
+                    return UIHostingController(rootView: BizMonthPickerDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizKhmerCalendar",
+                description: "A Khmer calendar that shows Gregorian dates with lunar dates and zodiac information.",
+                codeSnippet: """
+                BizKhmerCalendar(onDateSelected: { selection in })
+                """,
+                viewFactory: {
+                    return UIHostingController(rootView: BizKhmerCalendarDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizButtonGroup",
+                description: "A group of buttons that are visually connected together.",
+                codeSnippet: "BizButtonGroup { BizButton(...) }",
+                viewFactory: {
+                    return UIHostingController(rootView: BizButtonGroupDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizAutocomplete",
+                description: "An input field that provides suggestions while typing.",
+                codeSnippet: "BizAutocomplete(text: $text, options: options)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizAutocompleteDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizSelect",
+                description: "A dropdown select input for choosing from a list of options.",
+                codeSnippet: "BizSelect(selectedValue: $val, options: opts)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizSelectDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizTimePicker",
+                description: "A wheel picker to select a specific hour and minute.",
+                codeSnippet: "BizTimePicker(time: $time)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizTimePickerDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizScrollSegment",
+                description: "A horizontally scrollable segment of tabs.",
+                codeSnippet: "BizScrollSegment(selectedId: $id, options: opts)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizScrollSegmentDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizBottomSheet",
+                description: "A customizable bottom sheet that can be dragged down to dismiss.",
+                codeSnippet: "BizBottomSheet(isPresented: $show)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizBottomSheetDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizHideAppBar",
+                description: "An app bar that hides when scrolling down and shows when scrolling up.",
+                codeSnippet: "BizHideAppBar(header: { ... }, content: { ... })",
+                viewFactory: {
+                    return UIHostingController(rootView: BizHideAppBarDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizUserCard",
+                description: "A card displaying user information, avatar, and badges.",
+                codeSnippet: "BizUserCard(name: \"John Doe\", phone: \"123\")",
+                viewFactory: {
+                    return UIHostingController(rootView: BizUserCardDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizSwipeItem",
+                description: "A list item that can be swiped to reveal left and right actions.",
+                codeSnippet: "BizSwipeItem { ... } leftActions: { ... }",
+                viewFactory: {
+                    return UIHostingController(rootView: BizSwipeItemDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizPullToRefresh",
+                description: "A pull-to-refresh wrapper with custom animation.",
+                codeSnippet: "BizPullToRefresh(onRefresh: { ... }) { ... }",
+                viewFactory: {
+                    return UIHostingController(rootView: BizPullToRefreshDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizSkeleton",
+                description: "Animated placeholders for loading states.",
+                codeSnippet: "BizSkeletonList(count: 3)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizSkeletonDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizNoResult",
+                description: "A component to show empty states or no search results.",
+                codeSnippet: "BizNoResult(title: \"No data\")",
+                viewFactory: {
+                    return UIHostingController(rootView: BizNoResultDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizToast",
+                description: "A transient notification message.",
+                codeSnippet: ".bizToast(isPresented: $show, message: \"Done\")",
+                viewFactory: {
+                    return UIHostingController(rootView: BizToastDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizProgressGauge",
+                description: "A circular gauge indicating progress.",
+                codeSnippet: "BizProgressGauge(progress: 65)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizProgressGaugeDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizRating",
+                description: "A star rating component.",
+                codeSnippet: "BizRating(rating: $rating)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizRatingDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizCharts",
+                description: "Simple data visualization charts (Bar, Line, Pie).",
+                codeSnippet: "BizBarChart(data: [...], labels: [...])",
+                viewFactory: {
+                    return UIHostingController(rootView: BizChartsDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizCheckboxGroup",
+                description: "A group of checkboxes sharing a selection set.",
+                codeSnippet: "BizCheckboxGroup(selection: $selection, options: options)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizCheckboxGroupDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizRadioGroup",
+                description: "A group of radio buttons for mutually exclusive selection.",
+                codeSnippet: "BizRadioGroup(selection: $selection, options: options)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizRadioGroupDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizPhoneInput",
+                description: "An input tailored for phone numbers with country code selector.",
+                codeSnippet: "BizPhoneInput(text: $phone)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizPhoneInputDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizNumberSpinner",
+                description: "A numeric input with increment and decrement buttons.",
+                codeSnippet: "BizNumberSpinner(value: $count)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizNumberSpinnerDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizOtpInput",
+                description: "A specialized input for One-Time Passwords with auto-advance.",
+                codeSnippet: "BizOtpInput(value: $otp, length: 6)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizOtpInputDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizPinDots",
+                description: "Visual dots representing a secure PIN entry with animations.",
+                codeSnippet: "BizPinDots(length: 6, value: pin)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizPinDotsDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizKeypad",
+                description: "A standard numeric keypad for generic input.",
+                codeSnippet: "BizKeypad(onPress: { val in ... })",
+                viewFactory: {
+                    return UIHostingController(rootView: BizKeypadDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizSecureKeypad",
+                description: "A randomized numeric keypad for secure PIN entry.",
+                codeSnippet: "BizSecureKeypad(onPress: { val in ... })",
+                viewFactory: {
+                    return UIHostingController(rootView: BizSecureKeypadDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizSecureKeyboard",
+                description: "A full randomized alphanumeric keyboard.",
+                codeSnippet: "BizSecureKeyboard(onPress: { val in ... })",
+                viewFactory: {
+                    return UIHostingController(rootView: BizSecureKeyboardDemo())
+                }
+            ),
+            UIComponent(
+                name: "BizKhmerKeyboard",
+                description: "A randomized Khmer keyboard with shift and symbols.",
+                codeSnippet: "BizKhmerKeyboard(onPress: { val in ... })",
+                viewFactory: {
+                    return UIHostingController(rootView: BizKhmerKeyboardDemo())
+                }
+            ),
+            
+            // PHASE 5: Specialized Sheets & Dialogs
+            UIComponent(
+                name: "Phase 5 Sheets (Batch 1)",
+                description: "BizConfirmSheet, BizFilterSheet, BizSortSheet, BizLanguageSheet, BizCountryCodeSheet, BizFeedbackSheet, BizBiometricSheet",
+                codeSnippet: "view.bizConfirmSheet(...) / view.bizFilterSheet(...)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizSheetsBatch1Demo())
+                }
+            ),
+            UIComponent(
+                name: "Phase 5 Pickers & Calendars (Batch 2)",
+                description: "BizCalendarAlert, BizCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarSheet, BizMonthPickerAlert, BizMonthPickerSheet, BizTimePickerAlert, BizTimePickerSheet",
+                codeSnippet: "view.bizCalendarAlert(...) / view.bizTimePickerSheet(...)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizPhase5PickersDemo())
+                }
+            ),
+            
+            // PHASE 6: Domain-Specific Cards & Lists
+            UIComponent(
+                name: "Phase 6 Cards & Lists (Batch 1)",
+                description: "BizAccountListCard, BizAccountReorderList, BizAccountSavingCard, BizActionCard, BizUpgradeCard, BizVerificationCard",
+                codeSnippet: "BizAccountSavingCard(...) / BizActionCard(...)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizPhase6Batch1Demo())
+                }
+            ),
+            UIComponent(
+                name: "Phase 6 Lists & Profiles (Batch 2)",
+                description: "BizNotificationItem, BizTransferList, BizUserProfile, BizFabList, BizFabAction",
+                codeSnippet: "BizNotificationItem(...) / BizTransferList(...)",
+                viewFactory: {
+                    return UIHostingController(rootView: BizPhase6Batch2Demo())
+                }
             )
         ]
     }
@@ -347,15 +636,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.delegate = self
     }
     
+    // MARK: - UISearchResultsUpdating
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        if let searchText = searchBar.text {
+            filteredComponents = components.filter { (component: UIComponent) -> Bool in
+                return component.name.lowercased().contains(searchText.lowercased())
+            }
+        }
+        tableView.reloadData()
+    }
+    
     // MARK: - UITableViewDataSource & Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return components.count
+        return isFiltering ? filteredComponents.count : components.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = components[indexPath.row].name
+        let component = isFiltering ? filteredComponents[indexPath.row] : components[indexPath.row]
+        cell.textLabel?.text = component.name
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -363,7 +665,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let component = components[indexPath.row]
+        let component = isFiltering ? filteredComponents[indexPath.row] : components[indexPath.row]
         let detailVC = ComponentDetailViewController(component: component)
         let navController = UINavigationController(rootViewController: detailVC)
         
@@ -386,6 +688,7 @@ class ComponentDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = component.name
+        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .systemBackground
         
         // Setup Component View (Top)
@@ -680,5 +983,497 @@ struct BizLineChartDemo: View {
         )
         .frame(height: 240)
         .padding()
+    }
+}
+
+struct CalendarSettingsPanel: View {
+    @Binding var modeIndex: Int
+    @Binding var startDayIndex: Int
+    @Binding var minDateEnabled: Bool
+    @Binding var maxDateEnabled: Bool
+    @Binding var selectedDateEnabled: Bool
+    @Binding var weeksBefore: Int
+    @Binding var weeksAfter: Int
+
+    var body: some View {
+        VStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Selection Mode").font(.caption).foregroundColor(.gray)
+                BizSegment(items: ["Single", "Range", "Week"], selectedIndex: $modeIndex)
+            }
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Start Day").font(.caption).foregroundColor(.gray)
+                BizSegment(items: ["Sunday", "Monday"], selectedIndex: $startDayIndex)
+            }
+            
+            VStack(alignment: .leading, spacing: 12) {
+                Toggle("Set Min Date (Today)", isOn: $minDateEnabled)
+                Toggle("Set Max Date (+30 Days)", isOn: $maxDateEnabled)
+                Toggle("Initial Date (+2 Days)", isOn: $selectedDateEnabled)
+            }
+            
+            HStack(spacing: 16) {
+                VStack(alignment: .leading) {
+                    Text("Extra Weeks Before (\(weeksBefore))").font(.caption).foregroundColor(.gray)
+                    Stepper("", value: $weeksBefore, in: 0...5)
+                }
+                VStack(alignment: .leading) {
+                    Text("Extra Weeks After (\(weeksAfter))").font(.caption).foregroundColor(.gray)
+                    Stepper("", value: $weeksAfter, in: 0...5)
+                }
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(12)
+        .padding(.horizontal)
+    }
+}
+
+struct BizCalendarDemo: View {
+    @State private var modeIndex = 0
+    @State private var startDayIndex = 0
+    @State private var minDateEnabled = false
+    @State private var maxDateEnabled = false
+    @State private var weeksBefore = 0
+    @State private var weeksAfter = 0
+    @State private var selectedDateEnabled = false
+    @State private var showBottomSheet = false
+    @State private var showAlert = false
+    
+    private var currentMode: SelectionMode {
+        switch modeIndex {
+        case 0: return .single
+        case 1: return .range
+        case 2: return .week
+        default: return .single
+        }
+    }
+    
+    private var config: CalendarConfig {
+        let today = Date()
+        let minDate = minDateEnabled ? today : nil
+        let maxDate = maxDateEnabled ? Calendar.current.date(byAdding: .day, value: 30, to: today) : nil
+        return CalendarConfig(
+            firstDayOfWeek: startDayIndex,
+            showAdjacentMonths: true,
+            extraWeeksBefore: weeksBefore,
+            extraWeeksAfter: weeksAfter,
+            minDate: minDate,
+            maxDate: maxDate,
+            selectionMode: currentMode
+        )
+    }
+    
+    private var initialDate: Date {
+        let today = Date()
+        return selectedDateEnabled ? Calendar.current.date(byAdding: .day, value: 2, to: today)! : today
+    }
+    
+    var body: some View {
+        ScrollView {
+            VStack {
+                CalendarSettingsPanel(
+                    modeIndex: $modeIndex,
+                    startDayIndex: $startDayIndex,
+                    minDateEnabled: $minDateEnabled,
+                    maxDateEnabled: $maxDateEnabled,
+                    selectedDateEnabled: $selectedDateEnabled,
+                    weeksBefore: $weeksBefore,
+                    weeksAfter: $weeksAfter
+                )
+                
+                Button(action: { showBottomSheet = true }) {
+                    Text("Open in Bottom Sheet")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                
+                Button(action: { showAlert = true }) {
+                    Text("Open in Alert")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.blue)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                
+                BizCalendar(
+                    config: config,
+                    initialDate: initialDate,
+                    onDateSelected: { _ in },
+                    onRangeSelected: { _, _ in }
+                )
+                .padding()
+            }
+            .padding(.top, 16)
+        }
+        .sheet(isPresented: $showBottomSheet) {
+            ScrollView {
+                BizCalendar(
+                    config: config,
+                    initialDate: initialDate,
+                    showActionButtons: true,
+                    onDateSelected: { _ in },
+                    onRangeSelected: { _, _ in },
+                    onConfirm: { _, _ in showBottomSheet = false }, onCancel: { showBottomSheet = false }
+                )
+                .padding()
+            }
+            .background(Color(UIColor.systemBackground))
+        }
+        .overlay(
+            Group {
+                if showAlert {
+                    ZStack {
+                        Color.black.opacity(0.4)
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture { showAlert = false }
+                        
+                        BizCalendar(
+                            config: config,
+                            initialDate: initialDate,
+                            showActionButtons: true,
+                            onDateSelected: { _ in },
+                            onRangeSelected: { _, _ in },
+                            onConfirm: { _, _ in showAlert = false }, onCancel: { showAlert = false }
+                        )
+                        .background(Color.white)
+                        .cornerRadius(12)
+                        .padding(24)
+                    }
+                }
+            }
+        )
+    }
+}
+
+struct BizKhmerCalendarDemo: View {
+    @State private var modeIndex = 0
+    @State private var startDayIndex = 0
+    @State private var minDateEnabled = false
+    @State private var maxDateEnabled = false
+    @State private var weeksBefore = 0
+    @State private var weeksAfter = 0
+    @State private var selectedDateEnabled = false
+    @State private var showBottomSheet = false
+    @State private var showAlert = false
+    
+    private var currentMode: SelectionMode {
+        switch modeIndex {
+        case 0: return .single
+        case 1: return .range
+        case 2: return .week
+        default: return .single
+        }
+    }
+    
+    private var config: CalendarConfig {
+        let today = Date()
+        let minDate = minDateEnabled ? today : nil
+        let maxDate = maxDateEnabled ? Calendar.current.date(byAdding: .day, value: 30, to: today) : nil
+        return CalendarConfig(
+            firstDayOfWeek: startDayIndex,
+            showAdjacentMonths: true,
+            extraWeeksBefore: weeksBefore,
+            extraWeeksAfter: weeksAfter,
+            minDate: minDate,
+            maxDate: maxDate,
+            selectionMode: currentMode
+        )
+    }
+    
+    private var initialDate: Date {
+        let today = Date()
+        return selectedDateEnabled ? Calendar.current.date(byAdding: .day, value: 2, to: today)! : today
+    }
+    
+    var body: some View {
+        ScrollView {
+            VStack {
+                CalendarSettingsPanel(
+                    modeIndex: $modeIndex,
+                    startDayIndex: $startDayIndex,
+                    minDateEnabled: $minDateEnabled,
+                    maxDateEnabled: $maxDateEnabled,
+                    selectedDateEnabled: $selectedDateEnabled,
+                    weeksBefore: $weeksBefore,
+                    weeksAfter: $weeksAfter
+                )
+                
+                Button(action: { showBottomSheet = true }) {
+                    Text("Open in Bottom Sheet")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                
+                Button(action: { showAlert = true }) {
+                    Text("Open in Alert")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.blue)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue.opacity(0.1))
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                
+                BizKhmerCalendar(
+                    config: config,
+                    initialDate: initialDate,
+                    onDateSelected: { _ in },
+                    onRangeSelected: { _, _ in }
+                )
+                .padding()
+            }
+            .padding(.top, 16)
+        }
+        .sheet(isPresented: $showBottomSheet) {
+            ScrollView {
+                BizKhmerCalendar(
+                    config: config,
+                    initialDate: initialDate,
+                    showActionButtons: true,
+                    onDateSelected: { _ in },
+                    onRangeSelected: { _, _ in },
+                    onConfirm: { _, _ in showBottomSheet = false }, onCancel: { showBottomSheet = false }
+                )
+                .padding()
+            }
+            .background(Color(UIColor.systemBackground))
+        }
+        .overlay(
+            Group {
+                if showAlert {
+                    ZStack {
+                        Color.black.opacity(0.4)
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture { showAlert = false }
+                        
+                        BizKhmerCalendar(
+                            config: config,
+                            initialDate: initialDate,
+                            showActionButtons: true,
+                            onDateSelected: { _ in },
+                            onRangeSelected: { _, _ in },
+                            onConfirm: { _, _ in showAlert = false }, onCancel: { showAlert = false }
+                        )
+                        .background(Color.white)
+                        .cornerRadius(12)
+                        .padding(24)
+                    }
+                }
+            }
+        )
+    }
+}
+import SwiftUI
+import UIFramework
+
+struct BizMonthPickerDemo: View {
+    @State private var modeIndex = 0
+    @State private var minDateEnabled = false
+    @State private var maxDateEnabled = false
+    @State private var showBottomSheet = false
+    @State private var showAlert = false
+    
+    private var config: CalendarConfig {
+        var cfg = CalendarConfig()
+        cfg.selectionMode = modeIndex == 0 ? .single : .range
+        
+        let today = Date()
+        cfg.minDate = minDateEnabled ? today : nil
+        cfg.maxDate = maxDateEnabled ? Calendar.current.date(byAdding: .day, value: 30, to: today) : nil
+        return cfg
+    }
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Configuration")
+                        .font(.headline)
+                    
+                    Picker("Selection Mode", selection: $modeIndex) {
+                        Text("Single").tag(0)
+                        Text("Range").tag(1)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    Toggle("Set Min Date (Today)", isOn: $minDateEnabled)
+                    Toggle("Set Max Date (+30 Days)", isOn: $maxDateEnabled)
+                }
+                .padding()
+                .background(Color(UIColor.secondarySystemBackground))
+                .cornerRadius(12)
+                .padding(.horizontal)
+                
+                HStack(spacing: 16) {
+                    Button(action: { showBottomSheet = true }) {
+                        Text("Bottom Sheet")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+                    Button(action: { showAlert = true }) {
+                        Text("Alert")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.blue)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue.opacity(0.1))
+                            .cornerRadius(8)
+                    }
+                }
+                .padding(.horizontal)
+                
+                BizMonthPicker(
+                    config: config,
+                    showActionButtons: false
+                )
+                .cornerRadius(12)
+                .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
+                .padding()
+            }
+            .padding(.vertical)
+        }
+        .navigationTitle("BizMonthPicker")
+        .sheet(isPresented: $showBottomSheet) {
+            ScrollView {
+                BizMonthPicker(
+                    config: config,
+                    showActionButtons: true,
+                    onCancel: { showBottomSheet = false },
+                    onConfirm: { _, _ in showBottomSheet = false }
+                )
+                .padding()
+            }
+            .background(Color(UIColor.systemBackground))
+        }
+        .overlay(
+            Group {
+                if showAlert {
+                    ZStack {
+                        Color.black.opacity(0.4)
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture { showAlert = false }
+                        
+                        BizMonthPicker(
+                            config: config,
+                            showActionButtons: true,
+                            onCancel: { showAlert = false },
+                            onConfirm: { _, _ in showAlert = false }
+                        )
+                        .cornerRadius(12)
+                        .padding(24)
+                    }
+                }
+            }
+        )
+    }
+}
+
+struct BizButtonGroupDemo: View {
+    var body: some View {
+        VStack(spacing: 24) {
+            BizButtonGroup {
+                BizButton("Left", variant: .outline) {}
+                BizButton("Middle", variant: .outline) {}
+                BizButton("Right", variant: .outline) {}
+            }
+            
+            BizButtonGroup(isVertical: true) {
+                BizButton("Top", variant: .outline) {}
+                BizButton("Middle", variant: .outline) {}
+                BizButton("Bottom", variant: .outline) {}
+            }
+        }
+        .padding()
+    }
+}
+
+struct BizAutocompleteDemo: View {
+    @State private var text = ""
+    let options = [
+        BizAutocompleteOption(label: "Apple", value: "apple"),
+        BizAutocompleteOption(label: "Banana", value: "banana"),
+        BizAutocompleteOption(label: "Cherry", value: "cherry")
+    ]
+    
+    var body: some View {
+        VStack {
+            BizAutocomplete(
+                text: $text,
+                label: "Select Fruit",
+                placeholder: "Search...",
+                options: options
+            )
+            Spacer()
+        }
+        .padding()
+    }
+}
+
+struct BizSelectDemo: View {
+    @State private var selectedValue = ""
+    let options = [
+        BizSelectOption(label: "Option 1", value: "1"),
+        BizSelectOption(label: "Option 2", value: "2"),
+        BizSelectOption(label: "Option 3", value: "3")
+    ]
+    
+    var body: some View {
+        VStack(spacing: 24) {
+            BizSelect(selectedValue: $selectedValue, options: options, label: "Outlined", variant: .outlined)
+            BizSelect(selectedValue: $selectedValue, options: options, label: "Filled", variant: .filled)
+            BizSelect(selectedValue: $selectedValue, options: options, label: "Underlined", variant: .underlined)
+        }
+        .padding()
+    }
+}
+
+struct BizTimePickerDemo: View {
+    @State private var time = "14:30"
+    
+    var body: some View {
+        VStack {
+            Text("Selected Time: \(time)")
+                .font(.headline)
+            BizTimePicker(time: $time, title: "Select Time", showActionButtons: true)
+        }
+        .padding()
+    }
+}
+
+struct BizScrollSegmentDemo: View {
+    @State private var selectedId = "1"
+    let options = [
+        BizScrollSegmentOption(id: "1", label: "All"),
+        BizScrollSegmentOption(id: "2", label: "Payments"),
+        BizScrollSegmentOption(id: "3", label: "Transfers"),
+        BizScrollSegmentOption(id: "4", label: "Deposits")
+    ]
+    
+    var body: some View {
+        VStack {
+            BizScrollSegment(selectedId: $selectedId, options: options)
+            Spacer()
+        }
     }
 }

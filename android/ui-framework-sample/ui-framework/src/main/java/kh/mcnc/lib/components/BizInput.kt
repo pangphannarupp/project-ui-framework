@@ -26,8 +26,11 @@ fun BizInput(
         label = { if (label != null) Text(label) },
         placeholder = { if (placeholder != null) Text(placeholder) },
         singleLine = singleLine,
-        colors = TextFieldDefaults.textFieldColors(
-            containerColor = Color(0xFFF5F5F5), // Light gray background
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color(0xFFF5F5F5), // Light gray background
+            unfocusedContainerColor = Color(0xFFF5F5F5),
+            disabledContainerColor = Color(0xFFF5F5F5),
+            errorContainerColor = Color(0xFFF5F5F5),
             focusedIndicatorColor = Color(0xFF003399),
             focusedLabelColor = Color(0xFF003399),
             cursorColor = Color(0xFF003399)

@@ -3,8 +3,8 @@ package kh.mcnc.lib.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,7 +30,7 @@ fun BizTextField(
         isError = isError,
         supportingText = { if (isError && errorMessage != null) Text(errorMessage) },
         singleLine = singleLine,
-        colors = TextFieldDefaults.outlinedTextFieldColors(
+        colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = Color(0xFF003399),
             focusedLabelColor = Color(0xFF003399),
             cursorColor = Color(0xFF003399),

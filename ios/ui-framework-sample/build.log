@@ -1,0 +1,641 @@
+Command line invocation:
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild build -scheme ui-framework-sample -destination "platform=iOS Simulator,name=iPhone 17"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  UIFramework: /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework
+
+2026-07-11 20:51:52.911 xcodebuild[30764:519211] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (3 targets)
+    Target 'ui-framework-sample' in project 'ui-framework-sample'
+        ➜ Explicit dependency on target 'UIFramework' in project 'UIFramework'
+    Target 'UIFramework' in project 'UIFramework'
+        ➜ Explicit dependency on target 'UIFramework' in project 'UIFramework'
+    Target 'UIFramework' in project 'UIFramework' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Assets.xcassets
+
+ExecuteExternalTool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 82ff99178c2d563ac84ae1e257678865
+Build description path: /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/XCBuildData/82ff99178c2d563ac84ae1e257678865.xcbuilddata
+ClangStatCache /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache
+
+SwiftDriver ui-framework-sample normal arm64 com.apple.xcode.tools.swift.compiler (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-SwiftDriver -- /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ui_framework_sample -Onone @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios14.0-simulator -g -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache -output-file-map /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.swiftmodule -validate-clang-modules-once -clang-build-session-file /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_const_extract_protocols.json -Xcc -iquote -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-generated-files.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-own-target-headers.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample-7d20727ad6fdc979cecad54b725c2f8d-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-project-headers.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources-normal/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample-Swift.h -working-directory /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample -experimental-emit-module-separately -disable-cmo
+
+SwiftDriver UIFramework normal arm64 com.apple.xcode.tools.swift.compiler (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    builtin-SwiftDriver -- /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name UIFramework -Onone @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios14.0-simulator -g -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -Isystem /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache -output-file-map /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.swiftmodule -validate-clang-modules-once -clang-build-session-file /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -package-name uiframework -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework_const_extract_protocols.json -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/DerivedSources-normal/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/DerivedSources/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework-Swift.h -working-directory /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ AppDelegate.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/AppDelegate.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/AppDelegate.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ ui_framework_sample (in target 'ui-framework-sample' from project 'ui-framework-sample')
+EmitSwiftModule normal arm64 (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+
+SwiftCompile normal arm64 Compiling\ ViewController.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/ViewController.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/ViewController.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+
+SwiftCompile normal arm64 Compiling\ GeneratedAssetSymbols.swift /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftCompile normal arm64 /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+
+SwiftCompile normal arm64 Compiling\ SceneDelegate.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/SceneDelegate.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/SceneDelegate.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+
+SwiftCompile normal arm64 Compiling\ BizBottomSheet.swift,\ BizButton.swift,\ BizButtonGroup.swift,\ BizCalendarAlert.swift,\ BizCalendarSheet.swift,\ BizCheckboxGroup.swift,\ BizConfirmSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBottomSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizButton.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizButtonGroup.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCalendarAlert.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCalendarSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCheckboxGroup.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizConfirmSheet.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBottomSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizButton.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizButtonGroup.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCalendarAlert.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCalendarSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCheckboxGroup.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizConfirmSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ BizAccountListCard.swift,\ BizAccountReorderList.swift,\ BizAccountSavingCard.swift,\ BizActionCard.swift,\ BizAutocomplete.swift,\ BizBarChart.swift,\ BizBiometricSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountListCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountReorderList.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountSavingCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizActionCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAutocomplete.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBarChart.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBiometricSheet.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountListCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountReorderList.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountSavingCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizActionCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAutocomplete.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBarChart.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBiometricSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ UIFramework (in target 'UIFramework' from project 'UIFramework')
+
+EmitSwiftModule normal arm64 (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ BizCountryCodeSheet.swift,\ BizFabAction.swift,\ BizFabList.swift,\ BizFeedbackSheet.swift,\ BizFilterSheet.swift,\ BizHideAppBar.swift,\ BizKeypad.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCountryCodeSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFabAction.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFabList.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFeedbackSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFilterSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizHideAppBar.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKeypad.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCountryCodeSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFabAction.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFabList.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFeedbackSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFilterSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizHideAppBar.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKeypad.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ BizSelect.swift,\ BizSkeletonDetail.swift,\ BizSkeletonItem.swift,\ BizSkeletonList.swift,\ BizSortSheet.swift,\ BizSwipeItem.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSelect.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeletonDetail.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeletonItem.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeletonList.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSortSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSwipeItem.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSelect.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeletonDetail.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeletonItem.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeletonList.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSortSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSwipeItem.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ BizMonthPickerSheet.swift,\ BizNoResult.swift,\ BizNotificationItem.swift,\ BizNumberSpinner.swift,\ BizOtpInput.swift,\ BizPhoneInput.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizMonthPickerSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizNoResult.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizNotificationItem.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizNumberSpinner.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizOtpInput.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPhoneInput.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizMonthPickerSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizNoResult.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizNotificationItem.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizNumberSpinner.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizOtpInput.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPhoneInput.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling SceneDelegate.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftCompile normal arm64 Compiling\ BizTimePicker.swift,\ BizTimePickerAlert.swift,\ BizTimePickerSheet.swift,\ BizTransferList.swift,\ BizUpgradeCard.swift,\ BizUserCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTimePicker.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTimePickerAlert.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTimePickerSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTransferList.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizUpgradeCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizUserCard.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTimePicker.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTimePickerAlert.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTimePickerSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTransferList.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizUpgradeCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizUserCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling AppDelegate.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftCompile normal arm64 Compiling\ BizPinDots.swift,\ BizPullToRefresh.swift,\ BizRadioGroup.swift,\ BizScrollSegment.swift,\ BizSecureKeyboard.swift,\ BizSecureKeypad.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPinDots.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPullToRefresh.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizRadioGroup.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizScrollSegment.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSecureKeyboard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSecureKeypad.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPinDots.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPullToRefresh.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizRadioGroup.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizScrollSegment.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSecureKeyboard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSecureKeypad.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling GeneratedAssetSymbols.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftCompile normal arm64 Compiling\ BizUserProfile.swift,\ BizVerificationCard.swift,\ Phase2Demos.swift,\ Phase3Demos.swift,\ Phase4Demos.swift,\ Phase4KeyboardDemos.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizUserProfile.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizVerificationCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase2Demos.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase3Demos.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase4Demos.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase4KeyboardDemos.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizUserProfile.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizVerificationCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase2Demos.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase3Demos.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase4Demos.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase4KeyboardDemos.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for ui_framework_sample (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftDriver\ Compilation\ Requirements ui-framework-sample normal arm64 com.apple.xcode.tools.swift.compiler (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-Swift-Compilation-Requirements -- /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ui_framework_sample -Onone @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios14.0-simulator -g -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache -output-file-map /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.swiftmodule -validate-clang-modules-once -clang-build-session-file /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_const_extract_protocols.json -Xcc -iquote -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-generated-files.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-own-target-headers.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample-7d20727ad6fdc979cecad54b725c2f8d-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-project-headers.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources-normal/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample-Swift.h -working-directory /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ BizKhmerCalendarAlert.swift,\ BizKhmerCalendarSheet.swift,\ BizKhmerKeyboard.swift,\ BizLanguageSheet.swift,\ BizMonthPicker.swift,\ BizMonthPickerAlert.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerCalendarAlert.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerCalendarSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerKeyboard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizLanguageSheet.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizMonthPicker.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizMonthPickerAlert.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerCalendarAlert.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerCalendarSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerKeyboard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizLanguageSheet.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizMonthPicker.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizMonthPickerAlert.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+Copy /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui_framework_sample.swiftmodule/arm64-apple-ios-simulator.abi.json /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.abi.json (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.abi.json /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui_framework_sample.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizBottomSheet.swift, BizButton.swift, BizButtonGroup.swift, BizCalendarAlert.swift, BizCalendarSheet.swift, BizCheckboxGroup.swift, BizConfirmSheet.swift (in target 'UIFramework' from project 'UIFramework')
+
+Copy /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui_framework_sample.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.swiftsourceinfo (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.swiftsourceinfo /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui_framework_sample.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+SwiftCompile normal arm64 Compiling\ Phase5PickersDemo.swift,\ Phase5SheetsDemo.swift,\ Phase6Batch1Demo.swift,\ Phase6Batch2Demo.swift,\ View+CornerRadius.swift,\ View+ListRowSeparator.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase5PickersDemo.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase5SheetsDemo.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase6Batch1Demo.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase6Batch2Demo.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Utils/View+CornerRadius.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Utils/View+ListRowSeparator.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase5PickersDemo.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase5SheetsDemo.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase6Batch1Demo.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Phase6Batch2Demo.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Utils/View+CornerRadius.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/Utils/View+ListRowSeparator.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizSelect.swift, BizSkeletonDetail.swift, BizSkeletonItem.swift, BizSkeletonList.swift, BizSortSheet.swift, BizSwipeItem.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizInfoCard.swift,\ BizInput.swift,\ BizKhmerCalendar.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizInfoCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizInput.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerCalendar.swift (in target 'UIFramework' from project 'UIFramework')
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizInfoCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizInput.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizKhmerCalendar.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ BizLineChart.swift,\ BizPieChart.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizLineChart.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPieChart.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizLineChart.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizPieChart.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizMonthPickerSheet.swift, BizNoResult.swift, BizNotificationItem.swift, BizNumberSpinner.swift, BizOtpInput.swift, BizPhoneInput.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizCollapsingToolbar.swift,\ BizFab.swift,\ BizIconButton.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCollapsingToolbar.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFab.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizIconButton.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCollapsingToolbar.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizFab.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizIconButton.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizCountryCodeSheet.swift, BizFabAction.swift, BizFabList.swift, BizFeedbackSheet.swift, BizFilterSheet.swift, BizHideAppBar.swift, BizKeypad.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizAccountCard.swift,\ BizAppBar.swift,\ BizBottomMenu.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountCard.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAppBar.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBottomMenu.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAccountCard.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizAppBar.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBottomMenu.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizUserProfile.swift, BizVerificationCard.swift, Phase2Demos.swift, Phase3Demos.swift, Phase4Demos.swift, Phase4KeyboardDemos.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizToast.swift,\ KhmerDate.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizToast.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/KhmerDate.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizToast.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/KhmerDate.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizPinDots.swift, BizPullToRefresh.swift, BizRadioGroup.swift, BizScrollSegment.swift, BizSecureKeyboard.swift, BizSecureKeypad.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizRating.swift,\ BizSegment.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizRating.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSegment.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizRating.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSegment.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizTimePicker.swift, BizTimePickerAlert.swift, BizTimePickerSheet.swift, BizTransferList.swift, BizUpgradeCard.swift, BizUserCard.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizProgressGauge.swift,\ BizRadio.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizProgressGauge.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizRadio.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizProgressGauge.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizRadio.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizLineChart.swift, BizPieChart.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizSwitch.swift,\ BizTextField.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSwitch.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTextField.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSwitch.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizTextField.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizCollapsingToolbar.swift, BizFab.swift, BizIconButton.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizBottomNav.swift,\ BizCalendar.swift,\ BizCheckbox.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBottomNav.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCalendar.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCheckbox.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizBottomNav.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCalendar.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizCheckbox.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling Phase5PickersDemo.swift, Phase5SheetsDemo.swift, Phase6Batch1Demo.swift, Phase6Batch2Demo.swift, View+CornerRadius.swift, View+ListRowSeparator.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 Compiling\ BizSkeleton.swift,\ BizSlider.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeleton.swift /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSlider.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSkeleton.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftCompile normal arm64 /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework/Sources/UIFramework/BizSlider.swift (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizAccountCard.swift, BizAppBar.swift, BizBottomMenu.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizSwitch.swift, BizTextField.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizRating.swift, BizSegment.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizAccountListCard.swift, BizAccountReorderList.swift, BizAccountSavingCard.swift, BizActionCard.swift, BizAutocomplete.swift, BizBarChart.swift, BizBiometricSheet.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizProgressGauge.swift, BizRadio.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizToast.swift, KhmerDate.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizSkeleton.swift, BizSlider.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizKhmerCalendarAlert.swift, BizKhmerCalendarSheet.swift, BizKhmerKeyboard.swift, BizLanguageSheet.swift, BizMonthPicker.swift, BizMonthPickerAlert.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ViewController.swift (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+SwiftDriver\ Compilation ui-framework-sample normal arm64 com.apple.xcode.tools.swift.compiler (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-Swift-Compilation -- /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ui_framework_sample -Onone @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios14.0-simulator -g -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache -output-file-map /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.swiftmodule -validate-clang-modules-once -clang-build-session-file /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_const_extract_protocols.json -Xcc -iquote -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-generated-files.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-own-target-headers.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample-7d20727ad6fdc979cecad54b725c2f8d-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-project-headers.hmap -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources-normal/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample-Swift.h -working-directory /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizBottomNav.swift, BizCalendar.swift, BizCheckbox.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BizInfoCard.swift, BizInput.swift, BizKhmerCalendar.swift (in target 'UIFramework' from project 'UIFramework')
+
+SwiftDriver\ Compilation UIFramework normal arm64 com.apple.xcode.tools.swift.compiler (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj
+    builtin-Swift-Compilation -- /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name UIFramework -Onone @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios14.0-simulator -g -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -Isystem /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Volumes/SSD/Sdk/xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-e10d5408945ce7cab6d7fd3e9ccabcd8.sdkstatcache -output-file-map /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.swiftmodule -validate-clang-modules-once -clang-build-session-file /Volumes/SSD/Sdk/xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -package-name uiframework -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework_const_extract_protocols.json -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/include -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/DerivedSources-normal/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/DerivedSources/arm64 -Xcc -I/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework-Swift.h -working-directory /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+Ld /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/UIFramework.o normal (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios14.0-simulator -r -isysroot /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -iframework /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -filelist /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework_lto.o -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework_dependency_info.dat -fobjc-link-runtime -L/Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.swiftmodule @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework-linker-args.resp -o /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/UIFramework.o
+
+ExtractAppIntentsMetadata (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name UIFramework --sdk-root /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 14.0 --bundle-identifier uiframework.UIFramework --output /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/UIFramework.appintents --target-triple arm64-apple-ios14.0-simulator --binary-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/UIFramework.o --dependency-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework_dependency_info.dat --stringsdata-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.SwiftFileList --metadata-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/UIFramework.DependencyMetadataFileList --static-metadata-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/UIFramework.DependencyStaticMetadataFileList --swift-const-vals-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-07-11 20:51:56.845 appintentsmetadataprocessor[30819:519621] Starting appintentsmetadataprocessor export
+2026-07-11 20:51:56.869 appintentsmetadataprocessor[30819:519621] Extracted no relevant App Intents symbols, skipping writing output
+
+RegisterExecutionPolicyException /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/UIFramework.o (in target 'UIFramework' from project 'UIFramework')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/UIFramework
+    builtin-RegisterExecutionPolicyException /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/UIFramework.o
+
+Ld /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/__preview.dylib normal (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios14.0-simulator -dynamiclib -isysroot /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -install_name @rpath/ui-framework-sample.debug.dylib -Xlinker -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_dependency_info.dat -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.app-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/__preview.dylib
+
+Ld /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib normal (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios14.0-simulator -dynamiclib -isysroot /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -filelist /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample.LinkFileList -install_name @rpath/ui-framework-sample.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample.swiftmodule @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui_framework_sample-linker-args.resp -Wl,-no_warn_duplicate_libraries -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib -Xlinker -add_ast_path -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework.swiftmodule @/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/UIFramework.build/Debug-iphonesimulator/UIFramework.build/Objects-normal/arm64/UIFramework-linker-args.resp
+
+CompileStoryboard /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Base.lproj/Main.storyboard (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module ui_framework_sample --output-partial-info-plist /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj/Main-SBPartialInfo.plist --auto-activate-custom-fonts --target-device iphone --target-device ipad --minimum-deployment-target 14.0 --output-format human-readable-text /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Base.lproj/Main.storyboard --compilation-directory /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj
+
+CompileStoryboard /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Base.lproj/LaunchScreen.storyboard (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module ui_framework_sample --output-partial-info-plist /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj/LaunchScreen-SBPartialInfo.plist --auto-activate-custom-fonts --target-device iphone --target-device ipad --minimum-deployment-target 14.0 --output-format human-readable-text /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Base.lproj/LaunchScreen.storyboard --compilation-directory /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj
+
+ConstructStubExecutorLinkFileList /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-ExecutorLinkFileList-normal-arm64.txt (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    construct-stub-executor-link-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'ui-framework-sample' from project 'ui-framework-sample')
+
+Ld /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample normal (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios14.0-simulator -isysroot /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample-ExecutorLinkFileList-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.app-Simulated.xcent.der /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib -Xlinker -no_adhoc_codesign -o /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample
+
+ProcessInfoPlistFile /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Info.plist /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Info.plist (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-infoPlistUtility /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample/ui-framework-sample/Info.plist -producttype com.apple.product-type.application -genpkginfo /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj/LaunchScreen-SBPartialInfo.plist -additionalcontentfile /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj/Main-SBPartialInfo.plist -additionalcontentfile /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/assetcatalog_generated_info.plist -o /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Info.plist
+
+LinkStoryboards (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module ui_framework_sample --target-device iphone --target-device ipad --minimum-deployment-target 14.0 --output-format human-readable-text --link /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj/LaunchScreen.storyboardc /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Base.lproj/Main.storyboardc
+
+ExtractAppIntentsMetadata (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name ui_framework_sample --sdk-root /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 14.0 --bundle-identifier phanna.app.ui-framework-sample --output /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app --target-triple arm64-apple-ios14.0-simulator --binary-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample --dependency-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample_dependency_info.dat --stringsdata-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample.SwiftFileList --metadata-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.DependencyMetadataFileList --static-metadata-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.DependencyStaticMetadataFileList --swift-const-vals-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/Objects-normal/arm64/ui-framework-sample.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-07-11 20:51:57.210 appintentsmetadataprocessor[30829:519678] Starting appintentsmetadataprocessor export
+2026-07-11 20:51:57.211 appintentsmetadataprocessor[30829:519678] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib --scan-folder /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Frameworks --scan-folder /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/PlugIns --scan-folder /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/SystemExtensions --scan-folder /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Extensions --platform iphonesimulator --toolchain /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Frameworks --strip-bitcode --strip-bitcode-tool /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+AppIntentsSSUTraining (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    /Volumes/SSD/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Info.plist --temp-dir-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ssu --bundle-id phanna.app.ui-framework-sample --product-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app --extracted-metadata-path /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Metadata.appintents --metadata-file-list /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Intermediates.noindex/ui-framework-sample.build/Debug-iphonesimulator/ui-framework-sample.build/ui-framework-sample.DependencyMetadataFileList --source-file /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/Info.plist --archive-ssu-assets
+2026-07-11 20:51:57.228 appintentsnltrainingprocessor[30830:519679] Parsing options for appintentsnltrainingprocessor
+2026-07-11 20:51:57.229 appintentsnltrainingprocessor[30830:519679] Starting AppIntents SSU YAML Generation
+2026-07-11 20:51:57.233 appintentsnltrainingprocessor[30830:519679] No AppShortcuts found - Skipping.
+
+CodeSign /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/ui-framework-sample.debug.dylib
+
+CodeSign /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/__preview.dylib (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app/__preview.dylib
+
+CodeSign /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app
+
+Validate /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app (in target 'ui-framework-sample' from project 'ui-framework-sample')
+    cd /Volumes/SSD/Projects/GitHub/project-ui-framework/ios/ui-framework-sample
+    builtin-validationUtility /Volumes/SSD/Sdk/xcode/DerivedData/ui-framework-sample-gizvfaiwktbycpfshtclliwsspeh/Build/Products/Debug-iphonesimulator/ui-framework-sample.app -shallow-bundle -infoplist-subpath Info.plist
+
+** BUILD SUCCEEDED **
+

@@ -1,139 +1,116 @@
 import SwiftUI
 
 public enum BizButtonVariant {
-    case primary, secondary, outline, ghost, outlineDanger
+    case primary
+    case secondary
+    case outline
+    case ghost
+    case outlineDanger
 }
 
-public struct BizButton<LeftIcon: View, RightIcon: View>: View {
-    public var text: String
+public struct BizButtonStyle: ButtonStyle {
     public var variant: BizButtonVariant
-    public var block: Bool
-    public var enabled: Bool
-    public var iconLeft: LeftIcon?
-    public var iconRight: RightIcon?
-    public var onClick: () -> Void
-    
-    public init(
-        text: String,
-        variant: BizButtonVariant = .primary,
-        block: Bool = false,
-        enabled: Bool = true,
-        @ViewBuilder iconLeft: () -> LeftIcon = { EmptyView() },
-        @ViewBuilder iconRight: () -> RightIcon = { EmptyView() },
-        onClick: @escaping () -> Void
-    ) {
-        self.text = text
+    public var isBlock: Bool
+    @Environment(\.isEnabled) private var isEnabled
+    @Environment(\.bizButtonGroupIsVertical) private var isVerticalGroup
+
+    public init(variant: BizButtonVariant = .primary, isBlock: Bool = false) {
         self.variant = variant
-        self.block = block
-        self.enabled = enabled
-        self.iconLeft = iconLeft()
-        self.iconRight = iconRight()
-        self.onClick = onClick
+        self.isBlock = isBlock
     }
-    
-    public var body: some View {
-        Button(action: onClick) {
-            HStack(spacing: 8) {
-                if let left = iconLeft {
-                    left
-                }
-                
-                Text(text)
-                    .font(.system(size: 16, weight: .semibold))
-                
-                if let right = iconRight {
-                    right
-                }
-            }
-            .frame(maxWidth: block ? .infinity : nil, minHeight: 56)
-            .padding(.horizontal, block ? 0 : 24)
-            .background(backgroundView)
+
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.system(size: 16, weight: .semibold))
+            .padding(.vertical, variant == .ghost ? 0 : 16)
+            .padding(.horizontal, variant == .ghost ? 0 : 24)
+            .frame(maxWidth: isBlock ? .infinity : nil)
+            .background(background(isPressed: configuration.isPressed))
             .foregroundColor(foregroundColor)
-            .cornerRadius(12)
+            .cornerRadius(isVerticalGroup != nil ? 0 : 12)
             .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(borderColor, lineWidth: borderWidth)
+                Group {
+                    if isVerticalGroup == nil {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(borderColor, lineWidth: 1)
+                    } else {
+                        Rectangle()
+                            .stroke(borderColor, lineWidth: 1)
+                    }
+                }
             )
-        }
-        .disabled(!enabled)
-        .opacity(enabled ? 1.0 : 0.8)
+            .opacity(!isEnabled ? 0.8 : (configuration.isPressed && variant != .ghost ? 0.8 : 1.0))
     }
-    
-    @ViewBuilder
-    private var backgroundView: some View {
-        if !enabled {
-            Color(hex: "#C0C0C0")
-        } else {
-            switch variant {
-            case .primary:
-                Color(hex: "#1A2A5E")
-            case .secondary:
-                Color(hex: "#E0E0E0")
-            case .outline, .outlineDanger, .ghost:
-                Color.clear
-            }
+
+    private func background(isPressed: Bool) -> Color {
+        if !isEnabled {
+            return variant == .outline || variant == .outlineDanger || variant == .ghost ? .clear : Color(red: 192/255, green: 192/255, blue: 192/255)
+        }
+        switch variant {
+        case .primary: return isPressed ? Color(red: 18/255, green: 30/255, blue: 66/255) : Color(red: 26/255, green: 42/255, blue: 94/255)
+        case .secondary: return Color(red: 224/255, green: 224/255, blue: 224/255)
+        case .outline, .outlineDanger, .ghost: return .clear
         }
     }
-    
+
     private var foregroundColor: Color {
-        if !enabled {
+        if !isEnabled && variant != .outline && variant != .outlineDanger && variant != .ghost {
             return .white
         }
         switch variant {
-        case .primary:
-            return .white
-        case .secondary:
-            return Color(hex: "#333333")
-        case .outline:
-            return Color(hex: "#3B63CC")
-        case .outlineDanger:
-            return Color(hex: "#D32F2F")
-        case .ghost:
-            return Color(hex: "#0066CC")
+        case .primary: return .white
+        case .secondary: return Color(red: 51/255, green: 51/255, blue: 51/255)
+        case .outline: return Color(red: 59/255, green: 99/255, blue: 204/255)
+        case .outlineDanger: return Color(red: 211/255, green: 47/255, blue: 47/255)
+        case .ghost: return Color(red: 0, green: 102/255, blue: 204/255)
         }
     }
-    
+
     private var borderColor: Color {
-        if !enabled {
-            return .clear
-        }
         switch variant {
-        case .outline:
-            return Color(hex: "#CCCCCC")
-        case .outlineDanger:
-            return Color(hex: "#D32F2F")
-        default:
-            return .clear
-        }
-    }
-    
-    private var borderWidth: CGFloat {
-        switch variant {
-        case .outline, .outlineDanger:
-            return 1
-        default:
-            return 0
+        case .outline: return Color(red: 204/255, green: 204/255, blue: 204/255)
+        case .outlineDanger: return Color(red: 211/255, green: 47/255, blue: 47/255)
+        default: return .clear
         }
     }
 }
 
-// Extension to allow init without icons
-public extension BizButton where LeftIcon == EmptyView, RightIcon == EmptyView {
-    init(
-        text: String,
+public struct BizButton: View {
+    public let title: String
+    public let variant: BizButtonVariant
+    public let isBlock: Bool
+    public let action: () -> Void
+    public let leftIcon: Image?
+    public let rightIcon: Image?
+
+    public init(
+        _ title: String,
         variant: BizButtonVariant = .primary,
-        block: Bool = false,
-        enabled: Bool = true,
-        onClick: @escaping () -> Void
+        isBlock: Bool = false,
+        leftIcon: Image? = nil,
+        rightIcon: Image? = nil,
+        action: @escaping () -> Void
     ) {
-        self.init(
-            text: text,
-            variant: variant,
-            block: block,
-            enabled: enabled,
-            iconLeft: { EmptyView() },
-            iconRight: { EmptyView() },
-            onClick: onClick
-        )
+        self.title = title
+        self.variant = variant
+        self.isBlock = isBlock
+        self.leftIcon = leftIcon
+        self.rightIcon = rightIcon
+        self.action = action
+    }
+
+    public var body: some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                if let leftIcon = leftIcon {
+                    leftIcon.resizable().scaledToFit().frame(width: 20, height: 20)
+                }
+                Text(title)
+                if let rightIcon = rightIcon {
+                    rightIcon.resizable().scaledToFit().frame(width: 20, height: 20)
+                }
+            }
+        }
+        .buttonStyle(BizButtonStyle(variant: variant, isBlock: isBlock))
     }
 }
