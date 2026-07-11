@@ -9,6 +9,7 @@ import BizInput from './components/BizInput.vue'
 import BizTextField from './components/BizTextField.vue'
 import BizToggleButton from './components/BizToggleButton.vue'
 import BizSelect from './components/BizSelect.vue'
+import BizFileUpload from './components/BizFileUpload.vue'
 import BizTransferList from './components/BizTransferList.vue'
 import BizAutocomplete from './components/BizAutocomplete.vue'
 import BizCheckbox from './components/BizCheckbox.vue'
@@ -95,6 +96,7 @@ const components = {
   'biz-text-field': BizTextField,
   'biz-toggle-button': BizToggleButton,
   'biz-select': BizSelect,
+  'biz-file-upload': BizFileUpload,
   'biz-transfer-list': BizTransferList,
   'biz-autocomplete': BizAutocomplete,
   'biz-checkbox': BizCheckbox,

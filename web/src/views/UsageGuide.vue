@@ -883,7 +883,7 @@ export class AppModule { }</code></pre>
       <!-- ==============================
            6. BizInput Forms
       ================================ -->
-      <div class="guide-section" v-show="matchesSearch('bizinput biztextfield bizselect biztransferlist bizphoneinput bizotpinput form phone otp password text field input select dropdown transfer list')">
+      <div class="guide-section" v-show="matchesSearch('bizinput biztextfield bizselect biztransferlist bizphoneinput bizotpinput bizfileupload file upload form phone otp password text field input select dropdown transfer list')">
         <h2>6. Form Inputs</h2>
         
         <div class="variant-group">
@@ -945,7 +945,24 @@ export class AppModule { }</code></pre>
           </div>
           <pre class="code-block"><code>&lt;BizPhoneInput v-model="phone" countryCode="+855" /&gt;</code></pre>
         </div>
+
+        <div class="variant-group">
+          <h3>File Upload</h3>
+          <div class="component-demo">
+            <BizFileUpload 
+              multiple 
+              accept=".pdf,image/*" 
+              :maxSize="5 * 1024 * 1024"
+              :files="uploadedFiles"
+              @select="handleFileUpload"
+              @remove="handleFileRemove"
+              @retry="handleFileRetry"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizFileUpload multiple accept=".pdf,image/*" :files="files" @select="..." /&gt;</code></pre>
+        </div>
         
+
         <div class="variant-group">
           <h3>OTP Input (6-digit)</h3>
           <div class="component-demo" style="background: #f4f5f8; padding: 20px; border-radius: 12px;">
@@ -1824,7 +1841,7 @@ import {
   BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem,
   BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet,
   BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert,
-  BizCalendar, BizCalendarSheet, BizCalendarAlert,
+  BizCalendar, BizCalendarSheet, BizCalendarAlert, BizFileUpload,
   BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert,
   BizTimePicker, BizTimePickerSheet, BizTimePickerAlert,
   BizAutocomplete,
@@ -1872,6 +1889,65 @@ const handleRefresh = (complete: () => void) => {
 
 const phoneVal = ref('');
 const otpVal = ref('');
+
+const uploadedFiles = ref<any[]>([]);
+
+const handleFileUpload = (newFiles: any[]) => {
+  newFiles.forEach(file => {
+    const id = Date.now().toString() + Math.random().toString();
+    const newFileObj = {
+      id,
+      name: file.name,
+      size: file.size,
+      progress: 0,
+      status: 'uploading',
+      file
+    };
+    uploadedFiles.value.push(newFileObj);
+    
+    // Simulate upload progress
+    const interval = setInterval(() => {
+      const fileRef = uploadedFiles.value.find((f: any) => f.id === id);
+      if (!fileRef) {
+        clearInterval(interval);
+        return;
+      }
+      fileRef.progress += Math.random() * 20 + 5;
+      if (fileRef.progress >= 100) {
+        fileRef.progress = 100;
+        fileRef.status = Math.random() > 0.8 ? 'error' : 'success';
+        if (fileRef.status === 'error') fileRef.errorMessage = 'Network timeout';
+        clearInterval(interval);
+      }
+    }, 500);
+  });
+};
+
+const handleFileRemove = (id: string | number) => {
+  uploadedFiles.value = uploadedFiles.value.filter(f => f.id !== id);
+};
+
+const handleFileRetry = (id: string | number) => {
+  const fileRef = uploadedFiles.value.find(f => f.id === id);
+  if (fileRef) {
+    fileRef.status = 'uploading';
+    fileRef.progress = 0;
+    
+    const interval = setInterval(() => {
+      const fRef = uploadedFiles.value.find((f: any) => f.id === id);
+      if (!fRef) {
+        clearInterval(interval);
+        return;
+      }
+      fRef.progress += Math.random() * 20 + 5;
+      if (fRef.progress >= 100) {
+        fRef.progress = 100;
+        fRef.status = 'success';
+        clearInterval(interval);
+      }
+    }, 500);
+  }
+};
 const navVal = ref('home');
 const hideDeposit = ref(false);
 const selectedFeatures = ref(['payment']);

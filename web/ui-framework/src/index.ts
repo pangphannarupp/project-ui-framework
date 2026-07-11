@@ -9,6 +9,7 @@ import BizInput from './components/BizInput.vue'
 import BizTextField from './components/BizTextField.vue'
 import BizToggleButton from './components/BizToggleButton.vue'
 import BizSelect from './components/BizSelect.vue'
+import BizFileUpload from './components/BizFileUpload.vue'
 import BizTransferList from './components/BizTransferList.vue'
 import BizAutocomplete from './components/BizAutocomplete.vue'
 import BizCheckbox from './components/BizCheckbox.vue'
@@ -101,6 +102,7 @@ export {
   BizTextField,
   BizToggleButton,
   BizSelect,
+  BizFileUpload,
   BizTransferList,
   BizAutocomplete, 
   BizCheckbox,
@@ -195,6 +197,7 @@ export default {
     app.component('BizTextField', BizTextField)
     app.component('BizToggleButton', BizToggleButton)
     app.component('BizSelect', BizSelect)
+    app.component('BizFileUpload', BizFileUpload)
     app.component('BizTransferList', BizTransferList)
     app.component('BizAutocomplete', BizAutocomplete)
     app.component('BizCheckbox', BizCheckbox)
