@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import kh.mcnc.lib.utils.CalendarConfig
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -60,8 +61,8 @@ fun BizMonthPickerAlert(
                 ) {
                     Box(modifier = Modifier.padding(0.dp)) {
                         BizMonthPicker(
-                            config = config,
-                            initialDate = initialDate,
+                            config = config as? CalendarConfig ?: CalendarConfig(),
+                            initialDate = initialDate ?: Date(),
                             showActionButtons = showActionButtons,
                             onMonthSelected = onMonthSelected,
                             onRangeSelected = onRangeSelected,

@@ -61,8 +61,8 @@ fun BizCalendarAlert(
                 ) {
                     Box(modifier = Modifier.padding(0.dp)) {
                         BizCalendar(
-                            config = config,
-                            initialDate = initialDate,
+                            config = config ?: CalendarConfig(),
+                            initialDate = initialDate ?: Date(),
                             showActionButtons = showActionButtons,
                             onDateSelected = onDateSelected,
                             onRangeSelected = onRangeSelected,

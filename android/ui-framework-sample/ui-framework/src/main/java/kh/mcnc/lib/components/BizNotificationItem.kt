@@ -35,7 +35,7 @@ fun BizNotificationItem(
             .clickable(onClick = onClick)
             .background(Color.White)
             .padding(16.dp),
-        crossAxisAlignment = Alignment.Top
+        verticalAlignment = Alignment.Top
     ) {
         Box(
             modifier = Modifier.padding(end = 16.dp)

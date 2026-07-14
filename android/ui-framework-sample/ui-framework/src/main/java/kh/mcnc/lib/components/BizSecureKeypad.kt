@@ -112,7 +112,7 @@ fun BizSecureKeypad(
                                     .clip(RoundedCornerShape(12.dp))
                                     .clickable(
                                         interactionSource = remember { MutableInteractionSource() },
-                                        indication = androidx.compose.material.ripple.rememberRipple(),
+                                        indication = androidx.compose.material3.ripple(),
                                         onClick = { onPress("backspace") }
                                     ),
                                 contentAlignment = Alignment.Center

@@ -109,14 +109,14 @@ fun BizBottomSheet(
 
                     if (header != null) {
                         Box(modifier = Modifier.padding(bottom = 16.dp)) {
-                            header()
+                            this@Column.header()
                         }
                     }
 
                     Box(
                         modifier = Modifier.weight(1f, fill = false)
                     ) {
-                        content()
+                        this@Column.content()
                     }
 
                     if (footer != null) {
@@ -125,7 +125,7 @@ fun BizBottomSheet(
                                 .padding(top = 24.dp)
                                 .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Bottom))
                         ) {
-                            footer()
+                            this@Column.footer()
                         }
                     }
                 }

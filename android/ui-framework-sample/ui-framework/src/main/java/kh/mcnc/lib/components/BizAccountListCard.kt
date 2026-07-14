@@ -140,7 +140,7 @@ fun BizAccountListCard(
                             Text(if (isHidden) "👁" else "👁\uFE0F", fontSize = 12.sp) // Replace with proper icons
                         }
                         
-                        Row(verticalAlignment = Alignment.Baseline) {
+                        Row(verticalAlignment = Alignment.Bottom) {
                             Text(
                                 text = currencySymbol,
                                 color = primaryColor,

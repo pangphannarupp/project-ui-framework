@@ -61,11 +61,11 @@ fun BizKhmerCalendarAlert(
                 ) {
                     Box(modifier = Modifier.padding(0.dp)) {
                         BizKhmerCalendar(
-                            config = config,
-                            initialDate = initialDate,
+                            config = config ?: CalendarConfig(),
+                            initialDate = initialDate ?: Date(),
                             showActionButtons = showActionButtons,
-                            onDateSelected = onDateSelected,
-                            onRangeSelected = onRangeSelected,
+                            onDateSelected = { d, kd, s -> onDateSelected?.invoke(d) },
+                            onRangeSelected = { d1, kd1, s1, d2, kd2, s2 -> onRangeSelected?.invoke(d1, d2) },
                             onMonthChanged = onMonthChanged,
                             onConfirm = onConfirm,
                             onCancel = onCancel

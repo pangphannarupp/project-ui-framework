@@ -19,13 +19,13 @@ fun BizCalendarSheet(
     onCancel: (() -> Unit)? = null
 ) {
     BizBottomSheet(
-        visible = visible,
+        isVisible = visible,
         onDismissRequest = onDismissRequest,
-        title = title
+        
     ) {
         BizCalendar(
-            config = config,
-            initialDate = initialDate,
+            config = config ?: CalendarConfig(),
+            initialDate = initialDate ?: Date(),
             showActionButtons = showActionButtons,
             onDateSelected = onDateSelected,
             onRangeSelected = onRangeSelected,

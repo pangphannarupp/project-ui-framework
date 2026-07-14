@@ -1,6 +1,7 @@
 package kh.mcnc.lib.components
 
 import androidx.compose.runtime.Composable
+import kh.mcnc.lib.utils.CalendarConfig
 import java.util.Date
 
 @Composable
@@ -18,13 +19,12 @@ fun BizMonthPickerSheet(
     onCancel: (() -> Unit)? = null
 ) {
     BizBottomSheet(
-        visible = visible,
-        onDismissRequest = onDismissRequest,
-        title = title
+        isVisible = visible,
+        onDismissRequest = onDismissRequest
     ) {
         BizMonthPicker(
-            config = config,
-            initialDate = initialDate,
+            config = config as? CalendarConfig ?: CalendarConfig(),
+            initialDate = initialDate ?: Date(),
             showActionButtons = showActionButtons,
             onMonthSelected = onMonthSelected,
             onRangeSelected = onRangeSelected,

@@ -184,7 +184,7 @@ fun BizBiometricSheet(
             // Info Banner
             Row(
                 modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp),
-                crossAxisAlignment = Alignment.Top,
+                verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Icon(

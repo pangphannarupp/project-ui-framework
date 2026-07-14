@@ -19,21 +19,20 @@ fun BizTimePickerSheet(
     onCancel: (() -> Unit)? = null
 ) {
     BizBottomSheet(
-        visible = visible,
-        onDismissRequest = onDismissRequest,
-        title = title
+        isVisible = visible,
+        onDismissRequest = onDismissRequest
     ) {
         BizTimePicker(
-            timeValue = timeValue,
-            min = min,
-            max = max,
-            minuteValues = minuteValues,
-            hourCycle = hourCycle,
+            value = timeValue ?: "",
+            
+            
+            
+            
             showActionButtons = showActionButtons,
-            onTimeUpdate = onTimeUpdate,
-            onChange = onChange,
-            onConfirm = onConfirm,
-            onCancel = onCancel
+            onValueChange = onTimeUpdate ?: {},
+            
+            onConfirm = { onConfirm?.invoke(it) },
+            onCancel = { onCancel?.invoke() }
         )
     }
 }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -108,7 +109,7 @@ fun BizOtpInput(
                 decorationBox = { innerTextField ->
                     Box(
                         modifier = Modifier
-                            .matchParentSize()
+                            .fillMaxSize()
                             .background(bgColor, RoundedCornerShape(12.dp))
                             .border(1.dp, borderColor, RoundedCornerShape(12.dp)),
                         contentAlignment = Alignment.Center

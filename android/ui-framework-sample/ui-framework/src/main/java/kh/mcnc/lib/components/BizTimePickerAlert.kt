@@ -92,13 +92,13 @@ fun BizTimePickerAlert(
 
                         Box(modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 20.dp)) {
                             BizTimePicker(
-                                timeValue = internalTime,
-                                min = min,
-                                max = max,
-                                minuteValues = minuteValues,
-                                hourCycle = hourCycle,
+                                value = internalTime ?: "",
+                                
+                                
+                                
+                                
                                 showActionButtons = false,
-                                onTimeUpdate = { 
+                                onValueChange = { 
                                     internalTime = it
                                 }
                             )

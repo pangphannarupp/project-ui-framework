@@ -38,7 +38,7 @@ fun BizUserCard(
             .background(Color.White, RoundedCornerShape(16.dp))
             .border(1.dp, Color(0xFFEEF1F6), RoundedCornerShape(16.dp))
             .padding(16.dp),
-        crossAxisAlignment = Alignment.Top
+        verticalAlignment = Alignment.Top
     ) {
         // Avatar
         Box(
