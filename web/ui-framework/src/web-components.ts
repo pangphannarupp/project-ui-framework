@@ -82,6 +82,9 @@ import BizCalendarAlert from './components/BizCalendarAlert.vue'
 import BizMonthPicker from './components/BizMonthPicker.vue'
 import BizMonthPickerSheet from './components/BizMonthPickerSheet.vue'
 import BizMonthPickerAlert from './components/BizMonthPickerAlert.vue'
+import BizYearPicker from './components/BizYearPicker.vue'
+import BizYearPickerSheet from './components/BizYearPickerSheet.vue'
+import BizYearPickerAlert from './components/BizYearPickerAlert.vue'
 import BizAccountListCard from './components/BizAccountListCard.vue'
 import BizAccountReorderList from './components/BizAccountReorderList.vue'
 
@@ -169,6 +172,9 @@ const components = {
   'biz-month-picker': BizMonthPicker,
   'biz-month-picker-sheet': BizMonthPickerSheet,
   'biz-month-picker-alert': BizMonthPickerAlert,
+  'biz-year-picker': BizYearPicker,
+  'biz-year-picker-sheet': BizYearPickerSheet,
+  'biz-year-picker-alert': BizYearPickerAlert,
   'biz-account-list-card': BizAccountListCard,
   'biz-account-reorder-list': BizAccountReorderList
 };

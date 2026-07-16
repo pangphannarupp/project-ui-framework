@@ -2,7 +2,6 @@
   <BizBottomSheet 
     :modelValue="modelValue"
     @update:modelValue="$emit('update:modelValue', $event)"
-    :title="title"
   >
     <BizKhmerCalendar 
       :config="config"

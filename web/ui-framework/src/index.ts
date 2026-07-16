@@ -83,6 +83,9 @@ import BizCalendarAlert from './components/BizCalendarAlert.vue'
 import BizMonthPicker from './components/BizMonthPicker.vue'
 import BizMonthPickerSheet from './components/BizMonthPickerSheet.vue'
 import BizMonthPickerAlert from './components/BizMonthPickerAlert.vue'
+import BizYearPicker from './components/BizYearPicker.vue'
+import BizYearPickerSheet from './components/BizYearPickerSheet.vue'
+import BizYearPickerAlert from './components/BizYearPickerAlert.vue'
 import BizAccountListCard from './components/BizAccountListCard.vue'
 import BizAccountReorderList from './components/BizAccountReorderList.vue'
 import BizTimePicker from './components/BizTimePicker.vue'
@@ -176,6 +179,9 @@ export {
   BizMonthPicker,
   BizMonthPickerSheet,
   BizMonthPickerAlert,
+  BizYearPicker,
+  BizYearPickerSheet,
+  BizYearPickerAlert,
   BizAccountListCard,
   BizAccountReorderList,
   BizTimePicker,
@@ -269,6 +275,9 @@ export default {
     app.component('BizMonthPicker', BizMonthPicker)
     app.component('BizMonthPickerSheet', BizMonthPickerSheet)
     app.component('BizMonthPickerAlert', BizMonthPickerAlert)
+    app.component('BizYearPicker', BizYearPicker)
+    app.component('BizYearPickerSheet', BizYearPickerSheet)
+    app.component('BizYearPickerAlert', BizYearPickerAlert)
     app.component('BizAccountListCard', BizAccountListCard)
     app.component('BizAccountReorderList', BizAccountReorderList)
     app.component('BizTimePicker', BizTimePicker)

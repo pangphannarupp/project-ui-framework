@@ -1493,6 +1493,68 @@ const dateObj = khmerDate.toLunar();
       </div>
 
       <!-- ==============================
+           13.5. BizYearPicker
+      ================================ -->
+      <div class="guide-section" v-show="matchesSearch('bizyearpicker year picker')">
+        <h2>13.5. Year Picker</h2>
+
+        <div class="variant-group">
+          <h3>Standard Selection</h3>
+          <p class="custom-guide"><strong>Props:</strong> <code>config={ selectionMode: 'Single' }</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
+            <BizYearPicker 
+              @year-selected="s => alertVal('Selected Year: ' + s.year)"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizYearPicker @year-selected="onSelect" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Range Selection</h3>
+          <p class="custom-guide"><strong>Props:</strong> <code>config={ selectionMode: 'Range' }</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
+            <BizYearPicker 
+              :config="{ selectionMode: 'Range' }"
+              @range-selected="(start, end) => alertVal('Range: ' + (start ? start.year : '') + ' to ' + (end ? end.year : ''))"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizYearPicker :config="{ selectionMode: 'Range' }" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Year Picker Bottom Sheet</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizYearPickerSheet&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showYearPickerSheet = true">Open Year Sheet</BizButton>
+            <BizYearPickerSheet 
+              v-model="showYearPickerSheet"
+              title="Select a Year"
+              :showActionButtons="true"
+              @confirm="(s) => { alertVal('Confirmed: ' + (s ? s.year : '')); showYearPickerSheet = false; }"
+              @cancel="showYearPickerSheet = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizYearPickerSheet v-model="isOpen" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Year Picker Alert</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizYearPickerAlert&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showYearPickerAlert = true">Open Year Alert</BizButton>
+            <BizYearPickerAlert 
+              v-model="showYearPickerAlert"
+              title="Select a Year"
+              :showActionButtons="true"
+              @confirm="(s) => { alertVal('Confirmed: ' + (s ? s.year : '')); showYearPickerAlert = false; }"
+              @cancel="showYearPickerAlert = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizYearPickerAlert v-model="isOpen" /&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ==============================
            14. BizTimePicker
       ================================ -->
       <div class="guide-section" v-show="matchesSearch('biztimepicker time picker sheet alert')">
@@ -1843,6 +1905,7 @@ import {
   BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert,
   BizCalendar, BizCalendarSheet, BizCalendarAlert, BizFileUpload,
   BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert,
+  BizYearPicker, BizYearPickerSheet, BizYearPickerAlert,
   BizTimePicker, BizTimePickerSheet, BizTimePickerAlert,
   BizAutocomplete,
   BizAccountListCard, BizAccountReorderList
@@ -1999,6 +2062,8 @@ const showAlertCalendar = ref(false);
 const showStdCalendarSheet = ref(false);
 const showStdAlertCalendar = ref(false);
 const showMonthPickerSheet = ref(false);
+const showYearPickerSheet = ref(false);
+const showYearPickerAlert = ref(false);
 const selectedReceivingAccount = ref('acc1');
 const demoAccounts = ref([
   { id: 'acc1', name: "Chan Ty' Saving", number: "1-120-14335454-8", balance: 12000000.00, currency: "USD" as const, type: "Savings", isHidden: false },

@@ -2,9 +2,9 @@
   <BizBottomSheet 
     :modelValue="modelValue"
     @update:modelValue="$emit('update:modelValue', $event)"
-    :title="title"
   >
     <BizTimePicker 
+      :title="title"
       :modelValue="timeValue"
       :min="min"
       :max="max"

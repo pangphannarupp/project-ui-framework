@@ -1,6 +1,6 @@
 {
-  "name": "@bizmob-core/ui-framework",
-  "version": "1.0.0",
+  "name": "@phanna/ui-framework",
+  "version": "1.0.2",
   "description": "Reusable UI Framework",
   "type": "module",
   "files": [
