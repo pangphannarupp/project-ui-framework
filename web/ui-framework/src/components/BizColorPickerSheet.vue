@@ -2,8 +2,10 @@
   <BizBottomSheet 
     :modelValue="modelValue"
     @update:modelValue="$emit('update:modelValue', $event)"
-    :title="title"
   >
+    <template #header v-if="title">
+      <h3 style="margin: 0; padding: 0 16px; font-size: 18px; font-weight: 600;">{{ title }}</h3>
+    </template>
     <div style="padding: 16px;">
       <BizColorPicker 
         :modelValue="localColor"
