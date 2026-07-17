@@ -111,13 +111,13 @@ const profileScale = computed(() => {
 
 const profileY = computed(() => {
   // Starts higher above the title when expanded to prevent overlap with large scaled image
-  const expandedY = props.expandedHeight - props.collapsedHeight - 70; 
+  const expandedY = props.expandedHeight - props.collapsedHeight - 120; 
   const collapsedY = 0;
   return collapsedY + (expandedY * progress.value);
 });
 
 const profileX = computed(() => {
-  const expandedX = 16;
+  const expandedX = -40; // Align with title
   const collapsedX = 0;
   return collapsedX + ((expandedX - collapsedX) * progress.value);
 });

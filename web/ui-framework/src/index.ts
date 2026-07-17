@@ -92,6 +92,9 @@ import BizTimePicker from './components/BizTimePicker.vue'
 import BizTimePickerSheet from './components/BizTimePickerSheet.vue'
 import BizTimePickerAlert from './components/BizTimePickerAlert.vue'
 import BizNotificationItem from './components/BizNotificationItem.vue'
+import BizColorPicker from './components/BizColorPicker.vue'
+import BizColorPickerSheet from './components/BizColorPickerSheet.vue'
+import BizColorPickerAlert from './components/BizColorPickerAlert.vue'
 
 // Export components individually
 export { 
@@ -187,7 +190,10 @@ export {
   BizTimePicker,
   BizTimePickerSheet,
   BizTimePickerAlert,
-  BizNotificationItem
+  BizNotificationItem,
+  BizColorPicker,
+  BizColorPickerSheet,
+  BizColorPickerAlert
 }
 
 // Export a Vue plugin to install all components
@@ -284,5 +290,8 @@ export default {
     app.component('BizTimePickerSheet', BizTimePickerSheet)
     app.component('BizTimePickerAlert', BizTimePickerAlert)
     app.component('BizNotificationItem', BizNotificationItem)
+    app.component('BizColorPicker', BizColorPicker)
+    app.component('BizColorPickerSheet', BizColorPickerSheet)
+    app.component('BizColorPickerAlert', BizColorPickerAlert)
   }
 }

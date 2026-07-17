@@ -6,6 +6,8 @@
           :config="config"
           :initialDate="initialDate"
           :showActionButtons="showActionButtons"
+          :cancelText="cancelText"
+          :confirmText="confirmText"
           @month-selected="$emit('month-selected', $event)"
           @range-selected="(s, e) => $emit('range-selected', s, e)"
           @year-changed="(y) => $emit('year-changed', y)"
@@ -27,6 +29,8 @@ const props = defineProps<{
   initialDate?: Date;
   showActionButtons?: boolean;
   dismissOnOverlayClick?: boolean;
+  cancelText?: string;
+  confirmText?: string;
 }>();
 
 const emit = defineEmits<{

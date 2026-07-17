@@ -83,11 +83,11 @@
 
     <!-- Action Buttons -->
     <!-- Month/Year Picker Sheet -->
-    <BizBottomSheet v-model="showMonthPicker" title="Select Month">
+    <BizBottomSheet v-model="showMonthPicker" :title="pickerTitleText">
       <div class="picker-content">
         <div class="picker-headers">
-          <div class="picker-col-header">Month</div>
-          <div class="picker-col-header">Year</div>
+          <div class="picker-col-header">{{ pickerMonthText }}</div>
+          <div class="picker-col-header">{{ pickerYearText }}</div>
         </div>
         <div class="wheel-container">
           <!-- Month Wheel -->
@@ -120,15 +120,15 @@
           </div>
         </div>
         <div class="picker-actions">
-          <button class="btn-close-picker" @click="showMonthPicker = false">Close</button>
-          <button class="btn-confirm-picker" @click="confirmMonthYear">Confirm</button>
+          <button class="btn-close-picker" @click="showMonthPicker = false">{{ pickerCancelText }}</button>
+          <button class="btn-confirm-picker" @click="confirmMonthYear">{{ pickerConfirmText }}</button>
         </div>
       </div>
     </BizBottomSheet>
 
     <div class="action-buttons" v-if="showActionButtons">
-      <button class="btn-cancel" @click="onCancel">Cancel</button>
-      <button class="btn-confirm" @click="onConfirmAction">Confirm</button>
+      <button class="btn-cancel" @click="onCancel">{{ cancelText }}</button>
+      <button class="btn-confirm" @click="onConfirmAction">{{ confirmText }}</button>
     </div>
   </div>
 </template>
@@ -148,10 +148,24 @@ const props = withDefaults(defineProps<{
   config?: CalendarConfig;
   initialDate?: Date;
   showActionButtons?: boolean;
+  pickerTitleText?: string;
+  pickerMonthText?: string;
+  pickerYearText?: string;
+  pickerCancelText?: string;
+  pickerConfirmText?: string;
+  cancelText?: string;
+  confirmText?: string;
 }>(), {
   config: () => ({ selectionMode: 'Single' as SelectionMode }),
   initialDate: () => new Date(),
-  showActionButtons: false
+  showActionButtons: false,
+  pickerTitleText: 'Select Month',
+  pickerMonthText: 'Month',
+  pickerYearText: 'Year',
+  pickerCancelText: 'Close',
+  pickerConfirmText: 'Confirm',
+  cancelText: 'Cancel',
+  confirmText: 'Confirm'
 });
 
 const emit = defineEmits<{

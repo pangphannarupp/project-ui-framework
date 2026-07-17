@@ -54,8 +54,8 @@
     </div>
 
     <div class="action-buttons" v-if="showActionButtons">
-      <button class="btn-cancel" @click="onCancel">Cancel</button>
-      <button class="btn-confirm" @click="onConfirmAction">Confirm</button>
+      <button class="btn-cancel" @click="onCancel">{{ cancelText }}</button>
+      <button class="btn-confirm" @click="onConfirmAction">{{ confirmText }}</button>
     </div>
   </div>
 </template>
@@ -78,10 +78,14 @@ const props = withDefaults(defineProps<{
   config?: MonthPickerConfig;
   initialDate?: Date;
   showActionButtons?: boolean;
+  cancelText?: string;
+  confirmText?: string;
 }>(), {
   config: () => ({ selectionMode: 'Single' }),
   initialDate: () => new Date(),
-  showActionButtons: false
+  showActionButtons: false,
+  cancelText: 'Cancel',
+  confirmText: 'Confirm'
 });
 
 const emit = defineEmits<{

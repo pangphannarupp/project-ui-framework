@@ -7,6 +7,13 @@
       :config="config"
       :initialDate="initialDate"
       :showActionButtons="showActionButtons"
+      :pickerTitleText="pickerTitleText"
+      :pickerMonthText="pickerMonthText"
+      :pickerYearText="pickerYearText"
+      :pickerCancelText="pickerCancelText"
+      :pickerConfirmText="pickerConfirmText"
+      :cancelText="cancelText"
+      :confirmText="confirmText"
       @date-selected="$emit('date-selected', $event)"
       @range-selected="(s, e) => $emit('range-selected', s, e)"
       @month-changed="(y, m) => $emit('month-changed', y, m)"
@@ -27,6 +34,13 @@ defineProps<{
   config?: CalendarConfig;
   initialDate?: Date;
   showActionButtons?: boolean;
+  pickerTitleText?: string;
+  pickerMonthText?: string;
+  pickerYearText?: string;
+  pickerCancelText?: string;
+  pickerConfirmText?: string;
+  cancelText?: string;
+  confirmText?: string;
 }>();
 
 defineEmits<{

@@ -883,7 +883,7 @@ export class AppModule { }</code></pre>
       <!-- ==============================
            6. BizInput Forms
       ================================ -->
-      <div class="guide-section" v-show="matchesSearch('bizinput biztextfield bizselect biztransferlist bizphoneinput bizotpinput bizfileupload file upload form phone otp password text field input select dropdown transfer list')">
+      <div class="guide-section" v-show="matchesSearch('bizinput biztextfield bizselect biztransferlist bizphoneinput bizotpinput bizfileupload bizcolorpicker file upload form phone otp password text field input select dropdown transfer list color picker')">
         <h2>6. Form Inputs</h2>
         
         <div class="variant-group">
@@ -969,6 +969,43 @@ export class AppModule { }</code></pre>
             <BizOtpInput v-model="otpVal" :length="6" />
           </div>
           <pre class="code-block"><code>&lt;BizOtpInput v-model="otp" :length="6" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Color Picker</h3>
+          <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
+            <BizColorPicker v-model="colorVal" />
+            <p style="margin-top: 16px; font-weight: 500;">Selected Color: <span :style="{ color: colorVal }">{{ colorVal }}</span></p>
+          </div>
+          <pre class="code-block"><code>&lt;BizColorPicker v-model="color" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Color Picker Sheet</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerSheet&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
+            <BizButton @click="showColorPickerSheet = true">Open Color Sheet</BizButton>
+            <BizColorPickerSheet 
+              v-model="showColorPickerSheet"
+              v-model:colorValue="colorVal"
+              title="Select a Theme Color"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizColorPickerSheet v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Color Picker Alert</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerAlert&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
+            <BizButton @click="showColorPickerAlert = true">Open Color Alert</BizButton>
+            <BizColorPickerAlert 
+              v-model="showColorPickerAlert"
+              v-model:colorValue="colorVal"
+              title="Select a Theme Color"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizColorPickerAlert v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
         </div>
       </div>
 
@@ -1908,11 +1945,14 @@ import {
   BizYearPicker, BizYearPickerSheet, BizYearPickerAlert,
   BizTimePicker, BizTimePickerSheet, BizTimePickerAlert,
   BizAutocomplete,
-  BizAccountListCard, BizAccountReorderList
+  BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert
 } from '@bizmob-core/ui-framework';
 import { KhmerDate } from '@bizmob-core/ui-framework/dist/KhmerDate';
 
 const textVal = ref('');
+const colorVal = ref('#ff0000');
+const showColorPickerSheet = ref(false);
+const showColorPickerAlert = ref(false);
 const selectVal = ref('');
 const khmerDateDemo = computed(() => {
   const khmerDate = new KhmerDate();

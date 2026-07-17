@@ -87,6 +87,9 @@ import BizYearPickerSheet from './components/BizYearPickerSheet.vue'
 import BizYearPickerAlert from './components/BizYearPickerAlert.vue'
 import BizAccountListCard from './components/BizAccountListCard.vue'
 import BizAccountReorderList from './components/BizAccountReorderList.vue'
+import BizColorPicker from './components/BizColorPicker.vue'
+import BizColorPickerSheet from './components/BizColorPickerSheet.vue'
+import BizColorPickerAlert from './components/BizColorPickerAlert.vue'
 
 const components = {
   'my-button': MyButton,
@@ -176,7 +179,10 @@ const components = {
   'biz-year-picker-sheet': BizYearPickerSheet,
   'biz-year-picker-alert': BizYearPickerAlert,
   'biz-account-list-card': BizAccountListCard,
-  'biz-account-reorder-list': BizAccountReorderList
+  'biz-account-reorder-list': BizAccountReorderList,
+  'biz-color-picker': BizColorPicker,
+  'biz-color-picker-sheet': BizColorPickerSheet,
+  'biz-color-picker-alert': BizColorPickerAlert
 };
 
 export function registerWebComponents() {
