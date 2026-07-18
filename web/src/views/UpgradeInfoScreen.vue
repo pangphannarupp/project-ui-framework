@@ -109,7 +109,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton, BizUpgradeCard, BizVerificationCard, BizSkipButton } from '@bizmob-core/ui-framework';
+import { BizButton, BizUpgradeCard, BizVerificationCard, BizSkipButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 

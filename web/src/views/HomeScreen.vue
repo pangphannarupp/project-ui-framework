@@ -220,7 +220,7 @@ import {
   BizUserProfile, BizIconButton, BizCompanySelector, BizActionCard, 
   BizSegment, BizSegmentButton, BizAccountListCard, BizBottomNav,
   BizSelect, BizBottomSheet, BizButton
-} from '@bizmob-core/ui-framework';
+} from '@phanna/ui-framework';
 import { homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble } from 'ionicons/icons';
 
 const router = useRouter();

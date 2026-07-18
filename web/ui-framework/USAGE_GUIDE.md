@@ -1,4 +1,4 @@
-# @bizmob-core/ui-framework
+# @phanna/ui-framework
 
 ## Screen List of All Components
 

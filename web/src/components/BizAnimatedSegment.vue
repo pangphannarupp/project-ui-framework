@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { BizSegment, BizSegmentButton } from '@bizmob-core/ui-framework';
+import { BizSegment, BizSegmentButton } from '@phanna/ui-framework';
 
 const props = defineProps<{
   modelValue: string | number;

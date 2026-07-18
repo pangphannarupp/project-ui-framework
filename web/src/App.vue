@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
-import '@bizmob-core/ui-framework/style.css';
+import '@phanna/ui-framework/style.css';
 import { BizMOBApp } from '@bizmob/core';
 
 BizMOBApp.hideSplash();

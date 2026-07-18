@@ -38,7 +38,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton, BizFilterSheet, BizSortSheet } from '@bizmob-core/ui-framework';
+import { BizButton, BizFilterSheet, BizSortSheet } from '@phanna/ui-framework';
 
 const router = useRouter();
 

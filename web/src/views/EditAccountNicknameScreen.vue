@@ -73,7 +73,7 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizAppBar, BizButton } from '@bizmob-core/ui-framework';
+import { BizAppBar, BizButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 const nickname = ref('');

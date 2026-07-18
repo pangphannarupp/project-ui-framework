@@ -6,12 +6,34 @@
     @touchend="onTouchEnd"
   >
     <!-- Header Row -->
-    <div class="calendar-header">
-      <div class="month-title" @click="showMonthPicker = true">
-        {{ monthNames[currentMonth - 1] }} {{ currentYear }} 
-        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <div class="calendar-header" :class="{ 'is-double': doubleView }">
+      <div class="nav-buttons-left" v-if="doubleView">
+        <button class="icon-btn" @click="prevYear" title="Previous Year">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+        </button>
+        <button class="icon-btn" @click="prevMonth" title="Previous Month">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
       </div>
-      <div class="nav-buttons">
+      <div class="month-title" @click="!doubleView && (showMonthPicker = true)">
+        <template v-if="doubleView">
+          <span v-if="currentYear === nextYearNumber">{{ monthNames[currentMonth - 1] }} - {{ monthNames[nextMonthNumber - 1] }} {{ currentYear }}</span>
+          <span v-else>{{ monthNames[currentMonth - 1] }} {{ currentYear }} - {{ monthNames[nextMonthNumber - 1] }} {{ nextYearNumber }}</span>
+        </template>
+        <template v-else>
+          {{ monthNames[currentMonth - 1] }} {{ currentYear }} 
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </template>
+      </div>
+      <div class="nav-buttons-right" v-if="doubleView">
+        <button class="icon-btn" @click="nextMonth" title="Next Month">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <button class="icon-btn" @click="nextYear" title="Next Year">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        </button>
+      </div>
+      <div class="nav-buttons" v-if="!doubleView">
         <button class="icon-btn" @click="prevMonth" title="Previous Month">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -26,27 +48,30 @@
 
     <!-- Subtitle Info Placeholder (Removed for standard calendar) -->
 
-    <!-- Days of Week -->
-    <div class="weekdays">
-      <div 
-        v-for="(day, idx) in daysOfWeek" 
-        :key="day" 
-        class="weekday"
-        :class="{ 'is-sunday': isSundayIndex(idx) }"
-      >
-        {{ day }}
-      </div>
-    </div>
-
     <!-- Calendar Grid -->
-    <div class="calendar-grid-container">
+    <div class="calendar-grid-container" :class="{ 'is-double': doubleView }">
     <Transition :name="transitionName">
-      <div class="calendar-grid" :key="currentYear + '-' + currentMonth">
-        <div 
-          v-for="(day, index) in days" 
-          :key="index"
-          class="day-cell-wrapper"
-        >
+      <div class="calendar-grid-wrapper" :key="currentYear + '-' + currentMonth">
+        
+        <div class="calendar-grid-column">
+          <!-- Days of Week -->
+          <div class="weekdays">
+            <div 
+              v-for="(day, idx) in daysOfWeek" 
+              :key="day" 
+              class="weekday"
+              :class="{ 'is-sunday': isSundayIndex(idx) }"
+            >
+              {{ day }}
+            </div>
+          </div>
+          <!-- Grid -->
+          <div class="calendar-grid">
+            <div 
+              v-for="(day, index) in days" 
+              :key="index"
+              class="day-cell-wrapper"
+            >
           <div v-if="day.isHidden" class="day-cell hidden"></div>
           <div 
             v-else 
@@ -68,6 +93,53 @@
             </div>
           </div>
         </div>
+          </div>
+        </div>
+
+        <!-- Second Month Grid -->
+        <div class="calendar-grid-column" v-if="doubleView">
+          <!-- Days of Week -->
+          <div class="weekdays">
+            <div 
+              v-for="(day, idx) in daysOfWeek" 
+              :key="day" 
+              class="weekday"
+              :class="{ 'is-sunday': isSundayIndex(idx) }"
+            >
+              {{ day }}
+            </div>
+          </div>
+          <!-- Grid -->
+          <div class="calendar-grid">
+            <div 
+              v-for="(day, index) in nextMonthDays" 
+              :key="index"
+              class="day-cell-wrapper"
+            >
+              <div v-if="day.isHidden" class="day-cell hidden"></div>
+              <div 
+                v-else 
+                class="day-cell"
+                :class="{
+                  'is-disabled': !day.isEnabled || !day.isCurrentMonth,
+                  'is-selected': isSelected(day),
+                  'is-in-range': isInRange(day),
+                  'is-range-start': isRangeStart(day),
+                  'is-range-end': isRangeEnd(day),
+                  'is-today': day.isToday,
+                  'is-sunday': day.isSunday
+                }"
+                @click="onDayClick(day)"
+              >
+                <div class="day-content">
+                  <div v-if="day.isSpecial" class="special-dot"></div>
+                  <div class="gregorian-day">{{ day.gregorianDay }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </Transition>
     </div>
@@ -144,6 +216,9 @@ const props = withDefaults(defineProps<{
   pickerConfirmText?: string;
   cancelText?: string;
   confirmText?: string;
+  doubleView?: boolean;
+  initialRangeStart?: Date | null;
+  initialRangeEnd?: Date | null;
 }>(), {
   config: () => ({ selectionMode: 'Single' as SelectionMode }),
   initialDate: () => new Date(),
@@ -154,7 +229,8 @@ const props = withDefaults(defineProps<{
   pickerCancelText: 'Close',
   pickerConfirmText: 'Confirm',
   cancelText: 'Cancel',
-  confirmText: 'Confirm'
+  confirmText: 'Confirm',
+  doubleView: false
 });
 
 const emit = defineEmits<{
@@ -167,8 +243,20 @@ const emit = defineEmits<{
 
 // State
 const selectedDate = ref<Date | null>(props.initialDate);
-const rangeStartDate = ref<Date | null>(null);
-const rangeEndDate = ref<Date | null>(null);
+const rangeStartDate = ref<Date | null>(props.initialRangeStart || null);
+const rangeEndDate = ref<Date | null>(props.initialRangeEnd || null);
+
+watch(() => props.initialRangeStart, (newVal) => {
+  rangeStartDate.value = newVal || null;
+  if (newVal) {
+    currentYear.value = newVal.getFullYear();
+    currentMonth.value = newVal.getMonth() + 1;
+  }
+});
+
+watch(() => props.initialRangeEnd, (newVal) => {
+  rangeEndDate.value = newVal || null;
+});
 
 const today = new Date();
 const currentMonth = ref(props.initialDate.getMonth() + 1);
@@ -253,10 +341,14 @@ const scrollToYear = (year: number) => {
 
 const calendarState = computed(() => new CalendarState(props.config));
 const days = ref<CalendarDay[]>([]);
+const nextMonthDays = ref<CalendarDay[]>([]);
 const monthNames = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
+
+const nextMonthNumber = computed(() => currentMonth.value === 12 ? 1 : currentMonth.value + 1);
+const nextYearNumber = computed(() => currentMonth.value === 12 ? currentYear.value + 1 : currentYear.value);
 
 const daysOfWeek = computed(() => {
   const firstDay = props.config.firstDayOfWeek ?? 1;
@@ -273,12 +365,31 @@ const isSundayIndex = (idx: number) => {
 
 const updateCalendar = () => {
   days.value = calendarState.value.generateDaysForMonth(currentYear.value, currentMonth.value);
+  if (props.doubleView) {
+    let ny = currentYear.value;
+    let nm = currentMonth.value + 1;
+    if (nm > 12) {
+      nm = 1;
+      ny++;
+    }
+    nextMonthDays.value = calendarState.value.generateDaysForMonth(ny, nm);
+  }
   emit('month-changed', currentYear.value, currentMonth.value);
 };
 
-watch([currentMonth, currentYear, calendarState], () => {
+watch([currentMonth, currentYear, calendarState, () => props.doubleView], () => {
   updateCalendar();
 }, { immediate: true });
+
+const prevYear = () => {
+  transitionName.value = 'slide-right';
+  currentYear.value -= 1;
+};
+
+const nextYear = () => {
+  transitionName.value = 'slide-left';
+  currentYear.value += 1;
+};
 
 const prevMonth = () => {
   transitionName.value = 'slide-right';
@@ -587,6 +698,16 @@ const onConfirmAction = () => {
   min-height: 400px; /* Ensure enough height for the absolute grids during transition */
   width: 100%;
   overflow: hidden;
+}
+
+.calendar-grid-wrapper {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.calendar-grid-column {
+  flex: 1;
 }
 
 .calendar-grid {

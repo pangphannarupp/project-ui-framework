@@ -37,7 +37,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizIconButton, BizPhoneInput, BizButton } from '@bizmob-core/ui-framework';
+import { BizIconButton, BizPhoneInput, BizButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 const phoneNumber = ref('');

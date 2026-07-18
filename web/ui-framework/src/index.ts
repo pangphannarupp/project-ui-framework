@@ -79,6 +79,9 @@ import BizKhmerCalendarSheet from './components/BizKhmerCalendarSheet.vue'
 import BizKhmerCalendarAlert from './components/BizKhmerCalendarAlert.vue'
 import BizKhmerCalendarIsland from './components/BizKhmerCalendarIsland.vue'
 import BizCalendar from './components/BizCalendar.vue'
+import BizDateRangePickerSheet from './components/BizDateRangePickerSheet.vue'
+import BizDateRangePickerAlert from './components/BizDateRangePickerAlert.vue'
+import BizDateRangePicker from './components/BizDateRangePicker.vue'
 import BizCalendarSheet from './components/BizCalendarSheet.vue'
 import BizCalendarAlert from './components/BizCalendarAlert.vue'
 import BizCalendarIsland from './components/BizCalendarIsland.vue'
@@ -104,6 +107,12 @@ import BizColorPickerIsland from './components/BizColorPickerIsland.vue'
 import BizNavigationDrawer from './components/BizNavigationDrawer.vue'
 import BizNavigationRail from './components/BizNavigationRail.vue'
 import BizDynamicIsland from './components/BizDynamicIsland.vue'
+import BizRibbon from './components/BizRibbon.vue'
+import BizRibbonTab from './components/BizRibbonTab.vue'
+import BizRibbonGroup from './components/BizRibbonGroup.vue'
+import BizRibbonButton from './components/BizRibbonButton.vue'
+import BizCollapse from './components/BizCollapse.vue'
+import BizCollapseItem from './components/BizCollapseItem.vue'
 
 // Export components individually
 export { 
@@ -187,6 +196,9 @@ export {
   BizKhmerCalendarAlert,
   BizKhmerCalendarIsland,
   BizCalendar,
+  BizDateRangePickerSheet,
+  BizDateRangePickerAlert,
+  BizDateRangePicker,
   BizCalendarSheet,
   BizCalendarAlert,
   BizCalendarIsland,
@@ -211,7 +223,13 @@ export {
   BizColorPickerIsland,
   BizNavigationDrawer,
   BizNavigationRail,
-  BizDynamicIsland
+  BizDynamicIsland,
+  BizRibbon,
+  BizRibbonTab,
+  BizRibbonGroup,
+  BizRibbonButton,
+  BizCollapse,
+  BizCollapseItem
 }
 
 // Export a Vue plugin to install all components
@@ -291,6 +309,9 @@ export default {
     app.component('BizKhmerCalendarAlert', BizKhmerCalendarAlert)
     app.component('BizKhmerCalendarIsland', BizKhmerCalendarIsland)
     app.component('BizCalendar', BizCalendar)
+    app.component('BizDateRangePickerSheet', BizDateRangePickerSheet)
+    app.component('BizDateRangePickerAlert', BizDateRangePickerAlert)
+    app.component('BizDateRangePicker', BizDateRangePicker)
     app.component('BizCalendarSheet', BizCalendarSheet)
     app.component('BizCalendarAlert', BizCalendarAlert)
     app.component('BizCalendarIsland', BizCalendarIsland)
@@ -320,5 +341,11 @@ export default {
     app.component('BizNavigationDrawer', BizNavigationDrawer)
     app.component('BizNavigationRail', BizNavigationRail)
     app.component('BizDynamicIsland', BizDynamicIsland)
+    app.component('BizRibbon', BizRibbon)
+    app.component('BizRibbonTab', BizRibbonTab)
+    app.component('BizRibbonGroup', BizRibbonGroup)
+    app.component('BizRibbonButton', BizRibbonButton)
+    app.component('BizCollapse', BizCollapse)
+    app.component('BizCollapseItem', BizCollapseItem)
   }
 }

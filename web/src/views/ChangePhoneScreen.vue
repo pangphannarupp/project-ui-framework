@@ -57,7 +57,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizPhoneInput, BizButton, BizKeypad, BizCountryCodeSheet } from '@bizmob-core/ui-framework';
+import { BizPhoneInput, BizButton, BizKeypad, BizCountryCodeSheet } from '@phanna/ui-framework';
 
 const router = useRouter();
 

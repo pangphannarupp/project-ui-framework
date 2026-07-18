@@ -50,7 +50,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizOtpInput, BizInfoCard } from '@bizmob-core/ui-framework';
+import { BizOtpInput, BizInfoCard } from '@phanna/ui-framework';
 
 const router = useRouter();
 const otpCode = ref('');

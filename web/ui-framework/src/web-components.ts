@@ -77,6 +77,9 @@ import BizKhmerCalendar from './components/BizKhmerCalendar.vue'
 import BizKhmerCalendarSheet from './components/BizKhmerCalendarSheet.vue'
 import BizKhmerCalendarAlert from './components/BizKhmerCalendarAlert.vue'
 import BizCalendar from './components/BizCalendar.vue'
+import BizDateRangePickerSheet from './components/BizDateRangePickerSheet.vue'
+import BizDateRangePickerAlert from './components/BizDateRangePickerAlert.vue'
+import BizDateRangePicker from './components/BizDateRangePicker.vue'
 import BizCalendarSheet from './components/BizCalendarSheet.vue'
 import BizCalendarAlert from './components/BizCalendarAlert.vue'
 import BizMonthPicker from './components/BizMonthPicker.vue'
@@ -90,6 +93,10 @@ import BizAccountReorderList from './components/BizAccountReorderList.vue'
 import BizColorPicker from './components/BizColorPicker.vue'
 import BizColorPickerSheet from './components/BizColorPickerSheet.vue'
 import BizColorPickerAlert from './components/BizColorPickerAlert.vue'
+import BizRibbon from './components/BizRibbon.vue'
+import BizRibbonTab from './components/BizRibbonTab.vue'
+import BizRibbonGroup from './components/BizRibbonGroup.vue'
+import BizRibbonButton from './components/BizRibbonButton.vue'
 
 const components = {
   'my-button': MyButton,
@@ -170,6 +177,9 @@ const components = {
   'biz-khmer-calendar-sheet': BizKhmerCalendarSheet,
   'biz-khmer-calendar-alert': BizKhmerCalendarAlert,
   'biz-calendar': BizCalendar,
+  'biz-date-range-picker-sheet': BizDateRangePickerSheet,
+  'biz-date-range-picker-alert': BizDateRangePickerAlert,
+  'biz-date-range-picker': BizDateRangePicker,
   'biz-calendar-sheet': BizCalendarSheet,
   'biz-calendar-alert': BizCalendarAlert,
   'biz-month-picker': BizMonthPicker,
@@ -182,7 +192,11 @@ const components = {
   'biz-account-reorder-list': BizAccountReorderList,
   'biz-color-picker': BizColorPicker,
   'biz-color-picker-sheet': BizColorPickerSheet,
-  'biz-color-picker-alert': BizColorPickerAlert
+  'biz-color-picker-alert': BizColorPickerAlert,
+  'biz-ribbon': BizRibbon,
+  'biz-ribbon-tab': BizRibbonTab,
+  'biz-ribbon-group': BizRibbonGroup,
+  'biz-ribbon-button': BizRibbonButton
 };
 
 export function registerWebComponents() {

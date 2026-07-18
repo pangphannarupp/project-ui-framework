@@ -165,7 +165,7 @@ import {
   BizScrollSegmentButton, 
   BizInput, 
   BizUserCard 
-} from '@bizmob-core/ui-framework';
+} from '@phanna/ui-framework';
 
 const router = useRouter();
 </script>

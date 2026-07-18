@@ -198,7 +198,7 @@ import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
 import { 
   BizSegment, BizSegmentButton, BizInput, BizCheckbox, BizButton, BizPhoneInput, BizLanguageSheet, BizFeedbackSheet 
-} from '@bizmob-core/ui-framework';
+} from '@phanna/ui-framework';
 
 const router = useRouter();
 

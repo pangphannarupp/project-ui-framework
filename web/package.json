@@ -12,7 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@bizmob-core/ui-framework": "file:ui-framework",
+    "@phanna/ui-framework": "file:ui-framework",
     "@bizmob/core": "^1.4.23",
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",

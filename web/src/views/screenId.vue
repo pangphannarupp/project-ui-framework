@@ -105,7 +105,7 @@ import {
   BizScrollSegment,
   BizScrollSegmentButton,
   BizNotificationItem
-} from '@bizmob-core/ui-framework';
+} from '@phanna/ui-framework';
 </script>
 
 <style scoped>

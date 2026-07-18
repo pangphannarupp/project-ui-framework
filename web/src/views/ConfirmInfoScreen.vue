@@ -83,7 +83,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton, BizInfoCard } from '@bizmob-core/ui-framework';
+import { BizButton, BizInfoCard } from '@phanna/ui-framework';
 
 const router = useRouter();
 

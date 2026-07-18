@@ -53,7 +53,7 @@
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizPinDots, BizKeypad, BizBiometricSheet } from '@bizmob-core/ui-framework';
+import { BizPinDots, BizKeypad, BizBiometricSheet } from '@phanna/ui-framework';
 
 const router = useRouter();
 
