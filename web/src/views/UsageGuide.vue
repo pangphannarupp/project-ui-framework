@@ -995,6 +995,20 @@ export class AppModule { }</code></pre>
         </div>
 
         <div class="variant-group">
+          <h3>Color Picker Island Popup</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerIsland&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showColorPickerIsland = true">Open Color Picker Island</BizButton>
+            <BizColorPickerIsland 
+              v-model="showColorPickerIsland"
+              v-model:colorValue="colorVal"
+              title="Select a Theme Color"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizColorPickerIsland v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
           <h3>Color Picker Alert</h3>
           <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerAlert&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
@@ -1388,6 +1402,22 @@ export class AppModule { }</code></pre>
         </div>
 
         <div class="variant-group">
+          <h3>Calendar Island Popup</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizKhmerCalendarIsland&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showKhmerCalendarIsland = true">Open Calendar Island</BizButton>
+            <BizKhmerCalendarIsland 
+              v-model="showKhmerCalendarIsland"
+              title="Select a Date"
+              :showActionButtons="true"
+              @confirm="(d) => { alertVal('Confirmed: ' + (d ? d.date.toLocaleDateString() : '')); showKhmerCalendarIsland = false; }"
+              @cancel="showKhmerCalendarIsland = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizKhmerCalendarIsland v-model="isOpen" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
           <h3>Direct TS Utility Access (KhmerDate.ts)</h3>
           <p class="custom-guide">You can import the raw <code>KhmerDate.ts</code> file directly from the framework's dist folder. This allows developers to read or modify the unminified business logic directly in their own build process!</p>
           <div class="component-demo" style="background: #f4f6f9; padding: 20px; border-radius: 12px; font-size: 16px;">
@@ -1481,6 +1511,22 @@ const dateObj = khmerDate.toLunar();
           </div>
           <pre class="code-block"><code>&lt;BizCalendarSheet v-model="isOpen" /&gt;</code></pre>
         </div>
+
+        <div class="variant-group">
+          <h3>Calendar Island Popup</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizCalendarIsland&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showStdCalendarIsland = true">Open Calendar Island</BizButton>
+            <BizCalendarIsland 
+              v-model="showStdCalendarIsland"
+              title="Select a Date"
+              :showActionButtons="true"
+              @confirm="(d) => { alertVal('Confirmed: ' + (d ? d.date.toLocaleDateString() : '')); showStdCalendarIsland = false; }"
+              @cancel="showStdCalendarIsland = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizCalendarIsland v-model="isOpen" /&gt;</code></pre>
+        </div>
       </div>
 
       <!-- ==============================
@@ -1527,6 +1573,21 @@ const dateObj = khmerDate.toLunar();
           </div>
           <pre class="code-block"><code>&lt;BizMonthPickerSheet v-model="isOpen" /&gt;</code></pre>
         </div>
+
+        <div class="variant-group">
+          <h3>Month Picker Island Popup</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizMonthPickerIsland&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showMonthPickerIsland = true">Open Month Picker Island</BizButton>
+            <BizMonthPickerIsland 
+              v-model="showMonthPickerIsland"
+              :showActionButtons="true"
+              @confirm="s => { alertVal('Confirmed Month: ' + (s ? s.month + '/' + s.year : 'none')); showMonthPickerIsland = false; }"
+              @cancel="showMonthPickerIsland = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizMonthPickerIsland v-model="isOpen" /&gt;</code></pre>
+        </div>
       </div>
 
       <!-- ==============================
@@ -1572,6 +1633,21 @@ const dateObj = khmerDate.toLunar();
             />
           </div>
           <pre class="code-block"><code>&lt;BizYearPickerSheet v-model="isOpen" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Year Picker Island Popup</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizYearPickerIsland&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showYearPickerIsland = true">Open Year Picker Island</BizButton>
+            <BizYearPickerIsland 
+              v-model="showYearPickerIsland"
+              :showActionButtons="true"
+              @confirm="s => { alertVal('Confirmed Year: ' + (s ? s.year : 'none')); showYearPickerIsland = false; }"
+              @cancel="showYearPickerIsland = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizYearPickerIsland v-model="isOpen" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
@@ -1624,6 +1700,22 @@ const dateObj = khmerDate.toLunar();
             />
           </div>
           <pre class="code-block"><code>&lt;BizTimePickerSheet v-model="isOpen" v-model:timeValue="val" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Time Picker Island Popup</h3>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizTimePickerIsland&gt;</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
+            <BizButton @click="showTimePickerIsland = true">Open Time Picker Island</BizButton>
+            <BizTimePickerIsland 
+              v-model="showTimePickerIsland"
+              v-model:timeValue="timeIslandVal"
+              :showActionButtons="true"
+              @confirm="() => { alertVal('Confirmed Time: ' + timeIslandVal); showTimePickerIsland = false; }"
+              @cancel="showTimePickerIsland = false"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizTimePickerIsland v-model="isOpen" v-model:timeValue="val" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
@@ -1879,8 +1971,137 @@ const dateObj = khmerDate.toLunar();
         </div>
       </div>
 
+      <!-- ==============================
+           17. Navigation Drawer (Left Menu)
+      ================================ -->
+      <div class="guide-section" v-show="matchesSearch('biznavigationdrawer drawer left menu side menu')">
+        <h2>17. Navigation Drawer (Material 3)</h2>
+
+        <div class="variant-group">
+          <h3>Interactive Demo</h3>
+          <p class="custom-guide">Click the button to slide open the navigation drawer.</p>
+          <div class="component-demo">
+            <BizButton @click="showNavDrawer = true">Open Left Menu</BizButton>
+
+            <BizNavigationDrawer 
+              v-model="showNavDrawer" 
+              title="App Menu" 
+              :items="navDrawerItems" 
+              @item-click="val => alertVal('Selected: ' + val.label)"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;BizNavigationDrawer 
+  v-model="isDrawerOpen" 
+  title="App Menu" 
+  :items="menuItems" 
+/&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ==============================
+           18. Navigation Rail
+      ================================ -->
+      <div class="guide-section" v-show="matchesSearch('biznavigationrail rail menu side nav')">
+        <h2>18. Navigation Rail (Material 3)</h2>
+
+        <div class="variant-group">
+          <h3>Interactive Demo</h3>
+          <p class="custom-guide">A vertical navigation rail typically used on larger screens.</p>
+          <div class="component-demo" style="height: 400px; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; display: flex; background: #fff;">
+            <BizNavigationRail 
+              :items="navRailItems" 
+              showMenu
+              @menu-click="alertVal('Menu Toggle Clicked!')"
+              @item-click="handleRailClick"
+            />
+            <div style="flex: 1; padding: 24px;">
+              <h3 style="margin-top: 0">Main Content Area</h3>
+              <p>Selected tab: <strong>{{ selectedRailItem }}</strong></p>
+            </div>
+          </div>
+          <pre class="code-block"><code>&lt;BizNavigationRail 
+  :items="railItems" 
+  @item-click="onRailClick" 
+/&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ==============================
+           19. Dynamic Island
+      ================================ -->
+      <div class="guide-section" v-show="matchesSearch('bizdynamicisland dynamic island popup animation top')">
+        <h2>19. Dynamic Island</h2>
+
+        <div class="variant-group">
+          <h3>Interactive Demo</h3>
+          <p class="custom-guide">A fluid, shape-shifting popup that anchors to the top of the screen.</p>
+          <div class="component-demo">
+            <div style="display: flex; gap: 8px; margin-bottom: 16px; align-items: center; flex-wrap: wrap;">
+              <div style="width: 200px;">
+                <BizSelect v-model="islandPosition" :options="[{label: 'Top', value: 'top'}, {label: 'Bottom', value: 'bottom'}, {label: 'Left', value: 'left'}, {label: 'Right', value: 'right'}]" placeholder="Select Position" />
+              </div>
+              <BizCheckbox v-model="islandFullWidth">Full Width</BizCheckbox>
+            </div>
+            <BizButtonGroup>
+              <BizButton @click="showIsland('minimal')">Minimal</BizButton>
+              <BizButton @click="showIsland('compact')">Compact</BizButton>
+              <BizButton @click="showIsland('expanded')">Expanded</BizButton>
+              <BizButton variant="danger" @click="isIslandOpen = false">Close</BizButton>
+            </BizButtonGroup>
+
+            <BizDynamicIsland 
+              v-model="isIslandOpen"
+              :state="islandState"
+              :position="islandPosition"
+              :fullWidth="islandFullWidth"
+              :offset="16"
+              :autoHideTimeout="islandState === 'expanded' ? 0 : 3000"
+            >
+              <!-- Compact Slots -->
+              <template #compact-left>
+                <div style="width: 24px; height: 24px; border-radius: 50%; background: #2dd36f; display: flex; align-items: center; justify-content: center;">
+                  <ion-icon :icon="phonePortraitOutline" style="color: black; font-size: 14px;"></ion-icon>
+                </div>
+              </template>
+              <template #compact-center>
+                00:14
+              </template>
+              <template #compact-right>
+                <ion-icon :icon="volumeHighOutline" style="color: #2dd36f; font-size: 20px;"></ion-icon>
+              </template>
+
+              <!-- Expanded Slots -->
+              <template #expanded-header>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <img src="https://i.pravatar.cc/150?img=68" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;" />
+                  <div>
+                    <h4 style="margin: 0; font-size: 16px; color: white;">Jane Doe</h4>
+                    <p style="margin: 0; color: #aaa; font-size: 12px;">iPhone</p>
+                  </div>
+                </div>
+                <div style="font-size: 24px; color: #aaa;">00:14</div>
+              </template>
+              
+              <template #expanded-body>
+                <div style="display: flex; gap: 4px; margin-top: 24px; align-items: center; justify-content: center;">
+                  <div v-for="i in 5" :key="i" style="width: 4px; height: 24px; background: #2dd36f; border-radius: 2px;"></div>
+                </div>
+              </template>
+
+              <template #expanded-footer>
+                <BizIconButton color="danger" style="border-radius: 50%; width: 56px; height: 56px;" @click="isIslandOpen = false">
+                  <ion-icon :icon="phonePortraitOutline" style="transform: rotate(135deg);"></ion-icon>
+                </BizIconButton>
+                <BizIconButton color="success" style="border-radius: 50%; width: 56px; height: 56px;">
+                  <ion-icon :icon="volumeHighOutline"></ion-icon>
+                </BizIconButton>
+              </template>
+            </BizDynamicIsland>
+          </div>
+        </div>
+      </div>
+
       <div class="no-results" v-if="noResults">
-        <p>No components match your search query.</p>
       </div>
 
     </ion-content>
@@ -1939,13 +2160,16 @@ import {
   BizInfoCard, BizActionCard, BizAccountCard, 
   BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem,
   BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet,
-  BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert,
-  BizCalendar, BizCalendarSheet, BizCalendarAlert, BizFileUpload,
-  BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert,
-  BizYearPicker, BizYearPickerSheet, BizYearPickerAlert,
-  BizTimePicker, BizTimePickerSheet, BizTimePickerAlert,
+  BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarIsland,
+  BizCalendar, BizCalendarSheet, BizCalendarAlert, BizCalendarIsland, BizFileUpload,
+  BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert, BizMonthPickerIsland,
+  BizYearPicker, BizYearPickerSheet, BizYearPickerAlert, BizYearPickerIsland,
+  BizTimePicker, BizTimePickerSheet, BizTimePickerAlert, BizTimePickerIsland,
   BizAutocomplete,
-  BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert
+  BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert, BizColorPickerIsland,
+  BizNavigationDrawer,
+  BizNavigationRail,
+  BizDynamicIsland
 } from '@bizmob-core/ui-framework';
 import { KhmerDate } from '@bizmob-core/ui-framework/dist/KhmerDate';
 
@@ -1953,6 +2177,7 @@ const textVal = ref('');
 const colorVal = ref('#ff0000');
 const showColorPickerSheet = ref(false);
 const showColorPickerAlert = ref(false);
+const showColorPickerIsland = ref(false);
 const selectVal = ref('');
 const khmerDateDemo = computed(() => {
   const khmerDate = new KhmerDate();
@@ -2056,6 +2281,7 @@ const hideDeposit = ref(false);
 const selectedFeatures = ref(['payment']);
 const timeVal = ref('13:45');
 const timeSheetVal = ref('12:00');
+const timeIslandVal = ref('12:00');
 const showTimePickerSheet = ref(false);
 const timeAlertVal = ref('09:30');
 const showTimePickerAlert = ref(false);
@@ -2084,6 +2310,32 @@ const switchVal2 = ref(true);
 const switchVal3 = ref(false);
 const hideLoan = ref(true);
 const segmentVal = ref('opt1');
+const showNavDrawer = ref(false);
+const navDrawerItems = ref([
+  { label: 'Inbox', active: true, badge: '3' },
+  { label: 'Sent' },
+  { label: 'Drafts' }
+]);
+const selectedRailItem = ref('Home');
+const navRailItems = ref([
+  { label: 'Home', active: true, icon: homeOutline },
+  { label: 'History', badge: '1', icon: documentTextOutline },
+  { label: 'Profile', icon: personOutline }
+]);
+const handleRailClick = (item: any) => {
+  navRailItems.value.forEach(i => i.active = false);
+  item.active = true;
+  selectedRailItem.value = item.label;
+};
+
+const isIslandOpen = ref(false);
+const islandState = ref('compact');
+const islandPosition = ref('top');
+const islandFullWidth = ref(false);
+const showIsland = (state: string) => {
+  islandState.value = state;
+  isIslandOpen.value = true;
+};
 const cssSegmentVal = ref('opt1');
 const showBottomSheet = ref(false);
 const showBioBoth = ref(false);
@@ -2099,11 +2351,17 @@ const showReceiveAmount = ref(false);
 const showReceivingAccount = ref(false);
 const showCalendarSheet = ref(false);
 const showAlertCalendar = ref(false);
+const showKhmerCalendarIsland = ref(false);
 const showStdCalendarSheet = ref(false);
 const showStdAlertCalendar = ref(false);
+const showStdCalendarIsland = ref(false);
 const showMonthPickerSheet = ref(false);
+const showMonthPickerAlert = ref(false);
+const showMonthPickerIsland = ref(false);
 const showYearPickerSheet = ref(false);
 const showYearPickerAlert = ref(false);
+const showYearPickerIsland = ref(false);
+const showTimePickerIsland = ref(false);
 const selectedReceivingAccount = ref('acc1');
 const demoAccounts = ref([
   { id: 'acc1', name: "Chan Ty' Saving", number: "1-120-14335454-8", balance: 12000000.00, currency: "USD" as const, type: "Savings", isHidden: false },
@@ -2111,7 +2369,7 @@ const demoAccounts = ref([
   { id: 'acc3', name: "Chan Ty' Saving", number: "1-120-14335456-0", balance: 40000000, currency: "KHR" as const, type: "Savings", isHidden: true },
 ]);
 const isReorderMode = ref(false);
-const alertVal = (type: string) => alert('Setup: ' + type);
+const alertVal = (type: string) => console.log('Setup: ' + type);
 
 // Search functionality
 const searchQuery = ref('');
@@ -2140,7 +2398,10 @@ const noResults = computed(() => {
     'bizinput bizphoneinput bizotpinput form phone otp password text input', 
     'bizsegment bizcompanyselector bizuserprofile bizbottomsheet bizbottomnav segment company user profile bottom sheet nav structure bizscrollsegment biznotificationitem scroll notification list item',
     'bizpindots bizkeypad pin dots security keypad number',
-    'bizkhmercalendar khmer calendar date picker'
+    'bizkhmercalendar khmer calendar date picker',
+    'biznavigationdrawer drawer left menu side menu',
+    'biznavigationrail rail menu side nav',
+    'bizdynamicisland dynamic island popup animation top'
   ];
   
   return !allKeywords.some(keywords => matchesSearch(keywords));

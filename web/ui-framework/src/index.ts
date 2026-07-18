@@ -77,24 +77,33 @@ import BizReceivingAccountSheet from './components/BizReceivingAccountSheet.vue'
 import BizKhmerCalendar from './components/BizKhmerCalendar.vue'
 import BizKhmerCalendarSheet from './components/BizKhmerCalendarSheet.vue'
 import BizKhmerCalendarAlert from './components/BizKhmerCalendarAlert.vue'
+import BizKhmerCalendarIsland from './components/BizKhmerCalendarIsland.vue'
 import BizCalendar from './components/BizCalendar.vue'
 import BizCalendarSheet from './components/BizCalendarSheet.vue'
 import BizCalendarAlert from './components/BizCalendarAlert.vue'
+import BizCalendarIsland from './components/BizCalendarIsland.vue'
 import BizMonthPicker from './components/BizMonthPicker.vue'
 import BizMonthPickerSheet from './components/BizMonthPickerSheet.vue'
 import BizMonthPickerAlert from './components/BizMonthPickerAlert.vue'
+import BizMonthPickerIsland from './components/BizMonthPickerIsland.vue'
 import BizYearPicker from './components/BizYearPicker.vue'
 import BizYearPickerSheet from './components/BizYearPickerSheet.vue'
 import BizYearPickerAlert from './components/BizYearPickerAlert.vue'
+import BizYearPickerIsland from './components/BizYearPickerIsland.vue'
 import BizAccountListCard from './components/BizAccountListCard.vue'
 import BizAccountReorderList from './components/BizAccountReorderList.vue'
 import BizTimePicker from './components/BizTimePicker.vue'
 import BizTimePickerSheet from './components/BizTimePickerSheet.vue'
 import BizTimePickerAlert from './components/BizTimePickerAlert.vue'
+import BizTimePickerIsland from './components/BizTimePickerIsland.vue'
 import BizNotificationItem from './components/BizNotificationItem.vue'
 import BizColorPicker from './components/BizColorPicker.vue'
 import BizColorPickerSheet from './components/BizColorPickerSheet.vue'
 import BizColorPickerAlert from './components/BizColorPickerAlert.vue'
+import BizColorPickerIsland from './components/BizColorPickerIsland.vue'
+import BizNavigationDrawer from './components/BizNavigationDrawer.vue'
+import BizNavigationRail from './components/BizNavigationRail.vue'
+import BizDynamicIsland from './components/BizDynamicIsland.vue'
 
 // Export components individually
 export { 
@@ -176,24 +185,33 @@ export {
   BizKhmerCalendar,
   BizKhmerCalendarSheet,
   BizKhmerCalendarAlert,
+  BizKhmerCalendarIsland,
   BizCalendar,
   BizCalendarSheet,
   BizCalendarAlert,
+  BizCalendarIsland,
   BizMonthPicker,
   BizMonthPickerSheet,
   BizMonthPickerAlert,
+  BizMonthPickerIsland,
   BizYearPicker,
   BizYearPickerSheet,
   BizYearPickerAlert,
+  BizYearPickerIsland,
   BizAccountListCard,
   BizAccountReorderList,
   BizTimePicker,
   BizTimePickerSheet,
   BizTimePickerAlert,
+  BizTimePickerIsland,
   BizNotificationItem,
   BizColorPicker,
   BizColorPickerSheet,
-  BizColorPickerAlert
+  BizColorPickerAlert,
+  BizColorPickerIsland,
+  BizNavigationDrawer,
+  BizNavigationRail,
+  BizDynamicIsland
 }
 
 // Export a Vue plugin to install all components
@@ -268,30 +286,39 @@ export default {
     app.component('BizNoResult', BizNoResult)
     app.component('BizAppBar', BizAppBar)
     app.component('BizToast', BizToast)
+    app.component('BizKhmerCalendar', BizKhmerCalendar)
+    app.component('BizKhmerCalendarSheet', BizKhmerCalendarSheet)
+    app.component('BizKhmerCalendarAlert', BizKhmerCalendarAlert)
+    app.component('BizKhmerCalendarIsland', BizKhmerCalendarIsland)
+    app.component('BizCalendar', BizCalendar)
+    app.component('BizCalendarSheet', BizCalendarSheet)
+    app.component('BizCalendarAlert', BizCalendarAlert)
+    app.component('BizCalendarIsland', BizCalendarIsland)
     app.component('BizConfirmSheet', BizConfirmSheet)
     app.component('BizReceiveAmountSheet', BizReceiveAmountSheet)
     app.component('BizAccountSavingCard', BizAccountSavingCard)
     app.component('BizReceivingAccountSheet', BizReceivingAccountSheet)
-    app.component('BizKhmerCalendar', BizKhmerCalendar)
-    app.component('BizKhmerCalendarSheet', BizKhmerCalendarSheet)
-    app.component('BizKhmerCalendarAlert', BizKhmerCalendarAlert)
-    app.component('BizCalendar', BizCalendar)
-    app.component('BizCalendarSheet', BizCalendarSheet)
-    app.component('BizCalendarAlert', BizCalendarAlert)
     app.component('BizMonthPicker', BizMonthPicker)
     app.component('BizMonthPickerSheet', BizMonthPickerSheet)
     app.component('BizMonthPickerAlert', BizMonthPickerAlert)
+    app.component('BizMonthPickerIsland', BizMonthPickerIsland)
     app.component('BizYearPicker', BizYearPicker)
     app.component('BizYearPickerSheet', BizYearPickerSheet)
     app.component('BizYearPickerAlert', BizYearPickerAlert)
+    app.component('BizYearPickerIsland', BizYearPickerIsland)
     app.component('BizAccountListCard', BizAccountListCard)
     app.component('BizAccountReorderList', BizAccountReorderList)
     app.component('BizTimePicker', BizTimePicker)
     app.component('BizTimePickerSheet', BizTimePickerSheet)
     app.component('BizTimePickerAlert', BizTimePickerAlert)
+    app.component('BizTimePickerIsland', BizTimePickerIsland)
     app.component('BizNotificationItem', BizNotificationItem)
     app.component('BizColorPicker', BizColorPicker)
     app.component('BizColorPickerSheet', BizColorPickerSheet)
     app.component('BizColorPickerAlert', BizColorPickerAlert)
+    app.component('BizColorPickerIsland', BizColorPickerIsland)
+    app.component('BizNavigationDrawer', BizNavigationDrawer)
+    app.component('BizNavigationRail', BizNavigationRail)
+    app.component('BizDynamicIsland', BizDynamicIsland)
   }
 }
