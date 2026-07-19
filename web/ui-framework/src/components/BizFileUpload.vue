@@ -42,8 +42,9 @@
         class="file-item"
         :class="[`is-${file.status}`]"
       >
-        <div class="file-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="file-icon" :class="{ 'has-image': isImage(file) }">
+          <img v-if="isImage(file)" :src="getFileUrl(file)" alt="Preview" class="image-preview" />
+          <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
             <polyline points="13 2 13 9 20 9"></polyline>
           </svg>
@@ -94,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onBeforeUnmount } from 'vue';
 
 export interface BizFileItem {
   id: string | number;
@@ -218,6 +219,25 @@ const formatBytes = (bytes: number, decimals = 2) => {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
+
+const isImage = (item: BizFileItem): boolean => {
+  return !!(item.file && item.file.type.startsWith('image/'));
+};
+
+const fileUrls = ref<Record<string, string>>({});
+
+const getFileUrl = (item: BizFileItem): string => {
+  if (!item.file) return '';
+  const idStr = String(item.id);
+  if (!fileUrls.value[idStr]) {
+    fileUrls.value[idStr] = URL.createObjectURL(item.file);
+  }
+  return fileUrls.value[idStr];
+};
+
+onBeforeUnmount(() => {
+  Object.values(fileUrls.value).forEach(url => URL.revokeObjectURL(url));
+});
 </script>
 
 <style scoped>
@@ -327,6 +347,18 @@ const formatBytes = (bytes: number, decimals = 2) => {
   background-color: #f4f5f8;
   color: #666666;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.file-icon.has-image {
+  background-color: transparent;
+  border: 1px solid #eeeeee;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .file-icon svg {

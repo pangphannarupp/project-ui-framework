@@ -23,7 +23,7 @@
         @focus="onFocus"
         @blur="onBlur"
       >
-        <option v-if="placeholder" value="" disabled hidden selected>{{ placeholder }}</option>
+        <option v-if="placeholder" key="placeholder" value="" disabled hidden selected>{{ placeholder }}</option>
         <option v-for="option in options" :key="option.value" :value="option.value">
           {{ option.label }}
         </option>

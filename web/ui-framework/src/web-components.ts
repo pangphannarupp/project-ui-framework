@@ -97,6 +97,13 @@ import BizRibbon from './components/BizRibbon.vue'
 import BizRibbonTab from './components/BizRibbonTab.vue'
 import BizRibbonGroup from './components/BizRibbonGroup.vue'
 import BizRibbonButton from './components/BizRibbonButton.vue'
+import BizTimeline from './components/BizTimeline.vue'
+import BizTimelineItem from './components/BizTimelineItem.vue'
+import BizTree from './components/BizTree.vue'
+import BizTreeNode from './components/BizTreeNode.vue'
+import BizWebToast from './components/BizWebToast.vue'
+import BizPagination from './components/BizPagination.vue'
+import BizTable from './components/BizTable.vue'
 
 const components = {
   'my-button': MyButton,
@@ -196,7 +203,14 @@ const components = {
   'biz-ribbon': BizRibbon,
   'biz-ribbon-tab': BizRibbonTab,
   'biz-ribbon-group': BizRibbonGroup,
-  'biz-ribbon-button': BizRibbonButton
+  'biz-ribbon-button': BizRibbonButton,
+  'biz-timeline': BizTimeline,
+  'biz-timeline-item': BizTimelineItem,
+  'biz-tree': BizTree,
+  'biz-tree-node': BizTreeNode,
+  'biz-web-toast': BizWebToast,
+  'biz-pagination': BizPagination,
+  'biz-table': BizTable
 };
 
 export function registerWebComponents() {

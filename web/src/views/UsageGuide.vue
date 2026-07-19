@@ -35,7 +35,7 @@
         <div style="width: 280px;">
           <BizCollapse v-model="expandedCategory" accordion>
             <BizCollapseItem 
-              v-for="group in componentsMenu" 
+              v-for="group in filteredMenu" 
               :key="group.category"
               :name="group.category"
             >
@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonIcon } from '@ionic/vue';
 import { rocketOutline, cubeOutline, calendarOutline, compassOutline, lockClosedOutline, barChartOutline, layersOutline, documentTextOutline } from 'ionicons/icons';
 import { BizNavigationRail, BizInput, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
@@ -112,6 +112,8 @@ const componentsMenu = [
       { id: 'button-group', label: 'Button Group' },
       { id: 'toggle-button', label: 'Toggle Button' },
       { id: 'icon-button', label: 'Icon Button' },
+      { id: 'select', label: 'Select' },
+      { id: 'transfer-list', label: 'Transfer List' },
       { id: 'fab', label: 'Floating Action Button' },
       { id: 'info-card', label: 'Info Card' },
       { id: 'account-card', label: 'Account Card' },
@@ -125,13 +127,19 @@ const componentsMenu = [
     icon: documentTextOutline,
     items: [
       { id: 'input', label: 'Text Input & Textarea' },
+      { id: 'phone-input', label: 'Phone Input' },
+      { id: 'company-selector', label: 'Company Selector' },
       { id: 'checkbox', label: 'Checkbox & Group' },
       { id: 'radio', label: 'Radio & Group' },
       { id: 'switch', label: 'Switch Toggle' },
       { id: 'slider', label: 'Slider & Range' },
       { id: 'spinner', label: 'Number Spinner' },
       { id: 'rating', label: 'Rating Stars' },
-      { id: 'autocomplete', label: 'Autocomplete' }
+      { id: 'autocomplete', label: 'Autocomplete' },
+      { id: 'rich-text-editor', label: 'Rich Text Editor' },
+      { id: 'math-editor', label: 'Math Editor' },
+      { id: 'file-upload', label: 'File Upload (Dropzone)' },
+      { id: 'color-picker', label: 'Color Picker' }
     ]
   },
   {
@@ -159,12 +167,29 @@ const componentsMenu = [
       { id: 'dynamic-island', label: 'Dynamic Island' },
       { id: 'pull-refresh', label: 'Pull to Refresh' },
       { id: 'swipe-actions', label: 'Swipe Actions' },
+      { id: 'scroll-segment', label: 'Scroll Segment' },
+      { id: 'ribbon', label: 'Ribbon Menu' },
       { id: 'feedback-sheets', label: 'Toasts & Action Sheets' },
-      { id: 'notifications', label: 'Notifications & Scrolling' }
+      { id: 'action-sheets', label: 'Specific Action Sheets' },
+      { id: 'web-toast', label: 'Web Toast (Desktop)' },
+      { id: 'notifications', label: 'Notifications & Scrolling' },
+      { id: 'tabs', label: 'Tabs' },
+      { id: 'accordion', label: 'Accordion' },
+      { id: 'carousel', label: 'Carousel' },
+      { id: 'kanban', label: 'Kanban Board' }
     ]
   },
   {
-    category: 'Security',
+    category: 'Templates & Screens',
+    icon: layersOutline,
+    items: [
+      { id: 'auth-screen', label: 'Authentication' },
+      { id: 'settings-screen', label: 'Settings & Profile' },
+      { id: 'math-exam-screen', label: 'Math Examination' }
+    ]
+  },
+  {
+    category: 'Deprecated',
     icon: lockClosedOutline,
     items: [
       { id: 'pin-security', label: 'PIN & Security' }
@@ -177,7 +202,14 @@ const componentsMenu = [
       { id: 'charts', label: 'Charts & Graphs' },
       { id: 'account-saving', label: 'Account Saving Sheets' },
       { id: 'account-reorder', label: 'Account Reorder List' },
-      { id: 'image-transition', label: 'Image Transition' }
+      { id: 'image-transition', label: 'Image Transition' },
+      { id: 'timeline', label: 'Timeline' },
+      { id: 'tree', label: 'Tree View' },
+      { id: 'table', label: 'Table & Pagination' },
+      { id: 'progress-gauge', label: 'Progress Gauge' },
+      { id: 'no-result', label: 'No Result State' },
+      { id: 'cards', label: 'Cards Collection' },
+      { id: 'keypads', label: 'Keypads & Security' }
     ]
   },
   {
@@ -201,11 +233,41 @@ const currentComponentTitle = computed(() => {
   return '';
 });
 
+const filteredMenu = computed(() => {
+  if (!searchQuery.value) return componentsMenu;
+  
+  const query = searchQuery.value.toLowerCase();
+  return componentsMenu.map(group => {
+    return {
+      ...group,
+      items: group.items.filter(item => item.label.toLowerCase().includes(query))
+    };
+  }).filter(group => group.items.length > 0);
+});
+
+watch(searchQuery, (newVal) => {
+  if (newVal && filteredMenu.value.length > 0) {
+    expandedCategory.value = filteredMenu.value[0].category;
+  } else if (!newVal) {
+    // Optionally reset or leave as is when search is cleared
+  }
+});
+
 // Map component IDs to their PascalCase component names
 const sectionMap: Record<string, string> = {
   "installation": "InstallationSection",
+  "input": "InputSection",
+  "phone-input": "PhoneInputSection",
+  "company-selector": "CompanySelectorSection",
   "button": "ButtonSection",
   "button-group": "ButtonGroupSection",
+  "select": "SelectSection",
+  "transfer-list": "TransferListSection",
+  "text-field": "TextFieldSection",
+  "rich-text-editor": "RichTextEditorSection",
+  "math-editor": "MathEditorSection",
+  "file-upload": "FileUploadSection",
+  "color-picker": "ColorPickerSection",
   "toggle-button": "ToggleButtonSection",
   "icon-button": "IconButtonSection",
   "fab": "FabSection",
@@ -214,7 +276,6 @@ const sectionMap: Record<string, string> = {
   "action-card": "ActionCardSection",
   "skeleton": "SkeletonSection",
   "collapse": "CollapseSection",
-  "input": "InputSection",
   "checkbox": "CheckboxSection",
   "radio": "RadioSection",
   "switch": "SwitchSection",
@@ -238,13 +299,32 @@ const sectionMap: Record<string, string> = {
   "pull-refresh": "PullRefreshSection",
   "swipe-actions": "SwipeActionsSection",
   "feedback-sheets": "FeedbackSheetsSection",
+  "web-toast": "WebToastSection",
   "notifications": "NotificationsSection",
+  "tabs": "LiquidTabSection",
+  "accordion": "CollapseSection",
+  "scroll-segment": "ScrollSegmentSection",
+  "ribbon": "RibbonSection",
+  "action-sheets": "ActionSheetsSection",
+  "cards": "CardsSection",
+  "keypads": "KeypadsSection",
+  "progress-gauge": "ProgressGaugeSection",
+  "no-result": "NoResultSection",
   "pin-security": "PinSecuritySection",
+  "draggable-grid": "DraggableGridSection",
+  "tree": "TreeSection",
+  "carousel": "CarouselSection",
+  "kanban": "KanbanSection",
+  "auth-screen": "AuthScreen",
+  "settings-screen": "SettingsScreen",
+  "math-exam-screen": "MathExamScreen",
+  "timeline": "TimelineSection",
   "charts": "ChartsSection",
   "account-saving": "AccountSavingSection",
   "account-reorder": "AccountReorderSection",
   "image-transition": "ImageTransitionSection",
-  "structure": "StructureSection"
+  "structure": "StructureSection",
+  "table": "TableSection"
 };
 
 const currentComponent = computed(() => {

@@ -89,6 +89,14 @@ import BizMonthPicker from './components/BizMonthPicker.vue'
 import BizMonthPickerSheet from './components/BizMonthPickerSheet.vue'
 import BizMonthPickerAlert from './components/BizMonthPickerAlert.vue'
 import BizMonthPickerIsland from './components/BizMonthPickerIsland.vue'
+import BizDraggableGrid from './components/BizDraggableGrid.vue'
+import BizMarquee from './components/BizMarquee.vue'
+import BizCarousel from './components/BizCarousel.vue'
+import BizCarouselItem from './components/BizCarouselItem.vue'
+import BizRichTextEditor from './components/BizRichTextEditor.vue'
+import BizMathEditor from './components/BizMathEditor.vue'
+import BizMathPreview from './components/BizMathPreview.vue'
+import BizKanbanBoard from './components/BizKanbanBoard.vue'
 import BizYearPicker from './components/BizYearPicker.vue'
 import BizYearPickerSheet from './components/BizYearPickerSheet.vue'
 import BizYearPickerAlert from './components/BizYearPickerAlert.vue'
@@ -113,6 +121,13 @@ import BizRibbonGroup from './components/BizRibbonGroup.vue'
 import BizRibbonButton from './components/BizRibbonButton.vue'
 import BizCollapse from './components/BizCollapse.vue'
 import BizCollapseItem from './components/BizCollapseItem.vue'
+import BizTimeline from './components/BizTimeline.vue'
+import BizTimelineItem from './components/BizTimelineItem.vue'
+import BizTree from './components/BizTree.vue'
+import BizTreeNode from './components/BizTreeNode.vue'
+import BizWebToast from './components/BizWebToast.vue'
+import BizPagination from './components/BizPagination.vue'
+import BizTable from './components/BizTable.vue'
 
 // Export components individually
 export { 
@@ -120,12 +135,20 @@ export {
   MyList, 
   BizButton, 
   BizButtonGroup,
+  BizDraggableGrid,
+  BizMarquee,
+  BizCarousel,
+  BizCarouselItem,
   BizSegment, 
   BizSegmentButton, 
   BizInput,
   BizTextField,
   BizToggleButton,
   BizSelect,
+  BizRichTextEditor,
+  BizMathEditor,
+  BizMathPreview,
+  BizKanbanBoard,
   BizFileUpload,
   BizTransferList,
   BizAutocomplete, 
@@ -229,7 +252,14 @@ export {
   BizRibbonGroup,
   BizRibbonButton,
   BizCollapse,
-  BizCollapseItem
+  BizCollapseItem,
+  BizTimeline,
+  BizTimelineItem,
+  BizTree,
+  BizTreeNode,
+  BizWebToast,
+  BizPagination,
+  BizTable
 }
 
 // Export a Vue plugin to install all components
@@ -347,5 +377,12 @@ export default {
     app.component('BizRibbonButton', BizRibbonButton)
     app.component('BizCollapse', BizCollapse)
     app.component('BizCollapseItem', BizCollapseItem)
+    app.component('BizTimeline', BizTimeline)
+    app.component('BizTimelineItem', BizTimelineItem)
+    app.component('BizTree', BizTree)
+    app.component('BizTreeNode', BizTreeNode)
+    app.component('BizWebToast', BizWebToast)
+    app.component('BizPagination', BizPagination)
+    app.component('BizTable', BizTable)
   }
 }
