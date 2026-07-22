@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen branch-map-screen">
+    <div class="pp-screen branch-map-screen">
       
       <!-- Top header area (Mock) -->
       <div class="map-header">
@@ -15,17 +15,17 @@
 
       <!-- Action buttons for demoing the bottom sheets -->
       <div class="demo-actions">
-        <BizButton variant="primary" block @click="showFilterSheet = true">Open Filter Sheet</BizButton>
-        <BizButton variant="outline" block @click="showSortSheet = true">Open Sort Sheet</BizButton>
+        <PPButton variant="primary" block @click="showFilterSheet = true">Open Filter Sheet</PPButton>
+        <PPButton variant="outline" block @click="showSortSheet = true">Open Sort Sheet</PPButton>
       </div>
 
       <!-- Sheets -->
-      <BizFilterSheet 
+      <PPFilterSheet 
         v-model="showFilterSheet" 
         v-model:modelValueFacilities="selectedFacilities"
       />
 
-      <BizSortSheet 
+      <PPSortSheet 
         v-model="showSortSheet" 
         v-model:modelValueSort="currentSort"
       />
@@ -38,7 +38,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton, BizFilterSheet, BizSortSheet } from '@phanna/ui-framework';
+import { PPButton, PPFilterSheet, PPSortSheet } from '@phanna/ui-framework';
 
 const router = useRouter();
 
@@ -61,7 +61,7 @@ const currentSort = ref('distance');
 }
 
 .map-header {
-  background-color: var(--biz-primary, #003399);
+  background-color: var(--pp-primary, #003399);
   padding: 56px 24px 24px 24px;
   color: white;
   border-bottom-left-radius: 24px;

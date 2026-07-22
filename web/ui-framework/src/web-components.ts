@@ -1,216 +1,216 @@
 import { defineCustomElement } from 'vue'
 import MyButton from './components/MyButton.vue'
 import MyList from './components/MyList.vue'
-import BizButton from './components/BizButton.vue'
-import BizButtonGroup from './components/BizButtonGroup.vue'
-import BizSegment from './components/BizSegment.vue'
-import BizSegmentButton from './components/BizSegmentButton.vue'
-import BizInput from './components/BizInput.vue'
-import BizTextField from './components/BizTextField.vue'
-import BizToggleButton from './components/BizToggleButton.vue'
-import BizSelect from './components/BizSelect.vue'
-import BizFileUpload from './components/BizFileUpload.vue'
-import BizTransferList from './components/BizTransferList.vue'
-import BizAutocomplete from './components/BizAutocomplete.vue'
-import BizCheckbox from './components/BizCheckbox.vue'
-import BizCheckboxGroup from './components/BizCheckboxGroup.vue'
-import BizFab from './components/BizFab.vue'
-import BizFabList from './components/BizFabList.vue'
-import BizFabAction from './components/BizFabAction.vue'
-import BizNumberSpinner from './components/BizNumberSpinner.vue'
-import BizRadio from './components/BizRadio.vue'
-import BizRadioGroup from './components/BizRadioGroup.vue'
-import BizRating from './components/BizRating.vue'
-import BizCollapsingToolbar from './components/BizCollapsingToolbar.vue'
-import BizPullToRefresh from './components/BizPullToRefresh.vue'
-import BizImageTransition from './components/BizImageTransition.vue'
-import BizSlider from './components/BizSlider.vue'
-import BizSwitch from './components/BizSwitch.vue'
-import BizSwipeItem from './components/BizSwipeItem.vue'
-import BizBarChart from './components/BizBarChart.vue'
-import BizLineChart from './components/BizLineChart.vue'
-import BizDonutChart from './components/BizDonutChart.vue'
-import BizPieChart from './components/BizPieChart.vue'
-import BizRadarChart from './components/BizRadarChart.vue'
-import BizProgressGauge from './components/BizProgressGauge.vue'
-import BizScatterChart from './components/BizScatterChart.vue'
-import BizFunnelChart from './components/BizFunnelChart.vue'
-import BizSkeleton from './components/BizSkeleton.vue'
-import BizSkeletonItem from './components/BizSkeletonItem.vue'
-import BizSkeletonList from './components/BizSkeletonList.vue'
-import BizSkeletonDetail from './components/BizSkeletonDetail.vue'
-import BizHideAppBar from './components/BizHideAppBar.vue'
-import BizBottomNav from './components/BizBottomNav.vue'
-import BizBottomSheet from './components/BizBottomSheet.vue'
-import BizBiometricSheet from './components/BizBiometricSheet.vue'
-import BizLanguageSheet from './components/BizLanguageSheet.vue'
-import BizFilterSheet from './components/BizFilterSheet.vue'
-import BizSortSheet from './components/BizSortSheet.vue'
-import BizScrollSegment from './components/BizScrollSegment.vue'
-import BizScrollSegmentButton from './components/BizScrollSegmentButton.vue'
-import BizUserCard from './components/BizUserCard.vue'
-import BizCountryCodeSheet from './components/BizCountryCodeSheet.vue'
-import BizUpgradeCard from './components/BizUpgradeCard.vue'
-import BizVerificationCard from './components/BizVerificationCard.vue'
-import BizSkipButton from './components/BizSkipButton.vue'
-import BizFeedbackSheet from './components/BizFeedbackSheet.vue'
-import BizIconButton from './components/BizIconButton.vue'
-import BizUserProfile from './components/BizUserProfile.vue'
-import BizCompanySelector from './components/BizCompanySelector.vue'
-import BizActionCard from './components/BizActionCard.vue'
-import BizAccountCard from './components/BizAccountCard.vue'
-import BizPhoneInput from './components/BizPhoneInput.vue'
-import BizOtpInput from './components/BizOtpInput.vue'
-import BizInfoCard from './components/BizInfoCard.vue'
-import BizPinDots from './components/BizPinDots.vue'
-import BizKeypad from './components/BizKeypad.vue'
-import BizSecureKeypad from './components/BizSecureKeypad.vue'
-import BizSecureKeyboard from './components/BizSecureKeyboard.vue'
-import BizNoResult from './components/BizNoResult.vue'
-import BizAppBar from './components/BizAppBar.vue'
-import BizToast from './components/BizToast.vue'
-import BizConfirmSheet from './components/BizConfirmSheet.vue'
-import BizReceiveAmountSheet from './components/BizReceiveAmountSheet.vue'
-import BizAccountSavingCard from './components/BizAccountSavingCard.vue'
-import BizReceivingAccountSheet from './components/BizReceivingAccountSheet.vue'
-import BizKhmerCalendar from './components/BizKhmerCalendar.vue'
-import BizKhmerCalendarSheet from './components/BizKhmerCalendarSheet.vue'
-import BizKhmerCalendarAlert from './components/BizKhmerCalendarAlert.vue'
-import BizCalendar from './components/BizCalendar.vue'
-import BizDateRangePickerSheet from './components/BizDateRangePickerSheet.vue'
-import BizDateRangePickerAlert from './components/BizDateRangePickerAlert.vue'
-import BizDateRangePicker from './components/BizDateRangePicker.vue'
-import BizCalendarSheet from './components/BizCalendarSheet.vue'
-import BizCalendarAlert from './components/BizCalendarAlert.vue'
-import BizMonthPicker from './components/BizMonthPicker.vue'
-import BizMonthPickerSheet from './components/BizMonthPickerSheet.vue'
-import BizMonthPickerAlert from './components/BizMonthPickerAlert.vue'
-import BizYearPicker from './components/BizYearPicker.vue'
-import BizYearPickerSheet from './components/BizYearPickerSheet.vue'
-import BizYearPickerAlert from './components/BizYearPickerAlert.vue'
-import BizAccountListCard from './components/BizAccountListCard.vue'
-import BizAccountReorderList from './components/BizAccountReorderList.vue'
-import BizColorPicker from './components/BizColorPicker.vue'
-import BizColorPickerSheet from './components/BizColorPickerSheet.vue'
-import BizColorPickerAlert from './components/BizColorPickerAlert.vue'
-import BizRibbon from './components/BizRibbon.vue'
-import BizRibbonTab from './components/BizRibbonTab.vue'
-import BizRibbonGroup from './components/BizRibbonGroup.vue'
-import BizRibbonButton from './components/BizRibbonButton.vue'
-import BizTimeline from './components/BizTimeline.vue'
-import BizTimelineItem from './components/BizTimelineItem.vue'
-import BizTree from './components/BizTree.vue'
-import BizTreeNode from './components/BizTreeNode.vue'
-import BizWebToast from './components/BizWebToast.vue'
-import BizPagination from './components/BizPagination.vue'
-import BizTable from './components/BizTable.vue'
+import PPButton from './components/PPButton.vue'
+import PPButtonGroup from './components/PPButtonGroup.vue'
+import PPSegment from './components/PPSegment.vue'
+import PPSegmentButton from './components/PPSegmentButton.vue'
+import PPInput from './components/PPInput.vue'
+import PPTextField from './components/PPTextField.vue'
+import PPToggleButton from './components/PPToggleButton.vue'
+import PPSelect from './components/PPSelect.vue'
+import PPFileUpload from './components/PPFileUpload.vue'
+import PPTransferList from './components/PPTransferList.vue'
+import PPAutocomplete from './components/PPAutocomplete.vue'
+import PPCheckbox from './components/PPCheckbox.vue'
+import PPCheckboxGroup from './components/PPCheckboxGroup.vue'
+import PPFab from './components/PPFab.vue'
+import PPFabList from './components/PPFabList.vue'
+import PPFabAction from './components/PPFabAction.vue'
+import PPNumberSpinner from './components/PPNumberSpinner.vue'
+import PPRadio from './components/PPRadio.vue'
+import PPRadioGroup from './components/PPRadioGroup.vue'
+import PPRating from './components/PPRating.vue'
+import PPCollapsingToolbar from './components/PPCollapsingToolbar.vue'
+import PPPullToRefresh from './components/PPPullToRefresh.vue'
+import PPImageTransition from './components/PPImageTransition.vue'
+import PPSlider from './components/PPSlider.vue'
+import PPSwitch from './components/PPSwitch.vue'
+import PPSwipeItem from './components/PPSwipeItem.vue'
+import PPBarChart from './components/PPBarChart.vue'
+import PPLineChart from './components/PPLineChart.vue'
+import PPDonutChart from './components/PPDonutChart.vue'
+import PPPieChart from './components/PPPieChart.vue'
+import PPRadarChart from './components/PPRadarChart.vue'
+import PPProgressGauge from './components/PPProgressGauge.vue'
+import PPScatterChart from './components/PPScatterChart.vue'
+import PPFunnelChart from './components/PPFunnelChart.vue'
+import PPSkeleton from './components/PPSkeleton.vue'
+import PPSkeletonItem from './components/PPSkeletonItem.vue'
+import PPSkeletonList from './components/PPSkeletonList.vue'
+import PPSkeletonDetail from './components/PPSkeletonDetail.vue'
+import PPHideAppBar from './components/PPHideAppBar.vue'
+import PPBottomNav from './components/PPBottomNav.vue'
+import PPBottomSheet from './components/PPBottomSheet.vue'
+import PPBiometricSheet from './components/PPBiometricSheet.vue'
+import PPLanguageSheet from './components/PPLanguageSheet.vue'
+import PPFilterSheet from './components/PPFilterSheet.vue'
+import PPSortSheet from './components/PPSortSheet.vue'
+import PPScrollSegment from './components/PPScrollSegment.vue'
+import PPScrollSegmentButton from './components/PPScrollSegmentButton.vue'
+import PPUserCard from './components/PPUserCard.vue'
+import PPCountryCodeSheet from './components/PPCountryCodeSheet.vue'
+import PPUpgradeCard from './components/PPUpgradeCard.vue'
+import PPVerificationCard from './components/PPVerificationCard.vue'
+import PPSkipButton from './components/PPSkipButton.vue'
+import PPFeedbackSheet from './components/PPFeedbackSheet.vue'
+import PPIconButton from './components/PPIconButton.vue'
+import PPUserProfile from './components/PPUserProfile.vue'
+import PPCompanySelector from './components/PPCompanySelector.vue'
+import PPActionCard from './components/PPActionCard.vue'
+import PPAccountCard from './components/PPAccountCard.vue'
+import PPPhoneInput from './components/PPPhoneInput.vue'
+import PPOtpInput from './components/PPOtpInput.vue'
+import PPInfoCard from './components/PPInfoCard.vue'
+import PPPinDots from './components/PPPinDots.vue'
+import PPKeypad from './components/PPKeypad.vue'
+import PPSecureKeypad from './components/PPSecureKeypad.vue'
+import PPSecureKeyboard from './components/PPSecureKeyboard.vue'
+import PPNoResult from './components/PPNoResult.vue'
+import PPAppBar from './components/PPAppBar.vue'
+import PPToast from './components/PPToast.vue'
+import PPConfirmSheet from './components/PPConfirmSheet.vue'
+import PPReceiveAmountSheet from './components/PPReceiveAmountSheet.vue'
+import PPAccountSavingCard from './components/PPAccountSavingCard.vue'
+import PPReceivingAccountSheet from './components/PPReceivingAccountSheet.vue'
+import PPKhmerCalendar from './components/PPKhmerCalendar.vue'
+import PPKhmerCalendarSheet from './components/PPKhmerCalendarSheet.vue'
+import PPKhmerCalendarAlert from './components/PPKhmerCalendarAlert.vue'
+import PPCalendar from './components/PPCalendar.vue'
+import PPDateRangePickerSheet from './components/PPDateRangePickerSheet.vue'
+import PPDateRangePickerAlert from './components/PPDateRangePickerAlert.vue'
+import PPDateRangePicker from './components/PPDateRangePicker.vue'
+import PPCalendarSheet from './components/PPCalendarSheet.vue'
+import PPCalendarAlert from './components/PPCalendarAlert.vue'
+import PPMonthPicker from './components/PPMonthPicker.vue'
+import PPMonthPickerSheet from './components/PPMonthPickerSheet.vue'
+import PPMonthPickerAlert from './components/PPMonthPickerAlert.vue'
+import PPYearPicker from './components/PPYearPicker.vue'
+import PPYearPickerSheet from './components/PPYearPickerSheet.vue'
+import PPYearPickerAlert from './components/PPYearPickerAlert.vue'
+import PPAccountListCard from './components/PPAccountListCard.vue'
+import PPAccountReorderList from './components/PPAccountReorderList.vue'
+import PPColorPicker from './components/PPColorPicker.vue'
+import PPColorPickerSheet from './components/PPColorPickerSheet.vue'
+import PPColorPickerAlert from './components/PPColorPickerAlert.vue'
+import PPRibbon from './components/PPRibbon.vue'
+import PPRibbonTab from './components/PPRibbonTab.vue'
+import PPRibbonGroup from './components/PPRibbonGroup.vue'
+import PPRibbonButton from './components/PPRibbonButton.vue'
+import PPTimeline from './components/PPTimeline.vue'
+import PPTimelineItem from './components/PPTimelineItem.vue'
+import PPTree from './components/PPTree.vue'
+import PPTreeNode from './components/PPTreeNode.vue'
+import PPWebToast from './components/PPWebToast.vue'
+import PPPagination from './components/PPPagination.vue'
+import PPTable from './components/PPTable.vue'
 
 const components = {
   'my-button': MyButton,
   'my-list': MyList,
-  'biz-button': BizButton,
-  'biz-button-group': BizButtonGroup,
-  'biz-segment': BizSegment,
-  'biz-segment-button': BizSegmentButton,
-  'biz-input': BizInput,
-  'biz-text-field': BizTextField,
-  'biz-toggle-button': BizToggleButton,
-  'biz-select': BizSelect,
-  'biz-file-upload': BizFileUpload,
-  'biz-transfer-list': BizTransferList,
-  'biz-autocomplete': BizAutocomplete,
-  'biz-checkbox': BizCheckbox,
-  'biz-checkbox-group': BizCheckboxGroup,
-  'biz-fab': BizFab,
-  'biz-fab-list': BizFabList,
-  'biz-fab-action': BizFabAction,
-  'biz-number-spinner': BizNumberSpinner,
-  'biz-radio': BizRadio,
-  'biz-radio-group': BizRadioGroup,
-  'biz-rating': BizRating,
-  'biz-collapsing-toolbar': BizCollapsingToolbar,
-  'biz-pull-to-refresh': BizPullToRefresh,
-  'biz-slider': BizSlider,
-  'biz-switch': BizSwitch,
-  'biz-image-transition': BizImageTransition,
-  'biz-swipe-item': BizSwipeItem,
-  'biz-bar-chart': BizBarChart,
-  'biz-line-chart': BizLineChart,
-  'biz-donut-chart': BizDonutChart,
-  'biz-pie-chart': BizPieChart,
-  'biz-radar-chart': BizRadarChart,
-  'biz-progress-gauge': BizProgressGauge,
-  'biz-scatter-chart': BizScatterChart,
-  'biz-funnel-chart': BizFunnelChart,
-  'biz-skeleton': BizSkeleton,
-  'biz-skeleton-item': BizSkeletonItem,
-  'biz-skeleton-list': BizSkeletonList,
-  'biz-skeleton-detail': BizSkeletonDetail,
-  'biz-hide-appbar': BizHideAppBar,
-  'biz-bottom-sheet': BizBottomSheet,
-  'biz-biometric-sheet': BizBiometricSheet,
-  'biz-language-sheet': BizLanguageSheet,
-  'biz-filter-sheet': BizFilterSheet,
-  'biz-sort-sheet': BizSortSheet,
-  'biz-scroll-segment': BizScrollSegment,
-  'biz-scroll-segment-button': BizScrollSegmentButton,
-  'biz-user-card': BizUserCard,
-  'biz-country-code-sheet': BizCountryCodeSheet,
-  'biz-upgrade-card': BizUpgradeCard,
-  'biz-verification-card': BizVerificationCard,
-  'biz-skip-button': BizSkipButton,
-  'biz-feedback-sheet': BizFeedbackSheet,
-  'biz-icon-button': BizIconButton,
-  'biz-user-profile': BizUserProfile,
-  'biz-company-selector': BizCompanySelector,
-  'biz-action-card': BizActionCard,
-  'biz-account-card': BizAccountCard,
-  'biz-bottom-nav': BizBottomNav,
-  'biz-phone-input': BizPhoneInput,
-  'biz-otp-input': BizOtpInput,
-  'biz-info-card': BizInfoCard,
-  'biz-pin-dots': BizPinDots,
-  'biz-keypad': BizKeypad,
-  'biz-secure-keypad': BizSecureKeypad,
-  'biz-secure-keyboard': BizSecureKeyboard,
-  'biz-no-result': BizNoResult,
-  'biz-app-bar': BizAppBar,
-  'biz-toast': BizToast,
-  'biz-confirm-sheet': BizConfirmSheet,
-  'biz-receive-amount-sheet': BizReceiveAmountSheet,
-  'biz-account-saving-card': BizAccountSavingCard,
-  'biz-receiving-account-sheet': BizReceivingAccountSheet,
-  'biz-khmer-calendar': BizKhmerCalendar,
-  'biz-khmer-calendar-sheet': BizKhmerCalendarSheet,
-  'biz-khmer-calendar-alert': BizKhmerCalendarAlert,
-  'biz-calendar': BizCalendar,
-  'biz-date-range-picker-sheet': BizDateRangePickerSheet,
-  'biz-date-range-picker-alert': BizDateRangePickerAlert,
-  'biz-date-range-picker': BizDateRangePicker,
-  'biz-calendar-sheet': BizCalendarSheet,
-  'biz-calendar-alert': BizCalendarAlert,
-  'biz-month-picker': BizMonthPicker,
-  'biz-month-picker-sheet': BizMonthPickerSheet,
-  'biz-month-picker-alert': BizMonthPickerAlert,
-  'biz-year-picker': BizYearPicker,
-  'biz-year-picker-sheet': BizYearPickerSheet,
-  'biz-year-picker-alert': BizYearPickerAlert,
-  'biz-account-list-card': BizAccountListCard,
-  'biz-account-reorder-list': BizAccountReorderList,
-  'biz-color-picker': BizColorPicker,
-  'biz-color-picker-sheet': BizColorPickerSheet,
-  'biz-color-picker-alert': BizColorPickerAlert,
-  'biz-ribbon': BizRibbon,
-  'biz-ribbon-tab': BizRibbonTab,
-  'biz-ribbon-group': BizRibbonGroup,
-  'biz-ribbon-button': BizRibbonButton,
-  'biz-timeline': BizTimeline,
-  'biz-timeline-item': BizTimelineItem,
-  'biz-tree': BizTree,
-  'biz-tree-node': BizTreeNode,
-  'biz-web-toast': BizWebToast,
-  'biz-pagination': BizPagination,
-  'biz-table': BizTable
+  'pp-button': PPButton,
+  'pp-button-group': PPButtonGroup,
+  'pp-segment': PPSegment,
+  'pp-segment-button': PPSegmentButton,
+  'pp-input': PPInput,
+  'pp-text-field': PPTextField,
+  'pp-toggle-button': PPToggleButton,
+  'pp-select': PPSelect,
+  'pp-file-upload': PPFileUpload,
+  'pp-transfer-list': PPTransferList,
+  'pp-autocomplete': PPAutocomplete,
+  'pp-checkbox': PPCheckbox,
+  'pp-checkbox-group': PPCheckboxGroup,
+  'pp-fab': PPFab,
+  'pp-fab-list': PPFabList,
+  'pp-fab-action': PPFabAction,
+  'pp-number-spinner': PPNumberSpinner,
+  'pp-radio': PPRadio,
+  'pp-radio-group': PPRadioGroup,
+  'pp-rating': PPRating,
+  'pp-collapsing-toolbar': PPCollapsingToolbar,
+  'pp-pull-to-refresh': PPPullToRefresh,
+  'pp-slider': PPSlider,
+  'pp-switch': PPSwitch,
+  'pp-image-transition': PPImageTransition,
+  'pp-swipe-item': PPSwipeItem,
+  'pp-bar-chart': PPBarChart,
+  'pp-line-chart': PPLineChart,
+  'pp-donut-chart': PPDonutChart,
+  'pp-pie-chart': PPPieChart,
+  'pp-radar-chart': PPRadarChart,
+  'pp-progress-gauge': PPProgressGauge,
+  'pp-scatter-chart': PPScatterChart,
+  'pp-funnel-chart': PPFunnelChart,
+  'pp-skeleton': PPSkeleton,
+  'pp-skeleton-item': PPSkeletonItem,
+  'pp-skeleton-list': PPSkeletonList,
+  'pp-skeleton-detail': PPSkeletonDetail,
+  'pp-hide-appbar': PPHideAppBar,
+  'pp-bottom-sheet': PPBottomSheet,
+  'pp-biometric-sheet': PPBiometricSheet,
+  'pp-language-sheet': PPLanguageSheet,
+  'pp-filter-sheet': PPFilterSheet,
+  'pp-sort-sheet': PPSortSheet,
+  'pp-scroll-segment': PPScrollSegment,
+  'pp-scroll-segment-button': PPScrollSegmentButton,
+  'pp-user-card': PPUserCard,
+  'pp-country-code-sheet': PPCountryCodeSheet,
+  'pp-upgrade-card': PPUpgradeCard,
+  'pp-verification-card': PPVerificationCard,
+  'pp-skip-button': PPSkipButton,
+  'pp-feedback-sheet': PPFeedbackSheet,
+  'pp-icon-button': PPIconButton,
+  'pp-user-profile': PPUserProfile,
+  'pp-company-selector': PPCompanySelector,
+  'pp-action-card': PPActionCard,
+  'pp-account-card': PPAccountCard,
+  'pp-bottom-nav': PPBottomNav,
+  'pp-phone-input': PPPhoneInput,
+  'pp-otp-input': PPOtpInput,
+  'pp-info-card': PPInfoCard,
+  'pp-pin-dots': PPPinDots,
+  'pp-keypad': PPKeypad,
+  'pp-secure-keypad': PPSecureKeypad,
+  'pp-secure-keyboard': PPSecureKeyboard,
+  'pp-no-result': PPNoResult,
+  'pp-app-bar': PPAppBar,
+  'pp-toast': PPToast,
+  'pp-confirm-sheet': PPConfirmSheet,
+  'pp-receive-amount-sheet': PPReceiveAmountSheet,
+  'pp-account-saving-card': PPAccountSavingCard,
+  'pp-receiving-account-sheet': PPReceivingAccountSheet,
+  'pp-khmer-calendar': PPKhmerCalendar,
+  'pp-khmer-calendar-sheet': PPKhmerCalendarSheet,
+  'pp-khmer-calendar-alert': PPKhmerCalendarAlert,
+  'pp-calendar': PPCalendar,
+  'pp-date-range-picker-sheet': PPDateRangePickerSheet,
+  'pp-date-range-picker-alert': PPDateRangePickerAlert,
+  'pp-date-range-picker': PPDateRangePicker,
+  'pp-calendar-sheet': PPCalendarSheet,
+  'pp-calendar-alert': PPCalendarAlert,
+  'pp-month-picker': PPMonthPicker,
+  'pp-month-picker-sheet': PPMonthPickerSheet,
+  'pp-month-picker-alert': PPMonthPickerAlert,
+  'pp-year-picker': PPYearPicker,
+  'pp-year-picker-sheet': PPYearPickerSheet,
+  'pp-year-picker-alert': PPYearPickerAlert,
+  'pp-account-list-card': PPAccountListCard,
+  'pp-account-reorder-list': PPAccountReorderList,
+  'pp-color-picker': PPColorPicker,
+  'pp-color-picker-sheet': PPColorPickerSheet,
+  'pp-color-picker-alert': PPColorPickerAlert,
+  'pp-ribbon': PPRibbon,
+  'pp-ribbon-tab': PPRibbonTab,
+  'pp-ribbon-group': PPRibbonGroup,
+  'pp-ribbon-button': PPRibbonButton,
+  'pp-timeline': PPTimeline,
+  'pp-timeline-item': PPTimelineItem,
+  'pp-tree': PPTree,
+  'pp-tree-node': PPTreeNode,
+  'pp-web-toast': PPWebToast,
+  'pp-pagination': PPPagination,
+  'pp-table': PPTable
 };
 
 export function registerWebComponents() {

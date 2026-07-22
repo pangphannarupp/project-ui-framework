@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-success-screen">
+    <div class="pp-screen pp-success-screen">
       <!-- Minimal App Bar for back or completely hidden? In the screenshot the app bar is not there, it's just the status bar -->
       
       <div class="success-content">
@@ -29,9 +29,9 @@
       </div>
 
       <div class="action-footer">
-        <BizButton block variant="primary" @click="goHome">
+        <PPButton block variant="primary" @click="goHome">
           Okay
-        </BizButton>
+        </PPButton>
       </div>
     </div>
   </ion-page>
@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton } from '@phanna/ui-framework';
+import { PPButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 
@@ -50,7 +50,7 @@ const goHome = () => {
 </script>
 
 <style scoped>
-.biz-screen {
+.pp-screen {
   width: 100%;
   height: 100vh;
   position: relative;
@@ -77,7 +77,7 @@ const goHome = () => {
 .success-title {
   font-size: 22px;
   font-weight: 800;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 0 0 12px 0;
 }
 

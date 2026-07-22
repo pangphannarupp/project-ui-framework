@@ -29,7 +29,7 @@ import '@phanna/ui-framework/style.css';
 registerWebComponents();
 
 export default function App() {
-  return &lt;biz-button variant="primary"&gt;React Button&lt;/biz-button&gt;;
+  return &lt;pp-button variant="primary"&gt;React Button&lt;/pp-button&gt;;
 }</code></pre>
         </div>
 
@@ -60,7 +60,7 @@ export class AppModule { }</code></pre>
   &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;biz-button variant="primary"&gt;Native Button&lt;/biz-button&gt;
+  &lt;pp-button variant="primary"&gt;Native Button&lt;/pp-button&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
         </div>

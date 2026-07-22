@@ -8,18 +8,18 @@
           <div class="component-demo">
             <div style="display: flex; gap: 8px; margin-bottom: 16px; align-items: center; flex-wrap: wrap;">
               <div style="width: 200px;">
-                <BizSelect v-model="islandPosition" :options="[{label: 'Top', value: 'top'}, {label: 'Bottom', value: 'bottom'}, {label: 'Left', value: 'left'}, {label: 'Right', value: 'right'}]" placeholder="Select Position" />
+                <PPSelect v-model="islandPosition" :options="[{label: 'Top', value: 'top'}, {label: 'Bottom', value: 'bottom'}, {label: 'Left', value: 'left'}, {label: 'Right', value: 'right'}]" placeholder="Select Position" />
               </div>
-              <BizCheckbox v-model="islandFullWidth">Full Width</BizCheckbox>
+              <PPCheckbox v-model="islandFullWidth">Full Width</PPCheckbox>
             </div>
-            <BizButtonGroup>
-              <BizButton @click="showIsland('minimal')">Minimal</BizButton>
-              <BizButton @click="showIsland('compact')">Compact</BizButton>
-              <BizButton @click="showIsland('expanded')">Expanded</BizButton>
-              <BizButton variant="outline-danger" @click="isIslandOpen = false">Close</BizButton>
-            </BizButtonGroup>
+            <PPButtonGroup>
+              <PPButton @click="showIsland('minimal')">Minimal</PPButton>
+              <PPButton @click="showIsland('compact')">Compact</PPButton>
+              <PPButton @click="showIsland('expanded')">Expanded</PPButton>
+              <PPButton variant="outline-danger" @click="isIslandOpen = false">Close</PPButton>
+            </PPButtonGroup>
 
-            <BizDynamicIsland 
+            <PPDynamicIsland 
               v-model="isIslandOpen"
               :state="islandState"
               :position="islandPosition"
@@ -59,14 +59,14 @@
               </template>
 
               <template #expanded-footer>
-                <BizIconButton color="danger" style="border-radius: 50%; width: 56px; height: 56px;" @click="isIslandOpen = false">
+                <PPIconButton color="danger" style="border-radius: 50%; width: 56px; height: 56px;" @click="isIslandOpen = false">
                   <ion-icon :icon="phonePortraitOutline" style="transform: rotate(135deg);"></ion-icon>
-                </BizIconButton>
-                <BizIconButton color="success" style="border-radius: 50%; width: 56px; height: 56px;">
+                </PPIconButton>
+                <PPIconButton color="success" style="border-radius: 50%; width: 56px; height: 56px;">
                   <ion-icon :icon="volumeHighOutline"></ion-icon>
-                </BizIconButton>
+                </PPIconButton>
               </template>
-            </BizDynamicIsland>
+            </PPDynamicIsland>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBa
 
 import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline } from 'ionicons/icons';
 
-import { BizButton, BizButtonGroup, BizImageTransition, BizSwipeItem, BizSlider, BizSwitch, BizBarChart, BizLineChart, BizDonutChart, BizPieChart, BizRadarChart, BizProgressGauge, BizScatterChart, BizFunnelChart, BizSkeleton, BizSkeletonItem, BizSkeletonList, BizSkeletonDetail, BizHideAppBar, BizBottomNav, BizFab, BizFabList, BizFabAction, BizNumberSpinner, BizRadio, BizRadioGroup, BizRating, BizCollapsingToolbar, BizPullToRefresh, BizInput, BizTextField, BizSelect, BizTransferList, BizToggleButton, BizCheckbox, BizCheckboxGroup, BizPhoneInput, BizOtpInput, BizInfoCard, BizActionCard, BizAccountCard, BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem, BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet, BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarIsland, BizCalendar, BizCalendarSheet, BizCalendarAlert, BizCalendarIsland, BizFileUpload, BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert, BizMonthPickerIsland, BizYearPicker, BizYearPickerSheet, BizYearPickerAlert, BizYearPickerIsland, BizTimePicker, BizTimePickerSheet, BizTimePickerAlert, BizTimePickerIsland, BizAutocomplete, BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert, BizColorPickerIsland, BizNavigationDrawer, BizNavigationRail, BizDynamicIsland, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
+import { PPButton, PPButtonGroup, PPImageTransition, PPSwipeItem, PPSlider, PPSwitch, PPBarChart, PPLineChart, PPDonutChart, PPPieChart, PPRadarChart, PPProgressGauge, PPScatterChart, PPFunnelChart, PPSkeleton, PPSkeletonItem, PPSkeletonList, PPSkeletonDetail, PPHideAppBar, PPBottomNav, PPFab, PPFabList, PPFabAction, PPNumberSpinner, PPRadio, PPRadioGroup, PPRating, PPCollapsingToolbar, PPPullToRefresh, PPInput, PPTextField, PPSelect, PPTransferList, PPToggleButton, PPCheckbox, PPCheckboxGroup, PPPhoneInput, PPOtpInput, PPInfoCard, PPActionCard, PPAccountCard, PPSegment, PPSegmentButton, PPCompanySelector, PPScrollSegment, PPScrollSegmentButton, PPNotificationItem, PPPinDots, PPKeypad, PPSecureKeypad, PPSecureKeyboard, PPKhmerKeyboard, PPToast, PPConfirmSheet, PPReceiveAmountSheet, PPAccountSavingCard, PPReceivingAccountSheet, PPKhmerCalendar, PPKhmerCalendarSheet, PPKhmerCalendarAlert, PPKhmerCalendarIsland, PPCalendar, PPCalendarSheet, PPCalendarAlert, PPCalendarIsland, PPFileUpload, PPMonthPicker, PPMonthPickerSheet, PPMonthPickerAlert, PPMonthPickerIsland, PPYearPicker, PPYearPickerSheet, PPYearPickerAlert, PPYearPickerIsland, PPTimePicker, PPTimePickerSheet, PPTimePickerAlert, PPTimePickerIsland, PPAutocomplete, PPAccountListCard, PPAccountReorderList, PPColorPicker, PPColorPickerSheet, PPColorPickerAlert, PPColorPickerIsland, PPNavigationDrawer, PPNavigationRail, PPDynamicIsland, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 
 import { KhmerDate } from '@phanna/ui-framework/dist/KhmerDate';
 </script>

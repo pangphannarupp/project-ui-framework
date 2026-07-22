@@ -31,7 +31,7 @@
           <label>Columns: <input type="number" v-model="gridColumns" min="1" max="6"></label>
         </div>
 
-        <BizDraggableGrid 
+        <PPDraggableGrid 
           v-model="gridItems" 
           :columns="gridColumns"
           gap="16px"
@@ -58,7 +58,7 @@
               Drop components here to build your dashboard
             </div>
           </template>
-        </BizDraggableGrid>
+        </PPDraggableGrid>
         
         <div style="margin-top: 24px; padding: 12px; background: #f0f0f0; border-radius: 4px; font-size: 14px;">
           <strong>Current Order:</strong> {{ gridItems.map(i => i.name).join(' → ') || 'Empty' }}
@@ -67,7 +67,7 @@
     </div>
     
     <pre class="code-block" v-pre><code>&lt;!-- The Grid --&gt;
-&lt;BizDraggableGrid 
+&lt;PPDraggableGrid 
   v-model="gridItems" 
   :columns="3"
   gap="16px"
@@ -76,7 +76,7 @@
   &lt;template #item="{ item, index }"&gt;
     &lt;div class="my-card"&gt;{{ item.name }}&lt;/div&gt;
   &lt;/template&gt;
-&lt;/BizDraggableGrid&gt;
+&lt;/PPDraggableGrid&gt;
 
 &lt;!-- External draggable source (make sure to set dataTransfer!) --&gt;
 &lt;div 
@@ -90,7 +90,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizDraggableGrid } from '@phanna/ui-framework';
+import { PPDraggableGrid } from '@phanna/ui-framework';
 
 const gridColumns = ref(3);
 

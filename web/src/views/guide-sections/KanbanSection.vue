@@ -9,13 +9,13 @@
       <p class="helper-text">Using the default card layout.</p>
       
       <div class="demo-content">
-        <BizKanbanBoard 
+        <PPKanbanBoard 
           v-model="basicBoard" 
           @move-card="handleCardMove"
         />
       </div>
 
-      <pre class="code-block" v-pre><code>&lt;BizKanbanBoard 
+      <pre class="code-block" v-pre><code>&lt;PPKanbanBoard 
   v-model="basicBoard" 
   @move-card="handleCardMove"
 /&gt;</code></pre>
@@ -27,7 +27,7 @@
       <p class="helper-text">You can completely replace the UI of the card by using the <code>#card</code> slot.</p>
       
       <div class="demo-content">
-        <BizKanbanBoard v-model="customBoard">
+        <PPKanbanBoard v-model="customBoard">
           <template #card="{ card }">
             <div class="custom-card">
               <div class="card-header">
@@ -44,7 +44,7 @@
               </div>
             </div>
           </template>
-        </BizKanbanBoard>
+        </PPKanbanBoard>
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizKanbanBoard } from '@phanna/ui-framework';
+import { PPKanbanBoard } from '@phanna/ui-framework';
 
 const basicBoard = ref([
   {

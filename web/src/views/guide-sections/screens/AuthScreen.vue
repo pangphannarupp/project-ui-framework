@@ -1,14 +1,14 @@
 <template>
   <div class="component-section">
     <h2>Authentication Template</h2>
-    <p>A modern split-screen login and registration template built entirely with BizUI components.</p>
+    <p>A modern split-screen login and registration template built entirely with PPUI components.</p>
     
     <div class="demo-box template-demo">
       <div class="auth-layout">
         <!-- Left Side: Branding / Image -->
         <div class="auth-brand">
           <div class="brand-content">
-            <h2 class="brand-logo">BizUI Pro</h2>
+            <h2 class="brand-logo">PPUI Pro</h2>
             <p class="brand-tagline">Building enterprise interfaces has never been easier.</p>
           </div>
           <!-- Decorative UI elements fading in the background -->
@@ -26,7 +26,7 @@
 
             <form @submit.prevent class="auth-form">
               <div class="form-group">
-                <BizTextField 
+                <PPTextField 
                   v-model="email" 
                   label="Email" 
                   placeholder="Enter your email" 
@@ -35,7 +35,7 @@
               </div>
 
               <div class="form-group">
-                <BizTextField 
+                <PPTextField 
                   v-model="password" 
                   label="Password" 
                   placeholder="••••••••" 
@@ -45,17 +45,17 @@
 
               <div class="auth-actions">
                 <label class="remember-me">
-                  <input type="checkbox" class="biz-native-checkbox" />
+                  <input type="checkbox" class="pp-native-checkbox" />
                   <span>Remember me</span>
                 </label>
                 <a href="#" class="forgot-link">Forgot password?</a>
               </div>
 
-              <button class="biz-btn biz-btn-primary full-width sign-in-btn">
+              <button class="pp-btn pp-btn-primary full-width sign-in-btn">
                 Sign In
               </button>
               
-              <button class="biz-btn biz-btn-outline full-width google-btn">
+              <button class="pp-btn pp-btn-outline full-width google-btn">
                 <span class="icon">G</span>
                 Sign in with Google
               </button>
@@ -73,7 +73,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizTextField } from '@phanna/ui-framework';
+import { PPTextField } from '@phanna/ui-framework';
 
 const email = ref('');
 const password = ref('');
@@ -195,7 +195,7 @@ const password = ref('');
   cursor: pointer;
 }
 
-.biz-native-checkbox {
+.pp-native-checkbox {
   width: 16px;
   height: 16px;
   accent-color: #4f46e5;
@@ -208,7 +208,7 @@ const password = ref('');
   font-weight: 500;
 }
 
-.biz-btn {
+.pp-btn {
   padding: 10px 16px;
   border-radius: 6px;
   font-weight: 500;
@@ -225,23 +225,23 @@ const password = ref('');
   display: flex;
 }
 
-.biz-btn-primary {
+.pp-btn-primary {
   background: #4f46e5;
   color: white;
   border: 1px solid #4f46e5;
 }
 
-.biz-btn-primary:hover {
+.pp-btn-primary:hover {
   background: #4338ca;
 }
 
-.biz-btn-outline {
+.pp-btn-outline {
   background: white;
   color: #374151;
   border: 1px solid #d1d5db;
 }
 
-.biz-btn-outline:hover {
+.pp-btn-outline:hover {
   background: #f9fafb;
 }
 

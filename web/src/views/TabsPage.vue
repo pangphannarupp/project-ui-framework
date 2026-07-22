@@ -8,12 +8,12 @@
 </template>
 
 <script setup lang="ts">
-import { BizMOBApp } from '@bizmob/core';
-import { IonTabs, IonPage, IonRouterOutlet } from '@ionic/vue';
+import { 
+  IonPage, 
+  IonTabs, 
+  IonRouterOutlet,
+} from '@ionic/vue';
 import LiquidGlassTabBar from '@/components/LiquidGlassTabBar.vue';
-
-BizMOBApp.hideSplash();
-
 </script>
 
 <style scoped>

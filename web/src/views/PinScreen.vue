@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-pin-screen">
+    <div class="pp-screen pp-pin-screen">
       
       <!-- Top header -->
       <div class="pin-header">
@@ -20,7 +20,7 @@
       <div class="pin-card">
         
         <div class="dots-wrapper">
-          <BizPinDots 
+          <PPPinDots 
             :length="6" 
             :value="pin" 
             :error="isError"
@@ -34,11 +34,11 @@
 
       <!-- Keypad -->
       <div class="keypad-wrapper">
-        <BizKeypad @press="handleKeyPress" />
+        <PPKeypad @press="handleKeyPress" />
       </div>
 
       <!-- Biometric Setup Sheet -->
-      <BizBiometricSheet 
+      <PPBiometricSheet 
         v-model="showBiometricSheet" 
         type="both" 
         @setup="handleBioSetup" 
@@ -53,7 +53,7 @@
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizPinDots, BizKeypad, BizBiometricSheet } from '@phanna/ui-framework';
+import { PPPinDots, PPKeypad, PPBiometricSheet } from '@phanna/ui-framework';
 
 const router = useRouter();
 
@@ -109,11 +109,11 @@ const handleBioLater = () => {
 </script>
 
 <style scoped>
-.biz-pin-screen {
+.pp-pin-screen {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
   position: relative;
   overflow: hidden;
 }

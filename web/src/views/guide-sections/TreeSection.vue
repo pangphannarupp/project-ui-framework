@@ -6,9 +6,9 @@
     <div class="demo-box">
       <h3>Basic Tree</h3>
       <div class="demo-content">
-        <BizTree :data="treeData" @node-click="handleNodeClick" />
+        <PPTree :data="treeData" @node-click="handleNodeClick" />
       </div>
-      <pre class="code-block"><code>&lt;BizTree :data="treeData" @node-click="handleNodeClick" /&gt;</code></pre>
+      <pre class="code-block"><code>&lt;PPTree :data="treeData" @node-click="handleNodeClick" /&gt;</code></pre>
 
       <div v-if="clickedNode" style="margin-top: 16px; font-size: 14px; color: #666;">
         Selected: {{ clickedNode }}
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizTree } from '@phanna/ui-framework';
+import { PPTree } from '@phanna/ui-framework';
 import { folderOutline, documentOutline } from 'ionicons/icons';
 
 const clickedNode = ref('');

@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-doc-screen">
+    <div class="pp-screen pp-doc-screen">
       
       <!-- Top header -->
       <div class="doc-header">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="action-area">
-          <BizButton variant="primary" block @click="router.push('/confirm-info')">Get Started</BizButton>
+          <PPButton variant="primary" block @click="router.push('/confirm-info')">Get Started</PPButton>
         </div>
 
       </div>
@@ -57,17 +57,17 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton } from '@phanna/ui-framework';
+import { PPButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 </script>
 
 <style scoped>
-.biz-doc-screen {
+.pp-doc-screen {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
   position: relative;
   overflow: hidden;
 }

@@ -9,7 +9,7 @@
       <p class="helper-text">Type LaTeX or use the toolbar to insert symbols.</p>
       
       <div class="demo-content">
-        <BizMathEditor 
+        <PPMathEditor 
           v-model="equation" 
           placeholder="Enter your LaTeX equation here..."
         />
@@ -20,7 +20,7 @@
         <pre><code>{{ equation }}</code></pre>
       </div>
 
-      <pre class="code-block" v-pre><code>&lt;BizMathEditor 
+      <pre class="code-block" v-pre><code>&lt;PPMathEditor 
   v-model="equation" 
   placeholder="Enter your LaTeX equation here..."
 /&gt;</code></pre>
@@ -30,7 +30,7 @@
     <div class="demo-box">
       <h3>Complex Equation Example</h3>
       <div class="demo-content">
-        <BizMathEditor 
+        <PPMathEditor 
           v-model="complexEquation" 
         />
       </div>
@@ -39,22 +39,22 @@
     <!-- Math Preview Only -->
     <div class="demo-box">
       <h3>Math Preview Only</h3>
-      <p class="helper-text">If you just want to render equations without an editor, use <code>BizMathPreview</code>.</p>
+      <p class="helper-text">If you just want to render equations without an editor, use <code>PPMathPreview</code>.</p>
       
       <div class="demo-content">
         Inline math preview: 
-        <BizMathPreview equation="\sum_{i=1}^{\infty} \frac{1}{n^s}" :displayMode="false" />
+        <PPMathPreview equation="\sum_{i=1}^{\infty} \frac{1}{n^s}" :displayMode="false" />
         works perfectly!
       </div>
 
-      <pre class="code-block" v-pre><code>&lt;BizMathPreview equation="\sum_{i=1}^{\infty} \frac{1}{n^s}" :displayMode="false" /&gt;</code></pre>
+      <pre class="code-block" v-pre><code>&lt;PPMathPreview equation="\sum_{i=1}^{\infty} \frac{1}{n^s}" :displayMode="false" /&gt;</code></pre>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizMathEditor, BizMathPreview } from '@phanna/ui-framework';
+import { PPMathEditor, PPMathPreview } from '@phanna/ui-framework';
 
 const equation = ref('x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}');
 const complexEquation = ref('\\int_{0}^{\\infty} e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}');

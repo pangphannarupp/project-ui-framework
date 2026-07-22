@@ -5,7 +5,7 @@
 
     <h3>User Profile Card</h3>
     <div class="demo-box">
-      <BizUserProfile 
+      <PPUserProfile 
         name="John Doe" 
         email="john@example.com" 
         avatar="https://i.pravatar.cc/150?u=a042581f4e29026704d" 
@@ -14,7 +14,7 @@
 
     <h3>Verification Card</h3>
     <div class="demo-box">
-      <BizVerificationCard 
+      <PPVerificationCard 
         title="Identity Verification"
         description="Verify your identity to unlock all features."
         status="pending"
@@ -23,7 +23,7 @@
 
     <h3>Upgrade Card</h3>
     <div class="demo-box">
-      <BizUpgradeCard 
+      <PPUpgradeCard 
         title="Upgrade to Pro"
         description="Get access to premium features and unlimited storage."
         price="$9.99/mo"
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { BizUserProfile, BizVerificationCard, BizUpgradeCard } from '@phanna/ui-framework';
+import { PPUserProfile, PPVerificationCard, PPUpgradeCard } from '@phanna/ui-framework';
 </script>
 
 <style scoped>

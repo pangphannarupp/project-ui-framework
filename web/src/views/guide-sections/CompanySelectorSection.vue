@@ -5,16 +5,16 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <BizCompanySelector v-model="company" :options="companies" />
+      <PPCompanySelector v-model="company" :options="companies" />
       <div style="margin-top: 16px; font-family: monospace;">Selected: {{ company }}</div>
     </div>
-    <pre class="code-block"><code>&lt;BizCompanySelector v-model="company" :options="companies" /&gt;</code></pre>
+    <pre class="code-block"><code>&lt;PPCompanySelector v-model="company" :options="companies" /&gt;</code></pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizCompanySelector } from '@phanna/ui-framework';
+import { PPCompanySelector } from '@phanna/ui-framework';
 
 const company = ref('');
 const companies = [

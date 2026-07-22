@@ -11,7 +11,7 @@
     
     <div style="display: flex; height: 100vh; overflow: hidden;">
       <!-- Navigation Rail -->
-      <!-- <BizNavigationRail 
+      <!-- <PPNavigationRail 
         v-model="isRailExpanded"
         :items="navRailItems"
         @select="handleRailSelect"
@@ -25,7 +25,7 @@
         :style="{ width: isRailExpanded ? '280px' : '0px' }"
       >
         <div style="padding: 16px; width: 280px;">
-          <BizInput 
+          <PPInput 
             v-model="searchQuery" 
             placeholder="Filter components..." 
             clearable 
@@ -33,8 +33,8 @@
         </div>
         
         <div style="width: 280px;">
-          <BizCollapse v-model="expandedCategory" accordion>
-            <BizCollapseItem 
+          <PPCollapse v-model="expandedCategory" accordion>
+            <PPCollapseItem 
               v-for="group in filteredMenu" 
               :key="group.category"
               :name="group.category"
@@ -56,8 +56,8 @@
               >
                 {{ item.label }}
               </div>
-            </BizCollapseItem>
-          </BizCollapse>
+            </PPCollapseItem>
+          </PPCollapse>
         </div>
       </div>
 
@@ -79,7 +79,7 @@
 import { ref, computed, watch } from 'vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonIcon } from '@ionic/vue';
 import { rocketOutline, cubeOutline, calendarOutline, compassOutline, lockClosedOutline, barChartOutline, layersOutline, documentTextOutline } from 'ionicons/icons';
-import { BizNavigationRail, BizInput, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
+import { PPNavigationRail, PPInput, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 
 import * as GuideSections from './guide-sections';
 
@@ -116,8 +116,8 @@ const componentsMenu = [
       { id: 'transfer-list', label: 'Transfer List' },
       { id: 'fab', label: 'Floating Action Button' },
       { id: 'info-card', label: 'Info Card' },
-      { id: 'account-card', label: 'Account Card' },
-      { id: 'action-card', label: 'Action Card' },
+      // { id: 'account-card', label: 'Account Card' },
+      // { id: 'action-card', label: 'Action Card' },
       { id: 'skeleton', label: 'Skeleton Loading' },
       { id: 'collapse', label: 'Collapse / Accordion' }
     ]
@@ -128,7 +128,7 @@ const componentsMenu = [
     items: [
       { id: 'input', label: 'Text Input & Textarea' },
       { id: 'phone-input', label: 'Phone Input' },
-      { id: 'company-selector', label: 'Company Selector' },
+      // { id: 'company-selector', label: 'Company Selector' },
       { id: 'checkbox', label: 'Checkbox & Group' },
       { id: 'radio', label: 'Radio & Group' },
       { id: 'switch', label: 'Switch Toggle' },

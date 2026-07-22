@@ -5,12 +5,12 @@
           <h3>Scroll to Collapse</h3>
           <p class="custom-guide">A Material Design style collapsing toolbar. Scroll the content below to see it shrink!</p>
           <div class="component-demo" style="height: 400px; padding: 0; border-radius: 12px; overflow: hidden; position: relative;">
-            <BizCollapsingToolbar title="Profile" :expandedHeight="200" :collapsedHeight="56">
+            <PPCollapsingToolbar title="Profile" :expandedHeight="200" :collapsedHeight="56">
               <template #background>
                 <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" alt="bg" />
               </template>
               <template #start>
-                <BizIconButton color="white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></BizIconButton>
+                <PPIconButton color="white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></PPIconButton>
               </template>
               
               <template #profile>
@@ -22,7 +22,7 @@
                   Scrollable content block {{ i }}. Keep scrolling to see the header collapse.
                 </p>
               </div>
-            </BizCollapsingToolbar>
+            </PPCollapsingToolbar>
           </div>
         </div>
         
@@ -30,12 +30,12 @@
           <h3>Standard Header (No Profile)</h3>
           <p class="custom-guide">Without a profile picture, the title scales and aligns correctly by itself. Here it moves to the center when collapsed.</p>
           <div class="component-demo" style="height: 400px; padding: 0; border-radius: 12px; overflow: hidden; position: relative;">
-            <BizCollapsingToolbar title="Dashboard" :expandedHeight="200" :collapsedHeight="56" centerTitleOnCollapse>
+            <PPCollapsingToolbar title="Dashboard" :expandedHeight="200" :collapsedHeight="56" centerTitleOnCollapse>
               <template #background>
                 <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop" alt="bg" />
               </template>
               <template #start>
-                <BizIconButton color="white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></BizIconButton>
+                <PPIconButton color="white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></PPIconButton>
               </template>
               
               <div style="padding: 24px;">
@@ -43,7 +43,7 @@
                   Scrollable content block {{ i }}. Keep scrolling to see the header collapse.
                 </p>
               </div>
-            </BizCollapsingToolbar>
+            </PPCollapsingToolbar>
           </div>
         </div>
       </div>
@@ -52,5 +52,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 
-import { BizCollapsingToolbar } from '@phanna/ui-framework';
+import { PPCollapsingToolbar } from '@phanna/ui-framework';
 </script>

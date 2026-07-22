@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-confirm-screen">
+    <div class="pp-screen pp-confirm-screen">
       
       <!-- Top header -->
       <div class="confirm-header">
@@ -64,12 +64,12 @@
 
         </div>
 
-        <BizInfoCard type="warning" class="info-alert">
+        <PPInfoCard type="warning" class="info-alert">
           Please verify the document again if your information is incorrect.
-        </BizInfoCard>
+        </PPInfoCard>
 
         <div class="action-area">
-          <BizButton variant="primary" block @click="handleConfirm">Confirm</BizButton>
+          <PPButton variant="primary" block @click="handleConfirm">Confirm</PPButton>
           <!-- Using a custom button for the outline style just to be safe, or variant="outline" if supported -->
           <button class="verify-again-btn" @click="handleVerifyAgain">Verify Again</button>
         </div>
@@ -83,7 +83,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton, BizInfoCard } from '@phanna/ui-framework';
+import { PPButton, PPInfoCard } from '@phanna/ui-framework';
 
 const router = useRouter();
 
@@ -97,11 +97,11 @@ const handleVerifyAgain = () => {
 </script>
 
 <style scoped>
-.biz-confirm-screen {
+.pp-confirm-screen {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
   position: relative;
   overflow: hidden;
 }
@@ -160,7 +160,7 @@ const handleVerifyAgain = () => {
 .section-title {
   font-size: 12px;
   font-weight: 700;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 0 0 16px 0;
   letter-spacing: 0.5px;
 }
@@ -206,7 +206,7 @@ const handleVerifyAgain = () => {
   margin-bottom: auto; /* Push buttons to bottom */
   background-color: #ffffff !important;
   border: 1px solid #f0f0f5 !important;
-  color: var(--biz-primary-variant, #1a2a5e) !important;
+  color: var(--pp-primary-variant, #1a2a5e) !important;
 }
 
 .action-area {
@@ -219,7 +219,7 @@ const handleVerifyAgain = () => {
 .verify-again-btn {
   background-color: white;
   border: 1px solid #eaeaea;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   font-size: 15px;
   font-weight: 600;
   padding: 14px;

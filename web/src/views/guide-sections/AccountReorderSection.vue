@@ -5,20 +5,20 @@
         <div class="variant-group">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <h3>Interactive Reorder List</h3>
-            <BizButton size="small" @click="isReorderMode = !isReorderMode">
+            <PPButton size="small" @click="isReorderMode = !isReorderMode">
               {{ isReorderMode ? 'Done' : 'Sort by' }}
-            </BizButton>
+            </PPButton>
           </div>
           <p class="custom-guide">Toggle Sort mode to see drag handles. Drag to reorder.</p>
           <div class="component-demo" style="background: #f4f6f9; padding: 20px; border-radius: 12px;">
-            <BizAccountReorderList 
+            <PPAccountReorderList 
               :accounts="demoAccounts"
               :isReorderMode="isReorderMode"
               @update:accounts="newAccs => demoAccounts = newAccs"
               @action-click="acc => alertVal('Action clicked for ' + acc.accountName)"
             >
               <template #item="{ item, isReorderMode: reorderMode, onUpdateHidden, dragListeners }">
-                <BizAccountListCard 
+                <PPAccountListCard 
                   :accountName="item.accountName || item.name"
                   :accountNumber="item.accountNumber || item.number"
                   :balance="item.balance"
@@ -49,17 +49,17 @@
                       </svg>
                     </button>
                   </template>
-                </BizAccountListCard>
+                </PPAccountListCard>
               </template>
-            </BizAccountReorderList>
+            </PPAccountReorderList>
           </div>
-          <pre class="code-block"><code>&lt;BizAccountReorderList 
+          <pre class="code-block"><code>&lt;PPAccountReorderList 
   :accounts="accounts" 
   :isReorderMode="isReorderMode" 
   @update:accounts="newAccs => accounts = newAccs" 
 &gt;
   &lt;template #item="{ item, dragListeners, isReorderMode }"&gt;
-    &lt;BizAccountListCard 
+    &lt;PPAccountListCard 
       :accountName="item.name"
       :balance="item.balance"
       &lt;!-- ... --&gt;
@@ -67,21 +67,21 @@
       &lt;template #action&gt;
         &lt;div v-if="isReorderMode" v-on="dragListeners"&gt;Drag Me&lt;/div&gt;
       &lt;/template&gt;
-    &lt;/BizAccountListCard&gt;
+    &lt;/PPAccountListCard&gt;
   &lt;/template&gt;
-&lt;/BizAccountReorderList&gt;</code></pre>
+&lt;/PPAccountReorderList&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
             <h3>Fully Custom Template</h3>
-            <BizButton size="small" @click="isReorderMode = !isReorderMode">
+            <PPButton size="small" @click="isReorderMode = !isReorderMode">
               {{ isReorderMode ? 'Done' : 'Sort by' }}
-            </BizButton>
+            </PPButton>
           </div>
           <p class="custom-guide">You can completely replace the internal cards with your own custom HTML while retaining the drag-to-reorder logic.</p>
           <div class="component-demo" style="background: #f4f6f9; padding: 20px; border-radius: 12px;">
-            <BizAccountReorderList 
+            <PPAccountReorderList 
               :accounts="demoAccounts"
               :isReorderMode="isReorderMode"
               @update:accounts="newAccs => demoAccounts = newAccs"
@@ -99,12 +99,12 @@
                   >
                     Hold to Drag
                   </div>
-                  <BizButton v-else size="small" variant="outline" @click="alertVal('Action on custom card')">Action</BizButton>
+                  <PPButton v-else size="small" variant="outline" @click="alertVal('Action on custom card')">Action</PPButton>
                 </div>
               </template>
-            </BizAccountReorderList>
+            </PPAccountReorderList>
           </div>
-          <pre class="code-block" v-pre><code>&lt;BizAccountReorderList 
+          <pre class="code-block" v-pre><code>&lt;PPAccountReorderList 
   :accounts="accounts" 
   :isReorderMode="isReorderMode"
 &gt;
@@ -117,7 +117,7 @@
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/template&gt;
-&lt;/BizAccountReorderList&gt;</code></pre>
+&lt;/PPAccountReorderList&gt;</code></pre>
         </div>
       </div>
 </template>
@@ -142,7 +142,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBa
 
 import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline } from 'ionicons/icons';
 
-import { BizButton, BizButtonGroup, BizImageTransition, BizSwipeItem, BizSlider, BizSwitch, BizBarChart, BizLineChart, BizDonutChart, BizPieChart, BizRadarChart, BizProgressGauge, BizScatterChart, BizFunnelChart, BizSkeleton, BizSkeletonItem, BizSkeletonList, BizSkeletonDetail, BizHideAppBar, BizBottomNav, BizFab, BizFabList, BizFabAction, BizNumberSpinner, BizRadio, BizRadioGroup, BizRating, BizCollapsingToolbar, BizPullToRefresh, BizInput, BizTextField, BizSelect, BizTransferList, BizToggleButton, BizCheckbox, BizCheckboxGroup, BizPhoneInput, BizOtpInput, BizInfoCard, BizActionCard, BizAccountCard, BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem, BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet, BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarIsland, BizCalendar, BizCalendarSheet, BizCalendarAlert, BizCalendarIsland, BizFileUpload, BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert, BizMonthPickerIsland, BizYearPicker, BizYearPickerSheet, BizYearPickerAlert, BizYearPickerIsland, BizTimePicker, BizTimePickerSheet, BizTimePickerAlert, BizTimePickerIsland, BizAutocomplete, BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert, BizColorPickerIsland, BizNavigationDrawer, BizNavigationRail, BizDynamicIsland, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
+import { PPButton, PPButtonGroup, PPImageTransition, PPSwipeItem, PPSlider, PPSwitch, PPBarChart, PPLineChart, PPDonutChart, PPPieChart, PPRadarChart, PPProgressGauge, PPScatterChart, PPFunnelChart, PPSkeleton, PPSkeletonItem, PPSkeletonList, PPSkeletonDetail, PPHideAppBar, PPBottomNav, PPFab, PPFabList, PPFabAction, PPNumberSpinner, PPRadio, PPRadioGroup, PPRating, PPCollapsingToolbar, PPPullToRefresh, PPInput, PPTextField, PPSelect, PPTransferList, PPToggleButton, PPCheckbox, PPCheckboxGroup, PPPhoneInput, PPOtpInput, PPInfoCard, PPActionCard, PPAccountCard, PPSegment, PPSegmentButton, PPCompanySelector, PPScrollSegment, PPScrollSegmentButton, PPNotificationItem, PPPinDots, PPKeypad, PPSecureKeypad, PPSecureKeyboard, PPKhmerKeyboard, PPToast, PPConfirmSheet, PPReceiveAmountSheet, PPAccountSavingCard, PPReceivingAccountSheet, PPKhmerCalendar, PPKhmerCalendarSheet, PPKhmerCalendarAlert, PPKhmerCalendarIsland, PPCalendar, PPCalendarSheet, PPCalendarAlert, PPCalendarIsland, PPFileUpload, PPMonthPicker, PPMonthPickerSheet, PPMonthPickerAlert, PPMonthPickerIsland, PPYearPicker, PPYearPickerSheet, PPYearPickerAlert, PPYearPickerIsland, PPTimePicker, PPTimePickerSheet, PPTimePickerAlert, PPTimePickerIsland, PPAutocomplete, PPAccountListCard, PPAccountReorderList, PPColorPicker, PPColorPickerSheet, PPColorPickerAlert, PPColorPickerIsland, PPNavigationDrawer, PPNavigationRail, PPDynamicIsland, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 
 import { KhmerDate } from '@phanna/ui-framework/dist/KhmerDate';
 </script>

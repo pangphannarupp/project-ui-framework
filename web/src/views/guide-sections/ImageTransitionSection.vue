@@ -6,7 +6,7 @@
           <p class="custom-guide">Tap the thumbnail to see it expand perfectly into a full-screen detail view!</p>
           <div class="component-demo" style="display: flex; gap: 16px; align-items: center;">
             <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
-              <BizImageTransition>
+              <PPImageTransition>
                 <template #image>
                   <img 
                     src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" 
@@ -22,7 +22,7 @@
                     </p>
                   </div>
                 </template>
-              </BizImageTransition>
+              </PPImageTransition>
             </div>
             <div>
               <strong style="display: block; font-size: 16px;">Jane Doe</strong>
@@ -36,5 +36,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 
-import { BizImageTransition } from '@phanna/ui-framework';
+import { PPImageTransition } from '@phanna/ui-framework';
 </script>

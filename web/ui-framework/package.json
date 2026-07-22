@@ -2,6 +2,11 @@
   "name": "@phanna/ui-framework",
   "version": "1.0.5",
   "description": "Reusable UI Framework",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pangphannarupp/project-ui-framework.git",
+    "directory": "web/ui-framework"
+  },
   "type": "module",
   "files": [
     "dist"
@@ -30,6 +35,9 @@
   },
   "peerDependencies": {
     "vue": "^3.3.0"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^4.0.379"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

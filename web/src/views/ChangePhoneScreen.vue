@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-change-phone">
+    <div class="pp-screen pp-change-phone">
       
       <!-- Top header -->
       <div class="phone-header">
@@ -20,8 +20,8 @@
       <div class="phone-card">
         
         <div class="input-section">
-          <!-- The BizPhoneInput uses our custom Country Selector -->
-          <BizPhoneInput 
+          <!-- The PPPhoneInput uses our custom Country Selector -->
+          <PPPhoneInput 
             v-model="phoneNumber" 
             :countryCode="countryCode" 
             label="Phone Number" 
@@ -32,7 +32,7 @@
 
         <!-- Next Button -->
         <div class="action-section" :class="{ 'is-keypad-open': showKeypad }">
-          <BizButton variant="primary" block @click="handleNext">Next</BizButton>
+          <PPButton variant="primary" block @click="handleNext">Next</PPButton>
         </div>
 
       </div>
@@ -40,11 +40,11 @@
       <!-- Keypad -->
       <div class="keypad-wrapper" v-show="showKeypad">
         <!-- Close Keypad button overlay if needed, or rely on tapping outside -->
-        <BizKeypad @press="handleKeyPress" />
+        <PPKeypad @press="handleKeyPress" />
       </div>
 
       <!-- Country Code Sheet -->
-      <BizCountryCodeSheet 
+      <PPCountryCodeSheet 
         v-model="showCountrySheet"
         v-model:modelValueCode="countryCode"
       />
@@ -57,7 +57,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizPhoneInput, BizButton, BizKeypad, BizCountryCodeSheet } from '@phanna/ui-framework';
+import { PPPhoneInput, PPButton, PPKeypad, PPCountryCodeSheet } from '@phanna/ui-framework';
 
 const router = useRouter();
 
@@ -89,11 +89,11 @@ const handleNext = () => {
 </script>
 
 <style scoped>
-.biz-change-phone {
+.pp-change-phone {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
   position: relative;
   overflow: hidden;
 }

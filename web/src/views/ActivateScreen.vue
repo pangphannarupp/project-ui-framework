@@ -1,19 +1,19 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-activate-screen">
+    <div class="pp-screen pp-activate-screen">
     
     <div class="auth-header">
-      <BizIconButton color="white" style="background: transparent; margin-bottom: 24px;" @click="router.push('/')">
+      <PPIconButton color="white" style="background: transparent; margin-bottom: 24px;" @click="router.push('/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
-      </BizIconButton>
+      </PPIconButton>
       <h1 class="auth-title">Activate Your SmartBiz Account</h1>
       <p class="auth-subtitle">Re-verify the phone number registered with PPCBank to begin account activation.</p>
     </div>
     
     <div class="auth-card">
-      <BizPhoneInput 
+      <PPPhoneInput 
         v-model="phoneNumber" 
         label="Phone Number" 
         placeholder="12 *** *66"
@@ -25,7 +25,7 @@
       <a href="#" class="auth-link">Change Phone Number?</a>
       
       <div class="auth-footer">
-        <BizButton variant="primary" block @click="router.push('/verify-otp')">Next</BizButton>
+        <PPButton variant="primary" block @click="router.push('/verify-otp')">Next</PPButton>
       </div>
     </div>
 
@@ -37,20 +37,20 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizIconButton, BizPhoneInput, BizButton } from '@phanna/ui-framework';
+import { PPIconButton, PPPhoneInput, PPButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 const phoneNumber = ref('');
 </script>
 
 <style scoped>
-.biz-screen {
+.pp-screen {
   width: 100%;
   height: 100vh;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: var(--biz-primary, #003399);
+  background-color: var(--pp-primary, #003399);
   display: flex;
   flex-direction: column;
 }

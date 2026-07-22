@@ -5,31 +5,31 @@
         <div class="variant-group">
           <h3>Horizontal Group</h3>
           <div class="component-demo">
-            <BizButtonGroup>
-              <BizButton variant="outline">Left</BizButton>
-              <BizButton variant="outline">Middle</BizButton>
-              <BizButton variant="outline">Right</BizButton>
-            </BizButtonGroup>
+            <PPButtonGroup>
+              <PPButton variant="outline">Left</PPButton>
+              <PPButton variant="outline">Middle</PPButton>
+              <PPButton variant="outline">Right</PPButton>
+            </PPButtonGroup>
           </div>
-          <pre class="code-block"><code>&lt;BizButtonGroup&gt;
-  &lt;BizButton variant="outline"&gt;Left&lt;/BizButton&gt;
-  &lt;BizButton variant="outline"&gt;Middle&lt;/BizButton&gt;
-  &lt;BizButton variant="outline"&gt;Right&lt;/BizButton&gt;
-&lt;/BizButtonGroup&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPButtonGroup&gt;
+  &lt;PPButton variant="outline"&gt;Left&lt;/PPButton&gt;
+  &lt;PPButton variant="outline"&gt;Middle&lt;/PPButton&gt;
+  &lt;PPButton variant="outline"&gt;Right&lt;/PPButton&gt;
+&lt;/PPButtonGroup&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Vertical Group</h3>
           <div class="component-demo">
-            <BizButtonGroup vertical>
-              <BizButton variant="outline" block>Top</BizButton>
-              <BizButton variant="outline" block>Middle</BizButton>
-              <BizButton variant="outline" block>Bottom</BizButton>
-            </BizButtonGroup>
+            <PPButtonGroup vertical>
+              <PPButton variant="outline" block>Top</PPButton>
+              <PPButton variant="outline" block>Middle</PPButton>
+              <PPButton variant="outline" block>Bottom</PPButton>
+            </PPButtonGroup>
           </div>
-          <pre class="code-block"><code>&lt;BizButtonGroup vertical&gt;
+          <pre class="code-block"><code>&lt;PPButtonGroup vertical&gt;
   ...
-&lt;/BizButtonGroup&gt;</code></pre>
+&lt;/PPButtonGroup&gt;</code></pre>
         </div>
       </div>
 </template>
@@ -37,5 +37,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 
-import { BizButton, BizButtonGroup } from '@phanna/ui-framework';
+import { PPButton, PPButtonGroup } from '@phanna/ui-framework';
 </script>

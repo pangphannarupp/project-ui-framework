@@ -6,77 +6,77 @@
     <div class="demo-box">
       <h3>Vertical Timeline</h3>
       <div class="demo-content">
-        <BizTimeline direction="vertical">
-          <BizTimelineItem 
+        <PPTimeline direction="vertical">
+          <PPTimelineItem 
             timestamp="2023-04-12" 
             timestampPlacement="top"
             type="primary"
           >
             <h4>Created</h4>
             <p>Order has been created successfully.</p>
-          </BizTimelineItem>
+          </PPTimelineItem>
           
-          <BizTimelineItem 
+          <PPTimelineItem 
             timestamp="2023-04-13" 
             type="success"
             size="large"
           >
             <h4>Processed</h4>
             <p>Order is being processed.</p>
-          </BizTimelineItem>
+          </PPTimelineItem>
 
-          <BizTimelineItem 
+          <PPTimelineItem 
             timestamp="2023-04-14" 
             type="warning"
           >
             <h4>Shipped</h4>
             <p>Order has been shipped.</p>
-          </BizTimelineItem>
-        </BizTimeline>
+          </PPTimelineItem>
+        </PPTimeline>
       </div>
-      <pre class="code-block"><code>&lt;BizTimeline direction="vertical"&gt;
-  &lt;BizTimelineItem timestamp="2023-04-12" timestampPlacement="top" type="primary"&gt;
+      <pre class="code-block"><code>&lt;PPTimeline direction="vertical"&gt;
+  &lt;PPTimelineItem timestamp="2023-04-12" timestampPlacement="top" type="primary"&gt;
     &lt;h4&gt;Created&lt;/h4&gt;
     &lt;p&gt;Order has been created successfully.&lt;/p&gt;
-  &lt;/BizTimelineItem&gt;
-&lt;/BizTimeline&gt;</code></pre>
+  &lt;/PPTimelineItem&gt;
+&lt;/PPTimeline&gt;</code></pre>
 
       <h3>Horizontal Timeline</h3>
       <div class="demo-content">
-        <BizTimeline direction="horizontal">
-          <BizTimelineItem 
+        <PPTimeline direction="horizontal">
+          <PPTimelineItem 
             timestamp="Step 1" 
             type="success"
           >
             <p>Approval</p>
-          </BizTimelineItem>
+          </PPTimelineItem>
           
-          <BizTimelineItem 
+          <PPTimelineItem 
             timestamp="Step 2" 
             type="primary"
           >
             <p>Processing</p>
-          </BizTimelineItem>
+          </PPTimelineItem>
 
-          <BizTimelineItem 
+          <PPTimelineItem 
             timestamp="Step 3" 
             type="info"
           >
             <p>Done</p>
-          </BizTimelineItem>
-        </BizTimeline>
+          </PPTimelineItem>
+        </PPTimeline>
       </div>
-      <pre class="code-block"><code>&lt;BizTimeline direction="horizontal"&gt;
-  &lt;BizTimelineItem timestamp="Step 1" type="success"&gt;
+      <pre class="code-block"><code>&lt;PPTimeline direction="horizontal"&gt;
+  &lt;PPTimelineItem timestamp="Step 1" type="success"&gt;
     &lt;p&gt;Approval&lt;/p&gt;
-  &lt;/BizTimelineItem&gt;
-&lt;/BizTimeline&gt;</code></pre>
+  &lt;/PPTimelineItem&gt;
+&lt;/PPTimeline&gt;</code></pre>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { BizTimeline, BizTimelineItem } from '@phanna/ui-framework';
+import { PPTimeline, PPTimelineItem } from '@phanna/ui-framework';
 </script>
 
 <style scoped>

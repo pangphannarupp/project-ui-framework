@@ -6,7 +6,7 @@
     <h3>Country Code Sheet</h3>
     <div class="demo-box">
       <ion-button @click="isCountryOpen = true">Select Country</ion-button>
-      <BizCountryCodeSheet
+      <PPCountryCodeSheet
         :is-open="isCountryOpen"
         @did-dismiss="isCountryOpen = false"
         @select="onCountrySelect"
@@ -16,7 +16,7 @@
     <h3>Language Sheet</h3>
     <div class="demo-box">
       <ion-button @click="isLanguageOpen = true">Select Language</ion-button>
-      <BizLanguageSheet
+      <PPLanguageSheet
         :is-open="isLanguageOpen"
         @did-dismiss="isLanguageOpen = false"
         @select="onLanguageSelect"
@@ -26,7 +26,7 @@
     <h3>Sort Sheet</h3>
     <div class="demo-box">
       <ion-button @click="isSortOpen = true">Sort Options</ion-button>
-      <BizSortSheet
+      <PPSortSheet
         :is-open="isSortOpen"
         @did-dismiss="isSortOpen = false"
         @select="onSortSelect"
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { IonButton } from '@ionic/vue';
-import { BizCountryCodeSheet, BizLanguageSheet, BizSortSheet } from '@phanna/ui-framework';
+import { PPCountryCodeSheet, PPLanguageSheet, PPSortSheet } from '@phanna/ui-framework';
 
 const isCountryOpen = ref(false);
 const isLanguageOpen = ref(false);

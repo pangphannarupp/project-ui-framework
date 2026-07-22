@@ -1,5 +1,5 @@
 <template>
-  <div class="biz-animated-tabs">
+  <div class="pp-animated-tabs">
     <!-- Content Area -->
     <div 
       class="tab-content-wrapper"
@@ -92,7 +92,7 @@ const handleTouchEnd = () => {
 </script>
 
 <style scoped>
-.biz-animated-tabs {
+.pp-animated-tabs {
   position: relative;
   width: 100%;
   height: 100%;

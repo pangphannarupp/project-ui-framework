@@ -1,14 +1,12 @@
 /* Global CSS for Guide Sections */
 .docs-content {
-  color: #333 !important;
+  color: #333;
 }
 .docs-content h1, 
 .docs-content h2, 
 .docs-content h3, 
 .docs-content h4, 
-.docs-content p, 
-.docs-content span, 
-.docs-content div {
+.docs-content p {
   color: #333;
 }
 .docs-content .custom-guide,

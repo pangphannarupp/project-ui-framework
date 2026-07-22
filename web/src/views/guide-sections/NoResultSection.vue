@@ -5,7 +5,7 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <BizNoResult 
+      <PPNoResult 
         title="No matches found" 
         description="Try adjusting your filters or search query."
       />
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { BizNoResult } from '@phanna/ui-framework';
+import { PPNoResult } from '@phanna/ui-framework';
 </script>
 
 <style scoped>

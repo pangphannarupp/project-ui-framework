@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-upgrade-screen">
+    <div class="pp-screen pp-upgrade-screen">
       
       <!-- Top header area -->
       <div class="upgrade-header">
@@ -45,29 +45,29 @@
         <div class="info-list">
           
           <!-- To upgrade section -->
-          <BizUpgradeCard title="To upgrade" description="Visit your nearest PPCBank branch.">
+          <PPUpgradeCard title="To upgrade" description="Visit your nearest PPCBank branch.">
             <template #icon>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>
               </svg>
             </template>
-          </BizUpgradeCard>
+          </PPUpgradeCard>
 
           <hr class="list-divider" />
 
           <!-- For re-verification section -->
-          <BizUpgradeCard title="For re-verification purpose">
+          <PPUpgradeCard title="For re-verification purpose">
             <template #icon>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
                 <path d="M9 14l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </template>
-          </BizUpgradeCard>
+          </PPUpgradeCard>
 
           <!-- Sub items -->
           <div class="sub-items">
-            <BizVerificationCard 
+            <PPVerificationCard 
               title="Provide your company's authorized information." 
               description="Proof of your authorization to act for the company.">
               <template #icon>
@@ -75,9 +75,9 @@
                   <path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"></path>
                 </svg>
               </template>
-            </BizVerificationCard>
+            </PPVerificationCard>
 
-            <BizVerificationCard 
+            <PPVerificationCard 
               title="Bring your identification document." 
               description="Such as original NID or Passport.">
               <template #icon>
@@ -85,19 +85,19 @@
                   <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect><line x1="8" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="16" y2="14"></line><line x1="10" y1="18" x2="14" y2="18"></line>
                 </svg>
               </template>
-            </BizVerificationCard>
+            </PPVerificationCard>
           </div>
 
         </div>
 
         <div class="action-area">
-          <BizButton variant="primary" block @click="handleFindBranch" class="branch-btn">
+          <PPButton variant="primary" block @click="handleFindBranch" class="branch-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             Find Nearest Branch
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-arrow"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </BizButton>
+          </PPButton>
           
-          <BizSkipButton @click="handleSkip" />
+          <PPSkipButton @click="handleSkip" />
         </div>
 
       </div>
@@ -109,7 +109,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton, BizUpgradeCard, BizVerificationCard, BizSkipButton } from '@phanna/ui-framework';
+import { PPButton, PPUpgradeCard, PPVerificationCard, PPSkipButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 
@@ -123,11 +123,11 @@ const handleSkip = () => {
 </script>
 
 <style scoped>
-.biz-upgrade-screen {
+.pp-upgrade-screen {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
   position: relative;
   overflow: hidden;
 }
@@ -163,7 +163,7 @@ const handleSkip = () => {
   align-items: center;
   gap: 6px;
   background: white;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   border: none;
   padding: 8px 12px;
   border-radius: 20px;

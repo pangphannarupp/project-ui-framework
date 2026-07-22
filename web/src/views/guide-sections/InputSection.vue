@@ -3,69 +3,66 @@
         <h2>6. Form Inputs</h2>
         
         <div class="variant-group">
-          <h3>BizTextField Styles</h3>
+          <h3>PPTextField Styles</h3>
           <div class="component-demo" style="display: flex; flex-direction: column; gap: 16px;">
-            <BizTextField v-model="textVal" label="Outlined (Default)" placeholder="Enter text" clearable />
-            <BizTextField v-model="textVal" variant="filled" label="Filled" placeholder="Enter text" clearable />
-            <BizTextField v-model="textVal" variant="underlined" label="Underlined" placeholder="Enter text" clearable />
+            <PPTextField v-model="textVal" label="Outlined (Default)" placeholder="Enter text" clearable />
+            <PPTextField v-model="textVal" variant="filled" label="Filled" placeholder="Enter text" clearable />
           </div>
-          <pre class="code-block"><code>&lt;BizTextField variant="outlined|filled|underlined" label="..." clearable /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPTextField variant="outlined|filled" label="..." clearable /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
-          <h3>BizSelect Styles</h3>
+          <h3>PPSelect Styles</h3>
           <div class="component-demo" style="display: flex; flex-direction: column; gap: 16px;">
-            <BizSelect v-model="selectVal" label="Outlined (Default)" :options="[{label: 'Option 1', value: 1}, {label: 'Option 2', value: 2}]" placeholder="Select an option" />
-            <BizSelect v-model="selectVal" variant="filled" label="Filled" :options="[{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}]" placeholder="Choose..." />
-            <BizSelect v-model="selectVal" variant="underlined" label="Underlined" :options="[{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}]" placeholder="Pick one" />
+            <PPSelect v-model="selectVal" label="Outlined (Default)" :options="[{label: 'Option 1', value: 1}, {label: 'Option 2', value: 2}]" placeholder="Select an option" />
+            <PPSelect v-model="selectVal" variant="filled" label="Filled" :options="[{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}]" placeholder="Choose..." />
           </div>
-          <pre class="code-block"><code>&lt;BizSelect variant="outlined|filled|underlined" label="..." :options="[...]" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPSelect variant="outlined|filled" label="..." :options="[...]" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
-          <h3>BizTransferList Styles</h3>
+          <h3>PPTransferList Styles</h3>
           <div class="component-demo" style="display: flex; flex-direction: column; gap: 32px;">
-            <BizTransferList v-model="transferVal" variant="outlined" :data="transferOptions" :titles="['Available (Outlined)', 'Selected (Outlined)']" />
-            <BizTransferList v-model="transferVal" variant="filled" :data="transferOptions" :titles="['Available (Filled)', 'Selected (Filled)']" />
-            <BizTransferList v-model="transferVal" variant="underlined" :data="transferOptions" :titles="['Available (Underlined)', 'Selected (Underlined)']" />
+            <PPTransferList v-model="transferVal" variant="outlined" :data="transferOptions" :titles="['Available (Outlined)', 'Selected (Outlined)']" />
+            <PPTransferList v-model="transferVal" variant="filled" :data="transferOptions" :titles="['Available (Filled)', 'Selected (Filled)']" />
           </div>
-          <pre class="code-block"><code>&lt;BizTransferList v-model="selectedKeys" variant="outlined" :data="options" :titles="['Source', 'Target']" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPTransferList v-model="selectedKeys" variant="outlined" :data="options" :titles="['Source', 'Target']" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Standard Text Input</h3>
           <div class="component-demo">
-            <BizInput v-model="textVal" label="Username" placeholder="Enter name" clearable />
+            <PPInput v-model="textVal" label="Username" placeholder="Enter name" clearable />
           </div>
-          <pre class="code-block"><code>&lt;BizInput v-model="text" label="Username" clearable /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPInput v-model="text" label="Username" clearable /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Password Input (with icon)</h3>
           <div class="component-demo">
-            <BizInput v-model="textVal" label="Password" type="password" placeholder="Enter pass" clearable>
+            <PPInput v-model="textVal" label="Password" type="password" placeholder="Enter pass" clearable>
               <template #iconLeft>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
               </template>
-            </BizInput>
+            </PPInput>
           </div>
-          <pre class="code-block"><code>&lt;BizInput type="password"&gt;
+          <pre class="code-block"><code>&lt;PPInput type="password"&gt;
   &lt;template #iconLeft&gt;...&lt;/template&gt;
-&lt;/BizInput&gt;</code></pre>
+&lt;/PPInput&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Phone Input</h3>
           <div class="component-demo">
-            <BizPhoneInput v-model="phoneVal" label="Phone Number" placeholder="12 *** *66" />
+            <PPPhoneInput v-model="phoneVal" label="Phone Number" placeholder="12 *** *66" format="888 888 888" />
           </div>
-          <pre class="code-block"><code>&lt;BizPhoneInput v-model="phone" countryCode="+855" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPPhoneInput v-model="phone" countryCode="+855" format="888 888 888" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>File Upload</h3>
           <div class="component-demo">
-            <BizFileUpload 
+            <PPFileUpload 
               multiple 
               accept=".pdf,image/*" 
               :maxSize="5 * 1024 * 1024"
@@ -73,69 +70,89 @@
               @select="handleFileUpload"
               @remove="handleFileRemove"
               @retry="handleFileRetry"
+              @preview="handleFilePreview"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizFileUpload multiple accept=".pdf,image/*" :files="files" @select="..." /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPFileUpload multiple accept=".pdf,image/*" :files="files" @select="..." @preview="..." /&gt;</code></pre>
+          
+          <PPFilePreview v-model="previewOpen" :file="previewFile" @crop="handleCrop" />
+        </div>
+        
+        <div class="variant-group">
+          <h3>Image Cropper</h3>
+          <div class="component-demo">
+            <PPImageCropper 
+              src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"
+              :aspectRatio="1"
+              @crop="handleCrop"
+              @cancel="handleCropCancel"
+            />
+            <div v-if="croppedImage" style="margin-top: 20px;">
+              <h4>Cropped Result:</h4>
+              <img :src="croppedImage" style="max-width: 200px; border-radius: 8px;" />
+            </div>
+          </div>
+          <pre class="code-block"><code>&lt;PPImageCropper src="..." :aspectRatio="1" @crop="..." @cancel="..." /&gt;</code></pre>
         </div>
         
 
         <div class="variant-group">
           <h3>OTP Input (6-digit)</h3>
           <div class="component-demo" style="background: #f4f5f8; padding: 20px; border-radius: 12px;">
-            <BizOtpInput v-model="otpVal" :length="6" />
+            <PPOtpInput v-model="otpVal" :length="6" />
           </div>
-          <pre class="code-block"><code>&lt;BizOtpInput v-model="otp" :length="6" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPOtpInput v-model="otp" :length="6" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Color Picker</h3>
           <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
-            <BizColorPicker v-model="colorVal" />
+            <PPColorPicker v-model="colorVal" />
             <p style="margin-top: 16px; font-weight: 500;">Selected Color: <span :style="{ color: colorVal }">{{ colorVal }}</span></p>
           </div>
-          <pre class="code-block"><code>&lt;BizColorPicker v-model="color" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPColorPicker v-model="color" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Color Picker Sheet</h3>
-          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerSheet&gt;</code></p>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPColorPickerSheet&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
-            <BizButton @click="showColorPickerSheet = true">Open Color Sheet</BizButton>
-            <BizColorPickerSheet 
+            <PPButton @click="showColorPickerSheet = true">Open Color Sheet</PPButton>
+            <PPColorPickerSheet 
               v-model="showColorPickerSheet"
               v-model:colorValue="colorVal"
               title="Select a Theme Color"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizColorPickerSheet v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPColorPickerSheet v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Color Picker Island Popup</h3>
-          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerIsland&gt;</code></p>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPColorPickerIsland&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
-            <BizButton @click="showColorPickerIsland = true">Open Color Picker Island</BizButton>
-            <BizColorPickerIsland 
+            <PPButton @click="showColorPickerIsland = true">Open Color Picker Island</PPButton>
+            <PPColorPickerIsland 
               v-model="showColorPickerIsland"
               v-model:colorValue="colorVal"
               title="Select a Theme Color"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizColorPickerIsland v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPColorPickerIsland v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Color Picker Alert</h3>
-          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizColorPickerAlert&gt;</code></p>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPColorPickerAlert&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #ddd;">
-            <BizButton @click="showColorPickerAlert = true">Open Color Alert</BizButton>
-            <BizColorPickerAlert 
+            <PPButton @click="showColorPickerAlert = true">Open Color Alert</PPButton>
+            <PPColorPickerAlert 
               v-model="showColorPickerAlert"
               v-model:colorValue="colorVal"
               title="Select a Theme Color"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizColorPickerAlert v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPColorPickerAlert v-model="isOpen" v-model:colorValue="color" title="Select a Theme Color" /&gt;</code></pre>
         </div>
       </div>
 </template>
@@ -212,13 +229,31 @@ const handleFileRetry = (id: string | number) => {
   }
 };
 
+const previewOpen = ref(false);
+const previewFile = ref<any>(null);
+
+const handleFilePreview = (file: any) => {
+  previewFile.value = file;
+  previewOpen.value = true;
+};
+
+const croppedImage = ref('');
+
+const handleCrop = (dataUrl: string) => {
+  croppedImage.value = dataUrl;
+};
+
+const handleCropCancel = () => {
+  alert('Crop cancelled');
+};
+
 
 
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonTabButton, IonIcon, IonLabel } from '@ionic/vue';
 
 import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline } from 'ionicons/icons';
 
-import { BizButton, BizButtonGroup, BizImageTransition, BizSwipeItem, BizSlider, BizSwitch, BizBarChart, BizLineChart, BizDonutChart, BizPieChart, BizRadarChart, BizProgressGauge, BizScatterChart, BizFunnelChart, BizSkeleton, BizSkeletonItem, BizSkeletonList, BizSkeletonDetail, BizHideAppBar, BizBottomNav, BizFab, BizFabList, BizFabAction, BizNumberSpinner, BizRadio, BizRadioGroup, BizRating, BizCollapsingToolbar, BizPullToRefresh, BizInput, BizTextField, BizSelect, BizTransferList, BizToggleButton, BizCheckbox, BizCheckboxGroup, BizPhoneInput, BizOtpInput, BizInfoCard, BizActionCard, BizAccountCard, BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem, BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet, BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarIsland, BizCalendar, BizCalendarSheet, BizCalendarAlert, BizCalendarIsland, BizFileUpload, BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert, BizMonthPickerIsland, BizYearPicker, BizYearPickerSheet, BizYearPickerAlert, BizYearPickerIsland, BizTimePicker, BizTimePickerSheet, BizTimePickerAlert, BizTimePickerIsland, BizAutocomplete, BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert, BizColorPickerIsland, BizNavigationDrawer, BizNavigationRail, BizDynamicIsland, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
+import { PPButton, PPButtonGroup, PPImageTransition, PPSwipeItem, PPSlider, PPSwitch, PPBarChart, PPLineChart, PPDonutChart, PPPieChart, PPRadarChart, PPProgressGauge, PPScatterChart, PPFunnelChart, PPSkeleton, PPSkeletonItem, PPSkeletonList, PPSkeletonDetail, PPHideAppBar, PPBottomNav, PPFab, PPFabList, PPFabAction, PPNumberSpinner, PPRadio, PPRadioGroup, PPRating, PPCollapsingToolbar, PPPullToRefresh, PPInput, PPTextField, PPSelect, PPTransferList, PPToggleButton, PPCheckbox, PPCheckboxGroup, PPPhoneInput, PPOtpInput, PPInfoCard, PPActionCard, PPAccountCard, PPSegment, PPSegmentButton, PPCompanySelector, PPScrollSegment, PPScrollSegmentButton, PPNotificationItem, PPPinDots, PPKeypad, PPSecureKeypad, PPSecureKeyboard, PPKhmerKeyboard, PPToast, PPConfirmSheet, PPReceiveAmountSheet, PPAccountSavingCard, PPReceivingAccountSheet, PPKhmerCalendar, PPKhmerCalendarSheet, PPKhmerCalendarAlert, PPKhmerCalendarIsland, PPCalendar, PPCalendarSheet, PPCalendarAlert, PPCalendarIsland, PPFileUpload, PPImageCropper, PPFilePreview, PPMonthPicker, PPMonthPickerSheet, PPMonthPickerAlert, PPMonthPickerIsland, PPYearPicker, PPYearPickerSheet, PPYearPickerAlert, PPYearPickerIsland, PPTimePicker, PPTimePickerSheet, PPTimePickerAlert, PPTimePickerIsland, PPAutocomplete, PPAccountListCard, PPAccountReorderList, PPColorPicker, PPColorPickerSheet, PPColorPickerAlert, PPColorPickerIsland, PPNavigationDrawer, PPNavigationRail, PPDynamicIsland, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 
 import { KhmerDate } from '@phanna/ui-framework/dist/KhmerDate';
 </script>

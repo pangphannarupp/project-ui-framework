@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen user-management-screen">
+    <div class="pp-screen user-management-screen">
       
       <!-- Top header area -->
       <div class="um-header">
@@ -47,21 +47,21 @@
         <!-- Company Selector -->
         <div class="section-container">
           <div class="section-label">Now Managing</div>
-          <BizCompanySelector 
+          <PPCompanySelector 
             companyName="TWILIGHT FINANCE CO., LTD"
             companyType="Corporate"
           >
             <template #logo>
               <div class="custom-logo">W</div>
             </template>
-          </BizCompanySelector>
+          </PPCompanySelector>
         </div>
 
         <!-- Segment Tabs -->
-        <BizScrollSegment class="filter-segment">
-          <BizScrollSegmentButton :isActive="true">All</BizScrollSegmentButton>
+        <PPScrollSegment class="filter-segment">
+          <PPScrollSegmentButton :isActive="true">All</PPScrollSegmentButton>
           
-          <BizScrollSegmentButton>
+          <PPScrollSegmentButton>
             <template #icon>
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -69,9 +69,9 @@
               </svg>
             </template>
             Master User
-          </BizScrollSegmentButton>
+          </PPScrollSegmentButton>
           
-          <BizScrollSegmentButton>
+          <PPScrollSegmentButton>
             <template #icon>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
@@ -79,9 +79,9 @@
               </svg>
             </template>
             smartPay
-          </BizScrollSegmentButton>
+          </PPScrollSegmentButton>
           
-          <BizScrollSegmentButton>
+          <PPScrollSegmentButton>
             <template #icon>
               <svg viewBox="0 0 24 24" fill="currentColor" color="#7a52cc">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -89,8 +89,8 @@
               </svg>
             </template>
             Approver
-          </BizScrollSegmentButton>
-        </BizScrollSegment>
+          </PPScrollSegmentButton>
+        </PPScrollSegment>
 
         <!-- Search Input -->
         <div class="search-container">
@@ -105,7 +105,7 @@
 
         <!-- Users List -->
         <div class="users-list">
-          <BizUserCard 
+          <PPUserCard 
             name="SOM MONYROTTANA"
             phone="+855 13 456 789"
             status="Active"
@@ -114,35 +114,35 @@
             :hasSmartPay="true"
           />
           
-          <BizUserCard 
+          <PPUserCard 
             name="SOPHEA BORAMEY"
             phone="+855 13 456 789"
             status="Inactive"
             :hasSmartBiz="true"
           />
           
-          <BizUserCard 
+          <PPUserCard 
             name="CHAN TY"
             phone="+855 12 345 789"
             status="Pending"
             :hasSmartPay="true"
           />
           
-          <BizUserCard 
+          <PPUserCard 
             name="PAK PUTHEK"
             phone="+855 12 345 789"
             status="Active"
             :hasSmartPay="true"
           />
           
-          <BizUserCard 
+          <PPUserCard 
             name="CHY LEANGCHHAY"
             phone="+855 12 345 789"
             status="Locked"
             :hasSmartPay="true"
           />
           
-          <BizUserCard 
+          <PPUserCard 
             name="OR SOVANNARY"
             phone="+855 12 345 789"
             status="Active"
@@ -160,11 +160,11 @@
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
 import { 
-  BizCompanySelector, 
-  BizScrollSegment, 
-  BizScrollSegmentButton, 
-  BizInput, 
-  BizUserCard 
+  PPCompanySelector, 
+  PPScrollSegment, 
+  PPScrollSegmentButton, 
+  PPInput, 
+  PPUserCard 
 } from '@phanna/ui-framework';
 
 const router = useRouter();
@@ -175,7 +175,7 @@ const router = useRouter();
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
 }
 
 /* Header */
@@ -256,7 +256,7 @@ const router = useRouter();
 .banner-text h4 {
   font-size: 14px;
   font-weight: 700;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 0 0 4px 0;
 }
 
@@ -285,9 +285,9 @@ const router = useRouter();
 } */
 
 .filter-segment {
-  --biz-scroll-segment-btn-border-color:transparent;
-  --biz-scroll-segment-btn-active-border-color:transparent;
-  --biz-scroll-segment-btn-shadow:0px;
+  --pp-scroll-segment-btn-border-color:transparent;
+  --pp-scroll-segment-btn-active-border-color:transparent;
+  --pp-scroll-segment-btn-shadow:0px;
 }
 
 .search-container {

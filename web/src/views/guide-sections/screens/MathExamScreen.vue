@@ -1,17 +1,17 @@
 <template>
   <div class="component-section">
     <h2>Math Examination Template</h2>
-    <p>A template for rendering formal mathematical examination papers using <code>BizMathPreview</code> for crisp LaTeX rendering.</p>
+    <p>A template for rendering formal mathematical examination papers using <code>PPMathPreview</code> for crisp LaTeX rendering.</p>
 
     <div class="demo-box template-demo">
       <div class="exam-scratchpad">
         <h3>Math Equation Builder</h3>
         <p>Use this editor to build and copy LaTeX equations.</p>
-        <BizMathEditor v-model="fullExamLatex" />
+        <PPMathEditor v-model="fullExamLatex" />
       </div>
 
       <div class="exam-paper">
-        <BizMathPreview :equation="fullExamLatex" :displayMode="true" />
+        <PPMathPreview :equation="fullExamLatex" :displayMode="true" />
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizMathPreview, BizMathEditor } from '@phanna/ui-framework';
+import { PPMathPreview, PPMathEditor } from '@phanna/ui-framework';
 
 const scratchpadLatex = ref('\\frac{x^2 + y^2}{2} = z');
 const fullExamLatex = ref(`

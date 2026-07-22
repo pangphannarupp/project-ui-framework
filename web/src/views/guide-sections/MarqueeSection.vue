@@ -8,17 +8,17 @@
       <h3>Basic Text Marquee</h3>
       <p class="helper-text">Hover to pause the scrolling.</p>
       <div class="demo-content">
-        <BizMarquee duration="20s" style="background: #1976d2; color: white; padding: 12px; font-weight: 500; border-radius: 4px;">
+        <PPMarquee duration="20s" style="background: #1976d2; color: white; padding: 12px; font-weight: 500; border-radius: 4px;">
           <span style="margin-right: 48px;">🚀 New Version 2.0 Released!</span>
           <span style="margin-right: 48px;">✨ Brand new components added</span>
           <span style="margin-right: 48px;">🐞 Bug fixes and performance improvements</span>
           <span style="margin-right: 48px;">🎉 Join our community discord</span>
-        </BizMarquee>
+        </PPMarquee>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizMarquee duration="20s"&gt;
+      <pre class="code-block" v-pre><code>&lt;PPMarquee duration="20s"&gt;
   &lt;span style="margin-right: 48px;"&gt;🚀 New Version 2.0 Released!&lt;/span&gt;
   &lt;span style="margin-right: 48px;"&gt;✨ Brand new components added&lt;/span&gt;
-&lt;/BizMarquee&gt;</code></pre>
+&lt;/PPMarquee&gt;</code></pre>
     </div>
 
     <!-- Partner Logos Marquee with Fade -->
@@ -28,7 +28,7 @@
         <div style="display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;">
           <label><input type="checkbox" v-model="reverseDir"> Reverse Direction (Right)</label>
         </div>
-        <BizMarquee 
+        <PPMarquee 
           :fade="true" 
           :direction="reverseDir ? 'right' : 'left'"
           duration="25s"
@@ -40,13 +40,13 @@
           >
             {{ logo.icon }} {{ logo.name }}
           </div>
-        </BizMarquee>
+        </PPMarquee>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizMarquee :fade="true" direction="right" duration="25s"&gt;
+      <pre class="code-block" v-pre><code>&lt;PPMarquee :fade="true" direction="right" duration="25s"&gt;
   &lt;div v-for="logo in logos" :key="logo.id" class="logo-card"&gt;
     {{ logo.icon }} {{ logo.name }}
   &lt;/div&gt;
-&lt;/BizMarquee&gt;</code></pre>
+&lt;/PPMarquee&gt;</code></pre>
     </div>
 
     <!-- Vertical Marquee -->
@@ -54,7 +54,7 @@
       <h3>Vertical Marquee</h3>
       <div class="demo-content">
         <div style="height: 300px; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa; padding: 16px 0;">
-          <BizMarquee :vertical="true" :fade="true" direction="up" duration="15s">
+          <PPMarquee :vertical="true" :fade="true" direction="up" duration="15s">
             <div 
               v-for="user in users" 
               :key="user.id" 
@@ -66,15 +66,15 @@
                 <div style="font-size: 12px; color: #666;">{{ user.role }}</div>
               </div>
             </div>
-          </BizMarquee>
+          </PPMarquee>
         </div>
       </div>
       <pre class="code-block" v-pre><code>&lt;div style="height: 300px;"&gt;
-  &lt;BizMarquee :vertical="true" :fade="true" direction="up" duration="15s"&gt;
+  &lt;PPMarquee :vertical="true" :fade="true" direction="up" duration="15s"&gt;
     &lt;div v-for="user in users" :key="user.id" class="user-card"&gt;
       &lt;!-- Content --&gt;
     &lt;/div&gt;
-  &lt;/BizMarquee&gt;
+  &lt;/PPMarquee&gt;
 &lt;/div&gt;</code></pre>
     </div>
   </div>
@@ -82,7 +82,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizMarquee } from '@phanna/ui-framework';
+import { PPMarquee } from '@phanna/ui-framework';
 
 const reverseDir = ref(false);
 

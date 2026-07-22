@@ -1,7 +1,7 @@
 <template>
   <ion-page class="notification-page">
     <div class="safe-area-wrapper">
-      <BizCollapsingToolbar 
+      <PPCollapsingToolbar 
         title="Notifications" 
         :expandedHeight="220" 
         :collapsedHeight="56" 
@@ -25,16 +25,16 @@
 
       <div class="content-wrapper">
         <div class="tabs-container">
-          <BizScrollSegment>
-            <BizScrollSegmentButton :isActive="true">All(20)</BizScrollSegmentButton>
-            <BizScrollSegmentButton>Transaction(5)</BizScrollSegmentButton>
-            <BizScrollSegmentButton>Approval(2)</BizScrollSegmentButton>
-            <BizScrollSegmentButton>Announcement</BizScrollSegmentButton>
-          </BizScrollSegment>
+          <PPScrollSegment>
+            <PPScrollSegmentButton :isActive="true">All(20)</PPScrollSegmentButton>
+            <PPScrollSegmentButton>Transaction(5)</PPScrollSegmentButton>
+            <PPScrollSegmentButton>Approval(2)</PPScrollSegmentButton>
+            <PPScrollSegmentButton>Announcement</PPScrollSegmentButton>
+          </PPScrollSegment>
         </div>
 
         <div class="notification-list">
-          <BizNotificationItem 
+          <PPNotificationItem 
             title="PPCBank" 
             description="Set up smartPay now for easier business payment"
             timestamp="29 SEP, 2026 7:41:42 PM"
@@ -43,51 +43,11 @@
             <template #icon>
               <ion-icon :icon="megaphoneOutline"></ion-icon>
             </template>
-          </BizNotificationItem>
+          </PPNotificationItem>
 
-          <BizNotificationItem 
-            title="Account" 
-            description="242.50 USD is deposited in Acct: #6536. New Balance: 12,340.50 USD. Tap to see!"
-            timestamp="29 SEP, 2026 7:41:42 PM"
-            :unread="true"
-          >
-            <template #icon>
-              <ion-icon :icon="logInOutline"></ion-icon>
-            </template>
-          </BizNotificationItem>
-
-          <BizNotificationItem 
-            title="Account" 
-            description="242.50 USD is deposited in Acct: #6538. New Balance: 12,340.50 USD. Tap to see!"
-            timestamp="29 SEP, 2026 7:41:42 PM"
-          >
-            <template #icon>
-              <ion-icon :icon="logInOutline"></ion-icon>
-            </template>
-          </BizNotificationItem>
-
-          <BizNotificationItem 
-            title="Approval" 
-            description="[Need my Approval] A request for approval has been receive. Tap to see in detail."
-            timestamp="29 SEP, 2026 7:41:42 PM"
-          >
-            <template #icon>
-              <ion-icon :icon="documentTextOutline"></ion-icon>
-            </template>
-          </BizNotificationItem>
-          
-          <BizNotificationItem 
-            title="Account" 
-            description="3,400,000 KHR is deposited in Acct: #6536. New Balance: 14,250,000 KHR. Tap to see!"
-            timestamp="29 SEP, 2026 7:41:42 PM"
-          >
-            <template #icon>
-              <ion-icon :icon="logInOutline"></ion-icon>
-            </template>
-          </BizNotificationItem>
         </div>
       </div>
-    </BizCollapsingToolbar>
+    </PPCollapsingToolbar>
     </div>
   </ion-page>
 </template>
@@ -101,16 +61,16 @@ import {
   documentTextOutline 
 } from 'ionicons/icons';
 import { 
-  BizCollapsingToolbar,
-  BizScrollSegment,
-  BizScrollSegmentButton,
-  BizNotificationItem
+  PPCollapsingToolbar,
+  PPScrollSegment,
+  PPScrollSegmentButton,
+  PPNotificationItem
 } from '@phanna/ui-framework';
 </script>
 
 <style scoped>
 .notification-page {
-  background-color: var(--biz-primary-variant, #1a2a5e);
+  background-color: var(--pp-primary-variant, #1a2a5e);
   --ion-safe-area-top: 0px;
 }
 
@@ -125,7 +85,7 @@ import {
 
 .custom-large-header {
   position: relative;
-  background-color: var(--biz-primary-variant, #1a2a5e);
+  background-color: var(--pp-primary-variant, #1a2a5e);
   color: white;
   height: 100%;
   box-sizing: border-box;
@@ -159,7 +119,7 @@ import {
 
 .bell-icon {
   font-size: 24px;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
 }
 
 .badge-dot {
@@ -187,7 +147,7 @@ import {
   border-bottom: 1px solid #f0f0f0;
 }
 
-:deep(.biz-scroll-segment) {
+:deep(.pp-scroll-segment) {
   margin-bottom: 0 !important;
 }
 

@@ -37,7 +37,7 @@
                   <h4>Profile Picture</h4>
                   <p>JPG, GIF or PNG. Max size of 800K</p>
                   <!-- We simulate a file upload button -->
-                  <button class="biz-btn biz-btn-outline biz-btn-sm">Change Picture</button>
+                  <button class="pp-btn pp-btn-outline pp-btn-sm">Change Picture</button>
                 </div>
               </div>
             </div>
@@ -46,21 +46,21 @@
 
             <div class="form-grid">
               <div class="form-group half">
-                <BizTextField v-model="form.firstName" label="First Name" />
+                <PPTextField v-model="form.firstName" label="First Name" />
               </div>
               <div class="form-group half">
-                <BizTextField v-model="form.lastName" label="Last Name" />
+                <PPTextField v-model="form.lastName" label="Last Name" />
               </div>
               <div class="form-group full">
-                <BizTextField v-model="form.email" label="Email Address" type="email" />
+                <PPTextField v-model="form.email" label="Email Address" type="email" />
               </div>
               <div class="form-group full">
-                <BizTextField v-model="form.bio" label="Bio" placeholder="Write a few sentences about yourself." />
+                <PPTextField v-model="form.bio" label="Bio" placeholder="Write a few sentences about yourself." />
               </div>
             </div>
 
             <div class="form-actions">
-              <button class="biz-btn biz-btn-primary">Save Changes</button>
+              <button class="pp-btn pp-btn-primary">Save Changes</button>
             </div>
           </div>
 
@@ -73,7 +73,7 @@
                   <p>Receive daily summaries of your activity.</p>
                 </div>
                 <!-- Using a standard checkbox visually styled as a switch, or Biz components if imported -->
-                <label class="biz-toggle">
+                <label class="pp-toggle">
                   <input type="checkbox" v-model="notifs.email" />
                   <span class="toggle-slider"></span>
                 </label>
@@ -84,7 +84,7 @@
                   <h4>Push Notifications</h4>
                   <p>Get alerted immediately when someone mentions you.</p>
                 </div>
-                <label class="biz-toggle">
+                <label class="pp-toggle">
                   <input type="checkbox" v-model="notifs.push" />
                   <span class="toggle-slider"></span>
                 </label>
@@ -95,7 +95,7 @@
                   <h4>Marketing Emails</h4>
                   <p>Receive updates about new features and promotions.</p>
                 </div>
-                <label class="biz-toggle">
+                <label class="pp-toggle">
                   <input type="checkbox" v-model="notifs.marketing" />
                   <span class="toggle-slider"></span>
                 </label>
@@ -103,7 +103,7 @@
             </div>
             
             <div class="form-actions">
-              <button class="biz-btn biz-btn-primary">Update Preferences</button>
+              <button class="pp-btn pp-btn-primary">Update Preferences</button>
             </div>
           </div>
 
@@ -111,17 +111,17 @@
           <div v-if="activeTab === 'Security'" class="tab-pane">
             <div class="form-grid">
               <div class="form-group full">
-                <BizTextField v-model="pass.current" label="Current Password" type="password" />
+                <PPTextField v-model="pass.current" label="Current Password" type="password" />
               </div>
               <div class="form-group half">
-                <BizTextField v-model="pass.new" label="New Password" type="password" />
+                <PPTextField v-model="pass.new" label="New Password" type="password" />
               </div>
               <div class="form-group half">
-                <BizTextField v-model="pass.confirm" label="Confirm Password" type="password" />
+                <PPTextField v-model="pass.confirm" label="Confirm Password" type="password" />
               </div>
             </div>
             <div class="form-actions">
-              <button class="biz-btn biz-btn-primary">Change Password</button>
+              <button class="pp-btn pp-btn-primary">Change Password</button>
             </div>
           </div>
 
@@ -133,7 +133,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizTextField } from '@phanna/ui-framework';
+import { PPTextField } from '@phanna/ui-framework';
 
 const activeTab = ref('Profile');
 
@@ -293,7 +293,7 @@ const pass = ref({
   justify-content: flex-end;
 }
 
-.biz-btn {
+.pp-btn {
   padding: 10px 16px;
   border-radius: 6px;
   font-weight: 500;
@@ -302,21 +302,21 @@ const pass = ref({
   border: none;
 }
 
-.biz-btn-sm {
+.pp-btn-sm {
   padding: 6px 12px;
   font-size: 13px;
 }
 
-.biz-btn-primary {
+.pp-btn-primary {
   background: #4f46e5;
   color: white;
 }
 
-.biz-btn-primary:hover {
+.pp-btn-primary:hover {
   background: #4338ca;
 }
 
-.biz-btn-outline {
+.pp-btn-outline {
   background: white;
   color: #374151;
   border: 1px solid #d1d5db;
@@ -347,14 +347,14 @@ const pass = ref({
   color: #6b7280;
 }
 
-.biz-toggle {
+.pp-toggle {
   position: relative;
   display: inline-block;
   width: 44px;
   height: 24px;
 }
 
-.biz-toggle input {
+.pp-toggle input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -382,11 +382,11 @@ const pass = ref({
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.biz-toggle input:checked + .toggle-slider {
+.pp-toggle input:checked + .toggle-slider {
   background-color: #4f46e5;
 }
 
-.biz-toggle input:checked + .toggle-slider:before {
+.pp-toggle input:checked + .toggle-slider:before {
   transform: translateX(20px);
 }
 </style>

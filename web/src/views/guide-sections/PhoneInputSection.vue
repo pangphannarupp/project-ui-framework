@@ -5,16 +5,16 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <BizPhoneInput v-model="phone" placeholder="Enter phone number" />
+      <PPPhoneInput v-model="phone" placeholder="Enter phone number" />
       <div style="margin-top: 16px; font-family: monospace;">Value: {{ phone }}</div>
     </div>
-    <pre class="code-block"><code>&lt;BizPhoneInput v-model="phone" placeholder="Enter phone number" /&gt;</code></pre>
+    <pre class="code-block"><code>&lt;PPPhoneInput v-model="phone" placeholder="Enter phone number" /&gt;</code></pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizPhoneInput } from '@phanna/ui-framework';
+import { PPPhoneInput } from '@phanna/ui-framework';
 
 const phone = ref('');
 </script>

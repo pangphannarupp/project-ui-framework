@@ -5,18 +5,18 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <BizColorPicker v-model="color" />
+      <PPColorPicker v-model="color" />
       <div style="margin-top: 16px;">
         Selected Color: <span :style="{ color: color, fontWeight: 'bold' }">{{ color }}</span>
       </div>
     </div>
-    <pre class="code-block"><code>&lt;BizColorPicker v-model="color" /&gt;</code></pre>
+    <pre class="code-block"><code>&lt;PPColorPicker v-model="color" /&gt;</code></pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizColorPicker } from '@phanna/ui-framework';
+import { PPColorPicker } from '@phanna/ui-framework';
 
 const color = ref('#3880ff');
 </script>

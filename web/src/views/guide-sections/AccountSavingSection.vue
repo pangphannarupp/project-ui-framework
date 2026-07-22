@@ -3,10 +3,10 @@
         <h2>10. Account Saving Cards & Sheets</h2>
 
         <div class="variant-group">
-          <h3>BizAccountSavingCard</h3>
+          <h3>PPAccountSavingCard</h3>
           <p class="custom-guide"><strong>Props:</strong> <code>accountName</code>, <code>accountNumber</code>, <code>balance</code>, <code>currency</code>, <code>type</code>, <code>selected</code></p>
           <div class="component-demo" style="background: #e5e5ea; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; gap: 12px;">
-            <BizAccountSavingCard 
+            <PPAccountSavingCard 
               accountName="CHANT TY'S Savings"
               accountNumber="1-120-14354545-8"
               :balance="12000000.00"
@@ -14,7 +14,7 @@
               type="Savings"
               :selected="true"
             />
-            <BizAccountSavingCard 
+            <PPAccountSavingCard 
               accountName="CHANT TY'S Savings"
               accountNumber="1-120-14354545-8"
               :balance="420000"
@@ -23,7 +23,7 @@
               :selected="false"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizAccountSavingCard 
+          <pre class="code-block"><code>&lt;PPAccountSavingCard 
   accountName="CHANT TY'S Savings"
   accountNumber="1-120-14354545-8"
   :balance="12000000.00"
@@ -34,18 +34,18 @@
         </div>
 
         <div class="variant-group">
-          <h3>BizReceivingAccountSheet</h3>
+          <h3>PPReceivingAccountSheet</h3>
           <p class="custom-guide"><strong>Props:</strong> <code>modelValue</code>, <code>accounts</code>, <code>selectedAccountId</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; gap: 12px;">
-            <BizButton @click="showReceivingAccount = true">Select Receiving Account</BizButton>
-            <BizReceivingAccountSheet 
+            <PPButton @click="showReceivingAccount = true">Select Receiving Account</PPButton>
+            <PPReceivingAccountSheet 
               v-model="showReceivingAccount"
               :accounts="demoAccounts"
               :selectedAccountId="selectedReceivingAccount"
               @select="acc => { selectedReceivingAccount = acc.id; alertVal(`Selected ${acc.name}`) }"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizReceivingAccountSheet 
+          <pre class="code-block"><code>&lt;PPReceivingAccountSheet 
   v-model="showReceivingAccount"
   :accounts="demoAccounts"
   :selectedAccountId="selectedReceivingAccount"
@@ -78,7 +78,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBa
 
 import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline } from 'ionicons/icons';
 
-import { BizButton, BizButtonGroup, BizImageTransition, BizSwipeItem, BizSlider, BizSwitch, BizBarChart, BizLineChart, BizDonutChart, BizPieChart, BizRadarChart, BizProgressGauge, BizScatterChart, BizFunnelChart, BizSkeleton, BizSkeletonItem, BizSkeletonList, BizSkeletonDetail, BizHideAppBar, BizBottomNav, BizFab, BizFabList, BizFabAction, BizNumberSpinner, BizRadio, BizRadioGroup, BizRating, BizCollapsingToolbar, BizPullToRefresh, BizInput, BizTextField, BizSelect, BizTransferList, BizToggleButton, BizCheckbox, BizCheckboxGroup, BizPhoneInput, BizOtpInput, BizInfoCard, BizActionCard, BizAccountCard, BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem, BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet, BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarIsland, BizCalendar, BizCalendarSheet, BizCalendarAlert, BizCalendarIsland, BizFileUpload, BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert, BizMonthPickerIsland, BizYearPicker, BizYearPickerSheet, BizYearPickerAlert, BizYearPickerIsland, BizTimePicker, BizTimePickerSheet, BizTimePickerAlert, BizTimePickerIsland, BizAutocomplete, BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert, BizColorPickerIsland, BizNavigationDrawer, BizNavigationRail, BizDynamicIsland, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
+import { PPButton, PPButtonGroup, PPImageTransition, PPSwipeItem, PPSlider, PPSwitch, PPBarChart, PPLineChart, PPDonutChart, PPPieChart, PPRadarChart, PPProgressGauge, PPScatterChart, PPFunnelChart, PPSkeleton, PPSkeletonItem, PPSkeletonList, PPSkeletonDetail, PPHideAppBar, PPBottomNav, PPFab, PPFabList, PPFabAction, PPNumberSpinner, PPRadio, PPRadioGroup, PPRating, PPCollapsingToolbar, PPPullToRefresh, PPInput, PPTextField, PPSelect, PPTransferList, PPToggleButton, PPCheckbox, PPCheckboxGroup, PPPhoneInput, PPOtpInput, PPInfoCard, PPActionCard, PPAccountCard, PPSegment, PPSegmentButton, PPCompanySelector, PPScrollSegment, PPScrollSegmentButton, PPNotificationItem, PPPinDots, PPKeypad, PPSecureKeypad, PPSecureKeyboard, PPKhmerKeyboard, PPToast, PPConfirmSheet, PPReceiveAmountSheet, PPAccountSavingCard, PPReceivingAccountSheet, PPKhmerCalendar, PPKhmerCalendarSheet, PPKhmerCalendarAlert, PPKhmerCalendarIsland, PPCalendar, PPCalendarSheet, PPCalendarAlert, PPCalendarIsland, PPFileUpload, PPMonthPicker, PPMonthPickerSheet, PPMonthPickerAlert, PPMonthPickerIsland, PPYearPicker, PPYearPickerSheet, PPYearPickerAlert, PPYearPickerIsland, PPTimePicker, PPTimePickerSheet, PPTimePickerAlert, PPTimePickerIsland, PPAutocomplete, PPAccountListCard, PPAccountReorderList, PPColorPicker, PPColorPickerSheet, PPColorPickerAlert, PPColorPickerIsland, PPNavigationDrawer, PPNavigationRail, PPDynamicIsland, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 
 import { KhmerDate } from '@phanna/ui-framework/dist/KhmerDate';
 </script>

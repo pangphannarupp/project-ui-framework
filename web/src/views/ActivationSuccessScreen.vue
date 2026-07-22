@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-success-screen">
+    <div class="pp-screen pp-success-screen">
       
       <!-- Content Area -->
       <div class="success-content">
@@ -58,7 +58,7 @@
 
       <!-- Bottom Actions -->
       <div class="success-actions">
-        <BizButton variant="primary" block @click="router.push('/')">
+        <PPButton variant="primary" block @click="router.push('/')">
           <div class="btn-content-with-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="qr-icon">
               <rect x="3" y="3" width="7" height="7"></rect>
@@ -68,11 +68,11 @@
             </svg>
             Scan QR to Sign In
           </div>
-        </BizButton>
+        </PPButton>
         <div style="height: 12px;"></div>
-        <BizButton variant="outline" block @click="router.push('/')">
+        <PPButton variant="outline" block @click="router.push('/')">
           Maybe Later
-        </BizButton>
+        </PPButton>
       </div>
 
     </div>
@@ -82,13 +82,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizButton } from '@phanna/ui-framework';
+import { PPButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 </script>
 
 <style scoped>
-.biz-success-screen {
+.pp-success-screen {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -138,7 +138,7 @@ const router = useRouter();
 .success-title {
   font-size: 24px;
   font-weight: 700;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 0 0 12px 0;
   text-align: center;
 }
@@ -173,7 +173,7 @@ const router = useRouter();
 .card-text h4 {
   font-size: 14px;
   font-weight: 700;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 0 0 4px 0;
 }
 .card-text p {

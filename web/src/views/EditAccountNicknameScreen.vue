@@ -1,10 +1,10 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-edit-nickname-screen">
+    <div class="pp-screen pp-edit-nickname-screen">
       
       <!-- Top Blue Section -->
       <div class="top-section">
-        <BizAppBar 
+        <PPAppBar 
           title="Account Details" 
           backgroundColor="transparent" 
           textColor="white" 
@@ -54,14 +54,14 @@
         </div>
         
         <div class="action-footer">
-          <BizButton 
+          <PPButton 
             block 
             :variant="'primary'" 
             :disabled="!canUpdate"
             @click="handleUpdate"
           >
             Update
-          </BizButton>
+          </PPButton>
         </div>
       </div>
       
@@ -73,7 +73,7 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizAppBar, BizButton } from '@phanna/ui-framework';
+import { PPAppBar, PPButton } from '@phanna/ui-framework';
 
 const router = useRouter();
 const nickname = ref('');
@@ -90,13 +90,13 @@ const handleUpdate = () => {
 </script>
 
 <style scoped>
-.biz-screen {
+.pp-screen {
   width: 100%;
   height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: var(--biz-primary, #003399); /* Deep blue background for top section */
+  background-color: var(--pp-primary, #003399); /* Deep blue background for top section */
 }
 
 /* Top Section */
@@ -136,7 +136,7 @@ const handleUpdate = () => {
 
 .account-badge {
   background: white;
-  color: var(--biz-primary, #003399);
+  color: var(--pp-primary, #003399);
   padding: 2px 10px;
   border-radius: 12px;
   font-size: 11px;
@@ -208,7 +208,7 @@ const handleUpdate = () => {
 .page-title {
   font-size: 18px;
   font-weight: 800;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 0 0 24px 0;
 }
 
@@ -237,7 +237,7 @@ const handleUpdate = () => {
 }
 
 .input-wrapper:focus-within {
-  border-color: var(--biz-primary, #003399);
+  border-color: var(--pp-primary, #003399);
 }
 
 .input-icon {
@@ -254,7 +254,7 @@ const handleUpdate = () => {
   outline: none;
   background: transparent;
   font-size: 15px;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   font-weight: 500;
 }
 

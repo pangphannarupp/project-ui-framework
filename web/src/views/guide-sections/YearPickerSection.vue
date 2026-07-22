@@ -6,31 +6,31 @@
           <h3>Standard Selection</h3>
           <p class="custom-guide"><strong>Props:</strong> <code>config={ selectionMode: 'Single' }</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
-            <BizYearPicker 
+            <PPYearPicker 
               @year-selected="s => alertVal('Selected Year: ' + s.year)"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizYearPicker @year-selected="onSelect" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPYearPicker @year-selected="onSelect" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Range Selection</h3>
           <p class="custom-guide"><strong>Props:</strong> <code>config={ selectionMode: 'Range' }</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
-            <BizYearPicker 
+            <PPYearPicker 
               :config="{ selectionMode: 'Range' }"
               @range-selected="(start, end) => alertVal('Range: ' + (start ? start.year : '') + ' to ' + (end ? end.year : ''))"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizYearPicker :config="{ selectionMode: 'Range' }" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPYearPicker :config="{ selectionMode: 'Range' }" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Year Picker Bottom Sheet</h3>
-          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizYearPickerSheet&gt;</code></p>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPYearPickerSheet&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
-            <BizButton @click="showYearPickerSheet = true">Open Year Sheet</BizButton>
-            <BizYearPickerSheet 
+            <PPButton @click="showYearPickerSheet = true">Open Year Sheet</PPButton>
+            <PPYearPickerSheet 
               v-model="showYearPickerSheet"
               title="Select a Year"
               :showActionButtons="true"
@@ -38,30 +38,30 @@
               @cancel="showYearPickerSheet = false"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizYearPickerSheet v-model="isOpen" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPYearPickerSheet v-model="isOpen" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Year Picker Island Popup</h3>
-          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizYearPickerIsland&gt;</code></p>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPYearPickerIsland&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
-            <BizButton @click="showYearPickerIsland = true">Open Year Picker Island</BizButton>
-            <BizYearPickerIsland 
+            <PPButton @click="showYearPickerIsland = true">Open Year Picker Island</PPButton>
+            <PPYearPickerIsland 
               v-model="showYearPickerIsland"
               :showActionButtons="true"
               @confirm="s => { alertVal('Confirmed Year: ' + (s ? s.year : 'none')); showYearPickerIsland = false; }"
               @cancel="showYearPickerIsland = false"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizYearPickerIsland v-model="isOpen" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPYearPickerIsland v-model="isOpen" /&gt;</code></pre>
         </div>
 
         <div class="variant-group">
           <h3>Year Picker Alert</h3>
-          <p class="custom-guide"><strong>Component:</strong> <code>&lt;BizYearPickerAlert&gt;</code></p>
+          <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPYearPickerAlert&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
-            <BizButton @click="showYearPickerAlert = true">Open Year Alert</BizButton>
-            <BizYearPickerAlert 
+            <PPButton @click="showYearPickerAlert = true">Open Year Alert</PPButton>
+            <PPYearPickerAlert 
               v-model="showYearPickerAlert"
               title="Select a Year"
               :showActionButtons="true"
@@ -69,7 +69,7 @@
               @cancel="showYearPickerAlert = false"
             />
           </div>
-          <pre class="code-block"><code>&lt;BizYearPickerAlert v-model="isOpen" /&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPYearPickerAlert v-model="isOpen" /&gt;</code></pre>
         </div>
       </div>
 </template>
@@ -92,7 +92,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBa
 
 import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline } from 'ionicons/icons';
 
-import { BizButton, BizButtonGroup, BizImageTransition, BizSwipeItem, BizSlider, BizSwitch, BizBarChart, BizLineChart, BizDonutChart, BizPieChart, BizRadarChart, BizProgressGauge, BizScatterChart, BizFunnelChart, BizSkeleton, BizSkeletonItem, BizSkeletonList, BizSkeletonDetail, BizHideAppBar, BizBottomNav, BizFab, BizFabList, BizFabAction, BizNumberSpinner, BizRadio, BizRadioGroup, BizRating, BizCollapsingToolbar, BizPullToRefresh, BizInput, BizTextField, BizSelect, BizTransferList, BizToggleButton, BizCheckbox, BizCheckboxGroup, BizPhoneInput, BizOtpInput, BizInfoCard, BizActionCard, BizAccountCard, BizSegment, BizSegmentButton, BizCompanySelector, BizScrollSegment, BizScrollSegmentButton, BizNotificationItem, BizPinDots, BizKeypad, BizSecureKeypad, BizSecureKeyboard, BizKhmerKeyboard, BizToast, BizConfirmSheet, BizReceiveAmountSheet, BizAccountSavingCard, BizReceivingAccountSheet, BizKhmerCalendar, BizKhmerCalendarSheet, BizKhmerCalendarAlert, BizKhmerCalendarIsland, BizCalendar, BizCalendarSheet, BizCalendarAlert, BizCalendarIsland, BizFileUpload, BizMonthPicker, BizMonthPickerSheet, BizMonthPickerAlert, BizMonthPickerIsland, BizYearPicker, BizYearPickerSheet, BizYearPickerAlert, BizYearPickerIsland, BizTimePicker, BizTimePickerSheet, BizTimePickerAlert, BizTimePickerIsland, BizAutocomplete, BizAccountListCard, BizAccountReorderList, BizColorPicker, BizColorPickerSheet, BizColorPickerAlert, BizColorPickerIsland, BizNavigationDrawer, BizNavigationRail, BizDynamicIsland, BizCollapse, BizCollapseItem } from '@phanna/ui-framework';
+import { PPButton, PPButtonGroup, PPImageTransition, PPSwipeItem, PPSlider, PPSwitch, PPBarChart, PPLineChart, PPDonutChart, PPPieChart, PPRadarChart, PPProgressGauge, PPScatterChart, PPFunnelChart, PPSkeleton, PPSkeletonItem, PPSkeletonList, PPSkeletonDetail, PPHideAppBar, PPBottomNav, PPFab, PPFabList, PPFabAction, PPNumberSpinner, PPRadio, PPRadioGroup, PPRating, PPCollapsingToolbar, PPPullToRefresh, PPInput, PPTextField, PPSelect, PPTransferList, PPToggleButton, PPCheckbox, PPCheckboxGroup, PPPhoneInput, PPOtpInput, PPInfoCard, PPActionCard, PPAccountCard, PPSegment, PPSegmentButton, PPCompanySelector, PPScrollSegment, PPScrollSegmentButton, PPNotificationItem, PPPinDots, PPKeypad, PPSecureKeypad, PPSecureKeyboard, PPKhmerKeyboard, PPToast, PPConfirmSheet, PPReceiveAmountSheet, PPAccountSavingCard, PPReceivingAccountSheet, PPKhmerCalendar, PPKhmerCalendarSheet, PPKhmerCalendarAlert, PPKhmerCalendarIsland, PPCalendar, PPCalendarSheet, PPCalendarAlert, PPCalendarIsland, PPFileUpload, PPMonthPicker, PPMonthPickerSheet, PPMonthPickerAlert, PPMonthPickerIsland, PPYearPicker, PPYearPickerSheet, PPYearPickerAlert, PPYearPickerIsland, PPTimePicker, PPTimePickerSheet, PPTimePickerAlert, PPTimePickerIsland, PPAutocomplete, PPAccountListCard, PPAccountReorderList, PPColorPicker, PPColorPickerSheet, PPColorPickerAlert, PPColorPickerIsland, PPNavigationDrawer, PPNavigationRail, PPDynamicIsland, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 
 import { KhmerDate } from '@phanna/ui-framework/dist/KhmerDate';
 </script>

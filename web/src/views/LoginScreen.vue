@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-login-screen">
+    <div class="pp-screen pp-login-screen">
     
     <!-- Floating Back Button for Dev Navigation -->
     <button class="dev-back-btn" @click="router.push('/')">
@@ -34,25 +34,25 @@
 
     <div class="login-card">
       <div class="segment-wrapper">
-        <BizSegment v-model="loginType" class="login-segment">
-          <BizSegmentButton value="userid">
+        <PPSegment v-model="loginType" class="login-segment">
+          <PPSegmentButton value="userid">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
             User ID
-          </BizSegmentButton>
-          <BizSegmentButton value="phone">
+          </PPSegmentButton>
+          <PPSegmentButton value="phone">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
             Phone Number
-          </BizSegmentButton>
-        </BizSegment>
+          </PPSegmentButton>
+        </PPSegment>
       </div>
 
       <div class="form-area" v-if="loginType === 'userid'">
-        <BizInput 
+        <PPInput 
           v-model="userId" 
           label="User ID" 
           placeholder="Enter User ID" 
@@ -64,9 +64,9 @@
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </template>
-        </BizInput>
+        </PPInput>
 
-        <BizInput 
+        <PPInput 
           v-model="password" 
           label="Password" 
           type="password"
@@ -78,20 +78,20 @@
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </template>
-        </BizInput>
+        </PPInput>
 
         <div class="login-options">
-          <BizCheckbox v-model="rememberMe">Remember User ID</BizCheckbox>
+          <PPCheckbox v-model="rememberMe">Remember User ID</PPCheckbox>
         </div>
       </div>
       
       <div class="form-area" v-else>
-        <BizPhoneInput 
+        <PPPhoneInput 
           v-model="phoneNumber" 
           label="Phone Number" 
           placeholder="Enter Phone Number" 
         />
-        <BizInput 
+        <PPInput 
           v-model="password" 
           label="Password" 
           type="password"
@@ -103,25 +103,25 @@
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </template>
-        </BizInput>
+        </PPInput>
         <div class="login-options">
-          <BizCheckbox v-model="rememberMe">Remember Phone Number</BizCheckbox>
+          <PPCheckbox v-model="rememberMe">Remember Phone Number</PPCheckbox>
         </div>
       </div>
 
       <div class="bottom-actions">
         <!-- Disabled until fields are filled -->
-        <BizButton variant="primary" block :disabled="!canLogin" @click="handleLogin">Login</BizButton>
+        <PPButton variant="primary" block :disabled="!canLogin" @click="handleLogin">Login</PPButton>
       </div>
 
       <!-- Language Sheet -->
-      <BizLanguageSheet 
+      <PPLanguageSheet 
         v-model="showLangSheet" 
         v-model:modelValueLang="currentLang" 
       />
 
       <!-- Action Required Sheet (Forgot Password) -->
-      <BizFeedbackSheet 
+      <PPFeedbackSheet 
         v-model="showActionRequired" 
         icon="error" 
         title="Action Required" 
@@ -149,10 +149,10 @@
             <p>Please contact your <strong>Master</strong> to reset your User ID or Password, or Phone Number.</p>
           </div>
         </div>
-      </BizFeedbackSheet>
+      </PPFeedbackSheet>
 
       <!-- Incorrect User ID Sheet -->
-      <BizFeedbackSheet 
+      <PPFeedbackSheet 
         v-model="showIncorrectId" 
         icon="error" 
         title="Incorrect User ID" 
@@ -161,7 +161,7 @@
       />
 
       <!-- Incorrect Password Sheet -->
-      <BizFeedbackSheet 
+      <PPFeedbackSheet 
         v-model="showIncorrectPass" 
         icon="error" 
         title="Incorrect Password" 
@@ -170,7 +170,7 @@
       />
 
       <!-- Account Locked Sheet -->
-      <BizFeedbackSheet 
+      <PPFeedbackSheet 
         v-model="showAccountLocked" 
         icon="locked" 
         title="Account Locked" 
@@ -179,7 +179,7 @@
       />
 
       <!-- Not Yet Activated Sheet -->
-      <BizFeedbackSheet 
+      <PPFeedbackSheet 
         v-model="showNotActivated" 
         icon="error" 
         title="Not Yet Activated" 
@@ -197,7 +197,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
 import { 
-  BizSegment, BizSegmentButton, BizInput, BizCheckbox, BizButton, BizPhoneInput, BizLanguageSheet, BizFeedbackSheet 
+  PPSegment, PPSegmentButton, PPInput, PPCheckbox, PPButton, PPPhoneInput, PPLanguageSheet, PPFeedbackSheet 
 } from '@phanna/ui-framework';
 
 const router = useRouter();
@@ -256,13 +256,13 @@ const handleLogin = () => {
 </script>
 
 <style scoped>
-.biz-screen {
+.pp-screen {
   width: 100%;
   height: 100vh;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: var(--biz-primary, #003399);
+  background-color: var(--pp-primary, #003399);
   display: flex;
   flex-direction: column;
 }
@@ -289,7 +289,7 @@ const handleLogin = () => {
   align-items: center;
   gap: 6px;
   background: white;
-  color: var(--biz-primary, #003399);
+  color: var(--pp-primary, #003399);
   border: none;
   padding: 8px 12px;
   border-radius: 20px;
@@ -349,20 +349,20 @@ const handleLogin = () => {
 }
 
 .login-segment {
-  --biz-segment-bg: white;
-  --biz-segment-border-color: #e9ecef;
-  --biz-segment-btn-active-bg: var(--biz-primary-variant, #1a2a5e);
+  --pp-segment-bg: white;
+  --pp-segment-border-color: #e9ecef;
+  --pp-segment-btn-active-bg: var(--pp-primary-variant, #1a2a5e);
   border-radius: 12px;
   border: 1px solid #e9ecef;
 }
 
 /* Add icons to segment buttons */
-.login-segment :deep(.biz-segment-button) {
+.login-segment :deep(.pp-segment-button) {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.login-segment :deep(.biz-segment-button svg) {
+.login-segment :deep(.pp-segment-button svg) {
   width: 16px;
   height: 16px;
 }
@@ -439,7 +439,7 @@ const handleLogin = () => {
   gap: 8px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin-bottom: 8px;
 }
 
@@ -463,8 +463,8 @@ const handleLogin = () => {
   justify-content: center;
   gap: 8px;
   background-color: #ffffff;
-  border: 1px solid var(--biz-primary-variant, #1a2a5e);
-  color: var(--biz-primary-variant, #1a2a5e);
+  border: 1px solid var(--pp-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   font-size: 13px;
   font-weight: 600;
   padding: 10px;

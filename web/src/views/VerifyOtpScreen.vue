@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <div class="biz-screen biz-otp-screen">
+    <div class="pp-screen pp-otp-screen">
       
       <!-- Top header -->
       <div class="otp-header">
@@ -19,13 +19,13 @@
         
         <div class="otp-section">
           <label class="otp-label">Enter OTP</label>
-          <BizOtpInput v-model="otpCode" :length="6" @complete="handleComplete" />
+          <PPOtpInput v-model="otpCode" :length="6" @complete="handleComplete" />
           <div class="timer-text">Code will expire in <span>01:59</span></div>
         </div>
 
-        <BizInfoCard type="warning" class="otp-info">
+        <PPInfoCard type="warning" class="otp-info">
           If your device can't receive OTP automatically, just tap any blocks to get your OTP.
-        </BizInfoCard>
+        </PPInfoCard>
 
         <!-- Tap Below Suggestion -->
         <div class="sms-suggestion" v-if="otpCode.length < 6">
@@ -50,7 +50,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { IonPage } from '@ionic/vue';
-import { BizOtpInput, BizInfoCard } from '@phanna/ui-framework';
+import { PPOtpInput, PPInfoCard } from '@phanna/ui-framework';
 
 const router = useRouter();
 const otpCode = ref('');
@@ -65,11 +65,11 @@ const handleComplete = (val: string) => {
 </script>
 
 <style scoped>
-.biz-otp-screen {
+.pp-otp-screen {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: var(--biz-primary-color, var(--biz-primary, #003399));
+  background-color: var(--pp-primary-color, var(--pp-primary, #003399));
   position: relative;
   overflow: hidden;
 }
@@ -153,14 +153,14 @@ const handleComplete = (val: string) => {
 
 .tap-below {
   font-size: 13px;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   font-weight: 600;
 }
 
 .double-down {
   width: 20px;
   height: 20px;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   margin: 4px 0 12px 0;
 }
 

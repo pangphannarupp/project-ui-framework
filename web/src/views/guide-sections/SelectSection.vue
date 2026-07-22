@@ -5,20 +5,20 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <BizSelect
+      <PPSelect
         v-model="selectedValue"
         :options="options"
         placeholder="Select an option"
       />
       <div style="margin-top: 16px; font-family: monospace;">Selected: {{ selectedValue || 'None' }}</div>
     </div>
-    <pre class="code-block"><code>&lt;BizSelect v-model="selectedValue" :options="options" placeholder="Select an option" /&gt;</code></pre>
+    <pre class="code-block"><code>&lt;PPSelect v-model="selectedValue" :options="options" placeholder="Select an option" /&gt;</code></pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizSelect } from '@phanna/ui-framework';
+import { PPSelect } from '@phanna/ui-framework';
 
 const selectedValue = ref('');
 const options = [

@@ -8,19 +8,19 @@
       <h3>Standard Image Carousel</h3>
       <p class="helper-text">1 item per view, dots, arrows, and looping enabled.</p>
       <div class="demo-content">
-        <BizCarousel :loop="true" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-          <BizCarouselItem v-for="i in 5" :key="i">
+        <PPCarousel :loop="true" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <PPCarouselItem v-for="i in 5" :key="i">
             <div class="slide-image-placeholder" :style="{ background: `hsl(${i * 60}, 70%, 50%)` }">
               <h2>Slide {{ i }}</h2>
             </div>
-          </BizCarouselItem>
-        </BizCarousel>
+          </PPCarouselItem>
+        </PPCarousel>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizCarousel :loop="true"&gt;
-  &lt;BizCarouselItem v-for="i in 5" :key="i"&gt;
+      <pre class="code-block" v-pre><code>&lt;PPCarousel :loop="true"&gt;
+  &lt;PPCarouselItem v-for="i in 5" :key="i"&gt;
     &lt;!-- Your content here --&gt;
-  &lt;/BizCarouselItem&gt;
-&lt;/BizCarousel&gt;</code></pre>
+  &lt;/PPCarouselItem&gt;
+&lt;/PPCarousel&gt;</code></pre>
     </div>
 
     <!-- Autoplay Cards Carousel -->
@@ -28,8 +28,8 @@
       <h3>Multi-Item Autoplay Slider</h3>
       <p class="helper-text">3 items per view with a 2000ms autoplay interval. (Pauses on hover)</p>
       <div class="demo-content">
-        <BizCarousel :itemsPerView="3" :autoplay="true" :interval="2000" gap="16px" :showDots="false">
-          <BizCarouselItem v-for="item in cards" :key="item.id">
+        <PPCarousel :itemsPerView="3" :autoplay="true" :interval="2000" gap="16px" :showDots="false">
+          <PPCarouselItem v-for="item in cards" :key="item.id">
             <div class="product-card">
               <div class="product-image">{{ item.icon }}</div>
               <div class="product-details">
@@ -37,19 +37,19 @@
                 <p>{{ item.desc }}</p>
               </div>
             </div>
-          </BizCarouselItem>
-        </BizCarousel>
+          </PPCarouselItem>
+        </PPCarousel>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizCarousel 
+      <pre class="code-block" v-pre><code>&lt;PPCarousel 
   :itemsPerView="3" 
   :autoplay="true" 
   :interval="2000" 
   gap="16px"
 &gt;
-  &lt;BizCarouselItem v-for="item in cards" :key="item.id"&gt;
+  &lt;PPCarouselItem v-for="item in cards" :key="item.id"&gt;
     &lt;div class="product-card"&gt;...&lt;/div&gt;
-  &lt;/BizCarouselItem&gt;
-&lt;/BizCarousel&gt;</code></pre>
+  &lt;/PPCarouselItem&gt;
+&lt;/PPCarousel&gt;</code></pre>
     </div>
 
   </div>
@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizCarousel, BizCarouselItem } from '@phanna/ui-framework';
+import { PPCarousel, PPCarouselItem } from '@phanna/ui-framework';
 
 const cards = ref([
   { id: 1, title: 'Analytics', desc: 'View your data instantly', icon: '📊' },

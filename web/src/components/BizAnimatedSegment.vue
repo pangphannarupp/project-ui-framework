@@ -1,11 +1,11 @@
 <template>
-  <div class="biz-animated-segment">
+  <div class="pp-animated-segment">
     <div class="segment-header">
-      <BizSegment :modelValue="modelValue" @update:modelValue="handleChange">
-        <BizSegmentButton v-for="seg in segments" :key="seg.value" :value="seg.value">
+      <PPSegment :modelValue="modelValue" @update:modelValue="handleChange">
+        <PPSegmentButton v-for="seg in segments" :key="seg.value" :value="seg.value">
           {{ seg.label }}
-        </BizSegmentButton>
-      </BizSegment>
+        </PPSegmentButton>
+      </PPSegment>
     </div>
 
     <div 
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { BizSegment, BizSegmentButton } from '@phanna/ui-framework';
+import { PPSegment, PPSegmentButton } from '@phanna/ui-framework';
 
 const props = defineProps<{
   modelValue: string | number;
@@ -99,7 +99,7 @@ const handleTouchEnd = () => {
 </script>
 
 <style scoped>
-.biz-animated-segment {
+.pp-animated-segment {
   width: 100%;
   height: 100%;
   display: flex;

@@ -5,31 +5,31 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box" style="padding: 0; overflow: hidden;">
-      <BizRibbon>
-        <BizRibbonTab title="Home">
-          <BizRibbonGroup title="Clipboard">
-            <BizRibbonButton icon="clipboard-outline" label="Paste" />
-            <BizRibbonButton icon="cut-outline" label="Cut" />
-            <BizRibbonButton icon="copy-outline" label="Copy" />
-          </BizRibbonGroup>
-          <BizRibbonGroup title="Font">
-            <BizRibbonButton icon="text-outline" label="Bold" />
-            <BizRibbonButton icon="color-palette-outline" label="Color" />
-          </BizRibbonGroup>
-        </BizRibbonTab>
-        <BizRibbonTab title="Insert">
-          <BizRibbonGroup title="Media">
-            <BizRibbonButton icon="image-outline" label="Pictures" />
-            <BizRibbonButton icon="videocam-outline" label="Video" />
-          </BizRibbonGroup>
-        </BizRibbonTab>
-      </BizRibbon>
+      <PPRibbon>
+        <PPRibbonTab title="Home">
+          <PPRibbonGroup title="Clipboard">
+            <PPRibbonButton icon="clipboard-outline" label="Paste" />
+            <PPRibbonButton icon="cut-outline" label="Cut" />
+            <PPRibbonButton icon="copy-outline" label="Copy" />
+          </PPRibbonGroup>
+          <PPRibbonGroup title="Font">
+            <PPRibbonButton icon="text-outline" label="Bold" />
+            <PPRibbonButton icon="color-palette-outline" label="Color" />
+          </PPRibbonGroup>
+        </PPRibbonTab>
+        <PPRibbonTab title="Insert">
+          <PPRibbonGroup title="Media">
+            <PPRibbonButton icon="image-outline" label="Pictures" />
+            <PPRibbonButton icon="videocam-outline" label="Video" />
+          </PPRibbonGroup>
+        </PPRibbonTab>
+      </PPRibbon>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { BizRibbon, BizRibbonTab, BizRibbonGroup, BizRibbonButton } from '@phanna/ui-framework';
+import { PPRibbon, PPRibbonTab, PPRibbonGroup, PPRibbonButton } from '@phanna/ui-framework';
 </script>
 
 <style scoped>

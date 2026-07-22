@@ -208,7 +208,7 @@ const router = useRouter();
 .item-content h3 {
   margin: 0 0 8px 0;
   font-size: 18px;
-  color: var(--biz-primary-variant, #1a2a5e);
+  color: var(--pp-primary-variant, #1a2a5e);
   font-weight: 700;
 }
 
@@ -226,7 +226,7 @@ const router = useRouter();
 
 .usage-item {
   margin-top: 16px;
-  background: var(--biz-background, #f4f6fa);
+  background: var(--pp-background, #f4f6fa);
   border: 1px dashed #0066cc;
 }
 .usage-item h3 {

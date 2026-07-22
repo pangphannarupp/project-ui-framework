@@ -8,13 +8,13 @@
       <div style="text-align: center; font-size: 24px; margin-bottom: 24px; font-family: monospace;">
         {{ keypadValue || 'Enter Amount' }}
       </div>
-      <BizKeypad @input="onKeypadInput" @delete="onKeypadDelete" />
+      <PPKeypad @input="onKeypadInput" @delete="onKeypadDelete" />
     </div>
 
     <h3>Secure Keyboard</h3>
     <p>A randomized keyboard layout to prevent keylogging/screen tracking.</p>
     <div class="demo-box">
-      <BizSecureKeyboard @input="onSecureInput" @delete="onSecureDelete" />
+      <PPSecureKeyboard @input="onSecureInput" @delete="onSecureDelete" />
     </div>
 
   </div>
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizKeypad, BizSecureKeyboard } from '@phanna/ui-framework';
+import { PPKeypad, PPSecureKeyboard } from '@phanna/ui-framework';
 
 const keypadValue = ref('');
 

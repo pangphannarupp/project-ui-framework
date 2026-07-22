@@ -8,7 +8,7 @@
       <p class="helper-text">Supports v-model binding directly to HTML output.</p>
       
       <div class="demo-content">
-        <BizRichTextEditor 
+        <PPRichTextEditor 
           v-model="editorContent" 
           placeholder="Start writing your amazing story..."
           minHeight="250px"
@@ -20,7 +20,7 @@
         <pre><code>{{ editorContent }}</code></pre>
       </div>
 
-      <pre class="code-block" v-pre><code>&lt;BizRichTextEditor 
+      <pre class="code-block" v-pre><code>&lt;PPRichTextEditor 
   v-model="editorContent" 
   placeholder="Start writing your amazing story..."
   minHeight="250px"
@@ -32,7 +32,7 @@
       <p class="helper-text">You can add your own toolbar buttons using the <code>customButtons</code> prop to insert custom HTML or trigger custom actions.</p>
       
       <div class="demo-content">
-        <BizRichTextEditor 
+        <PPRichTextEditor 
           v-model="customEditorContent" 
           placeholder="Try the custom buttons in the toolbar..."
           minHeight="150px"
@@ -40,7 +40,7 @@
         />
       </div>
 
-      <pre class="code-block" v-pre><code>&lt;BizRichTextEditor 
+      <pre class="code-block" v-pre><code>&lt;PPRichTextEditor 
   v-model="content"
   :customButtons="[
     { icon: '⭐', title: 'Insert Star', html: '&lt;span style=\'color: gold; font-size: 24px;\'&gt;★&lt;/span&gt;' },
@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizRichTextEditor } from '@phanna/ui-framework';
+import { PPRichTextEditor } from '@phanna/ui-framework';
 
 const editorContent = ref('<h2>Welcome to the Editor</h2><p>This is a <b>lightweight</b> editor built specifically for standard use cases!</p><ul><li>Bold and Italic</li><li>Headings</li><li>Lists (like this one)</li><li>And Links</li></ul>');
 

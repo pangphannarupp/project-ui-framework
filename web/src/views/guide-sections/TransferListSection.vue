@@ -5,18 +5,39 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <BizTransferList
+      <PPTransferList
         v-model="targetKeys"
         :data="dataSource"
         :titles="['Source', 'Target']"
       />
     </div>
+    <pre class="code-block"><code>&lt;PPTransferList
+  v-model="targetKeys"
+  :data="dataSource"
+  :titles="['Source', 'Target']"
+/&gt;</code></pre>
+    
+    <h3>Vertical Layout</h3>
+    <div class="demo-box">
+      <PPTransferList
+        v-model="targetKeys"
+        :data="dataSource"
+        :titles="['Source', 'Target']"
+        direction="vertical"
+      />
+    </div>
+    <pre class="code-block"><code>&lt;PPTransferList
+  v-model="targetKeys"
+  :data="dataSource"
+  :titles="['Source', 'Target']"
+  direction="vertical"
+/&gt;</code></pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizTransferList } from '@phanna/ui-framework';
+import { PPTransferList } from '@phanna/ui-framework';
 
 const generateData = () => {
   const data = [];

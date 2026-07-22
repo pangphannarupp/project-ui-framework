@@ -6,9 +6,9 @@
         <div class="variant-group">
           <h3>Interactive Demo</h3>
           <div class="component-demo" style="height: 400px; padding: 0;">
-            <BizHideAppBar :headerHeight="56">
+            <PPHideAppBar :headerHeight="56">
               <template #header>
-                <div style="height: 100%; display: flex; align-items: center; padding: 0 16px; background: var(--biz-primary-light, #3880ff); color: white;">
+                <div style="height: 100%; display: flex; align-items: center; padding: 0 16px; background: var(--pp-primary-light, #3880ff); color: white;">
                   <h2 style="margin: 0; font-size: 18px;">My Hidden Header</h2>
                 </div>
               </template>
@@ -18,16 +18,16 @@
                   Scroll me up and down! Item {{ i }}
                 </div>
               </div>
-            </BizHideAppBar>
+            </PPHideAppBar>
           </div>
-          <pre class="code-block"><code>&lt;BizHideAppBar :headerHeight="56"&gt;
+          <pre class="code-block"><code>&lt;PPHideAppBar :headerHeight="56"&gt;
   &lt;template #header&gt;
     &lt;div&gt;My Header&lt;/div&gt;
   &lt;/template&gt;
 
   &lt;!-- Scrollable content --&gt;
   &lt;div&gt;...&lt;/div&gt;
-&lt;/BizHideAppBar&gt;</code></pre>
+&lt;/PPHideAppBar&gt;</code></pre>
         </div>
       </div>
 </template>
@@ -35,5 +35,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 
-import { BizHideAppBar } from '@phanna/ui-framework';
+import { PPHideAppBar } from '@phanna/ui-framework';
 </script>

@@ -5,15 +5,15 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box" style="display: flex; gap: 32px; flex-wrap: wrap;">
-      <BizProgressGauge :value="25" :size="120" color="#3880ff" />
-      <BizProgressGauge :value="75" :size="120" color="#2dd36f" />
-      <BizProgressGauge :value="100" :size="120" color="#eb445a" />
+      <PPProgressGauge :value="25" :size="120" color="#3880ff" />
+      <PPProgressGauge :value="75" :size="120" color="#2dd36f" />
+      <PPProgressGauge :value="100" :size="120" color="#eb445a" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { BizProgressGauge } from '@phanna/ui-framework';
+import { PPProgressGauge } from '@phanna/ui-framework';
 </script>
 
 <style scoped>

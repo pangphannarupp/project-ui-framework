@@ -7,13 +7,13 @@
       <h3>Basic Toast</h3>
       <div class="demo-content">
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <BizButton @click="showToast('info', 'top-right')" style="color: white;">Info (Top Right)</BizButton>
-          <BizButton @click="showToast('success', 'bottom-right')" style="--biz-primary-variant: #4caf50; color: white;">Success (Bottom Right)</BizButton>
-          <BizButton @click="showToast('error', 'top-center')" style="--biz-primary-variant: #f44336; color: white;">Error (Top Center)</BizButton>
-          <BizButton @click="showToast('warning', 'bottom-left')" style="--biz-primary-variant: #ff9800; color: white;">Warning (Bottom Left)</BizButton>
+          <PPButton @click="showToast('info', 'top-right')" style="color: white;">Info (Top Right)</PPButton>
+          <PPButton @click="showToast('success', 'bottom-right')" style="--pp-primary-variant: #4caf50; color: white;">Success (Bottom Right)</PPButton>
+          <PPButton @click="showToast('error', 'top-center')" style="--pp-primary-variant: #f44336; color: white;">Error (Top Center)</PPButton>
+          <PPButton @click="showToast('warning', 'bottom-left')" style="--pp-primary-variant: #ff9800; color: white;">Warning (Bottom Left)</PPButton>
         </div>
 
-        <BizWebToast 
+        <PPWebToast 
           v-model="toastVisible"
           :type="toastType"
           :position="toastPosition"
@@ -21,7 +21,7 @@
           :message="toastMessage"
         />
       </div>
-      <pre class="code-block"><code>&lt;BizWebToast 
+      <pre class="code-block"><code>&lt;PPWebToast 
   v-model="isVisible"
   type="success|error|warning|info"
   position="top-right|top-left|bottom-right|bottom-left|top-center|bottom-center"
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizButton, BizWebToast } from '@phanna/ui-framework';
+import { PPButton, PPWebToast } from '@phanna/ui-framework';
 
 const toastVisible = ref(false);
 const toastType = ref('info');

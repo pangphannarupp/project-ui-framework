@@ -13,7 +13,7 @@
           <label><input type="checkbox" v-model="isCompact"> Compact</label>
         </div>
 
-        <BizTable 
+        <PPTable 
           :columns="columns" 
           :data="basicData"
           :striped="isStriped"
@@ -23,9 +23,9 @@
           <template #status="{ row }">
             <span class="status-badge" :class="`is-${row.status}`">{{ row.status }}</span>
           </template>
-        </BizTable>
+        </PPTable>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizTable 
+      <pre class="code-block" v-pre><code>&lt;PPTable 
   :columns="columns" 
   :data="data"
   :striped="true"
@@ -35,7 +35,7 @@
   &lt;template #status="{ row }"&gt;
     &lt;span :class="`is-${row.status}`"&gt;{{ row.status }}&lt;/span&gt;
   &lt;/template&gt;
-&lt;/BizTable&gt;</code></pre>
+&lt;/PPTable&gt;</code></pre>
     </div>
 
     <!-- Pagination -->
@@ -64,7 +64,7 @@
           </select>
         </div>
 
-        <BizTable 
+        <PPTable 
           :columns="columns" 
           :data="tableData" 
           :pagination="true" 
@@ -80,9 +80,9 @@
           <template #status="{ row }">
             <span class="status-badge" :class="`is-${row.status}`">{{ row.status }}</span>
           </template>
-        </BizTable>
+        </PPTable>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizTable 
+      <pre class="code-block" v-pre><code>&lt;PPTable 
   :columns="columns" 
   :data="data" 
   :pagination="true" 
@@ -104,7 +104,7 @@
           <label><input type="checkbox" v-model="isMultiple"> Multiple</label>
         </div>
 
-        <BizTable 
+        <PPTable 
           :columns="columns" 
           :data="basicData" 
           :selectable="true"
@@ -114,13 +114,13 @@
           <template #status="{ row }">
             <span class="status-badge" :class="`is-${row.status}`">{{ row.status }}</span>
           </template>
-        </BizTable>
+        </PPTable>
         
         <div style="margin-top: 16px; padding: 12px; background: #f0f0f0; border-radius: 4px; font-size: 14px;">
           <strong>Selected IDs:</strong> {{ selectedRows.map(r => r.id).join(', ') || 'None' }}
         </div>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizTable 
+      <pre class="code-block" v-pre><code>&lt;PPTable 
   :columns="columns" 
   :data="data" 
   :selectable="true"
@@ -133,7 +133,7 @@
     <div class="demo-box">
       <h3>Expandable Rows</h3>
       <div class="demo-content">
-        <BizTable 
+        <PPTable 
           :columns="columns" 
           :data="basicData" 
           :expandable="true"
@@ -150,9 +150,9 @@
               <p>Status: {{ row.status }}</p>
             </div>
           </template>
-        </BizTable>
+        </PPTable>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizTable 
+      <pre class="code-block" v-pre><code>&lt;PPTable 
   :columns="columns" 
   :data="data" 
   :expandable="true"
@@ -160,7 +160,7 @@
   &lt;template #expanded="{ row }"&gt;
     &lt;div&gt;Expanded details for {{ row.name }}&lt;/div&gt;
   &lt;/template&gt;
-&lt;/BizTable&gt;</code></pre>
+&lt;/PPTable&gt;</code></pre>
     </div>
 
     <!-- Loading State -->
@@ -170,7 +170,7 @@
         <div style="display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;">
           <label><input type="checkbox" v-model="isLoading"> Loading</label>
         </div>
-        <BizTable 
+        <PPTable 
           :columns="columns" 
           :data="basicData" 
           :loading="isLoading"
@@ -179,9 +179,9 @@
           <template #status="{ row }">
             <span class="status-badge" :class="`is-${row.status}`">{{ row.status }}</span>
           </template>
-        </BizTable>
+        </PPTable>
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizTable 
+      <pre class="code-block" v-pre><code>&lt;PPTable 
   :columns="columns" 
   :data="data" 
   :loading="true"
@@ -193,14 +193,14 @@
     <div class="demo-box">
       <h3>Row/Column Spanning</h3>
       <div class="demo-content">
-        <BizTable 
+        <PPTable 
           :columns="spanColumns" 
           :data="spanData" 
           :bordered="true"
           :spanMethod="handleSpan"
         />
       </div>
-      <pre class="code-block" v-pre><code>&lt;BizTable 
+      <pre class="code-block" v-pre><code>&lt;PPTable 
   :columns="columns" 
   :data="data" 
   :bordered="true"
@@ -225,7 +225,7 @@ const handleSpan = ({ rowIndex, columnIndex }) =&gt; {
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BizTable } from '@phanna/ui-framework';
+import { PPTable } from '@phanna/ui-framework';
 
 const columns = ref([
   { key: 'id', title: 'ID', width: '60px', sortable: true },
