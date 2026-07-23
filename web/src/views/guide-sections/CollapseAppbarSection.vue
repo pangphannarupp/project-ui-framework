@@ -24,6 +24,23 @@
               </div>
             </PPCollapsingToolbar>
           </div>
+          <pre class="code-block"><code>&lt;PPCollapsingToolbar title="Profile" :expandedHeight="200" :collapsedHeight="56"&gt;
+  &lt;template #background&gt;
+    &lt;img src="..." alt="bg" /&gt;
+  &lt;/template&gt;
+  &lt;template #start&gt;
+    &lt;PPIconButton color="white"&gt;
+      &lt;!-- Back Icon --&gt;
+    &lt;/PPIconButton&gt;
+  &lt;/template&gt;
+  &lt;template #profile&gt;
+    &lt;img src="..." alt="Profile" class="avatar" /&gt;
+  &lt;/template&gt;
+  
+  &lt;div class="content"&gt;
+    &lt;!-- Scrollable content --&gt;
+  &lt;/div&gt;
+&lt;/PPCollapsingToolbar&gt;</code></pre>
         </div>
         
         <div class="variant-group">
@@ -45,6 +62,20 @@
               </div>
             </PPCollapsingToolbar>
           </div>
+          <pre class="code-block"><code>&lt;PPCollapsingToolbar title="Dashboard" :expandedHeight="200" :collapsedHeight="56" centerTitleOnCollapse&gt;
+  &lt;template #background&gt;
+    &lt;img src="..." alt="bg" /&gt;
+  &lt;/template&gt;
+  &lt;template #start&gt;
+    &lt;PPIconButton color="white"&gt;
+      &lt;!-- Back Icon --&gt;
+    &lt;/PPIconButton&gt;
+  &lt;/template&gt;
+  
+  &lt;div class="content"&gt;
+    &lt;!-- Scrollable content --&gt;
+  &lt;/div&gt;
+&lt;/PPCollapsingToolbar&gt;</code></pre>
         </div>
       </div>
 </template>

@@ -68,6 +68,36 @@
               </template>
             </PPDynamicIsland>
           </div>
+          <pre class="code-block"><code>&lt;PPDynamicIsland 
+  v-model="isIslandOpen"
+  :state="islandState"
+  :position="islandPosition"
+  :fullWidth="islandFullWidth"
+  :offset="16"
+  :autoHideTimeout="islandState === 'expanded' ? 0 : 3000"
+&gt;
+  &lt;!-- Compact Slots --&gt;
+  &lt;template #compact-left&gt;
+    &lt;!-- Icon or Avatar --&gt;
+  &lt;/template&gt;
+  &lt;template #compact-center&gt;
+    &lt;!-- Title or Text --&gt;
+  &lt;/template&gt;
+  &lt;template #compact-right&gt;
+    &lt;!-- Status Icon --&gt;
+  &lt;/template&gt;
+
+  &lt;!-- Expanded Slots --&gt;
+  &lt;template #expanded-header&gt;
+    &lt;!-- Caller Info --&gt;
+  &lt;/template&gt;
+  &lt;template #expanded-body&gt;
+    &lt;!-- Audio Visualizer / Content --&gt;
+  &lt;/template&gt;
+  &lt;template #expanded-footer&gt;
+    &lt;!-- Action Buttons --&gt;
+  &lt;/template&gt;
+&lt;/PPDynamicIsland&gt;</code></pre>
         </div>
       </div>
 </template>

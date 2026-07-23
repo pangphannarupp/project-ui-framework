@@ -712,6 +712,7 @@ const onConfirmAction = () => {
 
 .calendar-grid-column {
   flex: 1;
+  min-width: 280px;
 }
 
 .calendar-grid {

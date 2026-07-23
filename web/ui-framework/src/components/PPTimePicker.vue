@@ -1,5 +1,5 @@
 <template>
-  <div class="pp-time-picker" :class="{ 'hide-actions': !showActionButtons }">
+  <div class="pp-time-picker" :class="[`theme-${theme}`, { 'hide-actions': !showActionButtons }]">
     <!-- Header Row -->
     <div class="picker-header" v-if="title">
       <div class="time-title">{{ title }}</div>
@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <!-- Actions -->
+    <!-- Action Buttons -->
     <div class="action-buttons" v-if="showActionButtons">
       <button class="btn-cancel" @click="onCancel">Cancel</button>
       <button class="btn-confirm" @click="onConfirmAction">Confirm</button>
@@ -59,9 +59,11 @@ const props = withDefaults(defineProps<{
   min?: string;
   max?: string;
   showActionButtons?: boolean;
+  theme?: 'light' | 'dark' | 'auto';
 }>(), {
   modelValue: '12:00',
   showActionButtons: false,
+  theme: 'auto',
 });
 
 const emit = defineEmits<{
@@ -186,13 +188,39 @@ const onConfirmAction = () => {
 
 <style scoped>
 .pp-time-picker {
+  /* Default Theme Variables */
+  --time-picker-bg: var(--pp-calendar-bg, #fff);
+  --time-picker-text: var(--pp-calendar-text, #333);
+  --time-picker-sep: #333;
+  --time-picker-btn-cancel-bg: #f4f5f8;
+  --time-picker-btn-cancel-text: var(--pp-calendar-btn-cancel-text, #666);
+
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: var(--pp-calendar-bg, #fff);
+  background: var(--time-picker-bg);
   padding: 16px;
   border-radius: var(--pp-calendar-radius, 16px);
   user-select: none;
+}
+
+/* Dark Theme Variables */
+.pp-time-picker.theme-dark {
+  --time-picker-bg: var(--pp-calendar-bg, transparent);
+  --time-picker-text: var(--pp-calendar-text, #fff);
+  --time-picker-sep: #fff;
+  --time-picker-btn-cancel-bg: #333;
+  --time-picker-btn-cancel-text: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pp-time-picker.theme-auto {
+    --time-picker-bg: var(--pp-calendar-bg, transparent);
+    --time-picker-text: var(--pp-calendar-text, #fff);
+    --time-picker-sep: #fff;
+    --time-picker-btn-cancel-bg: #333;
+    --time-picker-btn-cancel-text: #ccc;
+  }
 }
 
 .picker-header {
@@ -206,7 +234,7 @@ const onConfirmAction = () => {
 .time-title {
   font-size: 16px;
   font-weight: 600;
-  color: var(--pp-calendar-text, #333);
+  color: var(--time-picker-text);
 }
 
 .time-wheels-container {
@@ -267,7 +295,7 @@ const onConfirmAction = () => {
 .wheel-separator {
   font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: var(--time-picker-sep);
   padding: 0 8px;
   z-index: 1;
 }
@@ -291,8 +319,8 @@ const onConfirmAction = () => {
 }
 
 .btn-cancel {
-  background: #f4f5f8;
-  color: var(--pp-calendar-btn-cancel-text, #666);
+  background: var(--time-picker-btn-cancel-bg);
+  color: var(--time-picker-btn-cancel-text);
 }
 
 .btn-confirm {

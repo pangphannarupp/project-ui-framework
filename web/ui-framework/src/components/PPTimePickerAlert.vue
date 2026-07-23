@@ -1,5 +1,5 @@
 <template>
-  <div v-if="modelValue" class="pp-time-alert-overlay" @click="onOverlayClick">
+  <div v-if="modelValue" class="pp-time-alert-overlay" :class="`theme-${theme}`" @click="onOverlayClick">
     <div class="pp-time-alert-content" @click.stop>
       <div class="alert-header" v-if="title">
         <h3>{{ title }}</h3>
@@ -12,6 +12,7 @@
           :minuteValues="minuteValues"
           :hourCycle="hourCycle"
           :showActionButtons="false"
+          :theme="theme"
           @update:modelValue="onTimeUpdate"
         />
       </div>
@@ -27,7 +28,7 @@
 import { ref, watch } from 'vue';
 import PPTimePicker from './PPTimePicker.vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: boolean; // overlay open state
   timeValue?: string;
   title?: string;
@@ -36,7 +37,11 @@ const props = defineProps<{
   minuteValues?: string | number[];
   hourCycle?: 'h12' | 'h23';
   dismissOnOverlayClick?: boolean;
-}>();
+  theme?: 'light' | 'dark' | 'auto';
+}>(), {
+  theme: 'auto',
+  dismissOnOverlayClick: true,
+});
 
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void;
@@ -76,6 +81,10 @@ const onConfirm = () => {
 
 <style scoped>
 .pp-time-alert-overlay {
+  --alert-bg: #fff;
+  --alert-header-color: #333;
+  --alert-border-color: #eee;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -89,8 +98,22 @@ const onConfirm = () => {
   padding: 16px;
 }
 
+.pp-time-alert-overlay.theme-dark {
+  --alert-bg: #1e1e1e;
+  --alert-header-color: #fff;
+  --alert-border-color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pp-time-alert-overlay.theme-auto {
+    --alert-bg: #1e1e1e;
+    --alert-header-color: #fff;
+    --alert-border-color: #333;
+  }
+}
+
 .pp-time-alert-content {
-  background: #fff;
+  background: var(--alert-bg);
   border-radius: 16px;
   width: 100%;
   max-width: 340px;
@@ -110,7 +133,7 @@ const onConfirm = () => {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: var(--alert-header-color);
 }
 
 .alert-body {
@@ -119,7 +142,7 @@ const onConfirm = () => {
 
 .alert-actions {
   display: flex;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--alert-border-color);
 }
 
 .alert-actions button {
@@ -134,25 +157,10 @@ const onConfirm = () => {
 
 .cancel-btn {
   color: #999;
-  border-right: 1px solid #eee !important;
+  border-right: 1px solid var(--alert-border-color) !important;
 }
 
 .confirm-btn {
   color: #007aff;
-}
-
-@media (prefers-color-scheme: dark) {
-  .pp-time-alert-content {
-    background: #1e1e1e;
-  }
-  .alert-header h3 {
-    color: #fff;
-  }
-  .alert-actions {
-    border-top-color: #333;
-  }
-  .cancel-btn {
-    border-right-color: #333 !important;
-  }
 }
 </style>

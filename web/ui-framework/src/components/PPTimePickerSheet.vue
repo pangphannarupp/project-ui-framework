@@ -11,6 +11,7 @@
       :minuteValues="minuteValues"
       :hourCycle="hourCycle"
       :showActionButtons="showActionButtons"
+      :theme="theme"
       @update:modelValue="onTimeUpdate"
       @change="(val) => $emit('change', val)"
       @confirm="(val) => $emit('confirm', val)"
@@ -23,7 +24,7 @@
 import PPTimePicker from './PPTimePicker.vue';
 import PPBottomSheet from './PPBottomSheet.vue';
 
-defineProps<{
+withDefaults(defineProps<{
   modelValue: boolean; // sheet open state
   timeValue?: string;  // actual time value
   title?: string;
@@ -32,7 +33,10 @@ defineProps<{
   minuteValues?: string | number[];
   hourCycle?: 'h12' | 'h23';
   showActionButtons?: boolean;
-}>();
+  theme?: 'light' | 'dark' | 'auto';
+}>(), {
+  theme: 'auto'
+});
 
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void;

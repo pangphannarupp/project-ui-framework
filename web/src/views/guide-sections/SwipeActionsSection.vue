@@ -4,7 +4,7 @@
         <div class="variant-group">
           <h3>Swipe Left & Right</h3>
           <p class="custom-guide">Swipe horizontally to reveal actions. Supports rubber-banding physics.</p>
-          <div class="component-demo" style="padding: 0; background: transparent; border-radius: 12px; overflow: hidden; border: 1px solid #eee;">
+          <div class="component-demo" style="padding: 0; background: transparent; border-radius: 12px; overflow: hidden; border: 1px solid #eee; transform: translateZ(0); isolation: isolate;">
             <PPSwipeItem style="border-bottom: 1px solid #eee;">
               <template #left>
                 <div style="background: #28ba62;" @click="alertVal('Pinned!')">
@@ -37,6 +37,22 @@
               </div>
             </PPSwipeItem>
           </div>
+          <pre class="code-block"><code>&lt;PPSwipeItem&gt;
+  &lt;!-- Left actions (revealed by swiping right) --&gt;
+  &lt;template #left&gt;
+    &lt;div style="background: #28ba62;" @click="pin"&gt;Pin&lt;/div&gt;
+  &lt;/template&gt;
+
+  &lt;!-- Right actions (revealed by swiping left) --&gt;
+  &lt;template #right&gt;
+    &lt;div style="background: #eb445a;" @click="remove"&gt;Delete&lt;/div&gt;
+  &lt;/template&gt;
+  
+  &lt;!-- Main Content --&gt;
+  &lt;div class="content"&gt;
+    &lt;h4&gt;Swipe me&lt;/h4&gt;
+  &lt;/div&gt;
+&lt;/PPSwipeItem&gt;</code></pre>
         </div>
       </div>
 </template>

@@ -111,13 +111,14 @@ const profileScale = computed(() => {
 
 const profileY = computed(() => {
   // Starts higher above the title when expanded to prevent overlap with large scaled image
-  const expandedY = props.expandedHeight - props.collapsedHeight - 120; 
+  // We want it right above the title, not at the top of the header!
+  const expandedY = props.expandedHeight - props.collapsedHeight - 64; 
   const collapsedY = 0;
   return collapsedY + (expandedY * progress.value);
 });
 
 const profileX = computed(() => {
-  const expandedX = -40; // Align with title
+  const expandedX = -40; // Align with title at the left edge
   const collapsedX = 0;
   return collapsedX + ((expandedX - collapsedX) * progress.value);
 });

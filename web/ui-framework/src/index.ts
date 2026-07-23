@@ -98,6 +98,7 @@ import PPMarquee from './components/PPMarquee.vue'
 import PPCarousel from './components/PPCarousel.vue'
 import PPCarouselItem from './components/PPCarouselItem.vue'
 import PPRichTextEditor from './components/PPRichTextEditor.vue'
+import PPAnimatedTabs from './components/PPAnimatedTabs.vue'
 import PPMathEditor from './components/PPMathEditor.vue'
 import PPMathPreview from './components/PPMathPreview.vue'
 import PPKanbanBoard from './components/PPKanbanBoard.vue'
@@ -267,7 +268,8 @@ export {
   PPTreeNode,
   PPWebToast,
   PPPagination,
-  PPTable
+  PPTable,
+  PPAnimatedTabs
 }
 
 // Export a Vue plugin to install all components
@@ -396,5 +398,6 @@ export default {
     app.component('PPWebToast', PPWebToast)
     app.component('PPPagination', PPPagination)
     app.component('PPTable', PPTable)
+    app.component('PPAnimatedTabs', PPAnimatedTabs)
   }
 }

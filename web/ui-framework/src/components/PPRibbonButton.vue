@@ -25,14 +25,16 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   label?: string;
   icon?: any; // Ion icon object or name
   iconSvg?: string; // Optional raw SVG
   size?: 'large' | 'small';
   active?: boolean;
   disabled?: boolean;
-}>();
+}>(), {
+  size: 'large'
+});
 
 defineEmits(['click']);
 

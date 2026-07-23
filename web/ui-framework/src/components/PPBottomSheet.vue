@@ -28,7 +28,7 @@
           <slot name="header"></slot>
         </div>
         
-        <div class="pp-bottom-sheet-content" @touchstart.stop @mousedown.stop>
+        <div class="pp-bottom-sheet-content" @touchstart="onContentTouchStart" @mousedown="onContentMouseDown">
           <slot></slot>
         </div>
         
@@ -144,6 +144,20 @@ watch(() => props.modelValue, (isOpen) => {
   }
 });
 
+const onContentTouchStart = (e: TouchEvent) => {
+  const target = e.currentTarget as HTMLElement;
+  if (target && target.scrollTop > 0) {
+    e.stopPropagation();
+  }
+};
+
+const onContentMouseDown = (e: MouseEvent) => {
+  const target = e.currentTarget as HTMLElement;
+  if (target && target.scrollTop > 0) {
+    e.stopPropagation();
+  }
+};
+
 onUnmounted(() => {
   if (typeof window !== 'undefined') {
     document.body.style.overflow = '';
@@ -176,6 +190,13 @@ onUnmounted(() => {
   padding: 16px 0px 16px;
   /* Will-change helps with smooth animation during drag */
   will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .pp-bottom-sheet-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
 
 .pp-bottom-sheet-handle-wrap {
@@ -234,5 +255,12 @@ onUnmounted(() => {
 .pp-bottom-sheet-slide-enter-from,
 .pp-bottom-sheet-slide-leave-to {
   transform: translateY(100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .pp-bottom-sheet-container {
+    background-color: var(--pp-bottom-sheet-bg, #1e1e1e);
+    color: #ffffff;
+  }
 }
 </style>

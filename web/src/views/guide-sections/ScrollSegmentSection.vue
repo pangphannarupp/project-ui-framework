@@ -19,6 +19,13 @@
         Currently viewing: <strong>{{ activeTab }}</strong>
       </div>
     </div>
+
+    <pre class="code-block"><code>&lt;PPScrollSegment v-model="activeTab"&gt;
+  &lt;PPScrollSegmentButton value="tab1"&gt;Overview&lt;/PPScrollSegmentButton&gt;
+  &lt;PPScrollSegmentButton value="tab2"&gt;Analytics&lt;/PPScrollSegmentButton&gt;
+  &lt;PPScrollSegmentButton value="tab3"&gt;Reports&lt;/PPScrollSegmentButton&gt;
+  &lt;!-- Add as many tabs as you need --&gt;
+&lt;/PPScrollSegment&gt;</code></pre>
   </div>
 </template>
 

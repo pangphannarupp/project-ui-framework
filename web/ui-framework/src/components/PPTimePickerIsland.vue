@@ -1,13 +1,11 @@
 <template>
-  <div class="pp-time-picker-island-wrapper">
+  <div class="pp-time-picker-island-wrapper" :class="`theme-${theme}`">
     <PPDynamicIsland 
       :modelValue="internalModelValue" 
       :state="islandState"
       :position="position"
       :fullWidth="fullWidth"
       :offset="offset"
-      bgColor="#ffffff"
-      textColor="#333333"
       wrapperClass="time-picker-island"
       @update:modelValue="handleIslandUpdate"
     >
@@ -25,6 +23,7 @@
             :minuteValues="minuteValues"
             :hourCycle="hourCycle"
             :showActionButtons="showActionButtons"
+            :theme="theme"
             @update:modelValue="onTimeUpdate"
             @change="(val) => $emit('change', val)"
             @confirm="handleConfirm"
@@ -53,10 +52,12 @@ const props = withDefaults(defineProps<{
   position?: 'top' | 'bottom' | 'left' | 'right';
   fullWidth?: boolean;
   offset?: number;
+  theme?: 'light' | 'dark' | 'auto';
 }>(), {
   position: 'top',
   fullWidth: false,
-  offset: 16
+  offset: 16,
+  theme: 'auto',
 });
 
 const emit = defineEmits<{
@@ -116,17 +117,32 @@ const handleCancel = () => {
 
 <style scoped>
 .calendar-island-body {
+  --island-body-bg: white;
+  --island-body-color: #333;
+
   width: 100%;
   height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
-  background: white; 
+  background: var(--island-body-bg); 
   border-radius: 16px;
   padding: 8px;
-  color: #333;
+  color: var(--island-body-color);
 }
 .calendar-island-body::-webkit-scrollbar {
   display: none;
+}
+
+.theme-dark .calendar-island-body {
+  --island-body-bg: #1e1e1e;
+  --island-body-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-auto .calendar-island-body {
+    --island-body-bg: #1e1e1e;
+    --island-body-color: #fff;
+  }
 }
 
 .calendar-minimal-dot {
@@ -138,9 +154,24 @@ const handleCancel = () => {
 </style>
 
 <style>
+/* Global style to penetrate PPDynamicIsland wrapperClass */
 .time-picker-island {
   --pp-island-expanded-width: 320px;
   --pp-island-expanded-height: 320px;
   --pp-island-expanded-radius: 24px;
+  --pp-island-bg: #ffffff;
+  --pp-island-color: #333333;
+}
+
+.theme-dark .time-picker-island {
+  --pp-island-bg: #1e1e1e;
+  --pp-island-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-auto .time-picker-island {
+    --pp-island-bg: #1e1e1e;
+    --pp-island-color: #ffffff;
+  }
 }
 </style>

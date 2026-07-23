@@ -13,6 +13,21 @@
               </div>
             </PPPullToRefresh>
           </div>
+          <pre class="code-block"><code>&lt;PPPullToRefresh @refresh="handleRefresh"&gt;
+  &lt;div class="content"&gt;
+    &lt;!-- Your scrollable content here --&gt;
+    &lt;div v-for="i in 15" :key="i"&gt;Item {{ i }}&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/PPPullToRefresh&gt;
+
+&lt;script setup&gt;
+const handleRefresh = (complete) =&gt; {
+  // Perform async refresh action
+  setTimeout(() =&gt; {
+    complete(); // Call complete() when finished
+  }, 1500);
+};
+&lt;/script&gt;</code></pre>
         </div>
       </div>
 </template>
