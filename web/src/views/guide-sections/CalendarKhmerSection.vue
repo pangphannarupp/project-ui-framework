@@ -42,6 +42,21 @@
         </div>
 
         <div class="variant-group">
+          <h3>Hide Header Controls</h3>
+          <p class="custom-guide"><strong>Props:</strong> <code>hideHeaderPicker</code>, <code>hideNavButtons</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
+            <PPKhmerCalendar 
+              :hide-header-picker="true"
+              :hide-nav-buttons="true"
+              @date-selected="s => alertVal('Selected Date: ' + s.date.toLocaleDateString() + '\nKhmer Date: ' + s.fullText)"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;PPKhmerCalendar :hide-header-picker="true" :hide-nav-buttons="true" /&gt;</code></pre>
+        </div>
+
+
+
+        <div class="variant-group">
           <h3>Calendar Bottom Sheet</h3>
           <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPKhmerCalendarSheet&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">

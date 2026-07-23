@@ -3,6 +3,8 @@
     <div class="pp-date-range-content">
       <PPDateRangePicker 
         :modelValue="dateRangeVal"
+        :hide-header-picker="hideHeaderPicker"
+        :hide-nav-buttons="hideNavButtons"
         @update:modelValue="onRangeSelected"
       />
       
@@ -24,9 +26,13 @@ import PPDateRangePicker from './PPDateRangePicker.vue';
 const props = withDefaults(defineProps<{
   visible?: boolean;
   modelValue?: { start: Date | null, end: Date | null, presetId?: string };
+  hideHeaderPicker?: boolean;
+  hideNavButtons?: boolean;
 }>(), {
   visible: false,
-  modelValue: () => ({ start: null, end: null, presetId: undefined })
+  modelValue: () => ({ start: null, end: null, presetId: undefined }),
+  hideHeaderPicker: false,
+  hideNavButtons: false
 });
 
 const emit = defineEmits<{

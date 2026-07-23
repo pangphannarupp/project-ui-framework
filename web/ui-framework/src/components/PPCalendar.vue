@@ -7,7 +7,7 @@
   >
     <!-- Header Row -->
     <div class="calendar-header" :class="{ 'is-double': doubleView }">
-      <div class="nav-buttons-left" v-if="doubleView">
+      <div class="nav-buttons-left" v-if="doubleView && !hideNavButtons">
         <button class="icon-btn" @click="prevYear" title="Previous Year">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
         </button>
@@ -15,17 +15,17 @@
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
       </div>
-      <div class="month-title" @click="!doubleView && (showMonthPicker = true)">
+      <div class="month-title" @click="!doubleView && !hideHeaderPicker && (showMonthPicker = true)" :style="!doubleView && !hideHeaderPicker ? { cursor: 'pointer' } : { cursor: 'default' }">
         <template v-if="doubleView">
           <span v-if="currentYear === nextYearNumber">{{ monthNames[currentMonth - 1] }} - {{ monthNames[nextMonthNumber - 1] }} {{ currentYear }}</span>
           <span v-else>{{ monthNames[currentMonth - 1] }} {{ currentYear }} - {{ monthNames[nextMonthNumber - 1] }} {{ nextYearNumber }}</span>
         </template>
         <template v-else>
           {{ monthNames[currentMonth - 1] }} {{ currentYear }} 
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          <svg v-if="!hideHeaderPicker" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </template>
       </div>
-      <div class="nav-buttons-right" v-if="doubleView">
+      <div class="nav-buttons-right" v-if="doubleView && !hideNavButtons">
         <button class="icon-btn" @click="nextMonth" title="Next Month">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
@@ -33,7 +33,7 @@
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
         </button>
       </div>
-      <div class="nav-buttons" v-if="!doubleView">
+      <div class="nav-buttons" v-if="!doubleView && !hideNavButtons">
         <button class="icon-btn" @click="prevMonth" title="Previous Month">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -219,6 +219,8 @@ const props = withDefaults(defineProps<{
   doubleView?: boolean;
   initialRangeStart?: Date | null;
   initialRangeEnd?: Date | null;
+  hideHeaderPicker?: boolean;
+  hideNavButtons?: boolean;
 }>(), {
   config: () => ({ selectionMode: 'Single' as SelectionMode }),
   initialDate: () => new Date(),
@@ -230,7 +232,9 @@ const props = withDefaults(defineProps<{
   pickerConfirmText: 'Confirm',
   cancelText: 'Cancel',
   confirmText: 'Confirm',
-  doubleView: false
+  doubleView: false,
+  hideHeaderPicker: false,
+  hideNavButtons: false
 });
 
 const emit = defineEmits<{

@@ -4,6 +4,8 @@
       <div class="alert-body">
         <PPDateRangePicker 
           :modelValue="dateRangeVal"
+          :hide-header-picker="hideHeaderPicker"
+          :hide-nav-buttons="hideNavButtons"
           @update:modelValue="onRangeSelected"
         />
         <div class="action-buttons">
@@ -20,11 +22,16 @@ import { ref, watch } from 'vue';
 import PPDateRangePicker from './PPDateRangePicker.vue';
 import PPButton from './PPButton.vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: boolean;
   dismissOnOverlayClick?: boolean;
   initialValue?: { start: Date | null, end: Date | null, presetId?: string };
-}>();
+  hideHeaderPicker?: boolean;
+  hideNavButtons?: boolean;
+}>(), {
+  hideHeaderPicker: false,
+  hideNavButtons: false
+});
 
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void;

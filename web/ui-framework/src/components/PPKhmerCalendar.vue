@@ -7,11 +7,11 @@
   >
     <!-- Header Row -->
     <div class="calendar-header">
-      <div class="month-title" @click="showMonthPicker = true">
+      <div class="month-title" @click="!hideHeaderPicker && (showMonthPicker = true)" :style="!hideHeaderPicker ? { cursor: 'pointer' } : { cursor: 'default' }">
         {{ monthNames[currentMonth - 1] }} {{ currentYear }} 
-        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        <svg v-if="!hideHeaderPicker" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
       </div>
-      <div class="nav-buttons">
+      <div class="nav-buttons" v-if="!hideNavButtons">
         <button class="icon-btn" @click="prevMonth" title="Previous Month">
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -155,6 +155,10 @@ const props = withDefaults(defineProps<{
   pickerConfirmText?: string;
   cancelText?: string;
   confirmText?: string;
+  initialRangeStart?: Date | null;
+  initialRangeEnd?: Date | null;
+  hideHeaderPicker?: boolean;
+  hideNavButtons?: boolean;
 }>(), {
   config: () => ({ selectionMode: 'Single' as SelectionMode }),
   initialDate: () => new Date(),
@@ -165,7 +169,9 @@ const props = withDefaults(defineProps<{
   pickerCancelText: 'Close',
   pickerConfirmText: 'Confirm',
   cancelText: 'Cancel',
-  confirmText: 'Confirm'
+  confirmText: 'Confirm',
+  hideHeaderPicker: false,
+  hideNavButtons: false
 });
 
 const emit = defineEmits<{
@@ -699,9 +705,7 @@ const onConfirmAction = () => {
   left: 2px;
   right: 2px;
   text-align: center;
-  font-size: 7px;
-  transform: scale(0.9);
-  transform-origin: center bottom;
+  font-size: 12px;
   color: var(--pp-calendar-subtitle-color);
   white-space: nowrap;
   overflow: visible;
@@ -717,9 +721,7 @@ const onConfirmAction = () => {
   left: 2px;
   right: 2px;
   text-align: center;
-  font-size: 7px;
-  transform: scale(0.9);
-  transform-origin: center bottom;
+  font-size: 12px;
   color: var(--pp-calendar-subtitle-color);
   white-space: nowrap;
   overflow: visible;

@@ -139,6 +139,8 @@ const componentsMenu = [
       { id: 'rich-text-editor', label: 'Rich Text Editor' },
       { id: 'math-editor', label: 'Math Editor' },
       { id: 'file-upload', label: 'File Upload (Dropzone)' },
+      { id: 'image-cropper', label: 'Image Cropper' },
+      { id: 'otp-input', label: 'OTP Input' },
       { id: 'color-picker', label: 'Color Picker' }
     ]
   },
@@ -267,6 +269,8 @@ const sectionMap: Record<string, string> = {
   "rich-text-editor": "RichTextEditorSection",
   "math-editor": "MathEditorSection",
   "file-upload": "FileUploadSection",
+  "image-cropper": "ImageCropperSection",
+  "otp-input": "OtpInputSection",
   "color-picker": "ColorPickerSection",
   "toggle-button": "ToggleButtonSection",
   "icon-button": "IconButtonSection",

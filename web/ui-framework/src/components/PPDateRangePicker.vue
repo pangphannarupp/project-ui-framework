@@ -22,6 +22,8 @@
         :doubleView="true"
         :initialRangeStart="customStartDate"
         :initialRangeEnd="customEndDate"
+        :hide-header-picker="hideHeaderPicker"
+        :hide-nav-buttons="hideNavButtons"
         @range-selected="onCustomRangeSelected"
       />
     </div>
@@ -34,6 +36,8 @@ import PPCalendar from './PPCalendar.vue';
 
 const props = defineProps<{
   modelValue?: { start: Date | null, end: Date | null, presetId?: string };
+  hideHeaderPicker?: boolean;
+  hideNavButtons?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -47,13 +51,56 @@ const customEndDate = ref<Date | null>(props.modelValue?.end || null);
 const presets = [
   { id: 'today', label: 'Today', getRange: () => getSingleDayRange(0) },
   { id: 'yesterday', label: 'Yesterday', getRange: () => getSingleDayRange(1) },
+  { id: 'this_week', label: 'This week', getRange: () => getThisWeekRange() },
+  { id: 'last_week', label: 'Last week', getRange: () => getLastWeekRange() },
   { id: '7d', label: 'Last 7 days', getRange: () => getPastDaysRange(7) },
   { id: '14d', label: 'Last 14 days', getRange: () => getPastDaysRange(14) },
   { id: '30d', label: 'Last 30 days', getRange: () => getPastDaysRange(30) },
+  { id: 'this_month', label: 'This month', getRange: () => getThisMonthRange() },
+  { id: 'last_month', label: 'Last month', getRange: () => getLastMonthRange() },
   { id: '3m', label: 'Last 3 months', getRange: () => getPastMonthsRange(3) },
   { id: '6m', label: 'Last 6 months', getRange: () => getPastMonthsRange(6) },
   { id: '1y', label: 'Last year', getRange: () => getPastMonthsRange(12) }
 ];
+
+const getThisWeekRange = () => {
+  const start = new Date();
+  const day = start.getDay();
+  const diff = start.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+  start.setDate(diff);
+  const end = new Date(start);
+  end.setDate(end.getDate() + 6);
+  return { start, end };
+};
+
+const getLastWeekRange = () => {
+  const start = new Date();
+  const day = start.getDay();
+  const diff = start.getDate() - day + (day === 0 ? -6 : 1) - 7;
+  start.setDate(diff);
+  const end = new Date(start);
+  end.setDate(end.getDate() + 6);
+  return { start, end };
+};
+
+const getThisMonthRange = () => {
+  const start = new Date();
+  start.setDate(1);
+  const end = new Date(start);
+  end.setMonth(end.getMonth() + 1);
+  end.setDate(0);
+  return { start, end };
+};
+
+const getLastMonthRange = () => {
+  const start = new Date();
+  start.setMonth(start.getMonth() - 1);
+  start.setDate(1);
+  const end = new Date(start);
+  end.setMonth(end.getMonth() + 1);
+  end.setDate(0);
+  return { start, end };
+};
 
 const getSingleDayRange = (daysAgo: number) => {
   const start = new Date();

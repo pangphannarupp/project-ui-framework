@@ -30,6 +30,31 @@
         </div>
 
         <div class="variant-group">
+          <h3>Week Selection</h3>
+          <p class="custom-guide"><strong>Props:</strong> <code>config={ selectionMode: 'Week' }</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
+            <PPCalendar 
+              :config="{ selectionMode: 'Week' }"
+              @range-selected="(start, end) => alertVal('Week: ' + (start ? start.date.toLocaleDateString() : '') + ' to ' + (end ? end.date.toLocaleDateString() : ''))"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;PPCalendar :config="{ selectionMode: 'Week' }" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
+          <h3>Hide Header Controls</h3>
+          <p class="custom-guide"><strong>Props:</strong> <code>hideHeaderPicker</code>, <code>hideNavButtons</code></p>
+          <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden;">
+            <PPCalendar 
+              :hide-header-picker="true"
+              :hide-nav-buttons="true"
+              @date-selected="s => alertVal('Selected Date: ' + s.date.toLocaleDateString())"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;PPCalendar :hide-header-picker="true" :hide-nav-buttons="true" /&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
           <h3>Calendar Bottom Sheet</h3>
           <p class="custom-guide"><strong>Component:</strong> <code>&lt;PPCalendarSheet&gt;</code></p>
           <div class="component-demo" style="background: #ffffff; border: 1px solid #ddd; border-radius: 12px; padding: 20px;">
