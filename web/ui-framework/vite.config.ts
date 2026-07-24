@@ -20,7 +20,6 @@ export default defineConfig({
     }
   ],
   build: {
-    minify: false,
     lib: {
       entry: {
         'ui-framework': resolve(__dirname, 'src/index.ts')
@@ -28,10 +27,13 @@ export default defineConfig({
       name: 'UIFramework'
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@ionic/vue', 'ionicons/icons', 'pdfjs-dist', 'pdfjs-dist/build/pdf.worker.mjs?url'],
       output: {
         globals: {
-          vue: 'Vue'
+          vue: 'Vue',
+          '@ionic/vue': 'IonicVue',
+          'ionicons/icons': 'IoniconsIcons',
+          'pdfjs-dist': 'pdfjsLib'
         }
       }
     }
