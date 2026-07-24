@@ -15,8 +15,8 @@ const props = defineProps<{
 
 const tabId = props.id || props.title.toLowerCase().replace(/\s+/g, '-');
 
-const registerTab = inject('bizRibbonRegisterTab') as ((tab: any) => void);
-const activeTabId = inject('bizRibbonActiveTab') as { value: string };
+const registerTab = inject('ppRibbonRegisterTab') as ((tab: any) => void);
+const activeTabId = inject('ppRibbonActiveTab') as { value: string };
 
 onMounted(() => {
   if (registerTab) {

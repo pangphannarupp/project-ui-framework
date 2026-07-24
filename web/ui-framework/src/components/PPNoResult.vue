@@ -2,8 +2,9 @@
   <div class="pp-no-result">
     <div class="no-result-graphic">
       <slot name="graphic">
+        <ion-icon v-if="icon" :icon="icon" class="no-result-icon"></ion-icon>
         <!-- Default graphic matching the design -->
-        <svg viewBox="0 0 120 120" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg v-else viewBox="0 0 120 120" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Grey Circle with Question Mark -->
           <circle cx="50" cy="50" r="30" fill="#9e9e9e" />
           <path d="M43 40C43 36.134 46.134 33 50 33C53.866 33 57 36.134 57 40C57 42.5 54 44.5 51.5 46.5C50.5 47.3 50 48.5 50 50V52" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -30,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import { IonIcon } from '@ionic/vue';
+
 defineProps({
   title: {
     type: String,
@@ -38,6 +41,10 @@ defineProps({
   subtitle: {
     type: String,
     default: 'Try changing your search or filter.'
+  },
+  icon: {
+    type: String,
+    default: ''
   }
 });
 </script>
@@ -54,6 +61,11 @@ defineProps({
 
 .no-result-graphic {
   margin-bottom: 24px;
+}
+
+.no-result-icon {
+  font-size: 80px;
+  color: #9e9e9e;
 }
 
 .no-result-title {

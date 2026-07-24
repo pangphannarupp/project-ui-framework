@@ -5,16 +5,22 @@
 
     <h3>Standard Keypad</h3>
     <div class="demo-box">
-      <div style="text-align: center; font-size: 24px; margin-bottom: 24px; font-family: monospace;">
-        {{ keypadValue || 'Enter Amount' }}
+      <div style="margin-bottom: 24px;">
+        <div style="text-align: center; font-size: 24px; margin-bottom: 24px; font-family: monospace;">
+          {{ keypadValue || 'Enter Amount' }}
+        </div>
+        <PPKeypad @input="onKeypadInput" @delete="onKeypadDelete" />
       </div>
-      <PPKeypad @input="onKeypadInput" @delete="onKeypadDelete" />
+      <pre class="code-block" style="margin: 0;"><code>&lt;PPKeypad @input="onInput" @delete="onDelete" /&gt;</code></pre>
     </div>
 
     <h3>Secure Keyboard</h3>
     <p>A randomized keyboard layout to prevent keylogging/screen tracking.</p>
     <div class="demo-box">
-      <PPSecureKeyboard @input="onSecureInput" @delete="onSecureDelete" />
+      <div style="margin-bottom: 24px;">
+        <PPSecureKeyboard @input="onSecureInput" @delete="onSecureDelete" />
+      </div>
+      <pre class="code-block" style="margin: 0;"><code>&lt;PPSecureKeyboard @input="onInput" @delete="onDelete" /&gt;</code></pre>
     </div>
 
   </div>

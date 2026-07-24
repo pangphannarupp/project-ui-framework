@@ -1,5 +1,5 @@
 <template>
-  <div class="pp-tree">
+  <div class="pp-tree" :class="[`pp-tree--${variant}`]">
     <PPTreeNode 
       v-for="node in data" 
       :key="node.id" 
@@ -36,6 +36,11 @@ const props = defineProps({
   selectable: {
     type: Boolean,
     default: true
+  },
+  variant: {
+    type: String,
+    default: 'standard',
+    validator: (val: string) => ['standard', 'boxed', 'lined', 'zebra'].includes(val)
   }
 });
 
@@ -43,10 +48,11 @@ const emit = defineEmits(['node-click', 'node-expand', 'node-collapse']);
 
 const selectedId = ref<string | number | null>(null);
 
-provide('bizTreeOptions', {
+provide('ppTreeOptions', {
   expandAll: props.expandAll,
   selectable: props.selectable,
-  selectedId
+  selectedId,
+  variant: props.variant
 });
 
 const handleToggle = (node: TreeNodeData, expanded: boolean) => {

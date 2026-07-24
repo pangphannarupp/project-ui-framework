@@ -54,7 +54,7 @@ fun BizLanguageSheet(
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
-                text = "Choose the language and region you want to use in smartBiz app",
+                text = "Choose the language and region you want to use in app",
                 fontSize = 12.sp,
                 color = Color(0xFF555555),
                 lineHeight = 16.sp,

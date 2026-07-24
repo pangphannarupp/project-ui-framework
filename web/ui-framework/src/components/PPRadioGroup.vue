@@ -21,7 +21,7 @@ const updateValue = (value: any) => {
   emit('change', value);
 };
 
-provide('bizRadioGroup', {
+provide('ppRadioGroup', {
   modelValue: computed(() => props.modelValue),
   updateValue
 });

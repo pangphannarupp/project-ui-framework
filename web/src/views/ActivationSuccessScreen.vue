@@ -13,8 +13,8 @@
 
         <h1 class="success-title">Activation Success!</h1>
         <p class="success-subtitle">
-          The smartBiz activation completed successfully.<br>
-          You can access smartBiz Web by scanning<br>
+          The activation completed successfully.<br>
+          You can access the web portal by scanning<br>
           the QR code displayed in log in screen.
         </p>
 
@@ -32,8 +32,8 @@
               </svg>
             </div>
             <div class="card-text">
-              <h4>Access smartBiz Web</h4>
-              <p>Open smartBiz Web on your desktop browser to generate a QR code for quick sign in.</p>
+              <h4>Access the web portal</h4>
+              <p>Open the web portal on your desktop browser to generate a QR code for quick sign in.</p>
             </div>
           </div>
 
@@ -42,7 +42,7 @@
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
-            <span class="link-url">smartbiz.ppcbank.com.kh</span>
+            <span class="link-url">portal.example.com</span>
             <button class="share-btn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="share-icon">
                 <circle cx="18" cy="5" r="3"></circle>

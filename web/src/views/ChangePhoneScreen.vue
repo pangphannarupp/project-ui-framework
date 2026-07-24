@@ -12,7 +12,7 @@
 
         <h1 class="phone-title">Enter New<br>Phone Number</h1>
         <p class="phone-subtitle">
-          Enter the new phone number to register with PPCBank smartBiz for account activation.
+          Enter the new phone number to register with our platform for account activation.
         </p>
       </div>
 

@@ -72,6 +72,66 @@
   &lt;/PPTimelineItem&gt;
 &lt;/PPTimeline&gt;</code></pre>
     </div>
+
+    <div class="demo-box">
+      <h3>Alternate Layout & Hollow Nodes</h3>
+      <p class="helper-text">Alternating sides with hollow variant and dashed lines for pending events. (Reload to see the animation)</p>
+      <div class="demo-content">
+        <PPTimeline direction="vertical" align="alternate" animated>
+          <PPTimelineItem timestamp="2023-04-12" type="primary" variant="hollow">
+            <h4>Created</h4>
+            <p>Order created successfully.</p>
+          </PPTimelineItem>
+          
+          <PPTimelineItem timestamp="2023-04-13" type="success" variant="hollow">
+            <h4>Processed</h4>
+            <p>Order is being processed.</p>
+          </PPTimelineItem>
+
+          <PPTimelineItem timestamp="2023-04-14" type="warning" variant="hollow" active>
+            <h4>Shipped</h4>
+            <p>Order has been shipped.</p>
+          </PPTimelineItem>
+          
+          <PPTimelineItem timestamp="Pending" type="info" variant="hollow" dashed>
+            <h4>Delivered</h4>
+            <p>Awaiting delivery.</p>
+          </PPTimelineItem>
+        </PPTimeline>
+      </div>
+      <pre class="code-block"><code>&lt;PPTimeline direction="vertical" align="alternate" animated&gt;
+  &lt;PPTimelineItem variant="hollow"&gt;...&lt;/PPTimelineItem&gt;
+  &lt;PPTimelineItem variant="hollow" active&gt;...&lt;/PPTimelineItem&gt;
+  &lt;PPTimelineItem variant="hollow" dashed&gt;...&lt;/PPTimelineItem&gt;
+&lt;/PPTimeline&gt;</code></pre>
+
+      <h3>Custom Icon Timeline</h3>
+      <p class="helper-text">Use the <code>#icon</code> slot to replace the standard dot.</p>
+      <div class="demo-content">
+        <PPTimeline direction="vertical">
+          <PPTimelineItem type="success" size="large">
+            <template #icon>
+              <div style="background: #4caf50; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: white;">✓</div>
+            </template>
+            <h4>Step 1 Complete</h4>
+          </PPTimelineItem>
+          <PPTimelineItem type="primary" dashed>
+            <template #icon>
+              <div style="background: white; border: 2px solid #1a2a5e; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: #1a2a5e; font-size: 12px; font-weight: bold;">2</div>
+            </template>
+            <h4>Step 2 In Progress</h4>
+          </PPTimelineItem>
+        </PPTimeline>
+      </div>
+      <pre class="code-block"><code>&lt;PPTimeline direction="vertical"&gt;
+  &lt;PPTimelineItem type="success" size="large"&gt;
+    &lt;template #icon&gt;
+      &lt;div&gt;✓&lt;/div&gt;
+    &lt;/template&gt;
+    &lt;h4&gt;Step 1 Complete&lt;/h4&gt;
+  &lt;/PPTimelineItem&gt;
+&lt;/PPTimeline&gt;</code></pre>
+    </div>
   </div>
 </template>
 

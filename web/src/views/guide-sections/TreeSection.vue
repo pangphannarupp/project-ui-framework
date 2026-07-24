@@ -4,11 +4,35 @@
     <p>A component for displaying hierarchical data in a tree structure.</p>
 
     <div class="demo-box">
-      <h3>Basic Tree</h3>
+      <h3>Standard Tree</h3>
       <div class="demo-content">
-        <PPTree :data="treeData" @node-click="handleNodeClick" />
+        <PPTree :data="treeData" @node-click="handleNodeClick" variant="standard" />
       </div>
-      <pre class="code-block"><code>&lt;PPTree :data="treeData" @node-click="handleNodeClick" /&gt;</code></pre>
+      <pre class="code-block"><code>&lt;PPTree :data="treeData" variant="standard" /&gt;</code></pre>
+    </div>
+
+    <div class="demo-box">
+      <h3>Boxed Tree</h3>
+      <div class="demo-content">
+        <PPTree :data="treeData" @node-click="handleNodeClick" variant="boxed" />
+      </div>
+      <pre class="code-block"><code>&lt;PPTree :data="treeData" variant="boxed" /&gt;</code></pre>
+    </div>
+
+    <div class="demo-box">
+      <h3>Lined Tree</h3>
+      <div class="demo-content" style="background: white;">
+        <PPTree :data="treeData" @node-click="handleNodeClick" variant="lined" />
+      </div>
+      <pre class="code-block"><code>&lt;PPTree :data="treeData" variant="lined" /&gt;</code></pre>
+    </div>
+
+    <div class="demo-box">
+      <h3>Zebra Tree</h3>
+      <div class="demo-content" style="padding: 0; overflow: hidden; background: white; border: 1px solid #e0e0e0;">
+        <PPTree :data="treeData" @node-click="handleNodeClick" variant="zebra" />
+      </div>
+      <pre class="code-block"><code>&lt;PPTree :data="treeData" variant="zebra" /&gt;</code></pre>
 
       <div v-if="clickedNode" style="margin-top: 16px; font-size: 14px; color: #666;">
         Selected: {{ clickedNode }}

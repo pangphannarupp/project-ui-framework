@@ -33,7 +33,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const radioGroup = inject<{ 
   modelValue: Ref<any>; 
   updateValue: (val: any) => void 
-} | null>('bizRadioGroup', null);
+} | null>('ppRadioGroup', null);
 
 const isChecked = computed(() => {
   if (radioGroup && props.value !== undefined) {

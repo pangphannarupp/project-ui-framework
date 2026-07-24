@@ -78,7 +78,7 @@ fun AppBranchLocatorScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 
                 Text(
-                    text = "PPCBank Branch",
+                    text = "The Bank Branch",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -87,7 +87,7 @@ fun AppBranchLocatorScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 
                 Text(
-                    text = "Please find your nearest PPCBank branch with your convenience map and direction.",
+                    text = "Please find your nearest branch with your convenience map and direction.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.White.copy(alpha = 0.8f)
                 )

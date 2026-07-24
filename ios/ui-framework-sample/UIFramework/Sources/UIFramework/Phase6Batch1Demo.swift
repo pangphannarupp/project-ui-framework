@@ -2,7 +2,7 @@ import SwiftUI
 
 public struct BizPhase6Batch1Demo: View {
     @State private var accounts = [
-        BizAccountModel(accountName: "PPCBank Saving", accountNumber: "99999-999-999", balance: 12500.50, currency: "USD", type: "Savings", isHidden: false),
+        BizAccountModel(accountName: "Saving Account", accountNumber: "99999-999-999", balance: 12500.50, currency: "USD", type: "Savings", isHidden: false),
         BizAccountModel(accountName: "Current Account", accountNumber: "11111-111-111", balance: 5000000.00, currency: "KHR", type: "Current", isHidden: false)
     ]
     

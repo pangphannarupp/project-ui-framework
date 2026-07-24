@@ -19,7 +19,7 @@ withDefaults(defineProps<{
   side: 'top'
 });
 
-const fabContext = inject<{ active: any, position: string } | null>('bizFabContext', null);
+const fabContext = inject<{ active: any, position: string } | null>('ppFabContext', null);
 </script>
 
 <style scoped>

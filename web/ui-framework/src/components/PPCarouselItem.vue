@@ -7,16 +7,26 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue';
 
-const context = inject('bizCarouselContext', {
+const context = inject('ppCarouselContext', {
   itemsPerView: { value: 1 },
-  gap: { value: '16px' }
+  gap: { value: '16px' },
+  variant: { value: 'standard' }
 }) as any;
 
 const itemStyle = computed(() => {
   const itemsPerView = context.itemsPerView.value;
   const gap = context.gap.value;
+  const variant = context.variant?.value || 'standard';
   
-  if (itemsPerView === 1) {
+  if (variant === 'reel') {
+    return {
+      flex: '0 0 100%',
+      minHeight: '100%',
+      width: '100%'
+    };
+  }
+
+  if (variant === 'story' || itemsPerView === 1) {
     return {
       flex: '0 0 100%',
       minWidth: '100%'

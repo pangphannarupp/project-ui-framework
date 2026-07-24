@@ -22,7 +22,7 @@ const props = defineProps<{
 const context = inject<{
   activeValue: { value: string | number },
   updateValue: (val: string | number) => void
-}>('bizSegmentContext');
+}>('ppSegmentContext');
 
 if (!context) {
   throw new Error('PPSegmentButton must be used within a PPSegment component');

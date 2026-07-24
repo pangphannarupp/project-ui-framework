@@ -134,7 +134,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="box-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
               Master User
             </div>
-            <p>Please visit your nearest <strong>PPCBank branch</strong> for assistance to reset your User ID or Password.</p>
+            <p>Please visit your nearest <strong>branch</strong> for assistance to reset your User ID or Password.</p>
             <button class="branch-btn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="branch-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
               Find Nearest Branch
@@ -174,7 +174,7 @@
         v-model="showAccountLocked" 
         icon="locked" 
         title="Account Locked" 
-        description="Your account is now locked.<br>Please visit PPCBank branch to unlock your account."
+        description="Your account is now locked.<br>Please visit branch to unlock your account."
         buttonText="Okay"
       />
 
@@ -183,7 +183,7 @@
         v-model="showNotActivated" 
         icon="error" 
         title="Not Yet Activated" 
-        description="Please go to smartBiz Web and activate there."
+        description="Please go to the web portal and activate there."
         buttonText="Okay"
       />
 

@@ -11,6 +11,7 @@
       <div 
         v-if="modelValue" 
         class="pp-bottom-sheet-container" 
+        :class="sheetClass"
         role="dialog" 
         aria-modal="true"
         ref="sheetRef"
@@ -43,9 +44,14 @@
 <script setup lang="ts">
 import { ref, watch, onUnmounted, computed } from 'vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   modelValue: boolean;
-}>();
+  enableSwipeToClose?: boolean;
+  sheetClass?: string;
+}>(), {
+  enableSwipeToClose: true,
+  sheetClass: ''
+});
 
 const emit = defineEmits(['update:modelValue', 'close']);
 
@@ -74,6 +80,7 @@ const resetDragState = () => {
 
 // Touch Handlers
 const onTouchStart = (e: TouchEvent) => {
+  if (!props.enableSwipeToClose) return;
   isDragging.value = true;
   startY.value = e.touches[0].clientY;
 };
@@ -103,6 +110,7 @@ const onTouchEnd = () => {
 
 // Mouse Handlers (for desktop testing)
 const onMouseDown = (e: MouseEvent) => {
+  if (!props.enableSwipeToClose) return;
   isDragging.value = true;
   startY.value = e.clientY;
   document.addEventListener('mousemove', onMouseMove);

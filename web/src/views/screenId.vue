@@ -35,8 +35,8 @@
 
         <div class="notification-list">
           <PPNotificationItem 
-            title="PPCBank" 
-            description="Set up smartPay now for easier business payment"
+            title="The Bank" 
+            description="Set up fast payments now for easier business payment"
             timestamp="29 SEP, 2026 7:41:42 PM"
             :unread="true"
           >

@@ -24,8 +24,8 @@
           <div class="component-demo" style="background: #f4f5f8; padding: 20px; border-radius: 12px;">
             <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 400px;">
               <PPNotificationItem 
-                title="PPCBank" 
-                description="Set up smartPay now, easy transfer, and payment anytime, anywhere. Scan KHQR..." 
+                title="The Bank" 
+                description="Set up fast payments now, easy transfer, and payment anytime, anywhere. Scan KHQR..." 
                 timestamp="29 SEP, 2026 7:41:42 PM" 
                 :unread="true"
               >

@@ -131,8 +131,26 @@ import PPTimelineItem from './components/PPTimelineItem.vue'
 import PPTree from './components/PPTree.vue'
 import PPTreeNode from './components/PPTreeNode.vue'
 import PPWebToast from './components/PPWebToast.vue'
+import PPOnboard from './components/PPOnboard.vue'
+import PPSignaturePad from './components/PPSignaturePad.vue'
+import PPSignaturePadAlert from './components/PPSignaturePadAlert.vue'
+import PPSignaturePadSheet from './components/PPSignaturePadSheet.vue'
 import PPPagination from './components/PPPagination.vue'
 import PPTable from './components/PPTable.vue'
+import PPSidebarNavigation from './components/PPSidebarNavigation.vue'
+import PPHeaderBar from './components/PPHeaderBar.vue'
+import PPBottomBar from './components/PPBottomBar.vue'
+import PPAvatar from './components/PPAvatar.vue'
+import PPAvatarGroup from './components/PPAvatarGroup.vue'
+import PPBadge from './components/PPBadge.vue'
+import PPChip from './components/PPChip.vue'
+import PPDivider from './components/PPDivider.vue'
+import PPBreadcrumb from './components/PPBreadcrumb.vue'
+import PPStepper from './components/PPStepper.vue'
+import PPTooltip from './components/PPTooltip.vue'
+import PPDropdown from './components/PPDropdown.vue'
+import PPConsole from './components/PPConsole.vue'
+import PPReactionPicker from './components/PPReactionPicker.vue'
 
 // Export components individually
 export { 
@@ -269,7 +287,25 @@ export {
   PPWebToast,
   PPPagination,
   PPTable,
-  PPAnimatedTabs
+  PPAnimatedTabs,
+  PPOnboard,
+  PPSignaturePad,
+  PPSignaturePadAlert,
+  PPSignaturePadSheet,
+  PPSidebarNavigation,
+  PPHeaderBar,
+  PPBottomBar,
+  PPAvatar,
+  PPAvatarGroup,
+  PPBadge,
+  PPChip,
+  PPDivider,
+  PPBreadcrumb,
+  PPStepper,
+  PPTooltip,
+  PPDropdown,
+  PPConsole,
+  PPReactionPicker
 }
 
 // Export a Vue plugin to install all components
@@ -399,5 +435,23 @@ export default {
     app.component('PPPagination', PPPagination)
     app.component('PPTable', PPTable)
     app.component('PPAnimatedTabs', PPAnimatedTabs)
+    app.component('PPOnboard', PPOnboard)
+    app.component('PPSignaturePad', PPSignaturePad)
+    app.component('PPSignaturePadAlert', PPSignaturePadAlert)
+    app.component('PPSignaturePadSheet', PPSignaturePadSheet)
+    app.component('PPSidebarNavigation', PPSidebarNavigation)
+    app.component('PPHeaderBar', PPHeaderBar)
+    app.component('PPBottomBar', PPBottomBar)
+    app.component('PPAvatar', PPAvatar)
+    app.component('PPAvatarGroup', PPAvatarGroup)
+    app.component('PPBadge', PPBadge)
+    app.component('PPChip', PPChip)
+    app.component('PPDivider', PPDivider)
+    app.component('PPBreadcrumb', PPBreadcrumb)
+    app.component('PPStepper', PPStepper)
+    app.component('PPTooltip', PPTooltip)
+    app.component('PPDropdown', PPDropdown)
+    app.component('PPConsole', PPConsole)
+    app.component('PPReactionPicker', PPReactionPicker)
   }
 }

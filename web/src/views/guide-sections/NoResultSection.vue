@@ -5,16 +5,39 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <PPNoResult 
-        title="No matches found" 
-        description="Try adjusting your filters or search query."
-      />
+      <div style="margin-bottom: 24px;">
+        <PPNoResult 
+          title="No matches found" 
+          description="Try changing your search or filter."
+        />
+      </div>
+      <pre class="code-block" style="margin: 0;"><code>&lt;PPNoResult 
+  title="No matches found" 
+  description="Try changing your search or filter."
+/&gt;</code></pre>
+    </div>
+
+    <h3 style="margin-top: 32px;">Custom Icon</h3>
+    <div class="demo-box">
+      <div style="margin-bottom: 24px;">
+        <PPNoResult 
+          title="No connectivity" 
+          subtitle="Please check your internet connection."
+          :icon="wifiOutline"
+        />
+      </div>
+      <pre class="code-block" style="margin: 0;"><code>&lt;PPNoResult 
+  title="No connectivity" 
+  subtitle="Please check your internet connection."
+  :icon="wifiOutline"
+/&gt;</code></pre>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { PPNoResult } from '@phanna/ui-framework';
+import { wifiOutline } from 'ionicons/icons';
 </script>
 
 <style scoped>

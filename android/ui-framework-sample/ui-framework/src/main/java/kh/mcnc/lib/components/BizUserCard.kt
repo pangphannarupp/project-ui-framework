@@ -21,8 +21,6 @@ fun BizUserCard(
     phone: String,
     status: String = "Active",
     isMaster: Boolean = false,
-    hasSmartBiz: Boolean = false,
-    hasSmartPay: Boolean = false,
     onMoreClick: () -> Unit = {}
 ) {
     val initials = if (name.contains(" ")) {
@@ -91,26 +89,8 @@ fun BizUserCard(
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                if (hasSmartBiz) {
-                    Row(
-                        modifier = Modifier
-                            .background(Color(0xFF3B63CC), RoundedCornerShape(6.dp))
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("smartBiz", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
-                    }
-                }
-                if (hasSmartPay) {
-                    Row(
-                        modifier = Modifier
-                            .background(Color(0xFF00A4E4), RoundedCornerShape(6.dp))
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("smartPay", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
-                    }
-                }
+
+
             }
         }
 

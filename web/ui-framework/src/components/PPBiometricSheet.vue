@@ -17,7 +17,7 @@
       <!-- Title & Subtitle -->
       <h2 class="bio-title">Unlock faster with {{ titleName }}</h2>
       <p class="bio-subtitle">
-        Skip PIN entry and securely access your PPCBank smartBiz account using {{ subtitleName }}.
+        Skip PIN entry and securely access your account using {{ subtitleName }}.
       </p>
 
       <!-- Selection Cards -->

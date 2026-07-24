@@ -1,5 +1,9 @@
 <template>
-  <div class="pp-timeline" :class="[`pp-timeline--${direction}`]">
+  <div class="pp-timeline" :class="[
+    `pp-timeline--${direction}`, 
+    `pp-timeline--align-${align}`,
+    { 'is-animated': animated }
+  ]">
     <slot></slot>
   </div>
 </template>
@@ -11,10 +15,20 @@ const props = defineProps({
   direction: {
     type: String,
     default: 'vertical', // 'vertical' or 'horizontal'
+  },
+  align: {
+    type: String,
+    default: 'left', // 'left', 'right', 'alternate'
+  },
+  animated: {
+    type: Boolean,
+    default: false
   }
 });
 
-provide('bizTimelineDirection', props.direction);
+provide('ppTimelineDirection', props.direction);
+provide('ppTimelineAlign', props.align);
+provide('ppTimelineAnimated', props.animated);
 </script>
 
 <style scoped>

@@ -23,7 +23,7 @@ public struct BizLanguageSheetModifier: ViewModifier {
                         .foregroundColor(Color(hex: "#1A2A5E"))
                         .padding(.bottom, 8)
                     
-                    Text("Choose the language and region you want to use in smartBiz app")
+                    Text("Choose the language and region you want to use in app")
                         .font(.system(size: 12))
                         .foregroundColor(Color(hex: "#555555"))
                         .lineSpacing(4)

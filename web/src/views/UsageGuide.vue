@@ -119,7 +119,8 @@ const componentsMenu = [
       // { id: 'account-card', label: 'Account Card' },
       // { id: 'action-card', label: 'Action Card' },
       { id: 'skeleton', label: 'Skeleton Loading' },
-      { id: 'collapse', label: 'Collapse / Accordion' }
+      { id: 'collapse', label: 'Collapse / Accordion' },
+      { id: 'dev-console', label: 'Developer Console' }
     ]
   },
   {
@@ -141,7 +142,8 @@ const componentsMenu = [
       { id: 'file-upload', label: 'File Upload (Dropzone)' },
       { id: 'image-cropper', label: 'Image Cropper' },
       { id: 'otp-input', label: 'OTP Input' },
-      { id: 'color-picker', label: 'Color Picker' }
+      { id: 'color-picker', label: 'Color Picker' },
+      { id: 'signature-pad', label: 'Signature Pad' }
     ]
   },
   {
@@ -165,20 +167,21 @@ const componentsMenu = [
       { id: 'hide-appbar', label: 'Hide App Bar (Scroll)' },
       { id: 'collapse-appbar', label: 'Collapsing App Bar' },
       { id: 'nav-drawer', label: 'Navigation Drawer' },
-      { id: 'nav-rail', label: 'Navigation Rail' },
+      { id: 'kanban', label: 'Kanban Board' },
+      { id: 'nav-sidebar', label: 'Sidebar Navigation' },
+      { id: 'navigation-path', label: 'Breadcrumb & Stepper' },
       { id: 'dynamic-island', label: 'Dynamic Island' },
       { id: 'pull-refresh', label: 'Pull to Refresh' },
       { id: 'swipe-actions', label: 'Swipe Actions' },
       { id: 'scroll-segment', label: 'Scroll Segment' },
       { id: 'ribbon', label: 'Ribbon Menu' },
-      { id: 'feedback-sheets', label: 'Toasts & Action Sheets' },
-      { id: 'action-sheets', label: 'Specific Action Sheets' },
+      // { id: 'feedback-sheets', label: 'Toasts & Action Sheets' },
+      // { id: 'action-sheets', label: 'Specific Action Sheets' },
       { id: 'web-toast', label: 'Web Toast (Desktop)' },
-      { id: 'notifications', label: 'Notifications & Scrolling' },
+      // { id: 'notifications', label: 'Notifications & Scrolling' },
       { id: 'tabs', label: 'Tabs' },
       { id: 'accordion', label: 'Accordion' },
-      { id: 'carousel', label: 'Carousel' },
-      { id: 'kanban', label: 'Kanban Board' }
+      { id: 'carousel', label: 'Carousel' }
     ]
   },
   {
@@ -187,7 +190,9 @@ const componentsMenu = [
     items: [
       { id: 'auth-screen', label: 'Authentication' },
       { id: 'settings-screen', label: 'Settings & Profile' },
-      { id: 'math-exam-screen', label: 'Math Examination' }
+      { id: 'math-exam-screen', label: 'Math Examination' },
+      { id: 'dashboard-screen', label: 'Dashboard Template' },
+      { id: 'onboard', label: 'Onboarding Flow' }
     ]
   },
   {
@@ -201,24 +206,27 @@ const componentsMenu = [
     category: 'Data Display',
     icon: barChartOutline,
     items: [
+      { id: 'data-display-basics', label: 'Basics (Avatar, Badge, Chip)' },
       { id: 'charts', label: 'Charts & Graphs' },
-      { id: 'account-saving', label: 'Account Saving Sheets' },
-      { id: 'account-reorder', label: 'Account Reorder List' },
+      // { id: 'account-saving', label: 'Account Saving Sheets' },
+      // { id: 'account-reorder', label: 'Account Reorder List' },
       { id: 'image-transition', label: 'Image Transition' },
       { id: 'timeline', label: 'Timeline' },
       { id: 'tree', label: 'Tree View' },
       { id: 'table', label: 'Table & Pagination' },
       { id: 'progress-gauge', label: 'Progress Gauge' },
       { id: 'no-result', label: 'No Result State' },
-      { id: 'cards', label: 'Cards Collection' },
-      { id: 'keypads', label: 'Keypads & Security' }
+      // { id: 'cards', label: 'Cards Collection' },
+      { id: 'keypads', label: 'Keypads & Security' },
+      { id: 'interactive-overlays', label: 'Interactive Overlays' },
+      { id: 'reaction-picker', label: 'Reaction Picker' }
     ]
   },
   {
-    category: 'Structure',
+    category: 'Structure & Layout',
     icon: layersOutline,
     items: [
-      { id: 'structure', label: 'Structural Components' }
+      { id: 'header-bottom-bar', label: 'Header & Bottom Bar' }
     ]
   }
 ];
@@ -272,6 +280,8 @@ const sectionMap: Record<string, string> = {
   "image-cropper": "ImageCropperSection",
   "otp-input": "OtpInputSection",
   "color-picker": "ColorPickerSection",
+  "signature-pad": "SignaturePadSection",
+  "data-display-basics": "DataDisplayBasicsSection",
   "toggle-button": "ToggleButtonSection",
   "icon-button": "IconButtonSection",
   "fab": "FabSection",
@@ -299,6 +309,8 @@ const sectionMap: Record<string, string> = {
   "collapse-appbar": "CollapseAppbarSection",
   "nav-drawer": "NavDrawerSection",
   "nav-rail": "NavRailSection",
+  "nav-sidebar": "NavSidebarSection",
+  "navigation-path": "NavigationPathSection",
   "dynamic-island": "DynamicIslandSection",
   "pull-refresh": "PullRefreshSection",
   "swipe-actions": "SwipeActionsSection",
@@ -307,6 +319,7 @@ const sectionMap: Record<string, string> = {
   "notifications": "NotificationsSection",
   "tabs": "LiquidTabSection",
   "accordion": "CollapseSection",
+  "interactive-overlays": "InteractiveOverlaysSection",
   "scroll-segment": "ScrollSegmentSection",
   "ribbon": "RibbonSection",
   "action-sheets": "ActionSheetsSection",
@@ -322,13 +335,18 @@ const sectionMap: Record<string, string> = {
   "auth-screen": "AuthScreen",
   "settings-screen": "SettingsScreen",
   "math-exam-screen": "MathExamScreen",
+  "dashboard-screen": "DashboardScreen",
+  "onboard": "OnboardSection",
   "timeline": "TimelineSection",
   "charts": "ChartsSection",
   "account-saving": "AccountSavingSection",
   "account-reorder": "AccountReorderSection",
   "image-transition": "ImageTransitionSection",
   "structure": "StructureSection",
-  "table": "TableSection"
+  "header-bottom-bar": "HeaderBottomBarSection",
+  "table": "TableSection",
+  "dev-console": "DevConsoleSection",
+  "reaction-picker": "ReactionPickerSection"
 };
 
 const currentComponent = computed(() => {

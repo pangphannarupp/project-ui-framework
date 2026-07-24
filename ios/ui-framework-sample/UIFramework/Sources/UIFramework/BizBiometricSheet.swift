@@ -35,7 +35,7 @@ public struct BizBiometricSheetModifier: ViewModifier {
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 12)
                     
-                    Text("Skip PIN entry and securely access your PPCBank smartBiz account using \(subtitleName).")
+                    Text("Skip PIN entry and securely access your account using \(subtitleName).")
                         .font(.system(size: 13))
                         .foregroundColor(Color(hex: "#555555"))
                         .multilineTextAlignment(.center)

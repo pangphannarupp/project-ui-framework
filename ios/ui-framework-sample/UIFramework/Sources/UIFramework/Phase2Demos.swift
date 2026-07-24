@@ -63,7 +63,6 @@ public struct BizUserCardDemo: View {
                     phone: "012 345 678",
                     status: .active,
                     isMaster: true,
-                    hasSmartBiz: true,
                     hasSmartPay: true
                 )
                 
@@ -72,7 +71,6 @@ public struct BizUserCardDemo: View {
                     phone: "098 765 432",
                     status: .pending,
                     isMaster: false,
-                    hasSmartBiz: false,
                     hasSmartPay: true
                 )
             }

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@phanna/ui-framework": "file:ui-framework",
-    "@bizmob/core": "^1.4.23",
+    "@capacitor/ios": "^6.1.0",
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",
     "ionicons": "^7.0.0",

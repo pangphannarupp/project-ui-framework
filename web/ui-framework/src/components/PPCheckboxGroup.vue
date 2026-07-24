@@ -31,7 +31,7 @@ const updateValue = (value: any, checked: boolean) => {
   emit('change', newValue);
 };
 
-provide('bizCheckboxGroup', {
+provide('ppCheckboxGroup', {
   modelValue: computed(() => props.modelValue),
   updateValue
 });

@@ -9,8 +9,8 @@
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
-        <h1 class="header-title">PPCBank Branch</h1>
-        <p class="header-subtitle">Please find your nearest PPCBank branch with your convenience map and direction.</p>
+        <h1 class="header-title">The Bank Branch</h1>
+        <p class="header-subtitle">Please find your nearest branch with your convenience map and direction.</p>
       </div>
 
       <!-- Action buttons for demoing the bottom sheets -->

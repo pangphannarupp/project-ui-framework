@@ -12,8 +12,8 @@ public struct BizUserCard: View {
     public let phone: String
     public let status: BizUserStatus
     public let isMaster: Bool
-    public let hasSmartBiz: Bool
-    public let hasSmartPay: Bool
+
+
     public let onMoreTap: (() -> Void)?
     
     public init(
@@ -21,16 +21,14 @@ public struct BizUserCard: View {
         phone: String,
         status: BizUserStatus = .active,
         isMaster: Bool = false,
-        hasSmartBiz: Bool = false,
-        hasSmartPay: Bool = false,
         onMoreTap: (() -> Void)? = nil
     ) {
         self.name = name
         self.phone = phone
         self.status = status
         self.isMaster = isMaster
-        self.hasSmartBiz = hasSmartBiz
-        self.hasSmartPay = hasSmartPay
+
+
         self.onMoreTap = onMoreTap
     }
     
@@ -78,12 +76,8 @@ public struct BizUserCard: View {
                 .padding(.bottom, 4)
                 
                 HStack(spacing: 8) {
-                    if hasSmartBiz {
-                        badgeView(text: "smartBiz", icon: "checkmark.seal.fill", bgColor: Color(red: 59/255, green: 99/255, blue: 204/255))
-                    }
-                    if hasSmartPay {
-                        badgeView(text: "smartPay", icon: "creditcard", bgColor: Color(red: 0, green: 164/255, blue: 228/255))
-                    }
+
+
                 }
             }
             

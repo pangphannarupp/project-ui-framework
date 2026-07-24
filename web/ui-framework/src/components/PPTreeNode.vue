@@ -2,7 +2,10 @@
   <div class="pp-tree-node">
     <div 
       class="pp-tree-node__content" 
-      :class="{ 'is-selected': isSelected, 'is-selectable': treeOptions?.selectable }"
+      :class="[
+        { 'is-selected': isSelected, 'is-selectable': treeOptions?.selectable },
+        `variant-${treeOptions.variant || 'standard'}`
+      ]"
       :style="{ paddingLeft: `${level * 16}px` }"
       @click="handleSelect"
     >
@@ -25,12 +28,13 @@
       </div>
     </div>
     
-    <div v-if="isExpanded && !isLeaf" class="pp-tree-node__children">
+    <div v-if="isExpanded && !isLeaf" class="pp-tree-node__children" :class="`children-variant-${treeOptions.variant || 'standard'}`">
       <PPTreeNode 
-        v-for="child in node.children" 
+        v-for="(child, index) in node.children" 
         :key="child.id" 
         :node="child" 
         :level="level + 1"
+        :is-last="index === node.children.length - 1"
         @toggle="$emit('toggle', $event, $event.expanded)"
         @select="$emit('select', $event)"
       />
@@ -50,15 +54,20 @@ const props = defineProps({
   level: {
     type: Number,
     default: 0
+  },
+  isLast: {
+    type: Boolean,
+    default: false
   }
 });
 
 const emit = defineEmits(['toggle', 'select']);
 
-const treeOptions = inject('bizTreeOptions', {
+const treeOptions = inject('ppTreeOptions', {
   expandAll: false,
   selectable: true,
-  selectedId: ref(null)
+  selectedId: ref(null),
+  variant: 'standard'
 } as any);
 
 const isExpanded = ref(props.node.expanded || false);
@@ -150,5 +159,71 @@ const handleSelect = () => {
 .pp-tree-node__label {
   font-size: 14px;
   user-select: none;
+}
+
+/* BOXED VARIANT */
+.variant-boxed {
+  border: 1px solid #eef1f6;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  height: 42px;
+}
+.variant-boxed:hover {
+  border-color: #d1d9e6;
+  background-color: #f8fafc;
+}
+.variant-boxed.is-selected {
+  border-color: #003399;
+  background-color: #f0f5ff;
+}
+
+/* ZEBRA VARIANT */
+.variant-zebra {
+  border-radius: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.pp-tree-node:nth-child(even) > .variant-zebra {
+  background-color: #fafafa;
+}
+.pp-tree-node:nth-child(odd) > .variant-zebra {
+  background-color: #ffffff;
+}
+.variant-zebra.is-selected {
+  background-color: #e6f0ff !important;
+  border-left: 3px solid #003399;
+}
+
+/* LINED VARIANT */
+.pp-tree-node__children.children-variant-lined {
+  position: relative;
+}
+
+/* Vertical line for the children container */
+.pp-tree-node__children.children-variant-lined::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 20px; /* Stop before the very bottom to connect cleanly */
+  left: var(--line-left);
+  width: 1px;
+  background-color: #dcdcdc;
+  z-index: 1;
+}
+
+/* Horizontal line for lined items > level 0 */
+.variant-lined {
+  position: relative;
+}
+.pp-tree-node__children .variant-lined::before {
+  content: '';
+  position: absolute;
+  left: var(--parent-line-left);
+  top: 17.5px; /* middle of 36px */
+  width: 12px;
+  height: 1px;
+  background-color: #dcdcdc;
+  z-index: 1;
 }
 </style>

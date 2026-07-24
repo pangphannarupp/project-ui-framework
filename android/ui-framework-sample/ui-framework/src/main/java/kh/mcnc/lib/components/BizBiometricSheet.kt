@@ -93,7 +93,7 @@ fun BizBiometricSheet(
             )
 
             Text(
-                text = "Skip PIN entry and securely access your PPCBank smartBiz account using $subtitleName.",
+                text = "Skip PIN entry and securely access your account using $subtitleName.",
                 fontSize = 13.sp,
                 color = Color(0xFF555555),
                 textAlign = TextAlign.Center,

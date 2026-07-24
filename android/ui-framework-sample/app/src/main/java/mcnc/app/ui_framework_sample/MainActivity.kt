@@ -1102,7 +1102,6 @@ BizKhmerCalendar(
                             phone = "012 345 678",
                             status = "Active",
                             isMaster = true,
-                            hasSmartBiz = true,
                             hasSmartPay = true
                         )
                         BizUserCard(
@@ -1110,7 +1109,6 @@ BizKhmerCalendar(
                             phone = "098 765 432",
                             status = "Pending",
                             isMaster = false,
-                            hasSmartBiz = false,
                             hasSmartPay = true
                         )
                     }
@@ -1589,7 +1587,7 @@ BizKhmerCalendar(
                             
                             var isHidden1 by remember { mutableStateOf(false) }
                             BizAccountListCard(
-                                accountName = "PPCBank Saving",
+                                accountName = "Saving Account",
                                 accountNumber = "99999-999-999",
                                 balance = 12500.50,
                                 currency = "USD",
@@ -1606,7 +1604,7 @@ BizKhmerCalendar(
                             Text("Account Saving Card", style = MaterialTheme.typography.titleMedium)
                             
                             BizAccountSavingCard(
-                                accountName = "PPCBank Saving",
+                                accountName = "Saving Account",
                                 accountNumber = "99999-999-999",
                                 balance = 12500.50,
                                 currency = "USD",

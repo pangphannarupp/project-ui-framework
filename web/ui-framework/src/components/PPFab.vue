@@ -58,7 +58,7 @@ const onClick = () => {
   emit('click', active.value);
 };
 
-provide('bizFabContext', {
+provide('ppFabContext', {
   active,
   position: props.position
 });

@@ -46,14 +46,14 @@ watch(activeTabId, (newVal) => {
 });
 
 // Provide a way for child tabs to register themselves
-provide('bizRibbonRegisterTab', (tab: { id: string; title: string; color?: string }) => {
+provide('ppRibbonRegisterTab', (tab: { id: string; title: string; color?: string }) => {
   tabs.value.push(tab);
   if (!activeTabId.value) {
     activeTabId.value = tab.id;
   }
 });
 
-provide('bizRibbonActiveTab', activeTabId);
+provide('ppRibbonActiveTab', activeTabId);
 
 </script>
 

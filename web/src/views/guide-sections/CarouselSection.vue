@@ -1,14 +1,14 @@
 <template>
   <div class="component-section">
     <h2>Carousel</h2>
-    <p>A highly performant touch-friendly slider component using native CSS scroll snapping. Supports autoplay, pagination, and multi-item views.</p>
+    <p>A highly performant touch-friendly slider component using native CSS scroll snapping. Supports autoplay, pagination, multi-item views, and multiple variants (standard, story, reel).</p>
 
     <!-- Standard Image Carousel -->
     <div class="demo-box">
       <h3>Standard Image Carousel</h3>
       <p class="helper-text">1 item per view, dots, arrows, and looping enabled.</p>
       <div class="demo-content">
-        <PPCarousel :loop="true" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <PPCarousel variant="standard" :loop="true" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <PPCarouselItem v-for="i in 5" :key="i">
             <div class="slide-image-placeholder" :style="{ background: `hsl(${i * 60}, 70%, 50%)` }">
               <h2>Slide {{ i }}</h2>
@@ -16,7 +16,8 @@
           </PPCarouselItem>
         </PPCarousel>
       </div>
-      <pre class="code-block" v-pre><code>&lt;PPCarousel :loop="true"&gt;
+      <pre class="code-block" v-pre><code>&lt;!-- variant can be 'standard' (default), 'story', or 'reel' --&gt;
+&lt;PPCarousel variant="standard" :loop="true"&gt;
   &lt;PPCarouselItem v-for="i in 5" :key="i"&gt;
     &lt;!-- Your content here --&gt;
   &lt;/PPCarouselItem&gt;
@@ -48,6 +49,49 @@
 &gt;
   &lt;PPCarouselItem v-for="item in cards" :key="item.id"&gt;
     &lt;div class="product-card"&gt;...&lt;/div&gt;
+  &lt;/PPCarouselItem&gt;
+&lt;/PPCarousel&gt;</code></pre>
+    </div>
+
+    <!-- Story Carousel -->
+    <div class="demo-box">
+      <h3>Story Carousel</h3>
+      <p class="helper-text">Instagram-style story carousel with progress bars.</p>
+      <div class="demo-content">
+        <PPCarousel variant="story" :autoplay="true" :interval="3000" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 300px; height: 500px; margin: 0 auto;">
+          <PPCarouselItem v-for="i in 3" :key="`story-${i}`">
+            <div class="slide-image-placeholder full-height" :style="{ background: `hsl(${i * 80 + 100}, 70%, 50%)` }">
+              <h2>Story {{ i }}</h2>
+            </div>
+          </PPCarouselItem>
+        </PPCarousel>
+      </div>
+      <pre class="code-block" v-pre><code>&lt;PPCarousel variant="story" :autoplay="true" :interval="3000"&gt;
+  &lt;PPCarouselItem v-for="i in 3" :key="i"&gt;
+    &lt;!-- Story content here --&gt;
+  &lt;/PPCarouselItem&gt;
+&lt;/PPCarousel&gt;</code></pre>
+    </div>
+
+    <!-- Reel Carousel -->
+    <div class="demo-box">
+      <h3>Reel Carousel</h3>
+      <p class="helper-text">TikTok-style vertical scrolling reel.</p>
+      <div class="demo-content">
+        <PPCarousel variant="reel" :showDots="false" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 300px; height: 500px; margin: 0 auto;">
+          <PPCarouselItem v-for="i in 4" :key="`reel-${i}`">
+            <div class="slide-image-placeholder full-height" :style="{ background: `hsl(${i * 40 + 200}, 70%, 50%)` }">
+              <div>
+                <h2>Reel {{ i }}</h2>
+                <p style="font-size: 14px; opacity: 0.8">Swipe up or down</p>
+              </div>
+            </div>
+          </PPCarouselItem>
+        </PPCarousel>
+      </div>
+      <pre class="code-block" v-pre><code>&lt;PPCarousel variant="reel" :showDots="false"&gt;
+  &lt;PPCarouselItem v-for="i in 4" :key="i"&gt;
+    &lt;!-- Reel content here --&gt;
   &lt;/PPCarouselItem&gt;
 &lt;/PPCarousel&gt;</code></pre>
     </div>
@@ -104,6 +148,11 @@ const cards = ref([
   color: white;
   font-size: 24px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.slide-image-placeholder.full-height {
+  height: 100%;
 }
 
 .product-card {

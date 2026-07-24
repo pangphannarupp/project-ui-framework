@@ -8,8 +8,8 @@
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </PPIconButton>
-      <h1 class="auth-title">Activate Your SmartBiz Account</h1>
-      <p class="auth-subtitle">Re-verify the phone number registered with PPCBank to begin account activation.</p>
+      <h1 class="auth-title">Activate Your Account</h1>
+      <p class="auth-subtitle">Re-verify the phone number registered with The Bank to begin account activation.</p>
     </div>
     
     <div class="auth-card">

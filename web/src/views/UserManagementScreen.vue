@@ -78,7 +78,7 @@
                 <line x1="12" y1="18" x2="12.01" y2="18"></line>
               </svg>
             </template>
-            smartPay
+            fast payments
           </PPScrollSegmentButton>
           
           <PPScrollSegmentButton>
@@ -110,43 +110,43 @@
             phone="+855 13 456 789"
             status="Active"
             :isMaster="true"
-            :hasSmartBiz="true"
-            :hasSmartPay="true"
+            
+            
           />
           
           <PPUserCard 
             name="SOPHEA BORAMEY"
             phone="+855 13 456 789"
             status="Inactive"
-            :hasSmartBiz="true"
+            
           />
           
           <PPUserCard 
             name="CHAN TY"
             phone="+855 12 345 789"
             status="Pending"
-            :hasSmartPay="true"
+            
           />
           
           <PPUserCard 
             name="PAK PUTHEK"
             phone="+855 12 345 789"
             status="Active"
-            :hasSmartPay="true"
+            
           />
           
           <PPUserCard 
             name="CHY LEANGCHHAY"
             phone="+855 12 345 789"
             status="Locked"
-            :hasSmartPay="true"
+            
           />
           
           <PPUserCard 
             name="OR SOVANNARY"
             phone="+855 12 345 789"
             status="Active"
-            :hasSmartPay="true"
+            
           />
         </div>
 

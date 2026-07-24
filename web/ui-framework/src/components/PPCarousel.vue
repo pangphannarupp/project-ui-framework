@@ -1,13 +1,14 @@
 <template>
   <div 
     class="pp-carousel-container" 
+    :class="[`is-${variant}`]"
     @mouseenter="onMouseEnter" 
     @mouseleave="onMouseLeave"
     :style="cssVars"
   >
     <!-- Arrow Prev -->
     <button 
-      v-if="showArrows" 
+      v-if="showArrows && variant !== 'story' && variant !== 'reel'" 
       class="pp-carousel-arrow is-prev" 
       @click="prev"
       aria-label="Previous Slide"
@@ -30,7 +31,7 @@
 
     <!-- Arrow Next -->
     <button 
-      v-if="showArrows" 
+      v-if="showArrows && variant !== 'story' && variant !== 'reel'" 
       class="pp-carousel-arrow is-next" 
       @click="next"
       aria-label="Next Slide"
@@ -38,8 +39,32 @@
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
     </button>
 
+    <!-- Story Progress Bars -->
+    <div v-if="variant === 'story' && totalDots > 1" class="pp-carousel-story-bars">
+      <div 
+        v-for="index in totalDots" 
+        :key="`story-${index}`"
+        class="pp-carousel-story-bar-bg"
+        @click="goTo(index - 1)"
+      >
+        <div 
+          class="pp-carousel-story-bar-fill"
+          :class="{
+            'is-completed': (index - 1) < activeIndex,
+            'is-active': (index - 1) === activeIndex && autoplay
+          }"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Story Navigation Zones -->
+    <div v-if="variant === 'story'" class="pp-carousel-story-nav">
+      <div class="story-nav-left" @click="prev"></div>
+      <div class="story-nav-right" @click="next"></div>
+    </div>
+
     <!-- Dots Pagination -->
-    <div v-if="showDots && totalDots > 1" class="pp-carousel-dots">
+    <div v-if="showDots && variant !== 'story' && totalDots > 1" class="pp-carousel-dots">
       <button 
         v-for="index in totalDots" 
         :key="index"
@@ -83,12 +108,17 @@ const props = defineProps({
   loop: {
     type: Boolean,
     default: false
+  },
+  variant: {
+    type: String,
+    default: 'standard' // 'standard', 'story', 'reel'
   }
 });
 
-provide('bizCarouselContext', {
+provide('ppCarouselContext', {
   itemsPerView: computed(() => props.itemsPerView),
-  gap: computed(() => props.gap)
+  gap: computed(() => props.gap),
+  variant: computed(() => props.variant)
 });
 
 const trackRef = ref<HTMLElement | null>(null);
@@ -98,7 +128,8 @@ const totalItems = ref(0);
 const cssVars = computed(() => {
   return {
     '--carousel-gap': props.gap,
-    '--carousel-items': props.itemsPerView
+    '--carousel-items': props.itemsPerView,
+    '--carousel-interval': `${props.interval}ms`
   };
 });
 
@@ -148,43 +179,77 @@ const onScroll = () => {
   
   scrollTimeout = window.setTimeout(() => {
     if (!trackRef.value) return;
-    const { scrollLeft, clientWidth } = trackRef.value;
-    const index = Math.round(scrollLeft / clientWidth);
+    const isReel = props.variant === 'reel';
+    const { scrollLeft, scrollTop, clientWidth, clientHeight } = trackRef.value;
+    const scrollPos = isReel ? scrollTop : scrollLeft;
+    const clientSize = isReel ? clientHeight : clientWidth;
+    const index = Math.round(scrollPos / clientSize);
     activeIndex.value = index;
   }, 100);
 };
 
 const next = () => {
   if (!trackRef.value) return;
-  const { scrollLeft, clientWidth, scrollWidth } = trackRef.value;
+  const isReel = props.variant === 'reel';
+  const { scrollLeft, scrollTop, clientWidth, clientHeight, scrollWidth, scrollHeight } = trackRef.value;
   
-  const maxScroll = scrollWidth - clientWidth;
-  if (scrollLeft >= maxScroll - 10) {
+  const scrollPos = isReel ? scrollTop : scrollLeft;
+  const clientSize = isReel ? clientHeight : clientWidth;
+  const scrollSize = isReel ? scrollHeight : scrollWidth;
+  
+  const maxScroll = scrollSize - clientSize;
+  if (scrollPos >= maxScroll - 10) {
     if (props.loop) {
-      trackRef.value.scrollTo({ left: 0, behavior: 'smooth' });
+      trackRef.value.scrollTo({ 
+        left: isReel ? 0 : 0, 
+        top: isReel ? 0 : 0, 
+        behavior: 'smooth' 
+      });
     }
   } else {
-    trackRef.value.scrollBy({ left: clientWidth, behavior: 'smooth' });
+    trackRef.value.scrollBy({ 
+      left: isReel ? 0 : clientSize, 
+      top: isReel ? clientSize : 0, 
+      behavior: 'smooth' 
+    });
   }
 };
 
 const prev = () => {
   if (!trackRef.value) return;
-  const { scrollLeft, clientWidth, scrollWidth } = trackRef.value;
+  const isReel = props.variant === 'reel';
+  const { scrollLeft, scrollTop, clientWidth, clientHeight, scrollWidth, scrollHeight } = trackRef.value;
   
-  if (scrollLeft <= 10) {
+  const scrollPos = isReel ? scrollTop : scrollLeft;
+  const clientSize = isReel ? clientHeight : clientWidth;
+  const scrollSize = isReel ? scrollHeight : scrollWidth;
+  
+  if (scrollPos <= 10) {
     if (props.loop) {
-      trackRef.value.scrollTo({ left: scrollWidth, behavior: 'smooth' });
+      trackRef.value.scrollTo({ 
+        left: isReel ? 0 : scrollSize, 
+        top: isReel ? scrollSize : 0, 
+        behavior: 'smooth' 
+      });
     }
   } else {
-    trackRef.value.scrollBy({ left: -clientWidth, behavior: 'smooth' });
+    trackRef.value.scrollBy({ 
+      left: isReel ? 0 : -clientSize, 
+      top: isReel ? -clientSize : 0, 
+      behavior: 'smooth' 
+    });
   }
 };
 
 const goTo = (index: number) => {
   if (!trackRef.value) return;
-  const { clientWidth } = trackRef.value;
-  trackRef.value.scrollTo({ left: index * clientWidth, behavior: 'smooth' });
+  const isReel = props.variant === 'reel';
+  const { clientWidth, clientHeight } = trackRef.value;
+  trackRef.value.scrollTo({ 
+    left: isReel ? 0 : index * clientWidth, 
+    top: isReel ? index * clientHeight : 0,
+    behavior: 'smooth' 
+  });
 };
 
 // Manual Drag logic (Mouse)
@@ -195,10 +260,11 @@ let scrollLeftStart = 0;
 const onMouseDown = (e: MouseEvent) => {
   isDragging.value = true;
   if (trackRef.value) {
+    const isReel = props.variant === 'reel';
     trackRef.value.style.scrollSnapType = 'none'; // Disable snap during drag
     trackRef.value.style.scrollBehavior = 'auto';
-    startX = e.pageX - trackRef.value.offsetLeft;
-    scrollLeftStart = trackRef.value.scrollLeft;
+    startX = isReel ? (e.pageY - trackRef.value.offsetTop) : (e.pageX - trackRef.value.offsetLeft);
+    scrollLeftStart = isReel ? trackRef.value.scrollTop : trackRef.value.scrollLeft;
   }
   stopAutoplay();
 };
@@ -206,19 +272,25 @@ const onMouseDown = (e: MouseEvent) => {
 const onMouseMove = (e: MouseEvent) => {
   if (!isDragging.value || !trackRef.value) return;
   e.preventDefault();
-  const x = e.pageX - trackRef.value.offsetLeft;
+  const isReel = props.variant === 'reel';
+  const x = isReel ? (e.pageY - trackRef.value.offsetTop) : (e.pageX - trackRef.value.offsetLeft);
   const walk = (x - startX) * 2; // scroll-fast multiplier
-  trackRef.value.scrollLeft = scrollLeftStart - walk;
+  if (isReel) {
+    trackRef.value.scrollTop = scrollLeftStart - walk;
+  } else {
+    trackRef.value.scrollLeft = scrollLeftStart - walk;
+  }
 };
 
 const onMouseUp = () => {
   if (!isDragging.value) return;
   isDragging.value = false;
   if (trackRef.value) {
-    trackRef.value.style.scrollSnapType = 'x mandatory';
+    const isReel = props.variant === 'reel';
+    trackRef.value.style.scrollSnapType = isReel ? 'y mandatory' : 'x mandatory';
     trackRef.value.style.scrollBehavior = 'smooth';
     // Small nudge to trigger snapping
-    trackRef.value.scrollBy({ left: 1, behavior: 'smooth' });
+    trackRef.value.scrollBy({ left: isReel ? 0 : 1, top: isReel ? 1 : 0, behavior: 'smooth' });
   }
   if (!isHovered) startAutoplay();
 };
@@ -323,5 +395,65 @@ onUnmounted(() => {
   background: #003399;
   width: 24px;
   border-radius: 4px;
+}
+
+/* Reel Variant */
+.pp-carousel-container.is-reel {
+  height: 100%;
+}
+.pp-carousel-container.is-reel .pp-carousel-track {
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+}
+
+/* Story Nav Zones */
+.pp-carousel-story-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 5;
+  pointer-events: none;
+}
+.story-nav-left, .story-nav-right {
+  flex: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Story Progress Bars */
+.pp-carousel-story-bars {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  gap: 4px;
+  z-index: 10;
+}
+.pp-carousel-story-bar-bg {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.pp-carousel-story-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: white;
+  border-radius: 2px;
+}
+.pp-carousel-story-bar-fill.is-completed {
+  width: 100%;
+}
+.pp-carousel-story-bar-fill.is-active {
+  width: 100%;
+  transition: width var(--carousel-interval) linear;
 }
 </style>

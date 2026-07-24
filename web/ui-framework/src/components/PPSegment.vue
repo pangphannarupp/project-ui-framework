@@ -25,7 +25,7 @@ const updateValue = (val: string | number) => {
   emit('change', val);
 };
 
-provide('bizSegmentContext', {
+provide('ppSegmentContext', {
   activeValue,
   updateValue
 });

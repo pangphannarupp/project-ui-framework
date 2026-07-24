@@ -3,7 +3,7 @@
     <div class="lang-sheet-content">
       <div class="lang-header">
         <h2 class="lang-title">Please Select Your Language</h2>
-        <p class="lang-subtitle">Choose the language and region you want to use in smartBiz app</p>
+        <p class="lang-subtitle">Choose the language and region you want to use in app</p>
       </div>
 
       <div class="lang-list">

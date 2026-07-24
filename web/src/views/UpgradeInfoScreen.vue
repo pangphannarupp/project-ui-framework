@@ -26,7 +26,7 @@
                 <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </div>
-            <h1 class="upgrade-title">Why upgrade<br>to new smartBiz?</h1>
+            <h1 class="upgrade-title">Why upgrade<br>to the new version?</h1>
             <p class="upgrade-subtitle">Enjoy stronger corporate banking<br>with more seamless login security</p>
           </div>
           <div class="graphic-content">
@@ -45,7 +45,7 @@
         <div class="info-list">
           
           <!-- To upgrade section -->
-          <PPUpgradeCard title="To upgrade" description="Visit your nearest PPCBank branch.">
+          <PPUpgradeCard title="To upgrade" description="Visit your nearest branch.">
             <template #icon>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>

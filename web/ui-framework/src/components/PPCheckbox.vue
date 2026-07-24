@@ -32,7 +32,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const checkboxGroup = inject<{ 
   modelValue: Ref<any[]>; 
   updateValue: (val: any, checked: boolean) => void 
-} | null>('bizCheckboxGroup', null);
+} | null>('ppCheckboxGroup', null);
 
 const isChecked = computed(() => {
   if (checkboxGroup && props.value !== undefined) {

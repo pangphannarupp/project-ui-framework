@@ -23,20 +23,8 @@
       </div>
       
       <div class="user-badges">
-        <span class="pp-badge" v-if="hasSmartBiz">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
-          </svg>
-          smartBiz
-        </span>
-        <span class="pp-badge light-blue" v-if="hasSmartPay">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-            <line x1="12" y1="18" x2="12.01" y2="18"></line>
-          </svg>
-          smartPay
-        </span>
+
+
       </div>
     </div>
     
@@ -60,9 +48,7 @@ const props = defineProps({
   name: { type: String, required: true },
   phone: { type: String, required: true },
   status: { type: String, default: 'Active' },
-  isMaster: { type: Boolean, default: false },
-  hasSmartBiz: { type: Boolean, default: false },
-  hasSmartPay: { type: Boolean, default: false }
+  isMaster: { type: Boolean, default: false }
 });
 
 const initials = computed(() => {

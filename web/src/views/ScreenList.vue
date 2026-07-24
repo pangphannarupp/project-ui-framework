@@ -91,7 +91,7 @@
         <div class="list-item" @click="router.push('/upgrade-info')">
           <div class="item-content">
             <h3>Why Upgrade Info</h3>
-            <p>Upgrade to new smartBiz screen</p>
+            <p>Upgrade to new screen</p>
           </div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="9 18 15 12 9 6"></polyline>
