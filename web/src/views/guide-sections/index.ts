@@ -21,6 +21,7 @@ export { default as CalendarStandardSection } from './CalendarStandardSection.vu
 export { default as CalendarKhmerSection } from './CalendarKhmerSection.vue';
 export { default as QuarterPickerSection } from './QuarterPickerSection.vue';
 export { default as DateRangeSection } from './DateRangeSection.vue';
+export { default as TreeSelectSection } from './TreeSelectSection.vue';
 export { default as MonthPickerSection } from './MonthPickerSection.vue';
 export { default as YearPickerSection } from './YearPickerSection.vue';
 export { default as TimePickerSection } from './TimePickerSection.vue';

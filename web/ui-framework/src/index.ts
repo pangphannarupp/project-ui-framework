@@ -131,6 +131,7 @@ import PPTimeline from './components/PPTimeline.vue'
 import PPTimelineItem from './components/PPTimelineItem.vue'
 import PPTree from './components/PPTree.vue'
 import PPTreeNode from './components/PPTreeNode.vue'
+import PPTreeSelect from './components/PPTreeSelect.vue'
 import PPWebToast from './components/PPWebToast.vue'
 import PPOnboard from './components/PPOnboard.vue'
 import PPSignaturePad from './components/PPSignaturePad.vue'
@@ -297,6 +298,7 @@ export {
   PPTimelineItem,
   PPTree,
   PPTreeNode,
+  PPTreeSelect,
   PPWebToast,
   PPPagination,
   PPTable,
@@ -454,6 +456,7 @@ export default {
     app.component('PPTimelineItem', PPTimelineItem)
     app.component('PPTree', PPTree)
     app.component('PPTreeNode', PPTreeNode)
+    app.component('PPTreeSelect', PPTreeSelect)
     app.component('PPWebToast', PPWebToast)
     app.component('PPPagination', PPPagination)
     app.component('PPTable', PPTable)

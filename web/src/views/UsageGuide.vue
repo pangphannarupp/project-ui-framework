@@ -156,6 +156,7 @@ const componentsMenu = [
       { id: 'month-picker', label: 'Month Picker' },
       { id: 'quarter-picker', label: 'Quarter Picker' },
       { id: 'year-picker', label: 'Year Picker' },
+      { id: 'tree-select', label: 'Tree Select' },
       { id: 'time-picker', label: 'Time Picker' }
     ]
   },
@@ -307,6 +308,7 @@ const sectionMap: Record<string, string> = {
   "month-picker": "MonthPickerSection",
   "quarter-picker": "QuarterPickerSection",
   "year-picker": "YearPickerSection",
+  "tree-select": "TreeSelectSection",
   "time-picker": "TimePickerSection",
   "m3-nav": "M3NavSection",
   "liquid-tab": "LiquidTabSection",
