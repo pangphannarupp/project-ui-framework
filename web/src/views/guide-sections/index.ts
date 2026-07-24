@@ -64,6 +64,8 @@ export { default as OnboardSection } from './OnboardSection.vue';
 export { default as SignaturePadSection } from './SignaturePadSection.vue';
 export { default as DevConsoleSection } from './DevConsoleSection.vue';
 export { default as ReactionPickerSection } from './ReactionPickerSection.vue';
+export { default as AdvancedComponentsSection } from './AdvancedComponentsSection.vue';
+export { default as IconsSection } from './IconsSection.vue';
 
 // Newly added
 export { default as SelectSection } from './SelectSection.vue';

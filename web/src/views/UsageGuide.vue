@@ -207,6 +207,7 @@ const componentsMenu = [
     icon: barChartOutline,
     items: [
       { id: 'data-display-basics', label: 'Basics (Avatar, Badge, Chip)' },
+      { id: 'icons', label: 'Icons Collection' },
       { id: 'charts', label: 'Charts & Graphs' },
       // { id: 'account-saving', label: 'Account Saving Sheets' },
       // { id: 'account-reorder', label: 'Account Reorder List' },
@@ -219,7 +220,8 @@ const componentsMenu = [
       // { id: 'cards', label: 'Cards Collection' },
       { id: 'keypads', label: 'Keypads & Security' },
       { id: 'interactive-overlays', label: 'Interactive Overlays' },
-      { id: 'reaction-picker', label: 'Reaction Picker' }
+      { id: 'reaction-picker', label: 'Reaction Picker' },
+      { id: 'advanced-components', label: 'Advanced Components' }
     ]
   },
   {
@@ -346,7 +348,9 @@ const sectionMap: Record<string, string> = {
   "header-bottom-bar": "HeaderBottomBarSection",
   "table": "TableSection",
   "dev-console": "DevConsoleSection",
-  "reaction-picker": "ReactionPickerSection"
+  "reaction-picker": "ReactionPickerSection",
+  "advanced-components": "AdvancedComponentsSection",
+  "icons": "IconsSection"
 };
 
 const currentComponent = computed(() => {

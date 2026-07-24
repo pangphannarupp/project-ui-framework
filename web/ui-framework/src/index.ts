@@ -152,6 +152,17 @@ import PPDropdown from './components/PPDropdown.vue'
 import PPConsole from './components/PPConsole.vue'
 import PPReactionPicker from './components/PPReactionPicker.vue'
 
+// Advanced Components
+import PPCreditCard from './components/PPCreditCard.vue'
+import PPTagInput from './components/PPTagInput.vue'
+import PPPasswordStrength from './components/PPPasswordStrength.vue'
+import PPAudioWave from './components/PPAudioWave.vue'
+import PPQRCode from './components/PPQRCode.vue'
+import PPMasonry from './components/PPMasonry.vue'
+import PPMagnifier from './components/PPMagnifier.vue'
+import PPDrawCanvas from './components/PPDrawCanvas.vue'
+import PPSplitter from './components/PPSplitter.vue'
+
 // Export components individually
 export { 
   MyButton, 
@@ -305,7 +316,16 @@ export {
   PPTooltip,
   PPDropdown,
   PPConsole,
-  PPReactionPicker
+  PPReactionPicker,
+  PPCreditCard,
+  PPTagInput,
+  PPPasswordStrength,
+  PPAudioWave,
+  PPQRCode,
+  PPMasonry,
+  PPMagnifier,
+  PPDrawCanvas,
+  PPSplitter
 }
 
 // Export a Vue plugin to install all components
@@ -453,5 +473,14 @@ export default {
     app.component('PPDropdown', PPDropdown)
     app.component('PPConsole', PPConsole)
     app.component('PPReactionPicker', PPReactionPicker)
+    app.component('PPCreditCard', PPCreditCard)
+    app.component('PPTagInput', PPTagInput)
+    app.component('PPPasswordStrength', PPPasswordStrength)
+    app.component('PPAudioWave', PPAudioWave)
+    app.component('PPQRCode', PPQRCode)
+    app.component('PPMasonry', PPMasonry)
+    app.component('PPMagnifier', PPMagnifier)
+    app.component('PPDrawCanvas', PPDrawCanvas)
+    app.component('PPSplitter', PPSplitter)
   }
 }
