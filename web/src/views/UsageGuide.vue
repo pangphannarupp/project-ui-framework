@@ -154,6 +154,7 @@ const componentsMenu = [
       { id: 'calendar-khmer', label: 'Calendar (Khmer Lunar)' },
       { id: 'date-range', label: 'Date Range Picker' },
       { id: 'month-picker', label: 'Month Picker' },
+      { id: 'quarter-picker', label: 'Quarter Picker' },
       { id: 'year-picker', label: 'Year Picker' },
       { id: 'time-picker', label: 'Time Picker' }
     ]
@@ -180,6 +181,7 @@ const componentsMenu = [
       { id: 'web-toast', label: 'Web Toast (Desktop)' },
       // { id: 'notifications', label: 'Notifications & Scrolling' },
       { id: 'tabs', label: 'Tabs' },
+      { id: 'segment', label: 'Segment Controls' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'carousel', label: 'Carousel' }
     ]
@@ -303,6 +305,7 @@ const sectionMap: Record<string, string> = {
   "calendar-khmer": "CalendarKhmerSection",
   "date-range": "DateRangeSection",
   "month-picker": "MonthPickerSection",
+  "quarter-picker": "QuarterPickerSection",
   "year-picker": "YearPickerSection",
   "time-picker": "TimePickerSection",
   "m3-nav": "M3NavSection",
@@ -350,7 +353,8 @@ const sectionMap: Record<string, string> = {
   "dev-console": "DevConsoleSection",
   "reaction-picker": "ReactionPickerSection",
   "advanced-components": "AdvancedComponentsSection",
-  "icons": "IconsSection"
+  "icons": "IconsSection",
+  "segment": "SegmentSection"
 };
 
 const currentComponent = computed(() => {

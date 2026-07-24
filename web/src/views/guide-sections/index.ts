@@ -19,6 +19,7 @@ export { default as RatingSection } from './RatingSection.vue';
 export { default as AutocompleteSection } from './AutocompleteSection.vue';
 export { default as CalendarStandardSection } from './CalendarStandardSection.vue';
 export { default as CalendarKhmerSection } from './CalendarKhmerSection.vue';
+export { default as QuarterPickerSection } from './QuarterPickerSection.vue';
 export { default as DateRangeSection } from './DateRangeSection.vue';
 export { default as MonthPickerSection } from './MonthPickerSection.vue';
 export { default as YearPickerSection } from './YearPickerSection.vue';
@@ -66,6 +67,7 @@ export { default as DevConsoleSection } from './DevConsoleSection.vue';
 export { default as ReactionPickerSection } from './ReactionPickerSection.vue';
 export { default as AdvancedComponentsSection } from './AdvancedComponentsSection.vue';
 export { default as IconsSection } from './IconsSection.vue';
+export { default as SegmentSection } from './SegmentSection.vue';
 
 // Newly added
 export { default as SelectSection } from './SelectSection.vue';

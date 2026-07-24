@@ -103,6 +103,7 @@ import PPMathEditor from './components/PPMathEditor.vue'
 import PPMathPreview from './components/PPMathPreview.vue'
 import PPKanbanBoard from './components/PPKanbanBoard.vue'
 import PPYearPicker from './components/PPYearPicker.vue'
+import PPQuarterPicker from './components/PPQuarterPicker.vue'
 import PPYearPickerSheet from './components/PPYearPickerSheet.vue'
 import PPYearPickerAlert from './components/PPYearPickerAlert.vue'
 import PPYearPickerIsland from './components/PPYearPickerIsland.vue'
@@ -267,6 +268,7 @@ export {
   PPMonthPickerSheet,
   PPMonthPickerAlert,
   PPMonthPickerIsland,
+  PPQuarterPicker,
   PPYearPicker,
   PPYearPickerSheet,
   PPYearPickerAlert,
@@ -427,6 +429,7 @@ export default {
     app.component('PPYearPickerSheet', PPYearPickerSheet)
     app.component('PPYearPickerAlert', PPYearPickerAlert)
     app.component('PPYearPickerIsland', PPYearPickerIsland)
+    app.component('PPQuarterPicker', PPQuarterPicker)
     app.component('PPAccountListCard', PPAccountListCard)
     app.component('PPAccountReorderList', PPAccountReorderList)
     app.component('PPTimePicker', PPTimePicker)
