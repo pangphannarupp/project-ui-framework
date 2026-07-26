@@ -1,63 +1,49 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/"></ion-back-button>
-        </ion-buttons>
-        <ion-title>Full Component Catalog</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <PPHeaderBar theme="light" :bordered="false">
+      <template #left>
+        <ion-button router-link="/" fill="clear" style="--padding-start: 0; --padding-end: 0; margin-right: 8px; --color: #1e293b;">
+          <ion-icon :icon="arrowBackOutline" />
+        </ion-button>
+        <h2 style="margin: 0; font-size: 18px; font-weight: 600; color: #1e293b; white-space: nowrap;">Full Component Catalog</h2>
+      </template>
+      <template #right>
+        <div class="mobile-menu-btn-container">
+          <ion-button fill="clear" style="--color: #1e293b;" @click="isRailExpanded = !isRailExpanded">
+            <ion-icon :icon="menuOutline"></ion-icon>
+          </ion-button>
+        </div>
+      </template>
+    </PPHeaderBar>
     
-    <div style="display: flex; height: 100vh; overflow: hidden;">
-      <!-- Navigation Rail -->
-      <!-- <PPNavigationRail 
-        v-model="isRailExpanded"
-        :items="navRailItems"
-        @select="handleRailSelect"
-      /> -->
+    <div style="display: flex; height: 100vh; overflow: hidden; position: relative;">
+      <!-- Mobile overlay -->
+      <div 
+        class="drawer-overlay" 
+        :class="{ active: isRailExpanded }"
+        @click="isRailExpanded = false"
+      ></div>
 
       <!-- Navigation Drawer (Accordion) -->
       <div 
         class="rail-drawer" 
         :class="{ expanded: isRailExpanded }"
-        style="background: #ffffff; border-right: 1px solid #ddd; height: 100%; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; overflow-x: hidden;"
-        :style="{ width: isRailExpanded ? '280px' : '0px' }"
       >
-        <div style="padding: 16px; width: 280px;">
-          <PPInput 
+        <div style="padding: 16px; width: 280px; flex-shrink: 0;">
+          <PPSearch 
             v-model="searchQuery" 
-            placeholder="Filter components..." 
-            clearable 
+            placeholder="Search components..." 
           />
         </div>
         
-        <div style="width: 280px;">
-          <PPCollapse v-model="expandedCategory" accordion>
-            <PPCollapseItem 
-              v-for="group in filteredMenu" 
-              :key="group.category"
-              :name="group.category"
-            >
-              <template #title>
-                <div style="display: flex; align-items: center; gap: 12px; font-weight: 600; color: #333; width: 100%;">
-                  <ion-icon :icon="group.icon" style="font-size: 20px; color: #003399;" />
-                  <span>{{ group.category }}</span>
-                </div>
-              </template>
-              
-              <div 
-                v-for="item in group.items" 
-                :key="item.id"
-                class="menu-item"
-                :class="{ active: selectedComponentId === item.id }"
-                @click="selectComponent(item.id)"
-                style="padding: 12px 16px; padding-left: 48px; cursor: pointer; color: #666; font-size: 14px; transition: background 0.2s;"
-              >
-                {{ item.label }}
-              </div>
-            </PPCollapseItem>
-          </PPCollapse>
+        <div style="width: 280px; flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
+          <PPSidebarNavigation
+            v-model="selectedComponentId"
+            v-model:expandedItems="expandedGroups"
+            :items="sidebarMenuItems"
+            theme="light"
+            variant="pill"
+          />
         </div>
       </div>
 
@@ -76,15 +62,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonIcon } from '@ionic/vue';
-import { rocketOutline, cubeOutline, calendarOutline, compassOutline, lockClosedOutline, barChartOutline, layersOutline, documentTextOutline } from 'ionicons/icons';
-import { PPNavigationRail, PPInput, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonIcon, IonButton } from '@ionic/vue';
+import { rocketOutline, cubeOutline, calendarOutline, compassOutline, lockClosedOutline, barChartOutline, layersOutline, documentTextOutline, menuOutline, searchOutline, arrowBackOutline } from 'ionicons/icons';
+import { PPNavigationRail, PPInput, PPSearch, PPCollapse, PPCollapseItem, PPSidebarNavigation, PPHeaderBar } from '@phanna/ui-framework';
 
 import * as GuideSections from './guide-sections';
 
-const isRailExpanded = ref(true);
+const isRailExpanded = ref(window.innerWidth > 768);
 const searchQuery = ref('');
+const expandedGroups = ref<string[]>([]);
+
+const handleResize = () => {
+  if (window.innerWidth > 768 && !isRailExpanded.value) {
+    isRailExpanded.value = true;
+  } else if (window.innerWidth <= 768 && isRailExpanded.value) {
+    isRailExpanded.value = false;
+  }
+};
+
+onMounted(() => window.addEventListener('resize', handleResize));
+onUnmounted(() => window.removeEventListener('resize', handleResize));
 const expandedCategory = ref<string>('Getting Started');
 const selectedComponentId = ref<string>('installation');
 
@@ -127,6 +125,7 @@ const componentsMenu = [
     category: 'Forms',
     icon: documentTextOutline,
     items: [
+      { id: 'search', label: 'Search & History' },
       { id: 'input', label: 'Text Input & Textarea' },
       { id: 'phone-input', label: 'Phone Input' },
       // { id: 'company-selector', label: 'Company Selector' },
@@ -236,9 +235,27 @@ const componentsMenu = [
   }
 ];
 
-const selectComponent = (id: string) => {
-  selectedComponentId.value = id;
-};
+const sidebarMenuItems = computed(() => {
+  return [
+    {
+      items: filteredMenu.value.map(group => ({
+        id: group.category,
+        label: group.category,
+        icon: group.icon,
+        children: group.items.map(item => ({
+          id: item.id,
+          label: item.label
+        }))
+      }))
+    }
+  ];
+});
+
+watch(selectedComponentId, (newId) => {
+  if (window.innerWidth <= 768) {
+    isRailExpanded.value = false;
+  }
+});
 
 const currentComponentTitle = computed(() => {
   for (const group of componentsMenu) {
@@ -262,14 +279,13 @@ const filteredMenu = computed(() => {
 
 watch(searchQuery, (newVal) => {
   if (newVal && filteredMenu.value.length > 0) {
-    expandedCategory.value = filteredMenu.value[0].category;
-  } else if (!newVal) {
-    // Optionally reset or leave as is when search is cleared
+    expandedGroups.value = filteredMenu.value.map(g => g.category);
   }
 });
 
 // Map component IDs to their PascalCase component names
 const sectionMap: Record<string, string> = {
+  "search": "SearchSection",
   "installation": "InstallationSection",
   "input": "InputSection",
   "phone-input": "PhoneInputSection",
@@ -366,7 +382,6 @@ const currentComponent = computed(() => {
 });
 
 // Add copy functionality to code blocks when component changes
-import { watch, nextTick } from 'vue';
 
 watch(currentComponent, async () => {
   await nextTick();
@@ -395,7 +410,7 @@ watch(currentComponent, async () => {
 
 </script>
 
-<style>
+<style scoped>
 .menu-item:hover {
   background: #f4f5f8;
 }
@@ -404,5 +419,61 @@ watch(currentComponent, async () => {
   color: #003399 !important;
   font-weight: 600;
   border-right: 3px solid #003399;
+}
+
+.rail-drawer {
+  background: #ffffff;
+  height: 100%;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 0px;
+}
+
+.rail-drawer.expanded {
+  width: 280px;
+}
+
+.drawer-overlay {
+  display: none;
+}
+
+.mobile-menu-btn-container {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn-container {
+    display: flex;
+  }
+  
+  .rail-drawer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 280px !important;
+    transform: translateX(-100%);
+  }
+  
+  .rail-drawer.expanded {
+    transform: translateX(0);
+  }
+  
+  .drawer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+    display: none;
+  }
+  
+  .drawer-overlay.active {
+    display: block;
+  }
 }
 </style>

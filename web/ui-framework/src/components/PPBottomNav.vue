@@ -5,20 +5,18 @@
     <div 
       v-if="['dot', 'magic-line', 'curved', 'pill-slide'].includes(variant)"
       class="pp-sliding-indicator"
-      :style="{ 
-        width: `${100 / items.length}%`,
-        transform: `translateX(${activeIndex * 100}%)`
-      }"
+      :style="indicatorStyle"
     >
       <div class="pp-indicator-inner"></div>
     </div>
 
-    <!-- Items -->
     <div 
       v-for="(item, index) in items" 
       :key="index"
+      :ref="el => setItemRef(el, index)"
       class="pp-bottom-nav-item"
       :class="{ 'is-active': modelValue === item.value }"
+      :style="{ flex: `1 1 0px` }"
       @click="selectItem(item.value)"
     >
       <div class="pp-nav-indicator">
@@ -30,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, watch, onMounted, nextTick, onBeforeUnmount } from 'vue';
 import { IonIcon } from '@ionic/vue';
 
 export interface BottomNavItem {
@@ -63,6 +61,42 @@ const activeIndex = computed(() => {
   const index = props.items.findIndex(item => item.value === props.modelValue);
   return index !== -1 ? index : 0;
 });
+
+// Javascript-based pixel-perfect positioning for the sliding indicator
+const itemRefs = ref<HTMLElement[]>([]);
+const indicatorStyle = ref({
+  left: '0px',
+  width: '0px'
+});
+
+const setItemRef = (el: any, index: number) => {
+  if (el) itemRefs.value[index] = el as HTMLElement;
+};
+
+const updateIndicator = async () => {
+  await nextTick();
+  const activeEl = itemRefs.value[activeIndex.value];
+  if (activeEl) {
+    indicatorStyle.value = {
+      left: `${activeEl.offsetLeft}px`,
+      width: `${activeEl.offsetWidth}px`
+    };
+  }
+};
+
+onMounted(() => {
+  updateIndicator();
+  window.addEventListener('resize', updateIndicator);
+  // Add a small delay for initial font loads that might shift layout
+  setTimeout(updateIndicator, 100);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateIndicator);
+});
+
+watch(activeIndex, updateIndicator);
+watch(() => props.items, updateIndicator, { deep: true });
 </script>
 
 <style scoped>
@@ -70,7 +104,6 @@ const activeIndex = computed(() => {
 .pp-bottom-nav {
   display: flex;
   align-items: center;
-  justify-content: space-around;
   width: 100%;
   height: 80px;
   background-color: #f4f5f8;
@@ -86,7 +119,9 @@ const activeIndex = computed(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  flex: 1 1 0px;
+  min-width: 0;
+  width: 100%;
   height: 100%;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -121,10 +156,9 @@ const activeIndex = computed(() => {
 .pp-sliding-indicator {
   position: absolute;
   top: 0;
-  left: 0;
   height: 100%;
   pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* spring effect */
+  transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* spring effect */
   display: flex;
   justify-content: center;
   z-index: 0;
@@ -397,7 +431,6 @@ const activeIndex = computed(() => {
   margin: 12px 16px;
   width: calc(100% - 32px);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
-  padding: 4px;
   box-sizing: border-box;
 }
 .is-variant-pill-slide .pp-sliding-indicator {

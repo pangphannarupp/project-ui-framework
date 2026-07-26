@@ -85,3 +85,4 @@ export { default as CardsSection } from './CardsSection.vue';
 export { default as KeypadsSection } from './KeypadsSection.vue';
 export { default as OtpInputSection } from './OtpInputSection.vue';
 export { default as ImageCropperSection } from './ImageCropperSection.vue';
+export { default as SearchSection } from './SearchSection.vue';

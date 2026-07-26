@@ -1,7 +1,12 @@
 <template>
   <Teleport to="body">
     <transition name="pp-bottom-sheet-fade">
-      <div v-if="modelValue" class="pp-bottom-sheet-backdrop" @click="close"></div>
+      <div 
+        v-if="modelValue" 
+        class="pp-bottom-sheet-backdrop" 
+        :class="`pp-bottom-sheet-backdrop-${backdropType}`"
+        @click="close"
+      ></div>
     </transition>
     
     <transition 
@@ -48,9 +53,11 @@ const props = withDefaults(defineProps<{
   modelValue: boolean;
   enableSwipeToClose?: boolean;
   sheetClass?: string;
+  backdropType?: 'default' | 'blur' | 'clear' | 'black';
 }>(), {
   enableSwipeToClose: true,
-  sheetClass: ''
+  sheetClass: '',
+  backdropType: 'default'
 });
 
 const emit = defineEmits(['update:modelValue', 'close']);
@@ -153,17 +160,11 @@ watch(() => props.modelValue, (isOpen) => {
 });
 
 const onContentTouchStart = (e: TouchEvent) => {
-  const target = e.currentTarget as HTMLElement;
-  if (target && target.scrollTop > 0) {
-    e.stopPropagation();
-  }
+  e.stopPropagation();
 };
 
 const onContentMouseDown = (e: MouseEvent) => {
-  const target = e.currentTarget as HTMLElement;
-  if (target && target.scrollTop > 0) {
-    e.stopPropagation();
-  }
+  e.stopPropagation();
 };
 
 onUnmounted(() => {
@@ -179,8 +180,25 @@ onUnmounted(() => {
 .pp-bottom-sheet-backdrop {
   position: fixed;
   inset: 0;
-  background-color: var(--pp-bottom-sheet-backdrop, rgba(0, 0, 0, 0.4));
   z-index: 1000;
+}
+
+.pp-bottom-sheet-backdrop-default {
+  background-color: var(--pp-bottom-sheet-backdrop, rgba(0, 0, 0, 0.4));
+}
+
+.pp-bottom-sheet-backdrop-blur {
+  background-color: var(--pp-bottom-sheet-backdrop-blur-bg, rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pp-bottom-sheet-backdrop-clear {
+  background-color: transparent;
+}
+
+.pp-bottom-sheet-backdrop-black {
+  background-color: var(--pp-bottom-sheet-backdrop-black, rgba(0, 0, 0, 0.8));
 }
 
 .pp-bottom-sheet-container {

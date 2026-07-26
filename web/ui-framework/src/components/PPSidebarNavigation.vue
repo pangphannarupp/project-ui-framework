@@ -41,13 +41,13 @@
                   
                   <ion-icon 
                     v-if="item.children && item.children.length && !collapsed" 
-                    :icon="expandedItems.includes(item.id) ? chevronDownOutline : chevronForwardOutline" 
+                    :icon="internalExpanded.includes(item.id) ? chevronDownOutline : chevronForwardOutline" 
                     class="nav-chevron"
                   />
                 </a>
 
                 <div 
-                  v-show="item.children && item.children.length && !collapsed && expandedItems.includes(item.id)" 
+                  v-show="item.children && item.children.length && !collapsed && internalExpanded.includes(item.id)" 
                   class="nav-subitems"
                 >
                   <a 
@@ -94,6 +94,7 @@ type SidebarGroup = {
 
 const props = withDefaults(defineProps<{
   modelValue?: string;
+  expandedItems?: string[];
   items: SidebarGroup[];
   theme?: 'light' | 'dark';
   variant?: 'pill' | 'indicator' | 'flat' | 'm3-rail';
@@ -114,16 +115,24 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', id: string): void;
   (e: 'update:collapsed', val: boolean): void;
+  (e: 'update:expandedItems', val: string[]): void;
 }>();
 
-const expandedItems = ref<string[]>([]);
+const internalExpanded = ref<string[]>(props.expandedItems || []);
+
+watch(() => props.expandedItems, (newVal) => {
+  if (newVal) {
+    internalExpanded.value = [...newVal];
+  }
+}, { deep: true });
 
 watch(() => props.modelValue, (newVal) => {
   for (const group of props.items) {
     for (const item of group.items) {
       if (item.children?.some(child => child.id === newVal)) {
-        if (!expandedItems.value.includes(item.id)) {
-          expandedItems.value.push(item.id);
+        if (!internalExpanded.value.includes(item.id)) {
+          internalExpanded.value.push(item.id);
+          emit('update:expandedItems', internalExpanded.value);
         }
       }
     }
@@ -140,11 +149,12 @@ function handleItemClick(item: SidebarItem) {
   if (item.disabled) return;
   
   if (item.children && item.children.length) {
-    if (expandedItems.value.includes(item.id)) {
-      expandedItems.value = expandedItems.value.filter(id => id !== item.id);
+    if (internalExpanded.value.includes(item.id)) {
+      internalExpanded.value = internalExpanded.value.filter(id => id !== item.id);
     } else {
-      expandedItems.value.push(item.id);
+      internalExpanded.value.push(item.id);
     }
+    emit('update:expandedItems', internalExpanded.value);
   } else {
     emit('update:modelValue', item.id);
   }

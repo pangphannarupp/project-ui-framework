@@ -164,6 +164,10 @@ import PPMasonry from './components/PPMasonry.vue'
 import PPMagnifier from './components/PPMagnifier.vue'
 import PPDrawCanvas from './components/PPDrawCanvas.vue'
 import PPSplitter from './components/PPSplitter.vue'
+import PPSearch from './components/PPSearch.vue'
+import PPAlert from './components/PPAlert.vue'
+import PPConfirm from './components/PPConfirm.vue'
+import PPInputDialog from './components/PPInputDialog.vue'
 
 // Export components individually
 export { 
@@ -329,7 +333,11 @@ export {
   PPMasonry,
   PPMagnifier,
   PPDrawCanvas,
-  PPSplitter
+  PPSplitter,
+  PPSearch,
+  PPAlert,
+  PPConfirm,
+  PPInputDialog
 }
 
 // Export a Vue plugin to install all components
@@ -488,5 +496,9 @@ export default {
     app.component('PPMagnifier', PPMagnifier)
     app.component('PPDrawCanvas', PPDrawCanvas)
     app.component('PPSplitter', PPSplitter)
+    app.component('PPSearch', PPSearch)
+    app.component('PPAlert', PPAlert)
+    app.component('PPConfirm', PPConfirm)
+    app.component('PPInputDialog', PPInputDialog)
   }
 }

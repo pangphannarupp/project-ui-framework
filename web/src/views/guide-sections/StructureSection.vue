@@ -70,19 +70,22 @@
 
         <div class="variant-group">
           <h3>PPBottomSheet (Action Menu)</h3>
-          <p class="custom-guide" style="margin-bottom: 8px;"><strong>Props:</strong> <code>title</code>, <code>modelValue</code> (controls visibility)</p>
+          <p class="custom-guide" style="margin-bottom: 8px;"><strong>Props:</strong> <code>title</code>, <code>modelValue</code>, <code>backdropType</code></p>
           <div class="component-demo">
-            <PPButton variant="secondary" @click="showBottomSheet = true">Open Standard Bottom Sheet</PPButton>
+            <PPButton variant="secondary" @click="openSheet('default')" style="margin-right: 8px; margin-bottom: 8px;">Default Backdrop</PPButton>
+            <PPButton variant="secondary" @click="openSheet('blur')" style="margin-right: 8px; margin-bottom: 8px;">Blur Backdrop</PPButton>
+            <PPButton variant="secondary" @click="openSheet('clear')" style="margin-right: 8px; margin-bottom: 8px;">Clear Backdrop</PPButton>
+            <PPButton variant="secondary" @click="openSheet('black')" style="margin-right: 8px; margin-bottom: 8px;">Black Backdrop</PPButton>
             
             <!-- We render the sheet locally for the demo -->
-            <PPBottomSheet v-model="showBottomSheet" title="Select Action">
+            <PPBottomSheet v-model="showBottomSheet" title="Select Action" :backdropType="currentBackdrop">
               <div style="padding: 16px; text-align: center;">
                 <p>This is the content inside the bottom sheet.</p>
                 <PPButton variant="primary" block @click="showBottomSheet = false">Close</PPButton>
               </div>
             </PPBottomSheet>
           </div>
-          <pre class="code-block"><code>&lt;PPBottomSheet v-model="isOpen" title="Select Action"&gt;...&lt;/PPBottomSheet&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPBottomSheet v-model="isOpen" backdropType="blur" title="Select Action"&gt;...&lt;/PPBottomSheet&gt;</code></pre>
         </div>
 
         <div class="variant-group">
@@ -122,6 +125,12 @@ const animatedSegments = ref([
 const segmentVal = ref('opt1');
 
 const showBottomSheet = ref(false);
+const currentBackdrop = ref('default');
+
+const openSheet = (type: string) => {
+  currentBackdrop.value = type;
+  showBottomSheet.value = true;
+};
 
 const showBioBoth = ref(false);
 
