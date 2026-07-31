@@ -134,14 +134,14 @@ export default defineConfig(({ mode }) => {
 
 						// Vendors
 						if (safeName.startsWith("vendor")) {
-							return `vendors/${safeName}.js`;
+							return `vendors/${safeName}-[hash].js`;
 						}
 
 						// 👉 All JS in /js (NO sub-folders)
-						return `js/${safeName}.js`;
+						return `js/${safeName}-[hash].js`;
 					},
 
-					entryFileNames: "js/[name].js",
+					entryFileNames: "js/[name]-[hash].js",
 
 					/**
 					 * ================================
