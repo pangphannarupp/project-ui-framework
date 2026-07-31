@@ -31,7 +31,7 @@ jobs:
           
       - name: Install dependencies
         working-directory: ./web
-        run: npm install
+        run: npm install --include=dev
         
       - name: Build project
         working-directory: ./web
