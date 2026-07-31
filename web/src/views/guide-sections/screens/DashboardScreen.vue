@@ -184,9 +184,13 @@
                 
                 <div class="pie-content">
                   <PPPieChart 
-                    :data="[35.5, 21.5, 16.1, 26.9]"
-                    :colors="['#0dcaf0', '#0dcaf0', '#0dcaf0', '#0dcaf0']"
-                    :height="200"
+                    :data="[
+                      { value: 35.5, color: '#0dcaf0' },
+                      { value: 21.5, color: '#0dcaf0' },
+                      { value: 16.1, color: '#0dcaf0' },
+                      { value: 26.9, color: '#0dcaf0' }
+                    ]"
+                    :size="200"
                     style="opacity: 0.9;"
                   />
                   <!-- Note: Actual Donut chart implementation would vary, assuming PPPieChart for now -->

@@ -115,7 +115,9 @@ const onFileRetry = (id: string | number) =&gt; {
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PPFileUpload, PPFileItem } from '@phanna/ui-framework';
+import { PPFileUpload } from '@phanna/ui-framework';
+
+type PPFileItem = any;
 
 const files1 = ref<File[]>([]);
 const uploadFiles = ref<PPFileItem[]>([]);
@@ -126,8 +128,8 @@ const onFileChange = (files: File[]) => {
 
 const onFileSelect = (files: File[]) => {
   // Convert standard files to PPFileItems
-  const newItems: PPFileItem[] = files.map(f => ({
-    id: Date.now() + Math.random().toString(36).substr(2, 9),
+  const newItems: PPFileItem[] = files.map((f: any) => ({
+    id: Date.now() + Math.random().toString(36).substring(2, 9),
     name: f.name,
     size: f.size,
     progress: 0,
@@ -138,15 +140,15 @@ const onFileSelect = (files: File[]) => {
   uploadFiles.value = [...uploadFiles.value, ...newItems];
   
   // Simulate upload for each new file
-  newItems.forEach(item => simulateUpload(item.id));
+  newItems.forEach((item: any) => simulateUpload(item.id));
 };
 
 const onFileRemove = (id: string | number) => {
-  uploadFiles.value = uploadFiles.value.filter(f => f.id !== id);
+  uploadFiles.value = uploadFiles.value.filter((f: any) => f.id !== id);
 };
 
 const onFileRetry = (id: string | number) => {
-  const item = uploadFiles.value.find(f => f.id === id);
+  const item = uploadFiles.value.find((f: any) => f.id === id);
   if (item) {
     item.status = 'uploading';
     item.progress = 0;
@@ -159,7 +161,7 @@ const simulateUpload = (id: string | number) => {
   let progress = 0;
   const interval = setInterval(() => {
     // Look up the item from the reactive array to ensure reactivity
-    const item = uploadFiles.value.find(f => f.id === id);
+    const item = uploadFiles.value.find((f: any) => f.id === id);
     if (!item) {
       clearInterval(interval);
       return;

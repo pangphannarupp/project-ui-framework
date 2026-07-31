@@ -5,10 +5,9 @@
 
     <h3>Basic Usage</h3>
     <div class="demo-box">
-      <PPCompanySelector v-model="company" :options="companies" />
-      <div style="margin-top: 16px; font-family: monospace;">Selected: {{ company }}</div>
+      <PPCompanySelector companyName="Acme Corp" companyType="Technology" logoUrl="" />
     </div>
-    <pre class="code-block"><code>&lt;PPCompanySelector v-model="company" :options="companies" /&gt;</code></pre>
+    <pre class="code-block"><code>&lt;PPCompanySelector companyName="Acme Corp" companyType="Technology" logoUrl="" /&gt;</code></pre>
   </div>
 </template>
 

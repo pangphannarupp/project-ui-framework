@@ -126,8 +126,8 @@ const treeData = [
 import { ref } from 'vue';
 import { PPTreeSelect } from '@phanna/ui-framework';
 
-const selectedDepartmentId = ref<string | null>(null);
-const selectedVariantId = ref<string | null>(null);
+const selectedDepartmentId = ref<string | undefined>(undefined);
+const selectedVariantId = ref<string | undefined>(undefined);
 
 const departmentTree = [
   {

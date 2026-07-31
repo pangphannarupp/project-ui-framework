@@ -6,9 +6,9 @@
     <h3>User Profile Card</h3>
     <div class="demo-box">
       <PPUserProfile 
-        name="John Doe" 
+        userName="John Doe" 
         email="john@example.com" 
-        avatar="https://i.pravatar.cc/150?u=a042581f4e29026704d" 
+        avatarUrl="https://i.pravatar.cc/150?u=a042581f4e29026704d" 
       />
     </div>
 

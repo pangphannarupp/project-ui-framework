@@ -13,7 +13,7 @@
               </div>
             </PPPullToRefresh>
           </div>
-          <pre class="code-block"><code>&lt;PPPullToRefresh @refresh="handleRefresh"&gt;
+          <pre v-pre class="code-block"><code>&lt;PPPullToRefresh @refresh="handleRefresh"&gt;
   &lt;div class="content"&gt;
     &lt;!-- Your scrollable content here --&gt;
     &lt;div v-for="i in 15" :key="i"&gt;Item {{ i }}&lt;/div&gt;
