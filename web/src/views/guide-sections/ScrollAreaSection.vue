@@ -16,7 +16,7 @@
       </PPScrollArea>
     </div>
     <div class="usage-block" style="margin-top: 16px;">
-      <pre style="background: #1f2937; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px;"><code>&lt;PPScrollArea direction="horizontal" hideScrollbar&gt;
+      <pre v-pre style="background: #1f2937; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px;"><code>&lt;PPScrollArea direction="horizontal" hideScrollbar&gt;
   &lt;div style="display: flex; gap: 16px;"&gt;
     &lt;!-- Your horizontal content items --&gt;
   &lt;/div&gt;
@@ -52,7 +52,7 @@
       
     </div>
     <div class="usage-block" style="margin-top: 16px;">
-      <pre style="background: #1f2937; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px;"><code>&lt;PPScrollArea direction="vertical"&gt;
+      <pre v-pre style="background: #1f2937; color: #f8f8f2; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px;"><code>&lt;PPScrollArea direction="vertical"&gt;
   &lt;!-- Your long vertical content --&gt;
   &lt;div v-for="i in 15" :key="i"&gt;List Item {{ i }}&lt;/div&gt;
 &lt;/PPScrollArea&gt;</code></pre>
