@@ -77,7 +77,7 @@ const props = withDefaults(defineProps<{
   options?: SelectOption[];
   label?: string;
   placeholder?: string;
-  variant?: 'outlined' | 'filled';
+  variant?: 'outlined' | 'filled' | 'flushed' | 'soft';
   disabled?: boolean;
   error?: string;
   helperText?: string;
@@ -192,11 +192,43 @@ onUnmounted(() => {
   border: 1px solid transparent;
   border-radius: 12px;
   background-color: #f5f5f5;
+  border-bottom: 2px solid transparent;
 }
 .pp-select--filled .pp-select-container--focused {
-  background-color: #ffffff;
-  border-color: var(--pp-primary-variant, #1a2a5e);
-  box-shadow: 0 0 0 2px rgba(26, 42, 94, 0.1);
+  background-color: #e8e8e8;
+  border-bottom-color: var(--pp-primary-variant, #1a2a5e);
+}
+
+/* FLUSHED VARIANT */
+.pp-select--flushed .pp-select-container {
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  border-radius: 0;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.pp-select--flushed .pp-select-container--focused {
+  border-bottom-color: var(--pp-primary-variant, #1a2a5e);
+  box-shadow: 0 1px 0 0 var(--pp-primary-variant, #1a2a5e);
+}
+
+/* SOFT VARIANT */
+.pp-select--soft .pp-select-container {
+  border: none;
+  border-radius: 12px;
+  background-color: #eff6ff;
+  color: #1e40af;
+}
+.pp-select--soft .pp-select-container--focused {
+  background-color: #dbeafe;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+.pp-select--soft .pp-select-display, .pp-select--soft .pp-select-icon {
+  color: #1e3a8a;
+}
+.pp-select--soft .pp-select-display.is-placeholder {
+  color: #60a5fa;
 }
 
 /* ERROR STATE */

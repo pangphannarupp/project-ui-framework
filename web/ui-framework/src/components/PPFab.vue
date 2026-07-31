@@ -11,6 +11,7 @@
       class="pp-fab-button" 
       :class="[
         `pp-fab-button--${color}`,
+        `pp-fab-button--${variant}`,
         { 'pp-fab-button--extended': extended }
       ]"
       @click="onClick"
@@ -39,11 +40,13 @@ import { provide, ref } from 'vue';
 const props = withDefaults(defineProps<{
   position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'center';
   color?: 'primary' | 'secondary' | 'danger';
+  variant?: 'solid' | 'gradient' | 'soft' | 'outline' | 'glass';
   extended?: boolean;
   disabled?: boolean;
 }>(), {
   position: 'bottom-right',
   color: 'primary',
+  variant: 'solid',
   extended: false,
   disabled: false
 });
@@ -125,24 +128,68 @@ provide('ppFabContext', {
   margin-left: 8px;
 }
 
-/* Colors */
-.pp-fab-button--primary {
+/* Solid Variants (Default) */
+.pp-fab-button--solid.pp-fab-button--primary {
   background-color: var(--pp-primary-variant, #1a2a5e);
   color: white;
 }
-.pp-fab-button--primary:hover { background-color: #121e42; }
+.pp-fab-button--solid.pp-fab-button--primary:hover { background-color: #121e42; }
 
-.pp-fab-button--secondary {
+.pp-fab-button--solid.pp-fab-button--secondary {
   background-color: #e0e0e0;
   color: #333;
 }
-.pp-fab-button--secondary:hover { background-color: #cccccc; }
+.pp-fab-button--solid.pp-fab-button--secondary:hover { background-color: #cccccc; }
 
-.pp-fab-button--danger {
+.pp-fab-button--solid.pp-fab-button--danger {
   background-color: #d32f2f;
   color: white;
 }
-.pp-fab-button--danger:hover { background-color: #b71c1c; }
+.pp-fab-button--solid.pp-fab-button--danger:hover { background-color: #b71c1c; }
+
+/* Gradient Variants */
+.pp-fab-button--gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+}
+.pp-fab-button--gradient:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+}
+
+/* Soft Variants */
+.pp-fab-button--soft {
+  background-color: #eff6ff;
+  color: #2563eb;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+.pp-fab-button--soft:hover {
+  background-color: #dbeafe;
+}
+
+/* Outline Variants */
+.pp-fab-button--outline {
+  background-color: #ffffff;
+  color: var(--pp-primary-variant, #1a2a5e);
+  border: 2px solid var(--pp-primary-variant, #1a2a5e);
+}
+.pp-fab-button--outline:hover {
+  background-color: #f8fafc;
+}
+
+/* Glass Variants */
+.pp-fab-button--glass {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--pp-primary-variant, #1a2a5e);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.pp-fab-button--glass:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
 .pp-fab-button:disabled {
   background-color: #bdbdbd;

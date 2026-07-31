@@ -116,7 +116,7 @@ const props = withDefaults(defineProps<{
   modelValue?: (string | number)[];
   data?: TransferOption[];
   titles?: [string, string];
-  variant?: 'outlined' | 'filled';
+  variant?: 'outlined' | 'filled' | 'soft' | 'elevated';
   disabled?: boolean;
   direction?: 'horizontal' | 'vertical';
 }>(), {
@@ -223,6 +223,45 @@ const moveToLeft = () => {
   border: none;
   background-color: #f5f5f5;
   box-shadow: none;
+}
+
+/* SOFT VARIANT */
+.pp-transfer--soft .pp-transfer-panel {
+  border: none;
+  background-color: #eff6ff;
+  box-shadow: none;
+}
+.pp-transfer--soft .pp-transfer-header {
+  background-color: #dbeafe;
+  border-bottom: none;
+}
+.pp-transfer--soft .pp-transfer-title {
+  color: #1e3a8a;
+}
+.pp-transfer--soft .pp-transfer-body {
+  background-color: transparent;
+}
+.pp-transfer--soft .pp-transfer-item {
+  color: #1e40af;
+}
+.pp-transfer--soft .pp-transfer-item:hover:not(.is-disabled) {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+.pp-transfer--soft .pp-transfer-item.is-checked {
+  background-color: rgba(37, 99, 235, 0.15);
+  color: #1d4ed8;
+}
+
+/* ELEVATED VARIANT */
+.pp-transfer--elevated .pp-transfer-panel {
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+.pp-transfer--elevated .pp-transfer-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .pp-transfer-header {

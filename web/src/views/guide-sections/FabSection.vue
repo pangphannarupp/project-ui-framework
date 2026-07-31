@@ -3,8 +3,10 @@
         <h2>Floating Action Button (FAB)</h2>
         <div class="variant-group">
           <h3>Standard FAB & Speed Dial</h3>
-          <div class="component-demo">
-            <PPFab position="bottom-right">
+          <div class="component-demo" style="min-height: 400px; position: relative;">
+            
+            <!-- Standard -->
+            <PPFab position="bottom-right" variant="solid" color="primary">
               <template #list>
                 <PPFabList side="top">
                   <PPFabAction color="primary" @click="alertVal('Action 1')">1</PPFabAction>
@@ -13,11 +15,43 @@
               </template>
             </PPFab>
             
+            <!-- Extended -->
             <PPFab position="bottom-left" color="secondary" :extended="isExtended">
               Extended FAB
             </PPFab>
+
+            <!-- Gradient Variant -->
+            <PPFab position="center" variant="gradient" style="margin-top: -120px;">
+              <template #icon>
+                <IonIcon :icon="rocketOutline" />
+              </template>
+            </PPFab>
+
+            <!-- Soft Variant -->
+            <PPFab position="center" variant="soft" style="margin-left: -100px; margin-top: 40px;">
+              <template #icon>
+                <IonIcon :icon="layersOutline" />
+              </template>
+            </PPFab>
+
+            <!-- Outline Variant -->
+            <PPFab position="center" variant="outline" style="margin-left: 100px; margin-top: 40px;">
+              <template #icon>
+                <IonIcon :icon="searchOutline" />
+              </template>
+            </PPFab>
+
+            <!-- Glass Variant -->
+            <!-- Glass looks best on an image or pattern, but we'll demonstrate it here -->
+            <div style="position: absolute; top: 20px; right: 20px; width: 100px; height: 100px; background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+              <PPFab position="center" variant="glass" style="position: relative; top: 0; left: 0; transform: none;">
+                <template #icon>
+                  <IonIcon :icon="chatbubbleOutline" />
+                </template>
+              </PPFab>
+            </div>
             
-            <div style="padding-bottom: 20px;">
+            <div style="padding-bottom: 20px; position: relative; z-index: 10;">
               <PPButton @click="isExtended = !isExtended">Toggle Extended FAB</PPButton>
             </div>
           </div>

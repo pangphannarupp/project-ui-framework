@@ -3,16 +3,62 @@
     <h2>Select</h2>
     <p>A customizable dropdown select component for choosing from a list of options.</p>
 
-    <h3>Basic Usage</h3>
-    <div class="demo-box">
-      <PPSelect
-        v-model="selectedValue"
-        :options="options"
-        placeholder="Select an option"
-      />
-      <div style="margin-top: 16px; font-family: monospace;">Selected: {{ selectedValue || 'None' }}</div>
+    <div class="variant-group">
+      <h3>Variants</h3>
+      <div class="demo-box" style="display: flex; flex-direction: column; gap: 24px;">
+        <PPSelect
+          v-model="valOutlined"
+          :options="options"
+          label="Outlined (Default)"
+          placeholder="Select an option"
+        />
+        <PPSelect
+          v-model="valFilled"
+          :options="options"
+          variant="filled"
+          label="Filled"
+          placeholder="Select an option"
+        />
+        <PPSelect
+          v-model="valFlushed"
+          :options="options"
+          variant="flushed"
+          label="Flushed"
+          placeholder="Select an option"
+        />
+        <PPSelect
+          v-model="valSoft"
+          :options="options"
+          variant="soft"
+          label="Soft (Tonal)"
+          placeholder="Select an option"
+        />
+      </div>
+      <pre class="code-block"><code>&lt;PPSelect variant="outlined" ... /&gt;
+&lt;PPSelect variant="filled" ... /&gt;
+&lt;PPSelect variant="flushed" ... /&gt;
+&lt;PPSelect variant="soft" ... /&gt;</code></pre>
     </div>
-    <pre class="code-block"><code>&lt;PPSelect v-model="selectedValue" :options="options" placeholder="Select an option" /&gt;</code></pre>
+
+    <div class="variant-group">
+      <h3>States & Validation</h3>
+      <div class="demo-box" style="display: flex; flex-direction: column; gap: 24px;">
+        <PPSelect
+          v-model="valError"
+          :options="options"
+          label="Error State"
+          error="Please select a valid option."
+          placeholder="Invalid selection"
+        />
+        <PPSelect
+          v-model="valDisabled"
+          :options="options"
+          label="Disabled State"
+          disabled
+          placeholder="Cannot select"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,7 +66,13 @@
 import { ref } from 'vue';
 import { PPSelect } from '@phanna/ui-framework';
 
-const selectedValue = ref('');
+const valOutlined = ref('');
+const valFilled = ref('');
+const valFlushed = ref('');
+const valSoft = ref('');
+const valError = ref('');
+const valDisabled = ref('');
+
 const options = [
   { label: 'Option 1', value: 'opt1' },
   { label: 'Option 2', value: 'opt2' },

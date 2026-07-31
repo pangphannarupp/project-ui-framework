@@ -73,6 +73,14 @@ defineEmits(['click']);
   color: var(--pp-primary-variant, #1a2a5e);
 }
 
+.pp-icon-btn--transparent {
+  background-color: transparent;
+  color: #ffffff;
+}
+.pp-icon-btn--transparent:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .pp-icon-btn--danger {
   background-color: #ffefef;
   color: #ff3b30;

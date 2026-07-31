@@ -181,6 +181,7 @@ const componentsMenu = [
       { id: 'web-toast', label: 'Web Toast (Desktop)' },
       // { id: 'notifications', label: 'Notifications & Scrolling' },
       { id: 'tabs', label: 'Tabs' },
+      { id: 'scroll-area', label: 'Scroll Area' },
       { id: 'segment', label: 'Segment Controls' },
       { id: 'accordion', label: 'Accordion' },
       { id: 'carousel', label: 'Carousel' }
@@ -340,7 +341,8 @@ const sectionMap: Record<string, string> = {
   "feedback-sheets": "FeedbackSheetsSection",
   "web-toast": "WebToastSection",
   "notifications": "NotificationsSection",
-  "tabs": "LiquidTabSection",
+  "tabs": "TabsSection",
+  "scroll-area": "ScrollAreaSection",
   "accordion": "CollapseSection",
   "interactive-overlays": "InteractiveOverlaysSection",
   "scroll-segment": "ScrollSegmentSection",

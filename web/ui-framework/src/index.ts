@@ -170,7 +170,20 @@ import PPConfirm from './components/PPConfirm.vue'
 import PPInputDialog from './components/PPInputDialog.vue'
 
 // Export components individually
+import PPTabs from "./components/PPTabs.vue";
+import PPTabList from "./components/PPTabList.vue";
+import PPTab from "./components/PPTab.vue";
+import PPTabPanels from "./components/PPTabPanels.vue";
+import PPTabPanel from "./components/PPTabPanel.vue";
+import PPScrollArea from "./components/PPScrollArea.vue";
+
 export { 
+  PPTabs,
+  PPTabList,
+  PPTab,
+  PPTabPanels,
+  PPTabPanel,
+  PPScrollArea,
   MyButton, 
   MyList, 
   PPButton, 
@@ -499,6 +512,11 @@ export default {
     app.component('PPSearch', PPSearch)
     app.component('PPAlert', PPAlert)
     app.component('PPConfirm', PPConfirm)
-    app.component('PPInputDialog', PPInputDialog)
+    app.component('PPTabPanel', PPTabPanel)
+    app.component('PPTabs', PPTabs)
+    app.component('PPTabList', PPTabList)
+    app.component('PPTab', PPTab)
+    app.component('PPTabPanels', PPTabPanels)
+    app.component('PPScrollArea', PPScrollArea)
   }
 }
