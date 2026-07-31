@@ -31,7 +31,9 @@ jobs:
           
       - name: Install dependencies
         working-directory: ./web
-        run: NODE_ENV=development npm install
+        run: |
+          npm install
+          npm install vue-tsc vite @vitejs/plugin-vue typescript --no-save
         
       - name: Build project
         working-directory: ./web
