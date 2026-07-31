@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
 		}
 	});
 	return {
-		base: "./",
+		base: process.env.VITE_ENVIRONMENT === 'production' ? '/project-ui-framework/' : '/',
 		plugins: [
 			dynamicSubdomainProxy(),
 			vue(),
