@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   scrollable?: boolean;
 }>(), {
   scrollable: false
