@@ -35,7 +35,7 @@ jobs:
         
       - name: Build project
         working-directory: ./web
-        run: VITE_ENVIRONMENT=production npm run build
+        run: VITE_ENVIRONMENT=production npx vite build
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
