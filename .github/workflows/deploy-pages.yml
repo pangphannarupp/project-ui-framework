@@ -33,6 +33,12 @@ jobs:
         working-directory: ./web
         run: yarn install
         
+      - name: Build ui-framework
+        working-directory: ./web/ui-framework
+        run: |
+          yarn install
+          yarn build
+        
       - name: Build project
         working-directory: ./web
         run: VITE_ENVIRONMENT=production yarn build
