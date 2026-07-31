@@ -88,6 +88,16 @@
           </svg>
         </div>
 
+        <div class="list-item" @click="router.push('/setting')">
+          <div class="item-content">
+            <h3>Setting Screen</h3>
+            <p>Theme, Language, and Version settings</p>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+
         <div class="list-item" @click="router.push('/upgrade-info')">
           <div class="item-content">
             <h3>Why Upgrade Info</h3>

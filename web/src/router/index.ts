@@ -70,6 +70,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/edit-account-nickname-success',
     component: () => import('@/views/EditAccountNicknameSuccessScreen.vue')
+  },
+  {
+    path: '/setting',
+    component: () => import('@/views/SettingScreen.vue')
   }
 ]
 
