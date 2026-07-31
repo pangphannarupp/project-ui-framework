@@ -29,16 +29,17 @@ jobs:
         with:
           node-version: 22
           
+      - name: Install dependencies
+        working-directory: ./web
+        run: yarn install
+        
       - name: Build ui-framework
         working-directory: ./web/ui-framework
         run: |
           yarn install
           yarn build
+          cp -r dist ../node_modules/@phanna/ui-framework/
           
-      - name: Install dependencies
-        working-directory: ./web
-        run: yarn install
-        
       - name: Build project
         working-directory: ./web
         run: VITE_ENVIRONMENT=production yarn build
