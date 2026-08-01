@@ -3,6 +3,7 @@
     <h2>Icons Collection</h2>
     <p>A comprehensive set of SVG icons provided by Ionicons. Click any icon to copy its import name.</p>
     
+
     <div style="margin: 20px 0;">
       <input 
         type="text" 
@@ -43,17 +44,14 @@ const searchQuery = ref('');
 const showCopiedToast = ref(false);
 const copiedName = ref('');
 
-// Filter icons based on search query and limit to 150 to avoid rendering lag
+// Filter icons based on search query
 const filteredIcons = computed(() => {
   const query = searchQuery.value.toLowerCase();
-  let count = 0;
   const result: Record<string, string> = {};
   
   for (const [name, icon] of Object.entries(ionIcons)) {
     if (typeof icon === 'string' && name.toLowerCase().includes(query)) {
       result[name] = icon;
-      count++;
-      if (count > 150) break; // Limit for performance
     }
   }
   
@@ -162,4 +160,6 @@ const copyIconName = (name: string) => {
   from { opacity: 0; transform: translate(-50%, 20px); }
   to { opacity: 1; transform: translate(-50%, 0); }
 }
+
+
 </style>

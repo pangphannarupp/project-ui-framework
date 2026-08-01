@@ -168,6 +168,7 @@ import PPSearch from './components/PPSearch.vue'
 import PPAlert from './components/PPAlert.vue'
 import PPConfirm from './components/PPConfirm.vue'
 import PPInputDialog from './components/PPInputDialog.vue'
+import PPChatItem from './components/PPChatItem.vue'
 
 // Export components individually
 import PPTabs from "./components/PPTabs.vue";
@@ -350,7 +351,8 @@ export {
   PPSearch,
   PPAlert,
   PPConfirm,
-  PPInputDialog
+  PPInputDialog,
+  PPChatItem
 }
 
 // Export a Vue plugin to install all components
@@ -512,6 +514,8 @@ export default {
     app.component('PPSearch', PPSearch)
     app.component('PPAlert', PPAlert)
     app.component('PPConfirm', PPConfirm)
+    app.component('PPInputDialog', PPInputDialog)
+    app.component('PPChatItem', PPChatItem)
     app.component('PPTabPanel', PPTabPanel)
     app.component('PPTabs', PPTabs)
     app.component('PPTabList', PPTabList)

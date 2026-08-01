@@ -195,6 +195,10 @@ const componentsMenu = [
       { id: 'settings-screen', label: 'Settings & Profile' },
       { id: 'math-exam-screen', label: 'Math Examination' },
       { id: 'dashboard-screen', label: 'Dashboard Template' },
+      { id: 'chat-screen', label: 'Chat List' },
+      { id: 'chat-detail-screen', label: 'Chat Detail' },
+      { id: 'chat-profile-screen', label: 'Chat Profile' },
+      { id: 'contacts-screen', label: 'Contacts' },
       { id: 'onboard', label: 'Onboarding Flow' }
     ]
   },
@@ -223,6 +227,8 @@ const componentsMenu = [
       // { id: 'cards', label: 'Cards Collection' },
       { id: 'keypads', label: 'Keypads & Security' },
       { id: 'interactive-overlays', label: 'Interactive Overlays' },
+      { id: 'bottom-sheet', label: 'Bottom Sheet' },
+      { id: 'dialog', label: 'Dialogs' },
       { id: 'reaction-picker', label: 'Reaction Picker' },
       { id: 'advanced-components', label: 'Advanced Components' }
     ]
@@ -361,6 +367,10 @@ const sectionMap: Record<string, string> = {
   "settings-screen": "SettingsScreen",
   "math-exam-screen": "MathExamScreen",
   "dashboard-screen": "DashboardScreen",
+  "chat-screen": "ChatScreen",
+  "chat-detail-screen": "ChatDetailScreen",
+  "chat-profile-screen": "ChatProfileScreen",
+  "contacts-screen": "ContactsScreen",
   "onboard": "OnboardSection",
   "timeline": "TimelineSection",
   "charts": "ChartsSection",
@@ -374,7 +384,9 @@ const sectionMap: Record<string, string> = {
   "reaction-picker": "ReactionPickerSection",
   "advanced-components": "AdvancedComponentsSection",
   "icons": "IconsSection",
-  "segment": "SegmentSection"
+  "segment": "SegmentSection",
+  "bottom-sheet": "BottomSheetSection",
+  "dialog": "DialogSection"
 };
 
 const currentComponent = computed(() => {
