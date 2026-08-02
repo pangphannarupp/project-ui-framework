@@ -68,9 +68,13 @@ import PPOtpInput from './components/PPOtpInput.vue'
 import PPInfoCard from './components/PPInfoCard.vue'
 import PPPinDots from './components/PPPinDots.vue'
 import PPKeypad from './components/PPKeypad.vue'
+import PPPhoneKeyboard from './components/PPPhoneKeyboard.vue'
+import PPMathKeyboard from './components/PPMathKeyboard.vue'
+import PPEmojiKeyboard from './components/PPEmojiKeyboard.vue'
 import PPSecureKeypad from './components/PPSecureKeypad.vue'
 import PPSecureKeyboard from './components/PPSecureKeyboard.vue'
 import PPKhmerKeyboard from './components/PPKhmerKeyboard.vue'
+import PPEnglishKeyboard from './components/PPEnglishKeyboard.vue'
 import PPNoResult from './components/PPNoResult.vue'
 import PPAppBar from './components/PPAppBar.vue'
 import PPToast from './components/PPToast.vue'
@@ -169,6 +173,7 @@ import PPAlert from './components/PPAlert.vue'
 import PPConfirm from './components/PPConfirm.vue'
 import PPInputDialog from './components/PPInputDialog.vue'
 import PPChatItem from './components/PPChatItem.vue'
+import PPSpinWheel from './components/PPSpinWheel.vue'
 
 // Export components individually
 import PPTabs from "./components/PPTabs.vue";
@@ -179,6 +184,7 @@ import PPTabPanel from "./components/PPTabPanel.vue";
 import PPScrollArea from "./components/PPScrollArea.vue";
 
 export { 
+  PPSpinWheel,
   PPTabs,
   PPTabList,
   PPTab,
@@ -262,9 +268,13 @@ export {
   PPInfoCard,
   PPPinDots,
   PPKeypad,
+  PPPhoneKeyboard,
+  PPMathKeyboard,
+  PPEmojiKeyboard,
   PPSecureKeypad,
   PPSecureKeyboard,
   PPKhmerKeyboard,
+  PPEnglishKeyboard,
   PPNoResult,
   PPAppBar,
   PPToast,
@@ -388,9 +398,13 @@ export default {
     app.component('PPPullToRefresh', PPPullToRefresh)
     app.component('PPPinDots', PPPinDots)
     app.component('PPKeypad', PPKeypad)
+    app.component('PPPhoneKeyboard', PPPhoneKeyboard)
+    app.component('PPMathKeyboard', PPMathKeyboard)
+    app.component('PPEmojiKeyboard', PPEmojiKeyboard)
     app.component('PPSecureKeypad', PPSecureKeypad)
     app.component('PPSecureKeyboard', PPSecureKeyboard)
     app.component('PPKhmerKeyboard', PPKhmerKeyboard)
+    app.component('PPEnglishKeyboard', PPEnglishKeyboard)
     app.component('PPImageTransition', PPImageTransition)
     app.component('PPSwipeItem', PPSwipeItem)
     app.component('PPBarChart', PPBarChart)

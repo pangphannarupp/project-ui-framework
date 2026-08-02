@@ -10,16 +10,22 @@
       <div class="pp-indicator-inner"></div>
     </div>
 
+    <!-- Cutout Background -->
+    <div v-if="variant === 'cutout'" class="pp-cutout-bg"></div>
+
     <div 
       v-for="(item, index) in items" 
       :key="index"
       :ref="el => setItemRef(el, index)"
       class="pp-bottom-nav-item"
-      :class="{ 'is-active': modelValue === item.value }"
+      :class="{ 
+        'is-active': modelValue === item.value,
+        'is-action-item': item.isAction 
+      }"
       :style="{ flex: `1 1 0px` }"
       @click="selectItem(item.value)"
     >
-      <div class="pp-nav-indicator">
+      <div class="pp-nav-indicator" :class="{ 'pp-fab-wrapper': item.isAction }">
         <ion-icon :icon="modelValue === item.value ? (item.activeIcon || item.icon) : item.icon" class="pp-nav-icon"></ion-icon>
       </div>
       <span class="pp-nav-label" v-if="variant !== 'shift' || modelValue === item.value">{{ item.label }}</span>
@@ -36,12 +42,13 @@ export interface BottomNavItem {
   value: string;
   icon: any;
   activeIcon?: any;
+  isAction?: boolean;
 }
 
 const props = withDefaults(defineProps<{
   modelValue: string;
   items: any[];
-  variant?: 'material' | 'classic' | 'floating' | 'shift' | 'dot' | 'bubble' | 'magic-line' | 'curved' | 'pill-slide';
+  variant?: 'material' | 'classic' | 'floating' | 'shift' | 'dot' | 'bubble' | 'magic-line' | 'curved' | 'pill-slide' | 'cutout';
 }>(), {
   variant: 'material'
 });
@@ -463,5 +470,68 @@ watch(() => props.items, updateIndicator, { deep: true });
 .is-variant-pill-slide .pp-bottom-nav-item.is-active .pp-nav-label {
   color: #1a1a1a;
   font-weight: 700;
+}
+
+/* ========================================================== */
+/* VARIANT: CUTOUT (Centered FAB style)                       */
+/* ========================================================== */
+.is-variant-cutout {
+  background-color: transparent;
+  box-shadow: none;
+  height: 90px; /* Make taller to accommodate the FAB cutout */
+  align-items: flex-end;
+}
+.pp-cutout-bg {
+  position: absolute;
+  top: 10px; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: #ffffff;
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  filter: drop-shadow(0 -4px 10px rgba(0,0,0,0.06));
+  z-index: 0;
+}
+.pp-cutout-bg::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+.is-variant-cutout .pp-bottom-nav-item {
+  z-index: 1;
+  height: 80px; /* Align to bottom */
+}
+.is-variant-cutout .pp-nav-indicator {
+  background: transparent !important;
+}
+.is-variant-cutout .is-action-item {
+  position: relative;
+}
+.is-variant-cutout .is-action-item .pp-fab-wrapper {
+  position: absolute;
+  top: -32px; /* Lift up */
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--pp-primary, #007aff);
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.is-variant-cutout .is-action-item .pp-nav-icon {
+  color: #ffffff !important;
+  font-size: 28px;
+}
+.is-variant-cutout .is-action-item .pp-nav-label {
+  margin-top: 40px; /* Push label below the FAB */
+  font-weight: 600;
 }
 </style>

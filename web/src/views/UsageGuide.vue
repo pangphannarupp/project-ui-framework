@@ -230,7 +230,8 @@ const componentsMenu = [
       { id: 'bottom-sheet', label: 'Bottom Sheet' },
       { id: 'dialog', label: 'Dialogs' },
       { id: 'reaction-picker', label: 'Reaction Picker' },
-      { id: 'advanced-components', label: 'Advanced Components' }
+      { id: 'advanced-components', label: 'Advanced Components' },
+      { id: 'spin-wheel', label: 'Spin the Wheel' }
     ]
   },
   {
@@ -386,7 +387,8 @@ const sectionMap: Record<string, string> = {
   "icons": "IconsSection",
   "segment": "SegmentSection",
   "bottom-sheet": "BottomSheetSection",
-  "dialog": "DialogSection"
+  "dialog": "DialogSection",
+  "spin-wheel": "SpinWheelSection"
 };
 
 const currentComponent = computed(() => {

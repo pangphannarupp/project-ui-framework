@@ -140,6 +140,23 @@
         </div>
 
         <div class="variant-group">
+          <h3>Cutout (Action FAB)</h3>
+          <p class="guide-desc">A centered elevated action button with a curved cutout behind it.</p>
+          <div class="component-demo" style="position: relative; overflow: hidden; padding-bottom: 20px; background-color: #1a1a1a;">
+            <PPBottomNav 
+              v-model="navValCutout"
+              variant="cutout"
+              :items="navItemsCutout"
+            />
+          </div>
+          <pre class="code-block"><code>&lt;PPBottomNav 
+  v-model="currentTab"
+  variant="cutout"
+  :items="navItemsCutout"
+/&gt;</code></pre>
+        </div>
+
+        <div class="variant-group">
           <h3>Pill Slide (Segmented Control)</h3>
           <p class="guide-desc">A continuous pill shape with a solid background sliding behind the active item.</p>
           <div class="component-demo" style="position: relative; overflow: hidden; padding-bottom: 20px; background-color: #ffffff;">
@@ -170,6 +187,7 @@ const navValBubble = ref('home');
 const navValMagicLine = ref('home');
 const navValCurved = ref('home');
 const navValPillSlide = ref('home');
+const navValCutout = ref('home');
 
 const navItems = [
   { label: 'Home', value: 'home', icon: homeOutline, activeIcon: home },
@@ -178,9 +196,17 @@ const navItems = [
   { label: 'Profile', value: 'profile', icon: personOutline, activeIcon: person }
 ];
 
+const navItemsCutout = [
+  { label: 'Home', value: 'home', icon: homeOutline, activeIcon: home },
+  { label: 'Rewards', value: 'rewards', icon: cardOutline, activeIcon: cardOutline },
+  { label: 'Order', value: 'order', icon: addOutline, isAction: true },
+  { label: 'Scan', value: 'scan', icon: scanOutline },
+  { label: 'My Order', value: 'myorder', icon: cartOutline }
+];
+
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonTabButton, IonIcon, IonLabel } from '@ionic/vue';
 
-import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline } from 'ionicons/icons';
+import { addOutline, shareOutline, trashOutline, cardOutline, cashOutline, mapOutline, phonePortraitOutline, settingsOutline, homeOutline, home, documentTextOutline, documentText, personOutline, person, chatbubbleOutline, chatbubble, volumeLowOutline, volumeHighOutline, menuOutline, rocketOutline, cubeOutline, calendarOutline, compassOutline, chatbubbleEllipsesOutline, lockClosedOutline, barChartOutline, layersOutline, searchOutline, scanOutline, cartOutline } from 'ionicons/icons';
 
 import { PPButton, PPButtonGroup, PPImageTransition, PPSwipeItem, PPSlider, PPSwitch, PPBarChart, PPLineChart, PPDonutChart, PPPieChart, PPRadarChart, PPProgressGauge, PPScatterChart, PPFunnelChart, PPSkeleton, PPSkeletonItem, PPSkeletonList, PPSkeletonDetail, PPHideAppBar, PPBottomNav, PPFab, PPFabList, PPFabAction, PPNumberSpinner, PPRadio, PPRadioGroup, PPRating, PPCollapsingToolbar, PPPullToRefresh, PPInput, PPTextField, PPSelect, PPTransferList, PPToggleButton, PPCheckbox, PPCheckboxGroup, PPPhoneInput, PPOtpInput, PPInfoCard, PPActionCard, PPAccountCard, PPSegment, PPSegmentButton, PPCompanySelector, PPScrollSegment, PPScrollSegmentButton, PPNotificationItem, PPPinDots, PPKeypad, PPSecureKeypad, PPSecureKeyboard, PPKhmerKeyboard, PPToast, PPConfirmSheet, PPReceiveAmountSheet, PPAccountSavingCard, PPReceivingAccountSheet, PPKhmerCalendar, PPKhmerCalendarSheet, PPKhmerCalendarAlert, PPKhmerCalendarIsland, PPCalendar, PPCalendarSheet, PPCalendarAlert, PPCalendarIsland, PPFileUpload, PPMonthPicker, PPMonthPickerSheet, PPMonthPickerAlert, PPMonthPickerIsland, PPYearPicker, PPYearPickerSheet, PPYearPickerAlert, PPYearPickerIsland, PPTimePicker, PPTimePickerSheet, PPTimePickerAlert, PPTimePickerIsland, PPAutocomplete, PPAccountListCard, PPAccountReorderList, PPColorPicker, PPColorPickerSheet, PPColorPickerAlert, PPColorPickerIsland, PPNavigationDrawer, PPNavigationRail, PPDynamicIsland, PPCollapse, PPCollapseItem } from '@phanna/ui-framework';
 

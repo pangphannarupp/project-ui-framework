@@ -94,3 +94,4 @@ export { default as TabsSection } from './TabsSection.vue';
 export { default as ScrollAreaSection } from './ScrollAreaSection.vue';
 export { default as BottomSheetSection } from './BottomSheetSection.vue';
 export { default as DialogSection } from './DialogSection.vue';
+export { default as SpinWheelSection } from './SpinWheelSection.vue';

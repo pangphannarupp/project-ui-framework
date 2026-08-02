@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="pp-keypad"
+    class="pp-phone-keyboard"
     :class="[`${theme}-theme`, `variant-${variant}`]"
     :style="backgroundColor ? { backgroundColor } : {}"
   >
@@ -18,26 +18,41 @@
         </div>
       </button>
 
-      <!-- Empty Space -->
-      <div class="keypad-btn empty-btn"></div>
+      <!-- Star -->
+      <button class="keypad-btn num-btn" @click="emitPress('*')">
+        <div class="key-content">
+          <span class="key-num" style="font-size: 32px; transform: translateY(6px);">*</span>
+        </div>
+      </button>
 
       <!-- Zero -->
-      <button 
-        class="keypad-btn num-btn"
-        @click="emitPress('0')"
-      >
+      <button class="keypad-btn num-btn" @click="emitPress('0')">
         <div class="key-content">
           <span class="key-num">0</span>
           <span class="key-alpha">+</span>
         </div>
       </button>
 
+      <!-- Hash -->
+      <button class="keypad-btn num-btn" @click="emitPress('#')">
+        <div class="key-content">
+          <span class="key-num">#</span>
+        </div>
+      </button>
+      
+      <!-- Blank -->
+      <div class="keypad-btn empty-btn"></div>
+      
+      <!-- Call Button (optional) -->
+      <button class="keypad-btn call-btn" @click="$emit('call')">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+      </button>
+      
       <!-- Backspace -->
-      <button 
-        class="keypad-btn icon-btn"
-        @click="emitPress('backspace')"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <button class="keypad-btn icon-btn" @click="emitPress('backspace')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
           <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
           <line x1="18" y1="9" x2="12" y2="15"></line>
           <line x1="12" y1="9" x2="18" y2="15"></line>
@@ -48,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(['press']);
+const emit = defineEmits(['press', 'call']);
 
 defineProps({
   theme: {
@@ -77,38 +92,38 @@ const emitPress = (val: string) => {
 </script>
 
 <style scoped>
-.pp-keypad {
+.pp-phone-keyboard {
   width: 100%;
   padding: 16px 20px 32px;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
 }
 
-.pp-keypad.light-theme {
+.pp-phone-keyboard.light-theme {
   background-color: var(--pp-keypad-bg, #e5e7eb);
 }
 
-.pp-keypad.dark-theme {
+.pp-phone-keyboard.dark-theme {
   background-color: #1e1e1e;
 }
 
-.pp-keypad.dark-theme .keypad-btn {
+.pp-phone-keyboard.dark-theme .keypad-btn {
   background-color: #333;
   color: white;
 }
 
-.pp-keypad.dark-theme .empty-btn {
+.pp-phone-keyboard.dark-theme .empty-btn {
   background-color: transparent !important;
   box-shadow: none !important;
 }
 
 /* Glass Variant */
-.pp-keypad.variant-glass {
+.pp-phone-keyboard.variant-glass {
   background-color: rgba(30, 30, 30, 0.4) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
-.pp-keypad.light-theme.variant-glass {
+.pp-phone-keyboard.light-theme.variant-glass {
   background-color: rgba(209, 212, 217, 0.4) !important;
 }
 
@@ -194,5 +209,15 @@ const emitPress = (val: string) => {
 .icon-btn svg {
   width: 24px;
   height: 24px;
+}
+.call-btn {
+  background-color: #34c759 !important; /* iOS Green */
+  color: white !important;
+  border-radius: 50% !important; /* Make it circular */
+  width: 54px;
+  margin: 0 auto;
+}
+.call-btn:active {
+  background-color: #2eb050 !important;
 }
 </style>

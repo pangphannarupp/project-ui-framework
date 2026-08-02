@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="pp-khmer-keyboard" 
+    class="pp-english-keyboard" 
     :class="[`${theme}-theme`, `variant-${variant}`]"
     :style="backgroundColor ? { backgroundColor } : {}"
   >
@@ -56,45 +56,20 @@
       </button>
     </div>
 
-    <!-- Row 2: Letters 2 -->
-    <div class="keyboard-row">
-      <button 
-        v-for="(keyObj, idx) in currentRows[2]" 
-        :key="idx"
-        class="kb-key kb-char-key"
-        @pointerdown="startPress($event, keyObj)"
-        @pointerup="endPress($event, keyObj)"
-        @pointerleave="cancelPress"
-        @contextmenu.prevent
-      >
-        <span class="key-main">{{ isShifted ? (keyObj.shift || keyObj.main) : keyObj.main }}</span>
-        <span v-if="keyObj.shift && !isShifted && !showSymbols" class="key-hint">{{ keyObj.shift }}</span>
-        
-        <div v-if="activePopupKey === keyObj.main" class="key-popup">
-          <div 
-            v-for="(opt, oIdx) in activePopupOptions" 
-            :key="oIdx"
-            class="popup-option" 
-            :class="{ 'hovered': hoveredPopupIndex === oIdx }"
-            :data-idx="oIdx"
-          >{{ opt }}</div>
-        </div>
-      </button>
-    </div>
-
-    <!-- Row 3: Shift, Letters 3, Backspace -->
+    <!-- Row 2: Letters 2 with Shift and Backspace -->
     <div class="keyboard-row">
       <button class="kb-key kb-func-key" @click="toggleShift" :class="{ 'shifted': isShifted }">
-        <svg v-if="!isShifted" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <svg v-if="!showSymbols && !isShifted" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
           <path d="M12 4l-7 7h4v8h6v-8h4z"/>
         </svg>
-        <svg v-else viewBox="0 0 24 24" width="24" height="24" fill="var(--pp-primary, #007aff)">
+        <svg v-else-if="!showSymbols && isShifted" viewBox="0 0 24 24" width="24" height="24" fill="var(--pp-primary, #007aff)">
           <path d="M12 4l-7 7h4v8h6v-8h4z"/>
         </svg>
+        <span v-else>#+=</span>
       </button>
 
       <button 
-        v-for="(keyObj, idx) in currentRows[3]" 
+        v-for="(keyObj, idx) in currentRows[2]" 
         :key="idx"
         class="kb-key kb-char-key"
         @pointerdown="startPress($event, keyObj)"
@@ -140,7 +115,7 @@
       </button>
 
       <button class="kb-key kb-space-key" @click="emitPress(' ')" style="flex: 4;">
-        ខ្មែរ
+        English
       </button>
 
       <button class="kb-key kb-func-key" @click="emitPress('.')" style="flex: 1;">
@@ -191,77 +166,61 @@ interface KeyDef {
   popup?: string[];
   shiftPopup?: string[];
 }
-const khmerLayout: KeyDef[][] = [
+const englishLayout: KeyDef[][] = [
   // Row 0
   [
-    { main: '១', shift: '!', popup: ['១', '1'], shiftPopup: ['!', '!!'] }, 
-    { main: '២', shift: 'ៗ' }, 
-    { main: '៣', shift: '៉' }, 
-    { main: '៤', shift: '៛' },
-    { main: '៥', shift: '%' }, 
-    { main: '៦', shift: '៍' }, 
-    { main: '៧', shift: '័' }, 
-    { main: '៨', shift: '៏' },
-    { main: '៩', shift: '(' }, 
-    { main: '០', shift: ')' }, 
-    { main: 'ឥ', shift: '៌' }, 
-    { main: 'ឲ', shift: '៎' }
+    { main: 'q', shift: 'Q' }, 
+    { main: 'w', shift: 'W' }, 
+    { main: 'e', shift: 'E' }, 
+    { main: 'r', shift: 'R' },
+    { main: 't', shift: 'T' }, 
+    { main: 'y', shift: 'Y' }, 
+    { main: 'u', shift: 'U' }, 
+    { main: 'i', shift: 'I' },
+    { main: 'o', shift: 'O' }, 
+    { main: 'p', shift: 'P' }
   ],
   // Row 1
   [
-    { main: 'ឆ', shift: 'ឈ' }, 
-    { main: 'ឹ', shift: 'ឺ' }, 
-    { main: 'េ', shift: 'ែ', popup: ['ៃ', 'ែ', 'េ'] }, 
-    { main: 'រ', shift: 'ឬ' },
-    { main: 'ត', shift: 'ទ' }, 
-    { main: 'យ', shift: 'ួ' }, 
-    { main: 'ុ', shift: 'ូ' }, 
-    { main: 'ិ', shift: 'ី' },
-    { main: 'ោ', shift: 'ៅ' }, 
-    { main: 'ផ', shift: 'ភ' }, 
-    { main: 'ៀ', shift: 'ឿ' }, 
-    { main: 'ឪ', shift: 'ឰ' }
+    { main: 'a', shift: 'A' }, 
+    { main: 's', shift: 'S' }, 
+    { main: 'd', shift: 'D' }, 
+    { main: 'f', shift: 'F' },
+    { main: 'g', shift: 'G' }, 
+    { main: 'h', shift: 'H' }, 
+    { main: 'j', shift: 'J' }, 
+    { main: 'k', shift: 'K' },
+    { main: 'l', shift: 'L' }
   ],
   // Row 2
   [
-    { main: 'ា', shift: 'ាំ' }, 
-    { main: 'ស', shift: 'ៃ' }, 
-    { main: 'ដ', shift: 'ឌ' }, 
-    { main: 'ថ', shift: 'ធ' },
-    { main: 'ង', shift: 'អ' }, 
-    { main: 'ហ', shift: 'ះ' }, 
-    { main: '្', shift: 'ញ' }, 
-    { main: 'ក', shift: 'គ' },
-    { main: 'ល', shift: 'ឡ' }, 
-    { main: 'ើ', shift: '' }, 
-    { main: '់', shift: '៉' }, 
-    { main: 'ឮ', shift: 'ឯ' }
-  ],
-  // Row 3
-  [
-    { main: 'ឋ', shift: 'ឍ' }, 
-    { main: 'ខ', shift: 'ឃ' }, 
-    { main: 'ច', shift: 'ជ' }, 
-    { main: 'វ', shift: '' },
-    { main: 'ប', shift: 'ព' }, 
-    { main: 'ន', shift: 'ណ' }, 
-    { main: 'ម', shift: 'ំ' }, 
-    { main: 'ួ', shift: 'ុះ' },
-    { main: '។', shift: '' }, 
-    { main: '៊', shift: '?' }
+    { main: 'z', shift: 'Z' }, 
+    { main: 'x', shift: 'X' }, 
+    { main: 'c', shift: 'C' }, 
+    { main: 'v', shift: 'V' },
+    { main: 'b', shift: 'B' }, 
+    { main: 'n', shift: 'N' }, 
+    { main: 'm', shift: 'M' }
   ]
 ];
 
 // Simple symbols layout for demonstration
 const symbolsLayout: KeyDef[][] = [
-  [{ main: '1' },{ main: '2' },{ main: '3' },{ main: '4' },{ main: '5' },{ main: '6' },{ main: '7' },{ main: '8' },{ main: '9' },{ main: '0' },{ main: '-' },{ main: '=' }],
-  [{ main: '@' },{ main: '#' },{ main: '$' },{ main: '_' },{ main: '&' },{ main: '-' },{ main: '+' },{ main: '(' },{ main: ')' },{ main: '/' },{ main: '*' },{ main: '"' }],
-  [{ main: '*' },{ main: '"' },{ main: '\'' },{ main: ':' },{ main: ';' },{ main: '!' },{ main: '?' },{ main: '~' },{ main: '`' },{ main: '|' },{ main: '•' },{ main: '√' }],
-  [{ main: '\\' },{ main: '%' },{ main: '{' },{ main: '}' },{ main: '[' },{ main: ']' },{ main: '<' },{ main: '>' },{ main: '^' },{ main: '°' }]
+  [{ main: '1' },{ main: '2' },{ main: '3' },{ main: '4' },{ main: '5' },{ main: '6' },{ main: '7' },{ main: '8' },{ main: '9' },{ main: '0' }],
+  [{ main: '-' },{ main: '/' },{ main: ':' },{ main: ';' },{ main: '(' },{ main: ')' },{ main: '$' },{ main: '&' },{ main: '@' },{ main: '"' }],
+  [{ main: '.' },{ main: ',' },{ main: '?' },{ main: '!' },{ main: '\'' }]
+];
+
+const extraSymbolsLayout: KeyDef[][] = [
+  [{ main: '[' },{ main: ']' },{ main: '{' },{ main: '}' },{ main: '#' },{ main: '%' },{ main: '^' },{ main: '*' },{ main: '+' },{ main: '=' }],
+  [{ main: '_' },{ main: '\\' },{ main: '|' },{ main: '~' },{ main: '<' },{ main: '>' },{ main: '€' },{ main: '£' },{ main: '¥' },{ main: '•' }],
+  [{ main: '.' },{ main: ',' },{ main: '?' },{ main: '!' },{ main: '\'' }]
 ];
 
 const currentRows = computed(() => {
-  return showSymbols.value ? symbolsLayout : khmerLayout;
+  return showSymbols.value 
+    ? (isShifted.value ? extraSymbolsLayout : symbolsLayout) 
+    : englishLayout;
 });
 
 const toggleShift = () => {
@@ -392,30 +351,36 @@ const cancelPress = () => {
 </script>
 
 <style scoped>
-.pp-khmer-keyboard {
-  width: 100%;
-  padding: 8px;
-  border-radius: 8px;
+.pp-english-keyboard {
   user-select: none;
-  font-family: 'Suwannaphum', 'Hanuman', 'Khmer OS Battambang', sans-serif;
+  touch-action: manipulation;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 8px 4px 16px 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   box-sizing: border-box;
 }
 
-.pp-khmer-keyboard.dark-theme {
+.pp-english-keyboard.dark-theme {
   background-color: #1e1e1e;
 }
 
-.pp-khmer-keyboard.light-theme {
+.pp-english-keyboard.light-theme {
   background-color: #d1d4d9;
 }
 
 /* Glass Variant */
-.pp-khmer-keyboard.variant-glass {
+.pp-english-keyboard.variant-glass {
   background-color: rgba(30, 30, 30, 0.4) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
-.pp-khmer-keyboard.light-theme.variant-glass {
+.pp-english-keyboard.light-theme.variant-glass {
   background-color: rgba(209, 212, 217, 0.4) !important;
 }
 
