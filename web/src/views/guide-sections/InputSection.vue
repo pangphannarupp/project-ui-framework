@@ -12,11 +12,34 @@
         </div>
 
         <div class="variant-group">
-          <h3>Standard Text Input</h3>
-          <div class="component-demo">
-            <PPInput v-model="textVal" label="Username" placeholder="Enter name" clearable />
+          <h3>Standard Text Input (PPInput)</h3>
+          
+          <h4 style="margin-top: 16px;">Variants</h4>
+          <div class="component-demo" style="display: flex; flex-direction: column; gap: 8px;">
+            <PPInput v-model="textVal" label="Outline (Default)" variant="outline" placeholder="Outline variant" />
+            <PPInput v-model="textVal" label="Filled" variant="filled" placeholder="Filled variant" />
+            <PPInput v-model="textVal" label="Underlined" variant="underlined" placeholder="Underlined variant" />
           </div>
-          <pre class="code-block"><code>&lt;PPInput v-model="text" label="Username" clearable /&gt;</code></pre>
+          
+          <h4 style="margin-top: 24px;">Sizes & Shapes</h4>
+          <div class="component-demo" style="display: flex; flex-direction: column; gap: 8px;">
+            <PPInput v-model="textVal" size="sm" placeholder="Small (sm)" />
+            <PPInput v-model="textVal" size="md" placeholder="Medium (md) - Default" />
+            <PPInput v-model="textVal" size="lg" placeholder="Large (lg)" />
+            <div style="margin-top: 16px;"></div>
+            <PPInput v-model="textVal" rounded placeholder="Rounded Pill Style" />
+          </div>
+
+          <h4 style="margin-top: 24px;">Constraints & Formatting</h4>
+          <p class="guide-desc">Restrict input using <code>maxLength</code>, <code>numberOnly</code>, <code>min</code>, <code>max</code>, and <code>format</code>.</p>
+          <div class="component-demo" style="display: flex; flex-direction: column; gap: 8px;">
+            <PPInput v-model="textVal" maxLength="10" placeholder="Max length 10" />
+            <PPInput v-model="textVal" numberOnly placeholder="Numbers only" />
+            <PPInput v-model="textVal" min="10" max="100" placeholder="Min 10, Max 100" type="number" />
+            <PPInput v-model="textVal" format="####-####-####-####" placeholder="Card format (####-####-####-####)" />
+          </div>
+          
+          <pre class="code-block"><code>&lt;PPInput variant="outline|filled|underlined" size="sm|md|lg" rounded /&gt;</code></pre>
         </div>
 
         <div class="variant-group">

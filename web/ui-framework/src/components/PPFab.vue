@@ -4,20 +4,31 @@
     :class="[
       `pp-fab--${position}`,
       { 'pp-fab--extended': extended },
-      { 'pp-fab--active': active }
+      { 'pp-fab--active': active },
+      { 'pp-fab--morphing': morph && active }
     ]"
   >
+    <div 
+      v-if="morph" 
+      class="pp-fab-morph-bg" 
+      :class="[
+        `pp-fab-morph-bg--${color}`,
+        { 'pp-fab-morph-bg--active': active }
+      ]"
+    ></div>
+
     <button 
       class="pp-fab-button" 
       :class="[
         `pp-fab-button--${color}`,
         `pp-fab-button--${variant}`,
+        `pp-fab-button--shape-${shape}`,
         { 'pp-fab-button--extended': extended }
       ]"
       @click="onClick"
       :disabled="disabled"
     >
-      <span class="pp-fab-icon">
+      <span class="pp-fab-icon" :class="{ 'pp-fab-icon--morph-close': morph && active }">
         <slot name="icon">
           <!-- Default Plus Icon -->
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -31,6 +42,11 @@
       </span>
     </button>
     <slot name="list"></slot>
+
+    <!-- Morph Content Slot -->
+    <div v-if="morph" class="pp-fab-morph-content" :class="{ 'pp-fab-morph-content--active': active }">
+       <slot name="morph-content"></slot>
+    </div>
   </div>
 </template>
 
@@ -41,13 +57,17 @@ const props = withDefaults(defineProps<{
   position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'center';
   color?: 'primary' | 'secondary' | 'danger';
   variant?: 'solid' | 'gradient' | 'soft' | 'outline' | 'glass';
+  shape?: 'circle' | 'square' | 'rounded';
   extended?: boolean;
+  morph?: boolean;
   disabled?: boolean;
 }>(), {
   position: 'bottom-right',
   color: 'primary',
   variant: 'solid',
+  shape: 'circle',
   extended: false,
+  morph: false,
   disabled: false
 });
 
@@ -87,14 +107,19 @@ provide('ppFabContext', {
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 28px;
   min-width: 56px;
   height: 56px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0 16px;
+  position: relative;
+  z-index: 3;
 }
+
+.pp-fab-button--shape-circle { border-radius: 28px; }
+.pp-fab-button--shape-rounded { border-radius: 16px; }
+.pp-fab-button--shape-square { border-radius: 8px; }
 
 .pp-fab-button:not(.pp-fab-button--extended) {
   padding: 0;
@@ -107,8 +132,12 @@ provide('ppFabContext', {
   transition: transform 0.3s ease;
 }
 
-.pp-fab--active .pp-fab-icon {
+.pp-fab--active .pp-fab-icon:not(.pp-fab-icon--morph-close) {
   transform: rotate(45deg);
+}
+
+.pp-fab-icon--morph-close {
+  transform: rotate(135deg) scale(1.2);
 }
 
 .pp-fab-text {
@@ -195,5 +224,46 @@ provide('ppFabContext', {
   background-color: #bdbdbd;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+/* Morph Background */
+.pp-fab-morph-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+  z-index: 1; 
+  pointer-events: none;
+}
+.pp-fab-morph-bg--active {
+  transform: translate(-50%, -50%) scale(60); 
+}
+
+.pp-fab-morph-bg--primary { background-color: var(--pp-primary-variant, #1a2a5e); }
+.pp-fab-morph-bg--secondary { background-color: #e0e0e0; }
+.pp-fab-morph-bg--danger { background-color: #d32f2f; }
+
+/* Morph Content */
+.pp-fab-morph-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.pp-fab-morph-content--active {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s ease 0.3s;
 }
 </style>

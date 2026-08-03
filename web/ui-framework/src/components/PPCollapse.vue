@@ -1,5 +1,8 @@
 <template>
-  <div class="pp-collapse">
+  <div 
+    class="pp-collapse"
+    :class="[`pp-collapse--${variant}`]"
+  >
     <slot></slot>
   </div>
 </template>
@@ -15,6 +18,10 @@ const props = defineProps({
   accordion: {
     type: Boolean,
     default: false
+  },
+  variant: {
+    type: String,
+    default: 'default' // 'default', 'flush', 'filled', 'separated'
   }
 });
 
@@ -46,18 +53,47 @@ const handleItemClick = (name: string | number) => {
 
 provide('pp-collapse', {
   activeNames,
-  handleItemClick
+  handleItemClick,
+  variant: computed(() => props.variant)
 });
 </script>
 
 <style scoped>
 .pp-collapse {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Default Variant */
+.pp-collapse--default {
   border: 1px solid var(--pp-border-color, #e0e2ec);
   border-radius: 12px;
   background-color: var(--pp-bg-color, #ffffff);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+}
+
+/* Flush Variant */
+.pp-collapse--flush {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/* Separated Variant */
+.pp-collapse--separated {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  gap: 12px;
+}
+
+/* Filled Variant */
+.pp-collapse--filled {
+  border: none;
+  border-radius: 12px;
+  background-color: transparent;
+  gap: 8px;
 }
 </style>

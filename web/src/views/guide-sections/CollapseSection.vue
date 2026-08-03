@@ -52,20 +52,39 @@
             </PPCollapse>
             <p style="margin-top: 16px; font-size: 12px; color: #666;">Active panel: {{ collapseModel2 }}</p>
           </div>
-          <pre class="code-block"><code>&lt;PPCollapse v-model="collapseModel2" accordion&gt;
-  &lt;PPCollapseItem name="A" title="Section A"&gt;
-    Content for Section A.
-  &lt;/PPCollapseItem&gt;
-  &lt;PPCollapseItem name="B"&gt;
-    &lt;template #title&gt;
-      &lt;strong style="color: var(--pp-primary-color);"&gt;Custom Header B&lt;/strong&gt;
-    &lt;/template&gt;
-    Content for Section B.
-  &lt;/PPCollapseItem&gt;
-  &lt;PPCollapseItem name="C" title="Section C"&gt;
-    Content for Section C.
-  &lt;/PPCollapseItem&gt;
-&lt;/PPCollapse&gt;</code></pre>
+          <pre class="code-block"><code>&lt;PPCollapse v-model="collapseModel2" accordion&gt;...&lt;/PPCollapse&gt;</code></pre>
+        </div>
+
+        <div class="variant-group" style="margin-top: 32px;">
+          <h3>Variants</h3>
+          <p class="custom-guide">Change the visual style using the <code>variant</code> prop.</p>
+          
+          <h4 style="margin-top: 16px;">Flush Variant</h4>
+          <p class="guide-desc">No outer borders or background.</p>
+          <div class="component-demo">
+            <PPCollapse variant="flush">
+              <PPCollapseItem name="1" title="Flush Panel 1">Content inside flush panel.</PPCollapseItem>
+              <PPCollapseItem name="2" title="Flush Panel 2">Content inside flush panel.</PPCollapseItem>
+            </PPCollapse>
+          </div>
+          
+          <h4 style="margin-top: 24px;">Separated Variant</h4>
+          <p class="guide-desc">Each panel acts as an individual card.</p>
+          <div class="component-demo">
+            <PPCollapse variant="separated">
+              <PPCollapseItem name="1" title="Separated Panel 1">Content inside separated panel.</PPCollapseItem>
+              <PPCollapseItem name="2" title="Separated Panel 2">Content inside separated panel.</PPCollapseItem>
+            </PPCollapse>
+          </div>
+          
+          <h4 style="margin-top: 24px;">Filled Variant</h4>
+          <p class="guide-desc">Light colored background for headers.</p>
+          <div class="component-demo">
+            <PPCollapse variant="filled">
+              <PPCollapseItem name="1" title="Filled Panel 1">Content inside filled panel with a white background.</PPCollapseItem>
+              <PPCollapseItem name="2" title="Filled Panel 2">Content inside filled panel with a white background.</PPCollapseItem>
+            </PPCollapse>
+          </div>
         </div>
       </div>
 </template>

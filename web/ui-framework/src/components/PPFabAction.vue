@@ -1,11 +1,13 @@
 <template>
-  <button 
-    class="pp-fab-action" 
-    :class="`pp-fab-action--${color}`"
-    @click="onClick"
-  >
-    <slot></slot>
-  </button>
+  <div class="pp-fab-action-wrapper">
+    <button 
+      class="pp-fab-action" 
+      :class="`pp-fab-action--${color}`"
+      @click="onClick"
+    >
+      <slot></slot>
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -23,6 +25,12 @@ const onClick = (e: Event) => {
 </script>
 
 <style scoped>
+.pp-fab-action-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .pp-fab-action {
   display: flex;
   align-items: center;

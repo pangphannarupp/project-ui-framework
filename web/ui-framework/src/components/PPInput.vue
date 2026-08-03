@@ -1,7 +1,15 @@
 <template>
   <div class="pp-input-wrapper">
     <label v-if="label" class="pp-input-label">{{ label }}</label>
-    <div :class="['pp-input-container', { 'pp-input-container--focused': isFocused }]">
+    <div 
+      :class="[
+        'pp-input-container', 
+        `pp-input-container--${variant}`,
+        `pp-input-container--${size}`,
+        { 'pp-input-container--focused': isFocused },
+        { 'pp-input-container--rounded': rounded }
+      ]"
+    >
       <span class="pp-input-icon pp-input-icon--left" v-if="$slots.iconLeft">
         <slot name="iconLeft"></slot>
       </span>
@@ -49,10 +57,21 @@ const props = withDefaults(defineProps<{
   type?: string;
   placeholder?: string;
   clearable?: boolean;
+  variant?: 'outline' | 'filled' | 'underlined';
+  size?: 'sm' | 'md' | 'lg';
+  rounded?: boolean;
+  maxLength?: number;
+  format?: string;
+  numberOnly?: boolean;
+  min?: number;
+  max?: number;
 }>(), {
   modelValue: '',
   type: 'text',
-  clearable: false
+  clearable: false,
+  variant: 'outline',
+  size: 'md',
+  rounded: false
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -72,9 +91,60 @@ const hasActions = computed(() => {
   return (props.clearable && props.modelValue) || props.type === 'password' || !!slots.iconRight;
 });
 
+const formatValue = (val: string, formatStr: string) => {
+  if (!val) return '';
+  const digits = val.replace(/\D/g, '');
+  if (!formatStr) return digits;
+  
+  let formatted = '';
+  let digitIndex = 0;
+  
+  const maskChar = formatStr.includes('#') ? '#' : (formatStr.includes('8') ? '8' : (formatStr.includes('X') ? 'X' : 'x'));
+  if (!maskChar) return digits;
+
+  for (let i = 0; i < formatStr.length; i++) {
+    if (digitIndex >= digits.length) break;
+    if (formatStr[i] === maskChar) {
+      formatted += digits[digitIndex];
+      digitIndex++;
+    } else {
+      formatted += formatStr[i];
+    }
+  }
+  return formatted;
+};
+
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  emit('update:modelValue', target.value);
+  let val = target.value;
+
+  if (props.numberOnly || props.format) {
+    val = val.replace(/\D/g, '');
+  }
+
+  if (props.maxLength && val.length > props.maxLength && !props.format) {
+    val = val.slice(0, props.maxLength);
+  }
+
+  if (props.min !== undefined || props.max !== undefined) {
+    const numVal = parseFloat(val);
+    if (!isNaN(numVal)) {
+      if (props.min !== undefined && numVal < props.min) val = String(props.min);
+      if (props.max !== undefined && numVal > props.max) val = String(props.max);
+    }
+  }
+
+  if (props.format) {
+    const formatted = formatValue(val, props.format);
+    if (target.value !== formatted) {
+      target.value = formatted;
+    }
+    val = val; // Emit raw digits when formatted
+  } else {
+    target.value = val;
+  }
+
+  emit('update:modelValue', val);
 };
 
 const clearInput = () => {
@@ -103,16 +173,54 @@ const togglePasswordVisibility = () => {
 .pp-input-container {
   display: flex;
   align-items: center;
+  padding: 0 16px;
+  transition: all 0.2s ease;
+}
+
+/* Variants */
+.pp-input-container--outline {
   border: 1px solid #cccccc;
   border-radius: 12px;
   background-color: #ffffff;
-  padding: 0 16px;
-  transition: border-color 0.2s;
-  height: 52px;
+}
+.pp-input-container--outline.pp-input-container--focused {
+  border-color: var(--pp-primary-variant, #1a2a5e);
+  box-shadow: 0 0 0 2px rgba(26, 42, 94, 0.1);
 }
 
-.pp-input-container--focused {
+.pp-input-container--filled {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: #f1f3f5;
+}
+.pp-input-container--filled.pp-input-container--focused {
+  background-color: #e9ecef;
   border-color: var(--pp-primary-variant, #1a2a5e);
+}
+
+.pp-input-container--underlined {
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 0;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+.pp-input-container--underlined.pp-input-container--focused {
+  border-bottom-color: var(--pp-primary-variant, #1a2a5e);
+}
+
+/* Sizes */
+.pp-input-container--sm { height: 40px; }
+.pp-input-container--md { height: 52px; }
+.pp-input-container--lg { height: 64px; }
+
+/* Rounded */
+.pp-input-container--rounded {
+  border-radius: 100px;
+}
+.pp-input-container--underlined.pp-input-container--rounded {
+  border-radius: 0; /* No rounded corners on underlined */
 }
 
 .pp-input-icon {

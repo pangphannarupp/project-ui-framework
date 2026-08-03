@@ -1,7 +1,15 @@
 <template>
   <div class="pp-phone-input-wrapper">
     <div v-if="label" class="pp-input-label">{{ label }}</div>
-    <div class="pp-phone-input-container">
+    <div 
+      :class="[
+        'pp-phone-input-container',
+        `pp-phone-input-container--${variant}`,
+        `pp-phone-input-container--${size}`,
+        { 'pp-phone-input-container--focused': isFocused },
+        { 'pp-phone-input-container--rounded': rounded }
+      ]"
+    >
       
       <button class="country-selector" @click="$emit('select-country')">
         <span class="country-code">{{ countryCode }}</span>
@@ -18,8 +26,8 @@
         :value="displayValue"
         :placeholder="placeholder"
         @input="onInput"
-        @focus="$emit('focus', $event)"
-        @blur="$emit('blur', $event)"
+        @focus="onFocus"
+        @blur="onBlur"
       />
 
       <button 
@@ -37,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -63,10 +71,34 @@ const props = defineProps({
   format: {
     type: String,
     default: ''
+  },
+  variant: {
+    type: String,
+    default: 'outline' // 'outline', 'filled', 'underlined'
+  },
+  size: {
+    type: String,
+    default: 'md' // 'sm', 'md', 'lg'
+  },
+  rounded: {
+    type: Boolean,
+    default: false
   }
 });
 
 const emit = defineEmits(['update:modelValue', 'clear', 'focus', 'blur', 'select-country']);
+
+const isFocused = ref(false);
+
+const onFocus = (event: FocusEvent) => {
+  isFocused.value = true;
+  emit('focus', event);
+};
+
+const onBlur = (event: FocusEvent) => {
+  isFocused.value = false;
+  emit('blur', event);
+};
 
 const formatValue = (val: string, formatStr: string) => {
   if (!val) return '';
@@ -127,11 +159,52 @@ const clear = () => {
 .pp-phone-input-container {
   display: flex;
   align-items: center;
-  background-color: white;
-  border: 1px solid #0066cc; /* Active blue border based on design */
-  border-radius: 12px;
-  height: 50px;
   overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+/* Variants */
+.pp-phone-input-container--outline {
+  border: 1px solid #cccccc;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+.pp-phone-input-container--outline.pp-phone-input-container--focused {
+  border-color: #0066cc; /* Active blue border based on design */
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+}
+
+.pp-phone-input-container--filled {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: #f1f3f5;
+}
+.pp-phone-input-container--filled.pp-phone-input-container--focused {
+  background-color: #e9ecef;
+  border-color: #0066cc;
+}
+
+.pp-phone-input-container--underlined {
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 0;
+  background-color: transparent;
+}
+.pp-phone-input-container--underlined.pp-phone-input-container--focused {
+  border-bottom-color: #0066cc;
+}
+
+/* Sizes */
+.pp-phone-input-container--sm { height: 40px; }
+.pp-phone-input-container--md { height: 50px; } /* Kept 50px for backwards compatibility with screenshot */
+.pp-phone-input-container--lg { height: 64px; }
+
+/* Rounded */
+.pp-phone-input-container--rounded {
+  border-radius: 100px;
+}
+.pp-phone-input-container--underlined.pp-phone-input-container--rounded {
+  border-radius: 0;
 }
 
 .country-selector {

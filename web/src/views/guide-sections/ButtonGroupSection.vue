@@ -3,7 +3,7 @@
         <h2>1.5 Button Group</h2>
 
         <div class="variant-group">
-          <h3>Horizontal Group</h3>
+          <h3>Connected Group (Default)</h3>
           <div class="component-demo">
             <PPButtonGroup>
               <PPButton variant="outline">Left</PPButton>
@@ -15,6 +15,38 @@
   &lt;PPButton variant="outline"&gt;Left&lt;/PPButton&gt;
   &lt;PPButton variant="outline"&gt;Middle&lt;/PPButton&gt;
   &lt;PPButton variant="outline"&gt;Right&lt;/PPButton&gt;
+&lt;/PPButtonGroup&gt;</code></pre>
+        </div>
+        
+        <div class="variant-group">
+          <h3>Segmented Group</h3>
+          <div class="component-demo">
+            <PPButtonGroup variant="segmented">
+              <PPButton variant="primary">Active</PPButton>
+              <PPButton variant="ghost">Inactive</PPButton>
+              <PPButton variant="ghost">Disabled</PPButton>
+            </PPButtonGroup>
+          </div>
+          <pre class="code-block"><code>&lt;PPButtonGroup variant="segmented"&gt;
+  &lt;PPButton variant="primary"&gt;Active&lt;/PPButton&gt;
+  &lt;PPButton variant="ghost"&gt;Inactive&lt;/PPButton&gt;
+  &lt;PPButton variant="ghost"&gt;Disabled&lt;/PPButton&gt;
+&lt;/PPButtonGroup&gt;</code></pre>
+        </div>
+        
+        <div class="variant-group">
+          <h3>Separated Group</h3>
+          <div class="component-demo">
+            <PPButtonGroup variant="separated">
+              <PPButton variant="outline">Action 1</PPButton>
+              <PPButton variant="outline">Action 2</PPButton>
+              <PPButton variant="outline">Action 3</PPButton>
+            </PPButtonGroup>
+          </div>
+          <pre class="code-block"><code>&lt;PPButtonGroup variant="separated"&gt;
+  &lt;PPButton variant="outline"&gt;Action 1&lt;/PPButton&gt;
+  &lt;PPButton variant="outline"&gt;Action 2&lt;/PPButton&gt;
+  &lt;PPButton variant="outline"&gt;Action 3&lt;/PPButton&gt;
 &lt;/PPButtonGroup&gt;</code></pre>
         </div>
 

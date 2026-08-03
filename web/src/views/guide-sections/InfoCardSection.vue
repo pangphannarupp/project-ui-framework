@@ -1,25 +1,30 @@
 <template>
 <div class="guide-section">
-        <h2>2. PPInfoCard Variants</h2>
-        
+        <h2>2. PPInfoCard Styles</h2>
+
         <div class="variant-group">
-          <h3>Warning Type</h3>
-          <div class="component-demo">
-            <PPInfoCard type="warning">This is a warning alert!</PPInfoCard>
+          <h3>Types (Soft Variant Default)</h3>
+          <div class="component-demo" style="display: flex; flex-direction: column; gap: 16px;">
+            <PPInfoCard type="info">This is an informational message to guide the user.</PPInfoCard>
+            <PPInfoCard type="success">Your changes have been saved successfully!</PPInfoCard>
+            <PPInfoCard type="warning">Please review your inputs before proceeding.</PPInfoCard>
+            <PPInfoCard type="error">There was a problem processing your request.</PPInfoCard>
+            <PPInfoCard type="neutral">This is a neutral message for general context.</PPInfoCard>
           </div>
-          <pre class="code-block"><code>&lt;PPInfoCard type="warning"&gt;This is a warning alert!&lt;/PPInfoCard&gt;</code></pre>
         </div>
 
         <div class="variant-group">
-          <h3>Info Type (Default)</h3>
-          <div class="component-demo">
-            <PPInfoCard type="info">This is a general information card.</PPInfoCard>
+          <h3>Variants</h3>
+          <div class="component-demo" style="display: flex; flex-direction: column; gap: 16px;">
+            <PPInfoCard type="info" variant="soft">Soft Variant (Default) - Subtle background</PPInfoCard>
+            <PPInfoCard type="info" variant="solid">Solid Variant - High emphasis</PPInfoCard>
+            <PPInfoCard type="info" variant="outline">Outline Variant - Border only</PPInfoCard>
+            <PPInfoCard type="info" variant="glass">Glass Variant - Frosted glass effect</PPInfoCard>
           </div>
-          <pre class="code-block"><code>&lt;PPInfoCard type="info"&gt;This is a general info card.&lt;/PPInfoCard&gt;</code></pre>
         </div>
 
         <div class="variant-group">
-          <h3>Custom Style</h3>
+          <h3>Custom Styles</h3>
           <div class="component-demo">
             <PPInfoCard 
               type="info" 
@@ -28,7 +33,7 @@
               iconColor="#1b5e20" 
               borderRadius="24px"
             >
-              This is a fully customized success info card!
+              This is a fully customized success info card using explicit style props!
             </PPInfoCard>
           </div>
           <pre class="code-block"><code>&lt;PPInfoCard 

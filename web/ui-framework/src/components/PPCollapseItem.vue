@@ -1,5 +1,8 @@
 <template>
-  <div class="pp-collapse-item" :class="{ 'is-active': isActive, 'is-disabled': disabled }">
+  <div class="pp-collapse-item" :class="[
+    { 'is-active': isActive, 'is-disabled': disabled },
+    `pp-collapse-item--${variant}`
+  ]">
     <div 
       class="pp-collapse-item__header" 
       @click="handleHeaderClick"
@@ -49,6 +52,10 @@ const isActive = computed(() => {
   return collapse?.activeNames.value.includes(props.name) || false;
 });
 
+const variant = computed(() => {
+  return collapse?.variant?.value || 'default';
+});
+
 const handleHeaderClick = () => {
   if (props.disabled) return;
   collapse?.handleItemClick(props.name);
@@ -57,13 +64,37 @@ const handleHeaderClick = () => {
 
 <style scoped>
 .pp-collapse-item {
-  border-bottom: 1px solid var(--pp-border-color, #e0e2ec);
+  transition: all 0.3s ease;
 }
 
-.pp-collapse-item:last-child {
+/* Default & Flush Variant Borders */
+.pp-collapse-item--default, .pp-collapse-item--flush {
+  border-bottom: 1px solid var(--pp-border-color, #e0e2ec);
+}
+.pp-collapse-item--default:last-child, .pp-collapse-item--flush:last-child {
   border-bottom: none;
 }
 
+/* Separated Variant */
+.pp-collapse-item--separated {
+  border: 1px solid var(--pp-border-color, #e0e2ec);
+  border-radius: 12px;
+  background-color: var(--pp-bg-color, #ffffff);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* Filled Variant */
+.pp-collapse-item--filled {
+  background-color: #f3f4f6; /* light gray bg */
+  border-radius: 12px;
+  overflow: hidden;
+}
+.pp-collapse-item--filled .pp-collapse-item__wrap {
+  background-color: var(--pp-bg-color, #ffffff); /* white content area */
+}
+
+/* Header Styles */
 .pp-collapse-item__header {
   display: flex;
   align-items: center;
@@ -75,7 +106,7 @@ const handleHeaderClick = () => {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: border-bottom-color 0.3s;
+  transition: border-bottom-color 0.3s, background-color 0.3s;
   outline: none;
   padding: 0 16px;
 }
@@ -105,16 +136,13 @@ const handleHeaderClick = () => {
   color: var(--pp-text-disabled-color, #c4c7c5);
 }
 
-/* 
-  The Grid trick for animating height: 0 to auto 
-  This requires the wrapper to be display: grid and transition grid-template-rows
-*/
+/* Wrapper for animating height */
 .pp-collapse-item__wrap {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
   overflow: hidden;
-  background-color: var(--pp-bg-color, #ffffff);
+  background-color: transparent;
 }
 
 .pp-collapse-item__wrap.is-active {
@@ -122,14 +150,13 @@ const handleHeaderClick = () => {
 }
 
 .pp-collapse-item__content {
-  min-height: 0; /* Important for the grid trick to work */
+  min-height: 0; 
   padding: 0 16px;
   color: var(--pp-text-secondary, #44474f);
   font-size: 14px;
   line-height: 1.5;
 }
 
-/* We need a wrapper inside the grid item to handle padding animation cleanly */
 .pp-collapse-item__wrap.is-active .pp-collapse-item__content {
   padding-bottom: 16px;
 }
