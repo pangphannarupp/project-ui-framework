@@ -159,7 +159,7 @@
                   
                   <div style="margin-top: 40px; display: flex; gap: 16px;">
                      <PPButton variant="soft" style="background: rgba(255,255,255,0.2); color: white;">Save Draft</PPButton>
-                     <PPButton variant="solid" color="secondary" style="background: white; color: var(--pp-primary-variant, #1a2a5e);">Publish Now</PPButton>
+                     <PPButton variant="secondary" style="background: white; color: var(--pp-primary-variant, #1a2a5e);">Publish Now</PPButton>
                   </div>
                 </div>
               </template>

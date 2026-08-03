@@ -33,9 +33,9 @@
           <h4 style="margin-top: 24px;">Constraints & Formatting</h4>
           <p class="guide-desc">Restrict input using <code>maxLength</code>, <code>numberOnly</code>, <code>min</code>, <code>max</code>, and <code>format</code>.</p>
           <div class="component-demo" style="display: flex; flex-direction: column; gap: 8px;">
-            <PPInput v-model="textVal" maxLength="10" placeholder="Max length 10" />
+            <PPInput v-model="textVal" :maxLength="10" placeholder="Max length 10" />
             <PPInput v-model="textVal" numberOnly placeholder="Numbers only" />
-            <PPInput v-model="textVal" min="10" max="100" placeholder="Min 10, Max 100" type="number" />
+            <PPInput v-model="textVal" :min="10" :max="100" placeholder="Min 10, Max 100" type="number" />
             <PPInput v-model="textVal" format="####-####-####-####" placeholder="Card format (####-####-####-####)" />
           </div>
           
