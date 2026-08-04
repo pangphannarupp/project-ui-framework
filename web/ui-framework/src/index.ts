@@ -157,6 +157,7 @@ import PPTooltip from './components/PPTooltip.vue'
 import PPDropdown from './components/PPDropdown.vue'
 import PPConsole from './components/PPConsole.vue'
 import PPReactionPicker from './components/PPReactionPicker.vue'
+import PPContextMenu from './components/PPContextMenu.vue'
 
 // Advanced Components
 import PPCreditCard from './components/PPCreditCard.vue'
@@ -358,6 +359,7 @@ export {
   PPDropdown,
   PPConsole,
   PPReactionPicker,
+  PPContextMenu,
   PPCreditCard,
   PPTagInput,
   PPPasswordStrength,
@@ -525,6 +527,7 @@ export default {
     app.component('PPDropdown', PPDropdown)
     app.component('PPConsole', PPConsole)
     app.component('PPReactionPicker', PPReactionPicker)
+    app.component('PPContextMenu', PPContextMenu)
     app.component('PPCreditCard', PPCreditCard)
     app.component('PPTagInput', PPTagInput)
     app.component('PPPasswordStrength', PPPasswordStrength)

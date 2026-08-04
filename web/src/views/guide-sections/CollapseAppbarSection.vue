@@ -272,9 +272,79 @@
               </div>
             </PPCollapsingToolbar>
           </div>
+        <div class="variant-group">
+          <h3>E-Commerce Product (Rounded Bottom)</h3>
+          <p class="custom-guide">A product detail page style where the header contains the product image with rounded bottom corners, collapsing into a solid bar.</p>
+          <div class="component-demo" style="height: 400px; padding: 0; border-radius: 12px; overflow: hidden; position: relative; background: #f8fafc;">
+            <PPCollapsingToolbar title="Wireless Headphones" :expandedHeight="260" :collapsedHeight="60" class="ecommerce-sliver">
+              <template #background>
+                <div style="width: 100%; height: 100%; background: #ffffff; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                  <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop" alt="Product" style="width: 80%; height: 80%; object-fit: contain; margin-bottom: 20px;" />
+                </div>
+              </template>
+              <template #start>
+                <PPIconButton color="transparent" style="color: #0f172a; background: rgba(255,255,255,0.7) !important; border-radius: 50%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></PPIconButton>
+              </template>
+              <template #end>
+                <PPIconButton color="transparent" style="color: #0f172a; background: rgba(255,255,255,0.7) !important; border-radius: 50%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></PPIconButton>
+              </template>
+              
+              <div style="padding: 24px; padding-top: 48px;">
+                <h2 style="margin: 0; color: #0f172a; font-size: 24px;">Sony WH-1000XM4</h2>
+                <div style="color: #2563eb; font-weight: bold; font-size: 20px; margin-top: 8px;">$348.00</div>
+                <div style="margin-top: 16px; display: flex; gap: 8px;">
+                  <span style="background: #f1f5f9; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">Noise Cancelling</span>
+                  <span style="background: #f1f5f9; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">Bluetooth 5.0</span>
+                </div>
+                <p v-for="i in 5" :key="i" style="margin-top: 20px; font-size: 15px; color: #475569; line-height: 1.6;">
+                  Product description block {{ i }}. Scroll down to see the product image disappear and the header pin to the top.
+                </p>
+              </div>
+            </PPCollapsingToolbar>
+          </div>
+        </div>
+
+        <div class="variant-group">
+          <h3>Parallax Image with Integrated Search</h3>
+          <p class="custom-guide">A large destination image that contains a search bar inside the expanded area. A classic travel/booking app layout.</p>
+          <div class="component-demo" style="height: 400px; padding: 0; border-radius: 12px; overflow: hidden; position: relative;">
+            <PPCollapsingToolbar title="Explore" :expandedHeight="280" :collapsedHeight="64">
+              <template #background>
+                <div style="position: absolute; inset: 0;">
+                  <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop" alt="Travel" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%);"></div>
+                </div>
+                
+                <!-- Search bar injected into background so it scrolls with parallax -->
+                <div style="position: absolute; bottom: 32px; left: 24px; right: 24px; z-index: 2;">
+                  <div style="background: white; border-radius: 24px; padding: 12px 20px; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" width="20" height="20" style="margin-right: 12px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Where do you want to go?" style="border: none; background: transparent; outline: none; width: 100%; font-size: 15px; color: #0f172a;" />
+                  </div>
+                </div>
+              </template>
+              
+              <template #start>
+                <PPIconButton color="transparent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></PPIconButton>
+              </template>
+              
+              <div style="padding: 24px; background: white; min-height: 400px; border-top-left-radius: 24px; border-top-right-radius: 24px; position: relative; z-index: 2;">
+                <h3 style="margin-top: 0;">Top Destinations</h3>
+                <div style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 16px; margin-top: 16px;">
+                  <div style="min-width: 120px; height: 160px; border-radius: 12px; background: #e2e8f0;"></div>
+                  <div style="min-width: 120px; height: 160px; border-radius: 12px; background: #e2e8f0;"></div>
+                  <div style="min-width: 120px; height: 160px; border-radius: 12px; background: #e2e8f0;"></div>
+                </div>
+                <p v-for="i in 5" :key="i" style="margin-bottom: 20px; font-size: 16px; color: #555;">
+                  Discover places block {{ i }}.
+                </p>
+              </div>
+            </PPCollapsingToolbar>
+          </div>
         </div>
 
       </div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -325,5 +395,12 @@ import { PPCollapsingToolbar, PPIconButton } from '@phanna/ui-framework';
 }
 .dark-collapse-appbar :deep(.pp-collapsing-title) {
   color: #ffffff !important;
+}
+.ecommerce-sliver :deep(.pp-collapsing-header.collapsed) {
+  background: white !important;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+.ecommerce-sliver :deep(.pp-collapsing-title) {
+  color: #0f172a !important;
 }
 </style>

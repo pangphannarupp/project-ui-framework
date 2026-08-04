@@ -62,7 +62,7 @@ const props = withDefaults(defineProps<{
   drawerVariant?: 'default' | 'overlay' | 'mini';
   hideAppBarOnScroll?: boolean;
   hideBottomNavOnScroll?: boolean;
-  fabPosition?: 'bottom-right' | 'center-docked';
+  fabPosition?: 'bottom-right' | 'center-docked' | 'center-float';
 }>(), {
   theme: 'light',
   drawerOverlay: true,
@@ -312,6 +312,18 @@ const actualFabPosition = computed(() => {
   z-index: 25;
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Reset inner PPFab absolute positioning so it perfectly centers */
+.pp-material-fab-container :deep(.pp-fab) {
+  position: relative !important;
+  right: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  top: auto !important;
+  transform: none !important;
 }
 .pp-material-fab-container.fab-bottom-right {
   right: 24px;
@@ -325,11 +337,19 @@ const actualFabPosition = computed(() => {
   bottom: 12px;
   transform: translateX(-50%);
 }
+.pp-material-fab-container.fab-center-float {
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+}
+.pp-material-fab-container.fab-center-float.has-bottom-nav {
+  bottom: calc(24px + var(--bottom-nav-height, 0px));
+}
 .pp-material-fab-container.is-hidden {
-  transform: translateY(150px) translateX(-50%);
+  transform: translateY(200px) translateX(-50%);
 }
 .pp-material-fab-container.fab-bottom-right.is-hidden {
-  transform: translateY(150px);
+  transform: translateY(200px);
 }
 .pp-material-fab-container > * {
   pointer-events: auto;

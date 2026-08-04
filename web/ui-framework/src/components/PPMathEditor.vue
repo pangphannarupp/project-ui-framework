@@ -1,7 +1,7 @@
 <template>
   <div class="pp-math-container" :class="{ 'is-focused': isFocused }">
     <!-- Toolbar -->
-    <div class="pp-math-toolbar">
+    <div class="pp-math-toolbar" v-if="!hideToolbar">
       <!-- Quick Inline Buttons (Most used) -->
       <div class="toolbar-group">
         <button class="toolbar-btn" @click="insert('\\frac{a}{b}')" title="Fraction">a/b</button>
@@ -297,6 +297,15 @@
         >
           <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
         </button>
+        <button 
+          v-if="mathliveLoaded && (currentMode === 'preview' || currentMode === 'split')"
+          class="toolbar-btn"
+          @click="toggleVirtualKeyboard"
+          title="Toggle Virtual Keyboard"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="6" y1="8" x2="6.01" y2="8"></line><line x1="10" y1="8" x2="10.01" y2="8"></line><line x1="14" y1="8" x2="14.01" y2="8"></line><line x1="18" y1="8" x2="18.01" y2="8"></line><line x1="6" y1="12" x2="6.01" y2="12"></line><line x1="10" y1="12" x2="10.01" y2="12"></line><line x1="14" y1="12" x2="14.01" y2="12"></line><line x1="18" y1="12" x2="18.01" y2="12"></line><line x1="8" y1="16" x2="16" y2="16"></line></svg>
+        </button>
       </div>
     </div>
 
@@ -345,6 +354,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  hideToolbar: {
+    type: Boolean,
+    default: false
+  },
   showModeToggle: {
     type: Boolean,
     default: true
@@ -375,6 +388,17 @@ const togglePopup = (popupId: string) => {
     activePopup.value = null;
   } else {
     activePopup.value = popupId;
+  }
+};
+
+const toggleVirtualKeyboard = () => {
+  const win = window as any;
+  if (win.mathVirtualKeyboard) {
+    if (win.mathVirtualKeyboard.visible) {
+      win.mathVirtualKeyboard.hide();
+    } else {
+      win.mathVirtualKeyboard.show();
+    }
   }
 };
 

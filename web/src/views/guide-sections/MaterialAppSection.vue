@@ -142,6 +142,112 @@
   &lt;/template&gt;
 &lt;/PPMaterialApp&gt;</code></pre>
       </div>
+
+      <div class="variant-group" style="margin-top: 32px;">
+        <h3>Mobile App Layout</h3>
+        <p class="guide-desc">A typical mobile layout with an App Bar, Bottom Navigation, and a center-docked FAB. No sidebar is used here.</p>
+        
+        <div class="component-demo" style="padding: 0;">
+          <div style="height: 600px; max-width: 375px; margin: 0 auto; border: 12px solid #1e293b; border-radius: 36px; overflow: hidden; position: relative; background: #0f172a;">
+            <PPMaterialApp 
+              theme="dark" 
+              :hide-app-bar-on-scroll="true"
+              :hide-bottom-nav-on-scroll="true"
+              fab-position="center-float"
+            >
+              <template #header>
+                <PPAppBar title="Mobile App" theme="dark" variant="center">
+                  <template #left>
+                    <PPIconButton color="transparent">
+                      <ion-icon :icon="menuOutline" />
+                    </PPIconButton>
+                  </template>
+                  <template #right>
+                    <PPIconButton color="transparent">
+                      <ion-icon :icon="searchOutline" />
+                    </PPIconButton>
+                  </template>
+                </PPAppBar>
+              </template>
+
+              <template #bottom-nav>
+                <PPBottomNav
+                  theme="dark"
+                  :items="bottomNavItems"
+                  v-model="activeBottomMobile"
+                />
+              </template>
+
+              <template #fab>
+                <PPFab color="primary" shape="circle" size="lg">
+                  <template #icon><ion-icon :icon="addOutline" /></template>
+                </PPFab>
+              </template>
+
+              <div style="padding: 24px;">
+                <div v-for="i in 10" :key="i" style="height: 80px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 16px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+                  <div style="width: 48px; height: 48px; border-radius: 24px; background: rgba(255,255,255,0.1);"></div>
+                  <div style="flex: 1;">
+                    <div style="height: 12px; width: 60%; background: rgba(255,255,255,0.1); border-radius: 4px; margin-bottom: 8px;"></div>
+                    <div style="height: 10px; width: 40%; background: rgba(255,255,255,0.05); border-radius: 4px;"></div>
+                  </div>
+                </div>
+              </div>
+            </PPMaterialApp>
+          </div>
+        </div>
+      </div>
+
+      <div class="variant-group" style="margin-top: 32px;">
+        <h3>Desktop Admin Layout</h3>
+        <p class="guide-desc">A classic desktop admin layout with a permanent sidebar, header, and content area. No bottom navigation or FAB.</p>
+        
+        <div class="component-demo" style="padding: 0;">
+          <div style="height: 500px; width: 100%; border: 1px solid var(--pp-border, #e2e8f0); border-radius: 12px; overflow: hidden; position: relative;">
+            <PPMaterialApp 
+              :theme="isDark ? 'dark' : 'light'" 
+              drawer-variant="default"
+              :drawer-open="true"
+            >
+              <template #header>
+                <PPAppBar title="Admin Portal" :theme="isDark ? 'dark' : 'light'" variant="default">
+                  <template #right>
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                      <PPButton variant="ghost" size="sm">Help</PPButton>
+                      <PPAvatar src="https://i.pravatar.cc/150?u=admin" size="sm" />
+                    </div>
+                  </template>
+                </PPAppBar>
+              </template>
+
+              <template #drawer>
+                <PPSidebarNavigation
+                  v-model="activeAdminMenu"
+                  :items="adminSidebarItems"
+                  :theme="isDark ? 'dark' : 'light'"
+                  variant="default"
+                />
+              </template>
+
+              <div style="padding: 32px; height: 100%;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                  <h1 style="margin: 0;">Dashboard Overview</h1>
+                  <PPButton color="primary">Export Report</PPButton>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px;">
+                  <div v-for="i in 3" :key="i" style="height: 120px; background: var(--pp-surface-alt, rgba(0,0,0,0.02)); border-radius: 12px; border: 1px solid var(--pp-border, #e2e8f0); padding: 24px;">
+                    <div style="font-size: 14px; opacity: 0.7; margin-bottom: 8px;">Metric {{ i }}</div>
+                    <div style="font-size: 32px; font-weight: bold;">{{ Math.floor(Math.random() * 1000) }}</div>
+                  </div>
+                </div>
+
+                <div style="height: 400px; background: var(--pp-surface-alt, rgba(0,0,0,0.02)); border-radius: 12px; border: 1px solid var(--pp-border, #e2e8f0);"></div>
+              </div>
+            </PPMaterialApp>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -176,6 +282,8 @@ const isDark = ref(false);
 const drawerOpen = ref(true);
 const activeMenu = ref('home');
 const activeBottom = ref('home');
+const activeBottomMobile = ref('home');
+const activeAdminMenu = ref('dashboard');
 const showSnackbar = ref(false);
 const hideAppBarOnScroll = ref(true);
 const hideBottomNavOnScroll = ref(true);
@@ -205,6 +313,22 @@ const sidebarItems = [
     groupLabel: 'Settings',
     items: [
       { id: 'profile', label: 'Profile', icon: personOutline }
+    ]
+  }
+];
+
+const adminSidebarItems = [
+  {
+    groupLabel: 'Core',
+    items: [
+      { id: 'dashboard', label: 'Dashboard', icon: homeOutline },
+      { id: 'users', label: 'Users', icon: personOutline }
+    ]
+  },
+  {
+    groupLabel: 'System',
+    items: [
+      { id: 'settings', label: 'Settings', icon: searchOutline }
     ]
   }
 ];

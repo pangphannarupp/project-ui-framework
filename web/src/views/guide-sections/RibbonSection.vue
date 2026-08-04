@@ -1,37 +1,222 @@
 <template>
   <div class="guide-section">
     <h2>Ribbon Menu</h2>
+    
     <div class="variant-group">
-      <h3>Classic Ribbon (Default)</h3>
-      <p class="custom-guide">A Microsoft Office style ribbon menu for complex application interfaces.</p>
-      <p class="guide-desc">The Ribbon is <code>collapsible</code> by default. You can toggle it via the chevron icon on the right, or by clicking the active tab.</p>
+      <h3>Usage</h3>
+      <div class="demo-box">
+        <pre class="code-block"><code>&lt;script setup lang="ts"&gt;
+import { 
+  PPRibbon, 
+  PPRibbonTab, 
+  PPRibbonGroup, 
+  PPRibbonButton 
+} from '@phanna/ui-framework';
+import { clipboardOutline, cutOutline } from 'ionicons/icons';
+&lt;/script&gt;
 
-      <div class="component-demo" style="padding: 0; overflow: hidden; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb;">
-        <PPRibbon variant="classic" :collapsible="true">
-          <PPRibbonTab title="Home">
-            <PPRibbonGroup title="Clipboard">
-              <PPRibbonButton :icon="clipboardOutline" label="Paste" />
-              <PPRibbonButton :icon="cutOutline" label="Cut" />
-              <PPRibbonButton :icon="copyOutline" label="Copy" />
-            </PPRibbonGroup>
-            <PPRibbonGroup title="Font">
-              <PPRibbonButton :icon="textOutline" label="Bold" />
-              <PPRibbonButton :icon="colorPaletteOutline" label="Color" />
-            </PPRibbonGroup>
-          </PPRibbonTab>
-          <PPRibbonTab title="Insert">
-            <PPRibbonGroup title="Media">
-              <PPRibbonButton :icon="imageOutline" label="Pictures" />
-              <PPRibbonButton :icon="videocamOutline" label="Video" />
-            </PPRibbonGroup>
-          </PPRibbonTab>
-        </PPRibbon>
-        <div style="height: 100px; background: white; padding: 16px; border-top: 1px solid #e5e7eb;">
-          <p style="color: #4b5563; margin: 0; font-size: 14px;">Classic ribbon content area.</p>
+&lt;template&gt;
+  &lt;PPRibbon variant="classic" :collapsible="true" model-value="home"&gt;
+    &lt;PPRibbonTab title="File" color="primary"&gt;
+      &lt;PPRibbonGroup title="Document"&gt;
+        &lt;PPRibbonButton label="Save" size="large" /&gt;
+      &lt;/PPRibbonGroup&gt;
+    &lt;/PPRibbonTab&gt;
+    
+    &lt;PPRibbonTab title="Home" id="home"&gt;
+      &lt;PPRibbonGroup title="Clipboard"&gt;
+        &lt;PPRibbonButton :icon="clipboardOutline" label="Paste" size="large" /&gt;
+        &lt;div style="display: flex; flex-direction: column; gap: 2px;"&gt;
+          &lt;PPRibbonButton :icon="cutOutline" label="Cut" size="small" /&gt;
+        &lt;/div&gt;
+      &lt;/PPRibbonGroup&gt;
+    &lt;/PPRibbonTab&gt;
+  &lt;/PPRibbon&gt;
+&lt;/template&gt;</code></pre>
+      </div>
+    </div>
+    
+    <!-- Full Application Demo -->
+    <div class="variant-group">
+      <h3>Full Application Layout Demo</h3>
+      <p class="custom-guide">A complete Microsoft Word-style interface built using the Ribbon Menu.</p>
+
+      <div class="component-demo app-window-wrapper">
+        <div class="word-layout">
+          <!-- Window Header -->
+          <header class="window-header">
+            <div class="header-left">
+              <div class="app-icon">W</div>
+              <div class="quick-access">
+                <PPIconButton color="transparent" size="sm">
+                  <ion-icon :icon="saveOutline" />
+                </PPIconButton>
+                <PPIconButton color="transparent" size="sm">
+                  <ion-icon :icon="arrowUndoOutline" />
+                </PPIconButton>
+                <PPIconButton color="transparent" size="sm">
+                  <ion-icon :icon="arrowRedoOutline" />
+                </PPIconButton>
+              </div>
+            </div>
+            <div class="header-center">
+              <span>Document1 - Word</span>
+            </div>
+            <div class="header-right">
+              <PPIconButton color="transparent" size="sm">
+                <ion-icon :icon="removeOutline" />
+              </PPIconButton>
+              <PPIconButton color="transparent" size="sm">
+                <ion-icon :icon="stopOutline" />
+              </PPIconButton>
+              <PPIconButton color="transparent" size="sm" class="close-btn">
+                <ion-icon :icon="closeOutline" />
+              </PPIconButton>
+            </div>
+          </header>
+
+          <!-- Ribbon -->
+          <div class="ribbon-container">
+            <PPRibbon variant="classic" :collapsible="true" model-value="home">
+              <PPRibbonTab title="File" color="primary">
+                <PPRibbonGroup title="Document">
+                  <PPRibbonButton :icon="documentOutline" label="New" size="large" />
+                  <PPRibbonButton :icon="saveOutline" label="Save" size="large" />
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Print & Share">
+                  <PPRibbonButton :icon="documentOutline" label="Print" size="large" />
+                </PPRibbonGroup>
+              </PPRibbonTab>
+              <PPRibbonTab title="Home">
+                <PPRibbonGroup title="Clipboard">
+                  <PPRibbonButton :icon="clipboardOutline" label="Paste" size="large" />
+                  <div class="vertical-group">
+                    <PPRibbonButton :icon="cutOutline" label="Cut" size="small" />
+                    <PPRibbonButton :icon="copyOutline" label="Copy" size="small" />
+                    <PPRibbonButton :icon="brushOutline" label="Format Painter" size="small" />
+                  </div>
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Font">
+                  <div class="font-controls">
+                    <div class="font-row">
+                      <select class="ribbon-select font-family">
+                        <option>Calibri (Body)</option>
+                        <option>Arial</option>
+                        <option>Times New Roman</option>
+                      </select>
+                      <select class="ribbon-select font-size">
+                        <option>11</option>
+                        <option>12</option>
+                        <option>14</option>
+                      </select>
+                    </div>
+                    <div class="font-row action-row">
+                      <button class="ribbon-icon-btn"><b>B</b></button>
+                      <button class="ribbon-icon-btn"><i>I</i></button>
+                      <button class="ribbon-icon-btn"><u>U</u></button>
+                      <button class="ribbon-icon-btn"><del>ab</del></button>
+                      <div class="divider"></div>
+                      <button class="ribbon-icon-btn">
+                        <ion-icon :icon="colorPaletteOutline" />
+                      </button>
+                      <button class="ribbon-icon-btn">
+                        <ion-icon :icon="textOutline" />
+                      </button>
+                    </div>
+                  </div>
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Paragraph">
+                  <div class="font-controls">
+                    <div class="font-row action-row">
+                      <button class="ribbon-icon-btn"><ion-icon :icon="listOutline" /></button>
+                      <button class="ribbon-icon-btn"><ion-icon :icon="listCircleOutline" /></button>
+                      <div class="divider"></div>
+                      <button class="ribbon-icon-btn"><ion-icon :icon="reorderFourOutline" /></button>
+                    </div>
+                    <div class="font-row action-row">
+                      <button class="ribbon-icon-btn"><ion-icon :icon="menuOutline" style="transform: scaleX(-1)"/></button>
+                      <button class="ribbon-icon-btn"><ion-icon :icon="menuOutline" /></button>
+                      <button class="ribbon-icon-btn"><ion-icon :icon="menuOutline" style="transform: scaleX(-1)"/></button>
+                      <button class="ribbon-icon-btn"><ion-icon :icon="menuOutline" /></button>
+                    </div>
+                  </div>
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Styles">
+                  <div class="vertical-group">
+                    <PPContextMenu :items="conditionalFormattingItems" placement="bottom-left">
+                      <template #trigger>
+                        <PPRibbonButton :icon="colorPaletteOutline" label="Conditional Formatting" size="small" />
+                      </template>
+                    </PPContextMenu>
+                  </div>
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Editing">
+                  <div class="vertical-group">
+                    <PPRibbonButton :icon="searchOutline" label="Find" size="small" />
+                    <PPRibbonButton :icon="swapHorizontalOutline" label="Replace" size="small" />
+                    <PPRibbonButton :icon="gitCommitOutline" label="Select" size="small" />
+                  </div>
+                </PPRibbonGroup>
+              </PPRibbonTab>
+              <PPRibbonTab title="Insert">
+                <PPRibbonGroup title="Pages">
+                  <PPRibbonButton :icon="documentOutline" label="Blank Page" size="large" />
+                  <PPRibbonButton :icon="albumsOutline" label="Page Break" size="large" />
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Tables">
+                  <PPRibbonButton :icon="gridOutline" label="Table" size="large" />
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Illustrations">
+                  <PPRibbonButton :icon="imageOutline" label="Pictures" />
+                  <PPRibbonButton :icon="shapesOutline" label="Shapes" />
+                  <PPRibbonButton :icon="barChartOutline" label="Chart" />
+                </PPRibbonGroup>
+              </PPRibbonTab>
+              <PPRibbonTab title="Layout">
+                <PPRibbonGroup title="Page Setup">
+                  <PPRibbonButton :icon="readerOutline" label="Margins" size="large" />
+                  <PPRibbonButton :icon="phonePortraitOutline" label="Orientation" size="large" />
+                  <PPRibbonButton :icon="resizeOutline" label="Size" size="large" />
+                </PPRibbonGroup>
+              </PPRibbonTab>
+              <PPRibbonTab title="Review" />
+              <PPRibbonTab title="View" />
+            </PPRibbon>
+          </div>
+
+          <!-- Main Workspace -->
+          <main class="workspace">
+            <div class="document-page">
+              <PPRichTextEditor v-model="documentContent" placeholder="Type here..." />
+            </div>
+          </main>
+
+          <!-- Status Bar -->
+          <footer class="status-bar">
+            <div class="status-left">
+              <span>Page 1 of 1</span>
+              <span>0 words</span>
+              <span>English (US)</span>
+            </div>
+            <div class="status-right">
+              <div class="view-modes">
+                <ion-icon :icon="bookOutline" />
+                <ion-icon :icon="readerOutline" class="active" />
+                <ion-icon :icon="globeOutline" />
+              </div>
+              <div class="zoom-control">
+                <ion-icon :icon="removeOutline" />
+                <input type="range" min="10" max="200" value="100" class="zoom-slider" />
+                <ion-icon :icon="addOutline" />
+                <span>100%</span>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
     </div>
 
+    <!-- Basic Variants -->
     <div class="variant-group" style="margin-top: 32px;">
       <h3>Modern Ribbon</h3>
       <p class="custom-guide">A cleaner, flatter ribbon style with underlined active tabs, similar to modern web office apps.</p>
@@ -84,15 +269,651 @@
   &lt;/PPRibbonTab&gt;
 &lt;/PPRibbon&gt;</code></pre>
     </div>
+    <!-- Image Editor Layout -->
+    <div class="variant-group" style="margin-top: 32px;">
+      <h3>Image Editor (Dark Mode)</h3>
+      <p class="custom-guide">A sleek, dark-themed ribbon layout perfect for creative applications like photo editors or design tools.</p>
+
+      <div class="component-demo app-window-wrapper dark-editor">
+        <div class="dark-layout">
+          <!-- Ribbon -->
+          <div class="ribbon-container-dark">
+            <PPRibbon variant="modern" :collapsible="true" model-value="tools">
+              <PPRibbonTab title="File" />
+              <PPRibbonTab title="Tools" id="tools">
+                <PPRibbonGroup title="Select">
+                  <PPRibbonButton :icon="cropOutline" label="Crop" size="large" />
+                  <div class="vertical-group">
+                    <PPRibbonButton :icon="searchOutline" label="Zoom" size="small" />
+                    <PPRibbonButton :icon="gitCommitOutline" label="Magic" size="small" />
+                  </div>
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Adjust">
+                  <PPRibbonButton :icon="contrastOutline" label="Brightness" size="large" />
+                  <PPRibbonButton :icon="colorFilterOutline" label="Filter" size="large" />
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Draw">
+                  <PPRibbonButton :icon="pencilOutline" label="Pencil" size="large" />
+                  <PPRibbonButton :icon="brushOutline" label="Brush" size="large" />
+                  <PPRibbonButton :icon="colorPaletteOutline" label="Palette" size="large" />
+                </PPRibbonGroup>
+              </PPRibbonTab>
+              <PPRibbonTab title="View" />
+            </PPRibbon>
+          </div>
+          <!-- Canvas Area -->
+          <div class="dark-workspace">
+            <div class="editor-canvas">
+              <div class="canvas-image">
+                <ion-icon :icon="imageOutline" style="font-size: 64px; color: #4b5563;" />
+                <span style="color: #6b7280; margin-top: 16px;">Drag and drop an image here</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- File Explorer Layout -->
+    <div class="variant-group" style="margin-top: 32px;">
+      <h3>File Explorer</h3>
+      <p class="custom-guide">A compact ribbon layout simulating a modern OS file manager with breadcrumb navigation.</p>
+
+      <div class="component-demo app-window-wrapper explorer-app">
+        <div class="explorer-layout">
+          <div class="ribbon-container-explorer">
+            <PPRibbon variant="classic" :collapsible="true" model-value="home">
+              <PPRibbonTab title="Home" id="home">
+                <PPRibbonGroup title="Clipboard">
+                  <PPRibbonButton :icon="copyOutline" label="Copy" size="large" />
+                  <PPRibbonButton :icon="clipboardOutline" label="Paste" size="large" />
+                </PPRibbonGroup>
+                <PPRibbonGroup title="Organize">
+                  <div class="vertical-group">
+                    <PPRibbonButton :icon="folderOutline" label="Move to" size="small" />
+                    <PPRibbonButton :icon="copyOutline" label="Copy to" size="small" />
+                    <PPRibbonButton :icon="closeOutline" label="Delete" size="small" />
+                  </div>
+                </PPRibbonGroup>
+                <PPRibbonGroup title="New">
+                  <PPRibbonButton :icon="folderOpenOutline" label="New Folder" size="large" />
+                  <PPRibbonButton :icon="documentTextOutline" label="New Item" size="large" />
+                </PPRibbonGroup>
+              </PPRibbonTab>
+              <PPRibbonTab title="Share" />
+              <PPRibbonTab title="View">
+                <PPRibbonGroup title="Layout">
+                  <PPRibbonButton :icon="gridOutline" label="Large Icons" size="large" />
+                  <PPRibbonButton :icon="listOutline" label="Details" size="large" />
+                </PPRibbonGroup>
+              </PPRibbonTab>
+            </PPRibbon>
+          </div>
+          
+          <div class="explorer-toolbar">
+            <div class="nav-buttons">
+              <ion-icon :icon="arrowUndoOutline" />
+              <ion-icon :icon="arrowRedoOutline" />
+              <ion-icon :icon="arrowUndoOutline" style="transform: rotate(90deg);" />
+            </div>
+            <div class="address-bar">
+              <ion-icon :icon="folderOutline" />
+              <span>This PC > Documents > Projects</span>
+            </div>
+            <div class="search-box">
+              <ion-icon :icon="searchOutline" />
+              <span>Search Projects</span>
+            </div>
+          </div>
+
+          <div class="explorer-body">
+            <div class="sidebar">
+              <ul>
+                <li><ion-icon :icon="desktopOutline" /> Desktop</li>
+                <li><ion-icon :icon="downloadOutline" /> Downloads</li>
+                <li class="active"><ion-icon :icon="documentTextOutline" /> Documents</li>
+                <li><ion-icon :icon="imageOutline" /> Pictures</li>
+              </ul>
+            </div>
+            <div class="file-grid">
+              <div class="file-item">
+                <ion-icon :icon="folderOutline" class="folder-icon" />
+                <span>ui-framework</span>
+              </div>
+              <div class="file-item">
+                <ion-icon :icon="folderOutline" class="folder-icon" />
+                <span>assets</span>
+              </div>
+              <div class="file-item">
+                <ion-icon :icon="documentTextOutline" class="doc-icon" />
+                <span>README.md</span>
+              </div>
+              <div class="file-item">
+                <ion-icon :icon="imageOutline" class="img-icon" />
+                <span>logo.png</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <pre class="code-block" style="margin-top: 16px;"><code>&lt;PPRibbon variant="classic" :collapsible="true" model-value="home"&gt;
+  &lt;PPRibbonTab title="Home" id="home"&gt;
+    &lt;PPRibbonGroup title="Clipboard"&gt;
+      &lt;PPRibbonButton :icon="copyOutline" label="Copy" size="large" /&gt;
+      &lt;PPRibbonButton :icon="clipboardOutline" label="Paste" size="large" /&gt;
+    &lt;/PPRibbonGroup&gt;
+    &lt;PPRibbonGroup title="Organize"&gt;
+      &lt;div class="vertical-group"&gt;
+        &lt;PPRibbonButton :icon="folderOutline" label="Move to" size="small" /&gt;
+        &lt;PPRibbonButton :icon="copyOutline" label="Copy to" size="small" /&gt;
+        &lt;PPRibbonButton :icon="closeOutline" label="Delete" size="small" /&gt;
+      &lt;/div&gt;
+    &lt;/PPRibbonGroup&gt;
+  &lt;/PPRibbonTab&gt;
+&lt;/PPRibbon&gt;</code></pre>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PPRibbon, PPRibbonTab, PPRibbonGroup, PPRibbonButton } from '@phanna/ui-framework';
-import { clipboardOutline, cutOutline, copyOutline, textOutline, colorPaletteOutline, imageOutline, videocamOutline } from 'ionicons/icons';
+import { ref } from 'vue';
+import { IonIcon } from '@ionic/vue';
+import { 
+  saveOutline, arrowUndoOutline, arrowRedoOutline, removeOutline, stopOutline, closeOutline,
+  clipboardOutline, cutOutline, copyOutline, brushOutline, colorPaletteOutline, textOutline,
+  listOutline, listCircleOutline, reorderFourOutline, menuOutline, searchOutline, swapHorizontalOutline,
+  gitCommitOutline, documentOutline, albumsOutline, gridOutline, imageOutline, shapesOutline,
+  barChartOutline, readerOutline, phonePortraitOutline, resizeOutline, bookOutline, globeOutline,
+  addOutline,
+  folderOutline, folderOpenOutline, documentTextOutline, settingsOutline,
+  cropOutline, contrastOutline, colorFilterOutline, pencilOutline,
+  desktopOutline, downloadOutline
+} from 'ionicons/icons';
+import { 
+  PPRibbon, PPRibbonTab, PPRibbonGroup, PPRibbonButton, PPIconButton, PPRichTextEditor, PPContextMenu
+} from '@phanna/ui-framework';
+
+const documentContent = ref('');
+
+const conditionalFormattingItems = [
+  {
+    label: 'Highlight Cell Rules',
+    icon: colorPaletteOutline,
+    children: [
+      { label: 'Greater Than...' },
+      { label: 'Less Than...' },
+      { label: 'Between...' },
+      { label: 'Equal To...' }
+    ]
+  },
+  {
+    label: 'Top/Bottom Rules',
+    icon: listOutline,
+    children: [
+      { label: 'Top 10 Items...' },
+      { label: 'Top 10%...' },
+      { label: 'Bottom 10 Items...' },
+      { label: 'Bottom 10%...' }
+    ]
+  },
+  { divider: true },
+  {
+    label: 'Data Bars',
+    icon: listCircleOutline,
+    children: [
+      { label: 'Gradient Fill' },
+      { label: 'Solid Fill' }
+    ]
+  },
+  {
+    label: 'Color Scales',
+    icon: colorPaletteOutline,
+    children: [
+      { label: 'Green-Yellow-Red' },
+      { label: 'Red-Yellow-Green' }
+    ]
+  },
+  {
+    label: 'Icon Sets',
+    icon: settingsOutline,
+    children: [
+      { label: 'Directional' },
+      { label: 'Shapes' },
+      { label: 'Indicators' }
+    ]
+  },
+  { divider: true },
+  { label: 'New Rule', icon: addOutline },
+  { 
+    label: 'Clear Rules', 
+    icon: removeOutline,
+    children: [
+      { label: 'Clear Rules from Selected Cells' },
+      { label: 'Clear Rules from Entire Sheet' }
+    ]
+  },
+  { label: 'Manage Rules', icon: settingsOutline }
+];
 </script>
 
 <style scoped>
 .guide-section { display: flex; flex-direction: column; gap: 24px; }
 .demo-box { border: 1px solid #e5e7eb; border-radius: 8px; padding: 24px; background: #f9fafb; }
+
+/* Wrapper for the embedded app window */
+.app-window-wrapper {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  height: 600px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.word-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #f3f2f1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+/* Header */
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  background-color: #2b579a;
+  color: white;
+  padding: 0 8px;
+  user-select: none;
+}
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.app-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 8px;
+}
+.quick-access {
+  display: flex;
+  gap: 2px;
+}
+.quick-access ion-icon {
+  color: white;
+}
+.header-center {
+  font-size: 14px;
+  flex: 1;
+  text-align: center;
+}
+.header-right ion-icon {
+  color: white;
+}
+.close-btn:hover {
+  background-color: #e81123 !important;
+}
+
+/* Ribbon Overrides */
+.ribbon-container {
+  background-color: #f3f2f1;
+  border-bottom: 1px solid #c8c6c4;
+  --pp-primary-variant: #2b579a;
+}
+:deep(.pp-ribbon-tabs) {
+  padding: 0 8px;
+}
+:deep(.pp-ribbon--classic .pp-ribbon-header) {
+  padding-top: 0;
+}
+:deep(.pp-ribbon--classic .pp-ribbon-tab-header) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Custom Controls inside Ribbon */
+.vertical-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.font-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px;
+}
+.font-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ribbon-select {
+  border: 1px solid #c8c6c4;
+  border-radius: 2px;
+  padding: 2px 4px;
+  font-size: 12px;
+  background: white;
+  height: 24px;
+}
+.font-family { width: 120px; }
+.font-size { width: 48px; }
+.ribbon-icon-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  color: #323130;
+  font-size: 14px;
+}
+.ribbon-icon-btn:hover {
+  background-color: #e1dfdd;
+  border-color: #c8c6c4;
+}
+.divider {
+  width: 1px;
+  height: 16px;
+  background-color: #c8c6c4;
+  margin: 0 4px;
+}
+
+/* Workspace */
+.workspace {
+  flex: 1;
+  background-color: #e1dfdd;
+  overflow-y: auto;
+  padding: 32px 0;
+  display: flex;
+  justify-content: center;
+}
+.document-page {
+  width: 80%;
+  max-width: 816px;
+  min-height: 1056px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  padding: 48px 10%;
+}
+:deep(.pp-rte-container) {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  min-height: 100%;
+}
+:deep(.pp-rte-container.is-focused) {
+  border: none !important;
+  box-shadow: none !important;
+}
+:deep(.pp-rte-container .pp-rte-toolbar) {
+  display: none !important;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  background-color: #f3f2f1;
+  border-top: 1px solid #c8c6c4;
+  padding: 0 16px;
+  font-size: 12px;
+  color: #605e5c;
+  user-select: none;
+}
+.status-left, .status-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.status-left span:hover {
+  background-color: #e1dfdd;
+  cursor: pointer;
+}
+.view-modes {
+  display: flex;
+  gap: 8px;
+}
+.view-modes ion-icon {
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px;
+}
+.view-modes ion-icon:hover {
+  background-color: #e1dfdd;
+}
+.view-modes ion-icon.active {
+  background-color: #c8c6c4;
+}
+.zoom-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.zoom-slider {
+  width: 100px;
+}
+.zoom-control ion-icon {
+  cursor: pointer;
+}
+
+/* Dark Image Editor Layout Styles */
+.dark-editor {
+  height: 500px;
+}
+.dark-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+.ribbon-container-dark {
+  --pp-primary-variant: #60a5fa;
+}
+.ribbon-container-dark :deep(.pp-ribbon--modern) {
+  background-color: #111827;
+  border-bottom: 1px solid #374151;
+  color: #e5e7eb;
+}
+.ribbon-container-dark :deep(.pp-ribbon-tab-header) {
+  color: #9ca3af;
+}
+.ribbon-container-dark :deep(.pp-ribbon-tab-header:hover) {
+  color: #f3f4f6;
+}
+.ribbon-container-dark :deep(.pp-ribbon-tab-header--active) {
+  color: #60a5fa;
+  border-bottom-color: #60a5fa;
+}
+.ribbon-container-dark :deep(.pp-ribbon-body) {
+  background-color: #1f2937;
+}
+.ribbon-container-dark :deep(.pp-ribbon-button) {
+  color: #e5e7eb;
+}
+.ribbon-container-dark :deep(.pp-ribbon-button:hover) {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+.ribbon-container-dark :deep(.pp-ribbon-group-title) {
+  color: #9ca3af;
+  border-top-color: #4b5563;
+}
+.ribbon-container-dark :deep(.pp-ribbon-group:not(:last-child)::after) {
+  background: linear-gradient(to bottom, transparent, #4b5563, transparent);
+}
+.dark-workspace {
+  flex: 1;
+  background-color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  overflow: auto;
+}
+.editor-canvas {
+  width: 100%;
+  height: 100%;
+  background-color: #1f2937;
+  border: 2px dashed #374151;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.canvas-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* File Explorer Layout Styles */
+.explorer-app {
+  height: 500px;
+}
+.explorer-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+}
+.ribbon-container-explorer {
+  --pp-primary-variant: #0078d7;
+}
+.explorer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background-color: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+}
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 20px;
+}
+.nav-buttons ion-icon {
+  cursor: pointer;
+}
+.nav-buttons ion-icon:hover {
+  color: #111827;
+}
+.address-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #374151;
+}
+.address-bar ion-icon {
+  color: #60a5fa;
+}
+.search-box {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+.explorer-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.sidebar {
+  width: 200px;
+  background: #f9fafb;
+  border-right: 1px solid #e5e7eb;
+  padding: 16px 0;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #4b5563;
+  cursor: pointer;
+}
+.sidebar li:hover {
+  background-color: #e5e7eb;
+}
+.sidebar li.active {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+.sidebar li.active ion-icon {
+  color: #3b82f6;
+}
+.file-grid {
+  flex: 1;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 16px;
+  background: white;
+  overflow-y: auto;
+}
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+.file-item:hover {
+  background-color: #f3f4f6;
+}
+.file-item span {
+  font-size: 12px;
+  color: #111827;
+  word-break: break-word;
+}
+.folder-icon { font-size: 48px; color: #fbbf24; }
+.doc-icon { font-size: 48px; color: #3b82f6; }
+.img-icon { font-size: 48px; color: #10b981; }
 </style>

@@ -8,6 +8,16 @@
     
     <ion-content class="ion-padding">
       <div class="screen-list">
+        <div class="list-item" @click="router.push('/word')">
+          <div class="item-content">
+            <h3>Microsoft Word Screen</h3>
+            <p>Word processor interface built with Ribbon Menu</p>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+
         <div class="list-item" @click="router.push('/login')">
           <div class="item-content">
             <h3>Login Screen</h3>

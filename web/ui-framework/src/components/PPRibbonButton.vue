@@ -9,7 +9,7 @@
     :disabled="disabled"
     @click="$emit('click', $event)"
   >
-    <span v-if="icon" class="pp-ribbon-button-icon">
+    <span v-if="icon || $slots.icon" class="pp-ribbon-button-icon">
       <!-- Simple placeholder for an ion-icon if ionic is present, otherwise fallback text -->
       <slot name="icon">
         <ion-icon v-if="hasIonIcon" :icon="icon"></ion-icon>
