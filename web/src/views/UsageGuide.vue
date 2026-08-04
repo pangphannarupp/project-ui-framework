@@ -170,6 +170,7 @@ const componentsMenu = [
       { id: 'nav-drawer', label: 'Navigation Drawer' },
       { id: 'kanban', label: 'Kanban Board' },
       { id: 'nav-sidebar', label: 'Sidebar Navigation' },
+      { id: 'material-app', label: 'Material App Scaffold' },
       { id: 'navigation-path', label: 'Breadcrumb & Stepper' },
       { id: 'dynamic-island', label: 'Dynamic Island' },
       { id: 'pull-refresh', label: 'Pull to Refresh' },
@@ -199,7 +200,8 @@ const componentsMenu = [
       { id: 'chat-detail-screen', label: 'Chat Detail' },
       { id: 'chat-profile-screen', label: 'Chat Profile' },
       { id: 'contacts-screen', label: 'Contacts' },
-      { id: 'onboard', label: 'Onboarding Flow' }
+      { id: 'onboard', label: 'Onboarding Flow' },
+      { id: 'layout-patterns', label: '10 Mobile Layout Patterns' }
     ]
   },
   {
@@ -341,6 +343,7 @@ const sectionMap: Record<string, string> = {
   "nav-drawer": "NavDrawerSection",
   "nav-rail": "NavRailSection",
   "nav-sidebar": "NavSidebarSection",
+  "material-app": "MaterialAppSection",
   "navigation-path": "NavigationPathSection",
   "dynamic-island": "DynamicIslandSection",
   "pull-refresh": "PullRefreshSection",
@@ -372,6 +375,7 @@ const sectionMap: Record<string, string> = {
   "chat-detail-screen": "ChatDetailScreen",
   "chat-profile-screen": "ChatProfileScreen",
   "contacts-screen": "ContactsScreen",
+  "layout-patterns": "LayoutPatternsSection",
   "onboard": "OnboardSection",
   "timeline": "TimelineSection",
   "charts": "ChartsSection",

@@ -174,7 +174,11 @@ import PPConfirm from './components/PPConfirm.vue'
 import PPInputDialog from './components/PPInputDialog.vue'
 import PPChatItem from './components/PPChatItem.vue'
 import PPSpinWheel from './components/PPSpinWheel.vue'
-
+import PPCameraCapture from './components/PPCameraCapture.vue'
+import PPAudioRecorder from './components/PPAudioRecorder.vue'
+import PPMapViewer from './components/PPMapViewer.vue'
+import PPVideoPlayer from './components/PPVideoPlayer.vue'
+import PPConfetti from './components/PPConfetti.vue'
 // Export components individually
 import PPTabs from "./components/PPTabs.vue";
 import PPTabList from "./components/PPTabList.vue";
@@ -185,6 +189,11 @@ import PPScrollArea from "./components/PPScrollArea.vue";
 
 export { 
   PPSpinWheel,
+  PPCameraCapture,
+  PPAudioRecorder,
+  PPMapViewer,
+  PPVideoPlayer,
+  PPConfetti,
   PPTabs,
   PPTabList,
   PPTab,
@@ -530,6 +539,11 @@ export default {
     app.component('PPConfirm', PPConfirm)
     app.component('PPInputDialog', PPInputDialog)
     app.component('PPChatItem', PPChatItem)
+    app.component('PPCameraCapture', PPCameraCapture)
+    app.component('PPAudioRecorder', PPAudioRecorder)
+    app.component('PPMapViewer', PPMapViewer)
+    app.component('PPVideoPlayer', PPVideoPlayer)
+    app.component('PPConfetti', PPConfetti)
     app.component('PPTabPanel', PPTabPanel)
     app.component('PPTabs', PPTabs)
     app.component('PPTabList', PPTabList)
@@ -538,3 +552,5 @@ export default {
     app.component('PPScrollArea', PPScrollArea)
   }
 }
+import PPMaterialApp from './components/PPMaterialApp.vue'
+export { PPMaterialApp }

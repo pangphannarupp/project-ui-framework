@@ -95,3 +95,5 @@ export { default as ScrollAreaSection } from './ScrollAreaSection.vue';
 export { default as BottomSheetSection } from './BottomSheetSection.vue';
 export { default as DialogSection } from './DialogSection.vue';
 export { default as SpinWheelSection } from './SpinWheelSection.vue';
+export { default as MaterialAppSection } from './MaterialAppSection.vue';
+export { default as LayoutPatternsSection } from './LayoutPatternsSection.vue';

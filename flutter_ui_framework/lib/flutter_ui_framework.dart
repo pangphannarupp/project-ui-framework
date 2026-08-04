@@ -180,3 +180,4 @@ export 'src/components/pp_year_picker.dart';
 export 'src/components/pp_year_picker_alert.dart';
 export 'src/components/pp_year_picker_island.dart';
 export 'src/components/pp_year_picker_sheet.dart';
+export 'src/components/pp_sidebar_navigation.dart';

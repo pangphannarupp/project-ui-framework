@@ -1,7 +1,7 @@
 <template>
   <div class="pp-app-bar" :class="{ 'has-bottom': $slots.bottom }">
     <div class="app-bar-top">
-      <div class="app-bar-left">
+      <div class="app-bar-left" v-if="$slots.left">
         <slot name="left"></slot>
       </div>
       <div class="app-bar-center">
@@ -9,7 +9,7 @@
           <h1 v-if="title" class="app-bar-title">{{ title }}</h1>
         </slot>
       </div>
-      <div class="app-bar-right">
+      <div class="app-bar-right" v-if="$slots.right">
         <slot name="right"></slot>
       </div>
     </div>
@@ -56,7 +56,6 @@ defineProps({
 .app-bar-left, .app-bar-right {
   display: flex;
   align-items: center;
-  min-width: 40px; /* Ensure space even if empty */
 }
 
 .app-bar-right {

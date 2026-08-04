@@ -211,6 +211,57 @@ const items = [...];
       </div>
     </div>
 
+    <!-- 10. Camera Capture -->
+    <div style="margin-top: 40px;">
+      <h3>Camera Capture (PPCameraCapture)</h3>
+      <p>A camera viewer that captures photos using the device camera.</p>
+      <div class="demo-box">
+        <PPCameraCapture height="400" />
+      </div>
+    </div>
+
+    <!-- 11. Audio Recorder -->
+    <div style="margin-top: 40px;">
+      <h3>Audio Recorder (PPAudioRecorder)</h3>
+      <p>An interactive microphone recorder that outputs audio blobs.</p>
+      <div class="demo-box">
+        <PPAudioRecorder />
+      </div>
+    </div>
+
+    <!-- 12. Map Viewer -->
+    <div style="margin-top: 40px;">
+      <h3>Map Viewer (PPMapViewer)</h3>
+      <p>A map interface that renders dynamic markers.</p>
+      <div class="demo-box">
+        <PPMapViewer :markers="[{ top: '50%', left: '50%', label: 'Current Location' }]" />
+      </div>
+    </div>
+
+    <!-- 13. Video Player -->
+    <div style="margin-top: 40px;">
+      <h3>Video Player (PPVideoPlayer)</h3>
+      <p>A custom styled video player with timeline and speed controls.</p>
+      <div class="demo-box">
+        <PPVideoPlayer src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
+      </div>
+    </div>
+
+    <!-- 14. Confetti -->
+    <div style="margin-top: 40px;">
+      <h3>Confetti (PPConfetti)</h3>
+      <p>A celebratory micro-interaction component.</p>
+      <div class="demo-box" style="display: flex; align-items: center; justify-content: center; padding: 40px;">
+        <button 
+          @click="showConfetti = true" 
+          style="padding: 12px 24px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;"
+        >
+          Celebrate!
+        </button>
+        <PPConfetti v-model:active="showConfetti" />
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -225,12 +276,18 @@ import {
   PPMasonry, 
   PPMagnifier, 
   PPDrawCanvas,
-  PPSplitter
+  PPSplitter,
+  PPCameraCapture,
+  PPAudioRecorder,
+  PPMapViewer,
+  PPVideoPlayer,
+  PPConfetti
 } from '@phanna/ui-framework';
 
 const tags = ref(['Vue', 'TypeScript']);
 const password = ref('');
 const qrText = ref('https://github.com');
+const showConfetti = ref(false);
 </script>
 
 <style scoped>

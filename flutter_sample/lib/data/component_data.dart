@@ -890,9 +890,136 @@ final List<ComponentItem> componentData = [
   ),
   ComponentItem(
     name: 'PPSidebarNavigation',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
+    description: 'Implemented component',
+    demoCode: '''PPSidebarNavigation(
+  items: [
+    PPSidebarGroup(
+      groupLabel: 'Main',
+      items: [
+        PPSidebarItem(id: 'home', label: 'Home', icon: Icons.home),
+        PPSidebarItem(id: 'analytics', label: 'Analytics', icon: Icons.analytics),
+      ],
+    ),
+  ],
+  variant: 'indicator', // pill, flat, m3-rail
+  theme: 'dark', // or 'light'
+)''',
+    demoBuilder: (context) {
+      return StatefulBuilder(builder: (context, setState) {
+        String _theme = 'dark';
+        String _variant = 'indicator';
+        bool _collapsed = false;
+
+        return Column(
+          children: [
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                ElevatedButton(
+                  onPressed: () => setState(() => _theme = _theme == 'dark' ? 'light' : 'dark'),
+                  child: Text('Toggle Theme (\$_theme)'),
+                ),
+                ElevatedButton(
+                  onPressed: () => setState(() => _collapsed = !_collapsed),
+                  child: Text('Toggle Collapse (\$_collapsed)'),
+                ),
+                DropdownButton<String>(
+                  value: _variant,
+                  items: ['indicator', 'flat', 'pill', 'm3-rail']
+                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                      .toList(),
+                  onChanged: (val) {
+                    if (val != null) setState(() => _variant = val);
+                  },
+                )
+              ],
+            ),
+            const SizedBox(height: 16),
+            Container(
+              height: 500,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child: Row(
+                children: [
+                  PPSidebarNavigation(
+                    theme: _theme,
+                    variant: _variant,
+                    collapsed: _collapsed,
+                    header: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Row(
+                        mainAxisAlignment: _collapsed ? MainAxisAlignment.center : MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.widgets, color: _theme == 'dark' ? Colors.white : Colors.black),
+                          if (!_collapsed) ...[
+                            const SizedBox(width: 12),
+                            Text(
+                              'UI Framework',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: _theme == 'dark' ? Colors.white : Colors.black,
+                              ),
+                            )
+                          ]
+                        ],
+                      ),
+                    ),
+                    items: [
+                      PPSidebarGroup(
+                        groupLabel: 'Overview',
+                        items: [
+                          PPSidebarItem(id: 'dashboard', label: 'Dashboard', icon: Icons.dashboard),
+                          PPSidebarItem(id: 'analytics', label: 'Analytics', icon: Icons.bar_chart),
+                        ],
+                      ),
+                      PPSidebarGroup(
+                        groupLabel: 'Management',
+                        items: [
+                          PPSidebarItem(
+                            id: 'users',
+                            label: 'Users',
+                            icon: Icons.people,
+                            children: [
+                              PPSidebarItem(id: 'list', label: 'User List'),
+                              PPSidebarItem(id: 'roles', label: 'Roles & Permissions'),
+                            ],
+                          ),
+                          PPSidebarItem(
+                            id: 'settings',
+                            label: 'Settings',
+                            icon: Icons.settings,
+                            children: [
+                              PPSidebarItem(id: 'general', label: 'General'),
+                              PPSidebarItem(id: 'billing', label: 'Billing'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: _theme == 'dark' ? Colors.grey[900] : Colors.grey[100],
+                      child: Center(
+                        child: Text(
+                          'Content Area',
+                          style: TextStyle(
+                            color: _theme == 'dark' ? Colors.white : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      });
+    },
   ),
   ComponentItem(
     name: 'PPSignaturePad',
