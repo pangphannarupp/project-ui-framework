@@ -438,6 +438,7 @@ const onConfirmAction = () => {
 <style scoped>
 .pp-khmer-calendar {
   width: 100%;
+  min-width: 440px;
   font-family: 'Inter', -apple-system, sans-serif;
   background: var(--pp-calendar-bg, #ffffff);
   color: var(--pp-calendar-text, var(--pp-primary-variant, #1a2a5e));
@@ -705,10 +706,11 @@ const onConfirmAction = () => {
   left: 2px;
   right: 2px;
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   color: var(--pp-calendar-subtitle-color);
   white-space: nowrap;
   overflow: visible;
+  transform: scale(0.95);
 }
 
 .gregorian-day {
@@ -721,10 +723,11 @@ const onConfirmAction = () => {
   left: 2px;
   right: 2px;
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   color: var(--pp-calendar-subtitle-color);
   white-space: nowrap;
   overflow: visible;
+  transform: scale(0.95);
 }
 
 .special-dot {

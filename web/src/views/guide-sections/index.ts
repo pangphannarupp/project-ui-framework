@@ -1,7 +1,6 @@
 // Newly added
 export { default as AccountCardSection } from './AccountCardSection.vue';
 export { default as AccountReorderSection } from './AccountReorderSection.vue';
-export { default as AccountSavingSection } from './AccountSavingSection.vue';
 export { default as ActionCardSection } from './ActionCardSection.vue';
 export { default as ActionSheetsSection } from './ActionSheetsSection.vue';
 export { default as AdvancedComponentsSection } from './AdvancedComponentsSection.vue';
@@ -27,6 +26,8 @@ export { default as CompanySelectorSection } from './CompanySelectorSection.vue'
 export { default as ContactsScreen } from './screens/ContactsScreen.vue';
 export { default as DashboardScreen } from './screens/DashboardScreen.vue';
 export { default as DataDisplayBasicsSection } from './DataDisplayBasicsSection.vue';
+
+export { default as DatePickerSection } from './DatePickerSection.vue';
 export { default as DateRangeSection } from './DateRangeSection.vue';
 export { default as DevConsoleSection } from './DevConsoleSection.vue';
 export { default as DialogSection } from './DialogSection.vue';

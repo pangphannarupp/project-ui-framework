@@ -169,6 +169,7 @@ watch(() => props.initialEndYear, (newVal) => {
 
 onMounted(() => {
   nextTick(() => {
+    isScrolling = true;
     if (startWheel.value) {
       const idx = yearsList.indexOf(internalStartYear.value);
       if (idx !== -1) startWheel.value.scrollTop = idx * ITEM_HEIGHT;
@@ -177,6 +178,7 @@ onMounted(() => {
       const idx = yearsList.indexOf(internalEndYear.value);
       if (idx !== -1) endWheel.value.scrollTop = idx * ITEM_HEIGHT;
     }
+    setTimeout(() => { isScrolling = false; }, 150);
   });
 });
 

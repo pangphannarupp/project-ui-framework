@@ -186,7 +186,539 @@
         </div>
       </div>
     </div>
-  </div>
+  
+        <div class="variant-group">
+          <h3>Customizing CSS</h3>
+          <p class="custom-guide">You can override the component's appearance globally via CSS variables or by targeting its specific classes.</p>
+          <pre class="code-block" v-pre><code>/* Override globally */
+:root {
+  /* This component does not use CSS variables directly. */
+  /* Use custom classes to override styles. */
+}
+
+/* Or target specific instances using custom classes */
+.my-custom-component {
+  /* Add your custom styles */
+}</code></pre>
+        </div>
+</div>
+<!-- FULL_SOURCE_CODE_START -->
+    <div class="variant-group" style="margin-top: 40px;">
+      <h3>Full Page Source Code</h3>
+      <p class="custom-guide">Complete source code for this section.</p>
+      <pre class="code-block" style="max-height: 500px; overflow-y: auto;" v-pre><code>&lt;template&gt;
+  &lt;div class="guide-section"&gt;
+    &lt;h2&gt;Application Layout Templates&lt;/h2&gt;
+    &lt;p&gt;These templates demonstrate how to combine various UI framework components to create complex, real-world application layouts for Mobile, Web, and Desktop environments.&lt;/p&gt;
+
+    &lt;!-- Mobile Layout --&gt;
+    &lt;div class="variant-group"&gt;
+      &lt;h3&gt;Mobile Layout: Social Media Feed&lt;/h3&gt;
+      &lt;p class="custom-guide"&gt;A classic mobile-first layout featuring a bottom navigation bar, a scrolling feed, a floating action button (FAB), and a top app bar.&lt;/p&gt;
+      
+      &lt;div class="component-demo mobile-demo-wrapper"&gt;
+        &lt;!-- Mock Phone Container --&gt;
+        &lt;div class="mock-phone"&gt;
+          &lt;PPMaterialApp&gt;
+            &lt;template #header&gt;
+              &lt;div class="mobile-header"&gt;
+                &lt;span class="app-title"&gt;SocialFeed&lt;/span&gt;
+                &lt;div class="header-actions"&gt;
+                  &lt;PPIconButton :icon="searchOutline" size="small" /&gt;
+                  &lt;PPIconButton :icon="notificationsOutline" size="small" badge /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+
+            &lt;!-- Scrollable Feed --&gt;
+            &lt;div class="feed-container"&gt;
+              &lt;div class="post-card" v-for="i in 3" :key="i"&gt;
+                &lt;div class="post-header"&gt;
+                  &lt;div class="avatar"&gt;&lt;/div&gt;
+                  &lt;div class="post-meta"&gt;
+                    &lt;span class="user-name"&gt;User {{ i }}&lt;/span&gt;
+                    &lt;span class="post-time"&gt;2 hours ago&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="post-content"&gt;
+                  This is a sample post in the social media feed to demonstrate the layout. The bottom navigation provides easy access to primary routes, while the FAB handles the primary action.
+                &lt;/div&gt;
+                &lt;div class="post-actions"&gt;
+                  &lt;PPIconButton :icon="heartOutline" size="small" /&gt;
+                  &lt;PPIconButton :icon="chatbubbleOutline" size="small" /&gt;
+                  &lt;PPIconButton :icon="shareOutline" size="small" /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div style="height: 80px;"&gt;&lt;/div&gt; &lt;!-- Spacer for FAB/Nav --&gt;
+            &lt;/div&gt;
+
+            &lt;!-- FAB --&gt;
+            &lt;div style="position: absolute; bottom: 70px; right: 16px;"&gt;
+              &lt;PPFab :icon="addOutline" color="primary" /&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Bottom Nav --&gt;
+            &lt;template #footer&gt;
+              &lt;PPBottomNav 
+                v-model="mobileTab"
+                :items="[
+                  { label: 'Home', value: 'home', icon: homeOutline },
+                  { label: 'Explore', value: 'explore', icon: compassOutline },
+                  { label: 'Profile', value: 'profile', icon: personOutline }
+                ]"
+              /&gt;
+            &lt;/template&gt;
+          &lt;/PPMaterialApp&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Web Dashboard Layout --&gt;
+    &lt;div class="variant-group" style="margin-top: 48px;"&gt;
+      &lt;h3&gt;Web Layout: Analytics Dashboard&lt;/h3&gt;
+      &lt;p class="custom-guide"&gt;A responsive web layout with a permanent sidebar navigation, a top header, and a grid-based dashboard.&lt;/p&gt;
+      
+      &lt;div class="component-demo web-demo-wrapper"&gt;
+        &lt;div class="dashboard-layout"&gt;
+          &lt;!-- Sidebar --&gt;
+          &lt;div class="dashboard-sidebar"&gt;
+            &lt;div class="sidebar-logo"&gt;AnalyticsPro&lt;/div&gt;
+            &lt;ul class="sidebar-nav"&gt;
+              &lt;li class="active"&gt;&lt;ion-icon :icon="pieChartOutline" /&gt; Overview&lt;/li&gt;
+              &lt;li&gt;&lt;ion-icon :icon="barChartOutline" /&gt; Reports&lt;/li&gt;
+              &lt;li&gt;&lt;ion-icon :icon="peopleOutline" /&gt; Audience&lt;/li&gt;
+              &lt;li&gt;&lt;ion-icon :icon="settingsOutline" /&gt; Settings&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+          
+          &lt;!-- Main Area --&gt;
+          &lt;div class="dashboard-main"&gt;
+            &lt;!-- Header --&gt;
+            &lt;div class="dashboard-header"&gt;
+              &lt;span class="page-title"&gt;Overview&lt;/span&gt;
+              &lt;div class="user-profile"&gt;
+                &lt;div class="avatar-small"&gt;&lt;/div&gt;
+                &lt;span&gt;Admin User&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;!-- Grid Content --&gt;
+            &lt;div class="dashboard-content"&gt;
+              &lt;div class="stats-grid"&gt;
+                &lt;div class="stat-card"&gt;
+                  &lt;span class="stat-label"&gt;Total Users&lt;/span&gt;
+                  &lt;span class="stat-value"&gt;24,592&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="stat-card"&gt;
+                  &lt;span class="stat-label"&gt;Revenue&lt;/span&gt;
+                  &lt;span class="stat-value"&gt;$12,450&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="stat-card"&gt;
+                  &lt;span class="stat-label"&gt;Bounce Rate&lt;/span&gt;
+                  &lt;span class="stat-value"&gt;42.3%&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="chart-card"&gt;
+                &lt;div class="chart-placeholder"&gt;
+                  &lt;ion-icon :icon="barChartOutline" style="font-size: 64px; color: #cbd5e1;" /&gt;
+                  &lt;span&gt;Interactive Chart Area&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Desktop Mail Client --&gt;
+    &lt;div class="variant-group" style="margin-top: 48px;"&gt;
+      &lt;h3&gt;Desktop Layout: Mail Client (3-Pane View)&lt;/h3&gt;
+      &lt;p class="custom-guide"&gt;A dense, information-rich layout utilizing a 3-pane structure typical of native desktop applications.&lt;/p&gt;
+      
+      &lt;div class="component-demo desktop-demo-wrapper"&gt;
+        &lt;div class="mail-layout"&gt;
+          &lt;!-- Left Pane: Folders --&gt;
+          &lt;div class="pane-folders"&gt;
+            &lt;div class="folder-header"&gt;Mailbox&lt;/div&gt;
+            &lt;ul class="folder-list"&gt;
+              &lt;li class="active"&gt;&lt;ion-icon :icon="mailOutline" /&gt; Inbox &lt;span class="badge"&gt;12&lt;/span&gt;&lt;/li&gt;
+              &lt;li&gt;&lt;ion-icon :icon="sendOutline" /&gt; Sent&lt;/li&gt;
+              &lt;li&gt;&lt;ion-icon :icon="documentOutline" /&gt; Drafts&lt;/li&gt;
+              &lt;li&gt;&lt;ion-icon :icon="trashOutline" /&gt; Trash&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+          
+          &lt;!-- Middle Pane: Message List --&gt;
+          &lt;div class="pane-list"&gt;
+            &lt;div class="list-search"&gt;
+              &lt;ion-icon :icon="searchOutline" /&gt;
+              &lt;input type="text" placeholder="Search mail..." /&gt;
+            &lt;/div&gt;
+            &lt;div class="message-item active"&gt;
+              &lt;div class="msg-sender"&gt;Product Team&lt;/div&gt;
+              &lt;div class="msg-subject"&gt;Q3 Roadmap Update&lt;/div&gt;
+              &lt;div class="msg-preview"&gt;Here is the latest update regarding our...&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="message-item"&gt;
+              &lt;div class="msg-sender"&gt;Design Dept&lt;/div&gt;
+              &lt;div class="msg-subject"&gt;New UI Assets&lt;/div&gt;
+              &lt;div class="msg-preview"&gt;Please find attached the latest assets...&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          
+          &lt;!-- Right Pane: Reading Pane --&gt;
+          &lt;div class="pane-reading"&gt;
+            &lt;!-- Ribbon for Actions --&gt;
+            &lt;PPRibbon variant="classic" :collapsible="true" model-value="message"&gt;
+              &lt;PPRibbonTab title="Message" id="message"&gt;
+                &lt;PPRibbonGroup title="Respond"&gt;
+                  &lt;PPRibbonButton :icon="arrowUndoOutline" label="Reply" size="large" /&gt;
+                  &lt;PPRibbonButton :icon="arrowRedoOutline" label="Forward" size="large" /&gt;
+                &lt;/PPRibbonGroup&gt;
+                &lt;PPRibbonGroup title="Delete"&gt;
+                  &lt;PPRibbonButton :icon="trashOutline" label="Delete" size="large" /&gt;
+                &lt;/PPRibbonGroup&gt;
+              &lt;/PPRibbonTab&gt;
+            &lt;/PPRibbon&gt;
+            
+            &lt;div class="email-content"&gt;
+              &lt;h2 style="margin-top: 0; margin-bottom: 8px; font-size: 24px; color: #0f172a;"&gt;Q3 Roadmap Update&lt;/h2&gt;
+              &lt;div class="email-meta"&gt;From: Product Team &amp;lt;product@example.com&amp;gt;&lt;/div&gt;
+              &lt;div class="email-body"&gt;
+                &lt;p&gt;Hello everyone,&lt;/p&gt;
+                &lt;p&gt;We are excited to share the upcoming milestones for Q3. We will be focusing heavily on optimizing the desktop layouts and improving performance across the board.&lt;/p&gt;
+                &lt;p&gt;Best,&lt;br&gt;Product Team&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+        &lt;div class="variant-group"&gt;
+          &lt;h3&gt;Customizing CSS&lt;/h3&gt;
+          &lt;p class="custom-guide"&gt;You can override the component's appearance globally via CSS variables or by targeting its specific classes.&lt;/p&gt;
+          &lt;pre class="code-block"&gt;&lt;code&gt;/* Override globally */
+:root {
+  /* This component does not use CSS variables directly. */
+  /* Use custom classes to override styles. */
+}
+
+/* Or target specific instances using custom classes */
+.my-custom-component {
+  /* Add your custom styles */
+}&lt;/code&gt;&lt;/pre&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue';
+import { IonIcon } from '@ionic/vue';
+import { 
+  searchOutline, notificationsOutline, addOutline, heartOutline, chatbubbleOutline, shareOutline,
+  homeOutline, compassOutline, personOutline, pieChartOutline, barChartOutline, peopleOutline, settingsOutline,
+  mailOutline, sendOutline, documentOutline, trashOutline, arrowUndoOutline, arrowRedoOutline
+} from 'ionicons/icons';
+import { 
+  PPMaterialApp, PPFab, PPBottomNav, PPIconButton,
+  PPRibbon, PPRibbonTab, PPRibbonGroup, PPRibbonButton
+} from '@phanna/ui-framework';
+
+const mobileTab = ref('home');
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+/* Mobile Layout */
+.mobile-demo-wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: #f1f5f9;
+  padding: 32px 0;
+  border-radius: 8px;
+}
+.mock-phone {
+  width: 375px;
+  height: 700px;
+  border: 12px solid #1e293b;
+  border-radius: 36px;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+.app-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+.feed-container {
+  padding: 16px;
+  background: #f8fafc;
+  height: calc(100% - 110px);
+  overflow-y: auto;
+}
+.post-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+.post-meta {
+  display: flex;
+  flex-direction: column;
+}
+.user-name { font-weight: 600; font-size: 14px; }
+.post-time { font-size: 12px; color: #64748b; }
+.post-content { font-size: 14px; color: #334155; margin-bottom: 12px; line-height: 1.5; }
+.post-actions {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 8px;
+}
+
+/* Web Dashboard Layout */
+.web-demo-wrapper {
+  background-color: #f1f5f9;
+  padding: 24px;
+  border-radius: 8px;
+}
+.dashboard-layout {
+  display: flex;
+  height: 600px;
+  background: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+.dashboard-sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-logo {
+  padding: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #334155;
+  color: #38bdf8;
+}
+.sidebar-nav {
+  list-style: none;
+  padding: 16px 0;
+  margin: 0;
+}
+.sidebar-nav li {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  color: #cbd5e1;
+}
+.sidebar-nav li:hover { background: #334155; }
+.sidebar-nav li.active { background: #0ea5e9; color: white; font-weight: 500; }
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-header {
+  height: 64px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.page-title { font-size: 20px; font-weight: 600; color: #0f172a; }
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.avatar-small { width: 32px; height: 32px; border-radius: 50%; background: #94a3b8; }
+.dashboard-content {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stat-label { font-size: 14px; color: #64748b; font-weight: 500; }
+.stat-value { font-size: 32px; font-weight: 700; color: #0f172a; }
+.chart-card {
+  background: white;
+  height: 300px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+}
+.chart-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #94a3b8;
+}
+
+/* Desktop Mail Layout */
+.desktop-demo-wrapper {
+  background-color: #f1f5f9;
+  padding: 24px;
+  border-radius: 8px;
+}
+.mail-layout {
+  display: flex;
+  height: 600px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+.pane-folders {
+  width: 200px;
+  background: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+.folder-header {
+  padding: 16px;
+  font-weight: 600;
+  color: #64748b;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.folder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.folder-list li {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+}
+.folder-list li:hover { background: #e2e8f0; }
+.folder-list li.active { background: #e0f2fe; color: #0284c7; font-weight: 500; border-left: 3px solid #0284c7; }
+.folder-list ion-icon { font-size: 18px; }
+.badge { margin-left: auto; background: #0284c7; color: white; padding: 2px 6px; border-radius: 12px; font-size: 11px; }
+
+.pane-list {
+  width: 300px;
+  background: white;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+.list-search {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+}
+.list-search input {
+  border: none; background: transparent; outline: none; width: 100%; font-size: 13px;
+}
+.message-item {
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  cursor: pointer;
+}
+.message-item:hover { background: #f8fafc; }
+.message-item.active { background: #eff6ff; }
+.msg-sender { font-weight: 600; font-size: 14px; color: #0f172a; margin-bottom: 4px; }
+.msg-subject { font-size: 13px; font-weight: 500; color: #334155; margin-bottom: 4px; }
+.msg-preview { font-size: 12px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.pane-reading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+.pane-reading :deep(.pp-ribbon--classic .pp-ribbon-header) {
+  padding-top: 0;
+}
+.pane-reading :deep(.pp-ribbon--classic .pp-ribbon-tab-header) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.pane-reading :deep(.pp-ribbon-tabs) {
+  padding: 0 8px;
+}
+.email-content {
+  padding: 32px;
+  flex: 1;
+  overflow-y: auto;
+}
+.email-meta { font-size: 13px; color: #64748b; margin-bottom: 32px; border-bottom: 1px solid #e2e8f0; padding-bottom: 16px; }
+.email-body { font-size: 15px; color: #334155; line-height: 1.6; }
+&lt;/style&gt;
+</code></pre>
+    </div>
+<!-- FULL_SOURCE_CODE_END -->
 </template>
 
 <script setup lang="ts">

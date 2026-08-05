@@ -47,8 +47,17 @@
           </template>
           <template v-else>
             <tr v-if="!paginatedData.length">
-              <td :colspan="selectable ? columns.length + 1 : columns.length" class="pp-table-empty">
-                No data available
+              <td :colspan="totalColumnsCount" class="pp-table-empty">
+                <slot name="empty">
+                  <div class="pp-table-empty-content">
+                    <div v-if="emptyIcon" class="pp-table-empty-icon" v-html="emptyIcon"></div>
+                    <svg v-else class="pp-table-empty-icon" viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                      <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                    </svg>
+                    <div class="pp-table-empty-text">{{ emptyText }}</div>
+                  </div>
+                </slot>
               </td>
             </tr>
             <template v-for="(row, index) in paginatedData" :key="row[rowKey] || index">
@@ -156,7 +165,9 @@ const props = defineProps({
   loading: { type: Boolean, default: false },
   skeletonRows: { type: Number, default: 5 },
   expandable: { type: Boolean, default: false },
-  spanMethod: { type: Function, default: undefined }
+  spanMethod: { type: Function, default: undefined },
+  emptyText: { type: String, default: 'No data available' },
+  emptyIcon: { type: String, default: '' }
 });
 
 const emit = defineEmits(['update:pageSize', 'update:modelValue', 'selection-change', 'row-click', 'sort-change', 'expand-change']);
@@ -235,7 +246,7 @@ const handleRowClick = (row: any) => {
 };
 
 const isAllSelected = computed(() => {
-  if (!props.data.length || !paginatedData.value.length) return false;
+  if (!props.data || !props.data.length || !paginatedData.value || !paginatedData.value.length) return false;
   return paginatedData.value.every(row => isRowSelected(row));
 });
 
@@ -284,9 +295,9 @@ const handleSort = (key: string) => {
 };
 
 const sortedData = computed(() => {
-  if (!sortKey.value || !sortOrder.value) return props.data;
+  if (!sortKey.value || !sortOrder.value) return props.data || [];
   
-  return [...props.data].sort((a, b) => {
+  return [...(props.data || [])].sort((a, b) => {
     const valA = a[sortKey.value];
     const valB = b[sortKey.value];
     
@@ -338,6 +349,7 @@ const paginatedData = computed(() => {
   overflow-x: auto;
   border-radius: 8px;
   border: 1px solid #e0e0e0;
+  background-color: white;
 }
 
 .pp-table {
@@ -400,8 +412,21 @@ const paginatedData = computed(() => {
 
 .pp-table-empty {
   text-align: center;
-  padding: 32px 16px;
+  padding: 48px 16px;
   color: #999;
+}
+.pp-table-empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.pp-table-empty-icon {
+  color: #d0d0d0;
+}
+.pp-table-empty-text {
+  font-size: 14px;
 }
 
 /* Skeleton Loading */

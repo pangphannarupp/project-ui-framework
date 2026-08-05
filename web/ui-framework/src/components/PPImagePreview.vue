@@ -27,7 +27,9 @@
 import { ref, onMounted, watch, onUnmounted } from 'vue';
 
 const props = defineProps({
-  src: { type: String, required: true }
+  src: { type: String, required: true },
+  minZoom: { type: Number, default: 0.2 },
+  maxZoom: { type: Number, default: 3 }
 });
 
 const containerRef = ref<HTMLElement | null>(null);
@@ -125,7 +127,7 @@ const onWheel = (e: WheelEvent) => {
   
   const newScale = state.value.scale * delta;
   
-  if (newScale < 0.1 || newScale > 10) return;
+  if (newScale < props.minZoom || newScale > props.maxZoom) return;
   
   state.value.x = mouseX - (mouseX - state.value.x) * delta;
   state.value.y = mouseY - (mouseY - state.value.y) * delta;
@@ -153,7 +155,7 @@ const applyZoomCenter = (delta: number) => {
   const centerY = canvas.height / 2;
   
   const newScale = state.value.scale * delta;
-  if (newScale < 0.1 || newScale > 10) return;
+  if (newScale < props.minZoom || newScale > props.maxZoom) return;
   
   state.value.x = centerX - (centerX - state.value.x) * delta;
   state.value.y = centerY - (centerY - state.value.y) * delta;
@@ -162,9 +164,11 @@ const applyZoomCenter = (delta: number) => {
   render();
 };
 
+let resizeObserver: ResizeObserver | null = null;
+
 const handleResize = () => {
   initCanvas();
-  render();
+  resetView();
 };
 
 watch(() => props.src, loadImage);
@@ -173,10 +177,20 @@ onMounted(() => {
   initCanvas();
   loadImage();
   window.addEventListener('resize', handleResize);
+  
+  if (containerRef.value) {
+    resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(containerRef.value);
+  }
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
+  if (resizeObserver) {
+    resizeObserver.disconnect();
+  }
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
 });
 </script>

@@ -141,12 +141,15 @@ const areaPath = computed(() => {
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .svg-container {
   position: relative;
   flex: 1;
   width: 100%;
+  min-height: 0;
+  overflow: visible; /* SVG overflow should be controlled, but to prevent bleeding, we clip at pp-line-chart or use hidden */
 }
 
 .line-path {
