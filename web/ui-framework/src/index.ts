@@ -557,3 +557,4 @@ export default {
 }
 import PPMaterialApp from './components/PPMaterialApp.vue'
 export { PPMaterialApp }
+export { UIUtil } from './utils/UIUtil'

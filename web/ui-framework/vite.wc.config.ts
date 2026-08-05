@@ -4,6 +4,9 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  esbuild: {
+    keepNames: true, // Keep class names during minification
+  },
   plugins: [
     vue({
       customElement: true

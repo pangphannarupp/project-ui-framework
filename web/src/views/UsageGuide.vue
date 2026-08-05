@@ -232,6 +232,7 @@ const componentsMenu = [
       // { id: 'cards', label: 'Cards Collection' },
       { id: 'keypads', label: 'Keypads & Security' },
       { id: 'interactive-overlays', label: 'Interactive Overlays' },
+      { id: 'imperative-components', label: 'Imperative (UIUtil)' },
       { id: 'bottom-sheet', label: 'Bottom Sheet' },
       { id: 'dialog', label: 'Dialogs' },
       { id: 'reaction-picker', label: 'Reaction Picker' },
@@ -396,6 +397,7 @@ const sectionMap: Record<string, string> = {
   "advanced-components": "AdvancedComponentsSection",
   "icons": "IconsSection",
   "segment": "SegmentSection",
+  "imperative-components": "UIUtilSection",
   "bottom-sheet": "BottomSheetSection",
   "dialog": "DialogSection",
   "spin-wheel": "SpinWheelSection"

@@ -99,3 +99,4 @@ export { default as TreeSection } from './TreeSection.vue';
 export { default as TreeSelectSection } from './TreeSelectSection.vue';
 export { default as WebToastSection } from './WebToastSection.vue';
 export { default as YearPickerSection } from './YearPickerSection.vue';
+export { default as UIUtilSection } from './UIUtilSection.vue';

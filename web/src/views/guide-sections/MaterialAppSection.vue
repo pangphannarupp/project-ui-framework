@@ -213,7 +213,7 @@
                 <PPAppBar title="Admin Portal" :theme="isDark ? 'dark' : 'light'" variant="default">
                   <template #right>
                     <div style="display: flex; align-items: center; gap: 16px;">
-                      <PPButton variant="ghost" size="sm">Help</PPButton>
+                      <PPButton variant="ghost" size="small">Help</PPButton>
                       <PPAvatar src="https://i.pravatar.cc/150?u=admin" size="sm" />
                     </div>
                   </template>
@@ -225,7 +225,7 @@
                   v-model="activeAdminMenu"
                   :items="adminSidebarItems"
                   :theme="isDark ? 'dark' : 'light'"
-                  variant="default"
+                  variant="flat"
                 />
               </template>
 

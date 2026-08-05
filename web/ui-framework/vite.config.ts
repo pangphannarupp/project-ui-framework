@@ -4,10 +4,13 @@ import { resolve } from 'path'
 import * as fs from 'fs'
 
 export default defineConfig({
+  esbuild: {
+    keepNames: true, // Keep class names during minification
+  },
   plugins: [
     vue(),
     {
-      name: 'copy-khmer-date',
+      name: 'copy-utils',
       closeBundle() {
         if (!fs.existsSync(resolve(__dirname, 'dist'))) {
           fs.mkdirSync(resolve(__dirname, 'dist'), { recursive: true });
@@ -15,6 +18,10 @@ export default defineConfig({
         fs.copyFileSync(
           resolve(__dirname, 'src/utils/KhmerDate.ts'),
           resolve(__dirname, 'dist/KhmerDate.ts')
+        );
+        fs.copyFileSync(
+          resolve(__dirname, 'src/utils/UIUtil.ts'),
+          resolve(__dirname, 'dist/UIUtil.ts')
         );
       }
     }
