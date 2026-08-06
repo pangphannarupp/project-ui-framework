@@ -132,17 +132,21 @@ onMounted(() => {
   }
 });
 
+const emit = defineEmits(['menu-selected']);
+
 const handleMenuSelect = (id: string) => {
   for (const group of sidebarItems) {
     for (const item of group.items) {
       if (item.id === id && (item as any).path) {
         router.push((item as any).path);
+        emit('menu-selected', id);
         return;
       }
       if (item.children) {
         const child = item.children.find(c => c.id === id);
         if (child && (child as any).path) {
           router.push((child as any).path);
+          emit('menu-selected', id);
           return;
         }
       }
