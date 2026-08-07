@@ -52,7 +52,7 @@ class PPRadarChart extends StatelessWidget {
             radarBackgroundColor: Colors.transparent,
             borderData: FlBorderData(show: false),
             radarBorderData: const BorderSide(color: Colors.transparent),
-            titlePositionMultiplierMultiplier: 3,
+            titlePositionPercentageOffset: 0.2,
             tickCount: 5,
             ticksTextStyle: const TextStyle(color: Colors.transparent, fontSize: 10),
             tickBorderData: const BorderSide(color: Colors.grey, width: 0.5),

@@ -103,7 +103,7 @@ class PPBarChart extends StatelessWidget {
                     int index = value.toInt();
                     if (index < 0 || index >= labels.length) return const SizedBox.shrink();
                     return SideTitleWidget(
-                      axisSide: meta.axisSide,
+                      meta: meta,
                       child: Text(
                         labels[index],
                         style: const TextStyle(

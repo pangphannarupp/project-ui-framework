@@ -11,8 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _selectedMenu = 'PPButton';
-  List<String> _expandedGroups = ['Elements'];
+  String _selectedMenu = 'Installation';
+  List<String> _expandedGroups = ['Getting Started'];
   final TextEditingController _searchController = TextEditingController();
 
   List<PPSidebarGroup> _getSidebarItems(String query) {

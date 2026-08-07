@@ -124,7 +124,7 @@ class PPScatterChart extends StatelessWidget {
                   interval: intervalX,
                   getTitlesWidget: (value, meta) {
                     return SideTitleWidget(
-                      axisSide: meta.axisSide,
+                      meta: meta,
                       child: Text(
                         value.toInt().toString(),
                         style: const TextStyle(

@@ -165,17 +165,17 @@ class _PPInputState extends State<PPInput> {
   double get _height {
     switch (widget.size) {
       case PPInputSize.sm:
-        return 40.0;
+        return 32.0;
       case PPInputSize.md:
-        return 52.0;
+        return 40.0;
       case PPInputSize.lg:
-        return 64.0;
+        return 48.0;
     }
   }
 
   BorderRadius get _borderRadius {
     if (widget.variant == PPInputVariant.underlined) return BorderRadius.zero;
-    return widget.rounded ? BorderRadius.circular(100.0) : BorderRadius.circular(12.0);
+    return widget.rounded ? BorderRadius.circular(100.0) : BorderRadius.circular(6.0);
   }
 
   BoxBorder get _border {
@@ -235,12 +235,12 @@ class _PPInputState extends State<PPInput> {
           Text(
             widget.label!,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 13,
               color: Color(0xFF333333),
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
         ],
         Container(
           height: _height,

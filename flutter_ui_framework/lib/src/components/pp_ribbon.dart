@@ -27,11 +27,11 @@ class PPRibbonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Styling constants
-    const Color defaultColor = Color(0xFF4B5563);
+    const Color defaultColor = Color(0xFF374151); // Darker, crisper gray
     const Color activeBgColor = Color(0xFFE0E7FF);
     const Color activeBorderColor = Color(0xFFC7D2FE);
     const Color activeColor = Color(0xFF3730A3);
-    const Color hoverBgColor = Color(0xFFF3F4F6);
+    const Color hoverBgColor = Color(0xFFE5E7EB); // Darker hover since background is now F3F4F6
     
     return Material(
       color: Colors.transparent,
@@ -62,33 +62,33 @@ class PPRibbonButton extends StatelessWidget {
 
   Widget _buildLargeLayout(Color defaultColor, Color activeColor) {
     return Container(
-      height: 70,
-      constraints: const BoxConstraints(minWidth: 56),
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+      height: 76,
+      constraints: const BoxConstraints(minWidth: 64),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 32,
+            height: 34,
             child: Center(
               child: customIcon ??
                   (icon != null
                       ? Icon(
                           icon,
-                          size: 28,
+                          size: 30,
                           color: active ? activeColor : defaultColor,
                         )
                       : const SizedBox.shrink()),
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 6),
           if (!hideLabel)
             Text(
               label,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 12,
                 color: active ? activeColor : defaultColor,
                 height: 1.1,
               ),
@@ -100,8 +100,8 @@ class PPRibbonButton extends StatelessWidget {
 
   Widget _buildSmallLayout(Color defaultColor, Color activeColor) {
     return Container(
-      height: 22,
-      padding: EdgeInsets.symmetric(horizontal: hideLabel ? 4 : 6, vertical: 2),
+      height: 24,
+      padding: EdgeInsets.symmetric(horizontal: hideLabel ? 4 : 8, vertical: 2),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +114,7 @@ class PPRibbonButton extends StatelessWidget {
                 child: customIcon ??
                     Icon(
                       icon,
-                      size: 18,
+                      size: 16,
                       color: active ? activeColor : defaultColor,
                     ),
               ),
@@ -158,9 +158,9 @@ class PPRibbonGroup extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 20),
+            padding: const EdgeInsets.only(bottom: 22),
             child: SizedBox(
-              height: 70, // Fits exactly 3 small buttons (22*3 + 4 spacing = 70) or 1 large button (70)
+              height: 76, // Fits 1 large (76) or 3 small (24*3 + 4 spacing = 76)
               child: Wrap(
                 direction: Axis.vertical,
                 spacing: 2,
@@ -171,7 +171,7 @@ class PPRibbonGroup extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 2,
+            bottom: 4,
             left: 0,
             right: 0,
             child: Text(
@@ -181,7 +181,7 @@ class PPRibbonGroup extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 11,
-                color: Color(0xFF9CA3AF),
+                color: Color(0xFF6B7280),
               ),
             ),
           ),
@@ -209,12 +209,14 @@ class PPRibbon extends StatefulWidget {
   final String? initialActiveTabId;
   final bool collapsible;
   final List<PPRibbonTab> tabs;
+  final ValueChanged<String>? onTabChanged;
 
   const PPRibbon({
     Key? key,
     this.initialActiveTabId,
     this.collapsible = true,
     required this.tabs,
+    this.onTabChanged,
   }) : super(key: key);
 
   @override
@@ -240,6 +242,9 @@ class _PPRibbonState extends State<PPRibbon> {
         _isCollapsed = false;
       }
     });
+    if (widget.onTabChanged != null) {
+      widget.onTabChanged!(id);
+    }
   }
 
   @override
@@ -249,16 +254,22 @@ class _PPRibbonState extends State<PPRibbon> {
     final activeTab = widget.tabs.firstWhere((t) => t.id == _activeTabId, orElse: () => widget.tabs.first);
 
     return Container(
-      color: Colors.white,
+      color: const Color(0xFFF3F6FB), // Ribbon backdrop color with a subtle blue tint
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Decorative Header (simulates Word Title Bar)
+          Container(
+            height: 32,
+            color: const Color(0xFF2B579A),
+            width: double.infinity,
+          ),
           // Header / Tab bar
           Container(
             padding: const EdgeInsets.only(top: 8),
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFFF3F4F6), // Inactive tab row background is light grey
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -293,9 +304,8 @@ class _PPRibbonState extends State<PPRibbon> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.white, // Ribbon body is white
                 border: Border(
-                  top: const BorderSide(color: Color(0xFFE5E7EB), width: 1),
                   bottom: BorderSide(color: Colors.grey.shade300, width: 1)
                 ),
                 boxShadow: [
@@ -328,31 +338,24 @@ class _PPRibbonState extends State<PPRibbon> {
     final isActive = _activeTabId == tab.id;
     final isSpecial = tab.color != null;
 
-    return GestureDetector(
-      onTap: () => _handleTabClick(tab.id),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: isActive ? Colors.white : (isSpecial ? tab.color!.withOpacity(0.1) : Colors.transparent),
-          // Using a unified border definition to bypass a known Flutter Web rendering glitch
-          border: isActive 
-              ? const Border(
-                  top: BorderSide(color: Color(0xFFE5E7EB), width: 1),
-                  left: BorderSide(color: Color(0xFFE5E7EB), width: 1),
-                  right: BorderSide(color: Color(0xFFE5E7EB), width: 1),
-                )
-              : const Border(
-                  bottom: BorderSide(color: Color(0xFFE5E7EB), width: 1),
-                ),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
-        ),
-        margin: const EdgeInsets.only(left: 4),
-        child: Text(
-          tab.title,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600, // Reverting to Semi-Bold
-            color: isActive ? const Color(0xFF111827) : (isSpecial ? tab.color! : const Color(0xFF6B7280)),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _handleTabClick(tab.id),
+        hoverColor: Colors.grey.withOpacity(0.1),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+            color: isActive ? Colors.white : (isSpecial ? tab.color! : Colors.transparent),
+          ),
+          margin: EdgeInsets.zero,
+          child: Text(
+            tab.title.toUpperCase(),
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: isActive ? const Color(0xFF2B579A) : (isSpecial ? Colors.white : const Color(0xFF4B5563)),
+            ),
           ),
         ),
       ),

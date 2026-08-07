@@ -7,8 +7,8 @@ class _PPChartsDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(24.0),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Text(
           'Charts & Graphs',
@@ -170,7 +170,17 @@ class _PPChartsDemo extends StatelessWidget {
 }
 
 final ComponentItem ppChartsData = ComponentItem(
-  name: 'Charts & Graphs',
+  name: 'Charts',
   description: 'Line, Bar, Pie, Donut, Radar, Scatter, and Funnel charts',
+  demoCode: '''PPLineChart(
+  labels: const ['Jan', 'Feb', 'Mar'],
+  series: const [
+    PPLineChartSeries(
+      title: 'Revenue',
+      values: [20, 35, 25],
+      color: Colors.blue,
+    ),
+  ],
+)''',
   demoBuilder: (context) => const _PPChartsDemo(),
 );

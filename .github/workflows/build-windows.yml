@@ -1,0 +1,34 @@
+name: Build Windows App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: sample_apps/mcnc_content_tool_flutter
+
+      - name: Build Windows release
+        run: flutter build windows
+        working-directory: sample_apps/mcnc_content_tool_flutter
+
+      - name: Upload Windows build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-build
+          path: sample_apps/mcnc_content_tool_flutter/build/windows/runner/Release/
