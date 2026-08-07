@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: sample_apps/mcnc_content_tool_flutter/build/windows/runner/Release/
+          path: sample_apps/mcnc_content_tool_flutter/build/windows/x64/runner/Release/
