@@ -259,17 +259,19 @@ class PPBottomNav extends StatelessWidget {
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => onChanged(item.value),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
-                decoration: BoxDecoration(
-                  color: isActive ? primaryColor.withOpacity(0.15) : Colors.transparent,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
+              child: Center(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: isActive ? primaryColor.withOpacity(0.15) : Colors.transparent,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
                       isActive ? (item.activeIcon ?? item.icon) : item.icon,
                       color: isActive ? primaryColor : const Color(0xFF5F6368),
                       size: 24,
@@ -288,6 +290,7 @@ class PPBottomNav extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
             ),
           );
         }).toList(),
@@ -430,6 +433,7 @@ class PPBottomNav extends StatelessWidget {
       context: context,
       height: 64,
       bgColor: Colors.white,
+      shadowRadius: 0,
       borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
       indicatorAlignment: Alignment.topCenter,
       indicator: Container(
@@ -440,7 +444,7 @@ class PPBottomNav extends StatelessWidget {
         decoration: BoxDecoration(
           color: primaryColor,
           shape: BoxShape.circle,
-          border: Border.all(color: const Color(0xFFF9F9FC), width: 6),
+          border: Border.all(color: Theme.of(context).scaffoldBackgroundColor, width: 6),
           boxShadow: [
             BoxShadow(color: primaryColor.withOpacity(0.4), blurRadius: 16, offset: const Offset(0, 8)),
           ],
@@ -454,7 +458,7 @@ class PPBottomNav extends StatelessWidget {
             AnimatedPositioned(
               duration: const Duration(milliseconds: 400),
               curve: Curves.fastLinearToSlowEaseIn,
-              top: isActive ? -12 : 20,
+              top: isActive ? -4 : 20,
               child: Icon(
                 isActive ? (item.activeIcon ?? item.icon) : item.icon,
                 color: isActive ? Colors.white : const Color(0xFF5F6368),

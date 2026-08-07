@@ -1,1294 +1,187 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_framework/flutter_ui_framework.dart';
+import '../models/component_item.dart';
+export '../models/component_item.dart';
 
-class ComponentItem {
-  final String name;
-  final String description;
-  final String? demoCode;
-  final WidgetBuilder? demoBuilder;
-
-  const ComponentItem({
-    required this.name,
-    this.description = 'Boilerplate component',
-    this.demoCode,
-    this.demoBuilder,
-  });
-}
+import 'demos/pp_autocomplete_demo.dart';
+import 'demos/pp_datetime_pickers_demo.dart';
+import 'demos/pp_calendar_picker_demo.dart';
+import 'demos/pp_khmer_calendar_picker_demo.dart';
+import 'demos/pp_calendar_bottom_sheet_demo.dart';
+import 'demos/pp_khmer_calendar_bottom_sheet_demo.dart';
+import 'demos/pp_calendar_dialog_demo.dart';
+import 'demos/pp_khmer_calendar_dialog_demo.dart';
+import 'demos/pp_bottom_nav_demo.dart';
+import 'demos/pp_button_demo.dart';
+import 'demos/pp_button_group_demo.dart';
+import 'demos/pp_calendar_demo.dart';
+import 'demos/pp_checkbox_demo.dart';
+import 'demos/pp_collapse_demo.dart';
+import 'demos/pp_color_picker_demo.dart';
+import 'demos/pp_context_menu_demo.dart';
+import 'demos/pp_fab_demo.dart';
+import 'demos/pp_file_upload_demo.dart';
+import 'demos/pp_icon_button_demo.dart';
+import 'demos/pp_info_card_demo.dart';
+import 'demos/pp_input_demo.dart';
+import 'demos/pp_khmer_calendar_demo.dart';
+import 'demos/pp_number_spinner_demo.dart';
+import 'demos/pp_otp_input_demo.dart';
+import 'demos/pp_phone_input_demo.dart';
+import 'demos/pp_radio_demo.dart';
+import 'demos/pp_rating_demo.dart';
+import 'demos/pp_ribbon_demo.dart';
+import 'demos/pp_search_demo.dart';
+import 'demos/pp_select_demo.dart';
+import 'demos/pp_sidebar_navigation_demo.dart';
+import 'demos/pp_signature_pad_demo.dart';
+import 'demos/pp_skeleton_demo.dart';
+import 'demos/pp_slider_demo.dart';
+import 'demos/pp_switch_demo.dart';
+import 'demos/pp_toggle_button_demo.dart';
+import 'demos/pp_transfer_list_demo.dart';
+import 'demos/pp_rating_demo.dart';
+import 'demos/pp_input_demo.dart';
+import 'demos/pp_fab_demo.dart';
+import 'demos/pp_phone_input_demo.dart';
+import 'demos/pp_file_upload_demo.dart';
+import 'demos/pp_calendar_demo.dart';
+import 'demos/pp_button_group_demo.dart';
+import 'demos/pp_number_spinner_demo.dart';
+import 'demos/pp_sidebar_navigation_demo.dart';
+import 'demos/pp_select_demo.dart';
+import 'demos/pp_info_card_demo.dart';
+import 'demos/pp_picker_demo.dart';
+import 'demos/pp_collapse_demo.dart';
+import 'demos/pp_search_demo.dart';
+import 'demos/pp_signature_pad_demo.dart';
+import 'demos/pp_toggle_button_demo.dart';
+import 'demos/pp_button_demo.dart';
+import 'demos/pp_checkbox_demo.dart';
+import 'demos/pp_switch_demo.dart';
+import 'demos/pp_transfer_list_demo.dart';
+import 'demos/pp_radio_demo.dart';
+import 'demos/pp_khmer_calendar_demo.dart';
+import 'demos/pp_bottom_sheet_demo.dart';
+import 'demos/pp_icon_button_demo.dart';
+import 'demos/pp_ribbon_demo.dart';
+import 'demos/pp_dialog_demo.dart';
+import 'demos/pp_autocomplete_demo.dart';
+import 'demos/pp_otp_input_demo.dart';
+import 'demos/pp_slider_demo.dart';
+import 'demos/pp_context_menu_demo.dart';
+import 'demos/pp_bottom_nav_demo.dart';
+import 'demos/pp_skeleton_demo.dart';
+import 'demos/pp_color_picker_demo.dart';
+import 'demos/pp_hide_app_bar_demo.dart';
+import 'demos/pp_collapsing_toolbar_demo.dart';
+import 'demos/pp_kanban_board_demo.dart';
+import 'demos/pp_breadcrumb_demo.dart';
+import 'demos/pp_stepper_demo.dart';
+import 'demos/pp_pull_to_refresh_demo.dart';
+import 'demos/pp_swipe_item_demo.dart';
+import 'demos/pp_segment_demo.dart';
+import 'demos/pp_scroll_segment_demo.dart';
+import 'demos/pp_web_toast_demo.dart';
+import 'demos/pp_tabs_demo.dart';
+import 'demos/pp_scroll_area_demo.dart';
+import 'demos/pp_collapse_demo.dart';
+import 'demos/pp_carousel_demo.dart';
+import 'demos/pp_pin_security_demo.dart';
+import 'demos/pp_keyboards_demo.dart';
+import 'demos/pp_data_display_demo.dart';
+import 'demos/pp_icons_demo.dart';
+import 'demos/pp_charts_demo.dart';
 
 final List<ComponentItem> componentData = [
-  ComponentItem(
-    name: 'UI Components',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'MyButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'MyList',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAccountCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAccountListCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAccountReorderList',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAccountSavingCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPActionCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAnimatedTabs',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAppBar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAudioWave',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAutocomplete',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAvatar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPAvatarGroup',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPBadge',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPBarChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPBiometricSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPBottomBar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPBottomNav',
-    description: 'Implemented component',
-    demoCode: '''Column(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: [
-    PPBottomNav(variant: 'material', value: '0', ...),
-    PPBottomNav(variant: 'classic', value: '0', ...),
-    PPBottomNav(variant: 'floating', value: '0', ...),
-    PPBottomNav(variant: 'shift', value: '0', ...),
-    PPBottomNav(variant: 'bubble', value: '0', ...),
-  ],
-)''',
-    demoBuilder: (context) {
-      final items = const [
-        PPBottomNavItem(label: 'Home', value: '0', icon: Icons.home),
-        PPBottomNavItem(label: 'Search', value: '1', icon: Icons.search),
-        PPBottomNavItem(label: 'Settings', value: '2', icon: Icons.settings),
-      ];
-      final cutoutItems = const [
-        PPBottomNavItem(label: 'Home', value: '0', icon: Icons.home),
-        PPBottomNavItem(label: 'Add', value: '1', icon: Icons.add, isAction: true),
-        PPBottomNavItem(label: 'Settings', value: '2', icon: Icons.settings),
-      ];
-      String selectedValue = '0';
-      return StatefulBuilder(
-        builder: (context, setState) {
-          void handleChange(String val) {
-            setState(() => selectedValue = val);
-          }
-          return SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text('Material Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'material'),
-                const SizedBox(height: 16),
-                const Text('Classic Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'classic'),
-                const SizedBox(height: 16),
-                const Text('Floating Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'floating'),
-                const SizedBox(height: 16),
-                const Text('Shift Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'shift'),
-                const SizedBox(height: 16),
-                const Text('Bubble Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'bubble'),
-                const SizedBox(height: 16),
-                const Text('Dot Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'dot'),
-                const SizedBox(height: 16),
-                const Text('Magic Line Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'magic-line'),
-                const SizedBox(height: 16),
-                const Text('Curved Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'curved'),
-                const SizedBox(height: 16),
-                const Text('Pill Slide Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: items, variant: 'pill-slide'),
-                const SizedBox(height: 16),
-                const Text('Cutout Variant'),
-                PPBottomNav(value: selectedValue, onChanged: handleChange, items: cutoutItems, variant: 'cutout'),
-                const SizedBox(height: 32),
-              ],
-            ),
-          );
-        },
-      );
-    },
-  ),
-  ComponentItem(
-    name: 'PPBottomSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPBreadcrumb',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPButton',
-    description: 'Implemented component',
-    demoCode: '''PPButton(
-  text: 'Click Me',
-  onPressed: () {},
-)''',
-    demoBuilder: (context) => PPButton(text: 'Click Me', onPressed: () {}),
-  ),
-  ComponentItem(
-    name: 'PPButtonGroup',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCalendar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCalendarAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCalendarIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCalendarSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCarousel',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCarouselItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPChatItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCheckbox',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCheckboxGroup',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPChip',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCollapse',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCollapseItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCollapsingToolbar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPColorPicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPColorPickerAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPColorPickerIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPColorPickerSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCompanySelector',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPConfirm',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPConfirmSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPConsole',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCountryCodeSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPCreditCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDateRangePicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDateRangePickerAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDateRangePickerSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDivider',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDonutChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDraggableGrid',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDrawCanvas',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDropdown',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPDynamicIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPEmojiKeyboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPEnglishKeyboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFab',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFabAction',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFabList',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFeedbackSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFilePreview',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFileUpload',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFilterSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPFunnelChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPHeaderBar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPHideAppBar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPIconButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPImageCropper',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPImagePreview',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPImageTransition',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPInfoCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPInput',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPInputDialog',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKanbanBoard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKeypad',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKhmerCalendar',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKhmerCalendarAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKhmerCalendarIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKhmerCalendarSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPKhmerKeyboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPLanguageSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPLineChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMagnifier',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMarquee',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMasonry',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMathEditor',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMathKeyboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMathPreview',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMonthPicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMonthPickerAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMonthPickerIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPMonthPickerSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPNavigationDrawer',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPNavigationRail',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPNoResult',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPNotificationItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPNumberSpinner',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPOnboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPOtpInput',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPagination',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPasswordStrength',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPdfViewer',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPhoneInput',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPhoneKeyboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPieChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPinDots',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPProgressGauge',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPPullToRefresh',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPQRCode',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPQuarterPicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRadarChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRadio',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRadioGroup',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRating',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPReactionPicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPReceiveAmountSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPReceivingAccountSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRibbon',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRibbonButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRibbonGroup',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRibbonTab',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPRichTextEditor',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPScatterChart',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPScrollArea',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPScrollSegment',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPScrollSegmentButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSearch',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSecureKeyboard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSecureKeypad',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSegment',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSegmentButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSelect',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSidebarNavigation',
-    description: 'Implemented component',
-    demoCode: '''PPSidebarNavigation(
-  items: [
-    PPSidebarGroup(
-      groupLabel: 'Main',
-      items: [
-        PPSidebarItem(id: 'home', label: 'Home', icon: Icons.home),
-        PPSidebarItem(id: 'analytics', label: 'Analytics', icon: Icons.analytics),
-      ],
-    ),
-  ],
-  variant: 'indicator', // pill, flat, m3-rail
-  theme: 'dark', // or 'light'
-)''',
-    demoBuilder: (context) {
-      return StatefulBuilder(builder: (context, setState) {
-        String _theme = 'dark';
-        String _variant = 'indicator';
-        bool _collapsed = false;
-
-        return Column(
-          children: [
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                ElevatedButton(
-                  onPressed: () => setState(() => _theme = _theme == 'dark' ? 'light' : 'dark'),
-                  child: Text('Toggle Theme (\$_theme)'),
-                ),
-                ElevatedButton(
-                  onPressed: () => setState(() => _collapsed = !_collapsed),
-                  child: Text('Toggle Collapse (\$_collapsed)'),
-                ),
-                DropdownButton<String>(
-                  value: _variant,
-                  items: ['indicator', 'flat', 'pill', 'm3-rail']
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList(),
-                  onChanged: (val) {
-                    if (val != null) setState(() => _variant = val);
-                  },
-                )
-              ],
-            ),
-            const SizedBox(height: 16),
-            Container(
-              height: 500,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                children: [
-                  PPSidebarNavigation(
-                    theme: _theme,
-                    variant: _variant,
-                    collapsed: _collapsed,
-                    header: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
-                        mainAxisAlignment: _collapsed ? MainAxisAlignment.center : MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.widgets, color: _theme == 'dark' ? Colors.white : Colors.black),
-                          if (!_collapsed) ...[
-                            const SizedBox(width: 12),
-                            Text(
-                              'UI Framework',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: _theme == 'dark' ? Colors.white : Colors.black,
-                              ),
-                            )
-                          ]
-                        ],
-                      ),
-                    ),
-                    items: [
-                      PPSidebarGroup(
-                        groupLabel: 'Overview',
-                        items: [
-                          PPSidebarItem(id: 'dashboard', label: 'Dashboard', icon: Icons.dashboard),
-                          PPSidebarItem(id: 'analytics', label: 'Analytics', icon: Icons.bar_chart),
-                        ],
-                      ),
-                      PPSidebarGroup(
-                        groupLabel: 'Management',
-                        items: [
-                          PPSidebarItem(
-                            id: 'users',
-                            label: 'Users',
-                            icon: Icons.people,
-                            children: [
-                              PPSidebarItem(id: 'list', label: 'User List'),
-                              PPSidebarItem(id: 'roles', label: 'Roles & Permissions'),
-                            ],
-                          ),
-                          PPSidebarItem(
-                            id: 'settings',
-                            label: 'Settings',
-                            icon: Icons.settings,
-                            children: [
-                              PPSidebarItem(id: 'general', label: 'General'),
-                              PPSidebarItem(id: 'billing', label: 'Billing'),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: _theme == 'dark' ? Colors.grey[900] : Colors.grey[100],
-                      child: Center(
-                        child: Text(
-                          'Content Area',
-                          style: TextStyle(
-                            color: _theme == 'dark' ? Colors.white : Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      });
-    },
-  ),
-  ComponentItem(
-    name: 'PPSignaturePad',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSignaturePadAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSignaturePadSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSkeleton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSkeletonDetail',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSkeletonItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSkeletonList',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSkipButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSlider',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSortSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSpinWheel',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSplitter',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPStepper',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSwipeItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPSwitch',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTab',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTabList',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTabPanel',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTabPanels',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTable',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTabs',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTagInput',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTextField',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTimePicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTimePickerAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTimePickerIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTimePickerSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTimeline',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTimelineItem',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPToast',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPToggleButton',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTooltip',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTransferList',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTree',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTreeNode',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPTreeSelect',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPUpgradeCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPUserCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPUserProfile',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPVerificationCard',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPWebToast',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPYearPicker',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPYearPickerAlert',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPYearPickerIsland',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
-  ComponentItem(
-    name: 'PPYearPickerSheet',
-    description: 'Boilerplate component',
-    demoCode: null,
-    demoBuilder: null,
-  ),
+  pp_ratingData,
+  pp_inputData,
+  pp_fabData,
+  pp_phone_inputData,
+  pp_file_uploadData,
+  pp_calendarData,
+  pp_button_groupData,
+  pp_number_spinnerData,
+  pp_sidebar_navigationData,
+  pp_selectData,
+  pp_info_cardData,
+  pp_pickerData,
+  pp_collapseData,
+  pp_searchData,
+  pp_signature_padData,
+  pp_toggle_buttonData,
+  pp_buttonData,
+  pp_checkboxData,
+  pp_switchData,
+  pp_transfer_listData,
+  pp_radioData,
+  pp_khmer_calendarData,
+  pp_bottom_sheetData,
+  pp_icon_buttonData,
+  pp_ribbonData,
+  pp_dialogData,
+  pp_autocompleteData,
+  pp_otp_inputData,
+  pp_sliderData,
+  pp_context_menuData,
+  pp_bottom_navData,
+  pp_skeletonData,
+  pp_color_pickerData,
+  pp_calendar_pickerData,
+  ppKhmerCalendarPickerData,
+  ppIconsData,
+  ppChartsData,
+  pp_calendar_bottom_sheetData,
+  pp_khmer_calendar_bottom_sheetData,
+  pp_calendar_dialogData,
+  pp_khmer_calendar_dialogData,
+  pp_datetimePickersData,
+  pp_autocompleteData,
+  pp_bottom_navData,
+  pp_buttonData,
+  pp_button_groupData,
+  pp_calendarData,
+  pp_checkboxData,
+  pp_collapseData,
+  pp_color_pickerData,
+  pp_context_menuData,
+  pp_fabData,
+  pp_file_uploadData,
+  pp_icon_buttonData,
+  pp_info_cardData,
+  pp_inputData,
+  pp_khmer_calendarData,
+  pp_number_spinnerData,
+  pp_otp_inputData,
+  pp_phone_inputData,
+  pp_radioData,
+  pp_ratingData,
+  pp_ribbonData,
+  pp_searchData,
+  pp_selectData,
+  pp_sidebar_navigationData,
+  pp_signature_padData,
+  pp_skeletonData,
+  pp_sliderData,
+  pp_switchData,
+  pp_toggle_buttonData,
+  pp_transfer_listData,
+  pp_hide_app_barData,
+  pp_collapsing_toolbarData,
+  pp_kanban_boardData,
+  pp_breadcrumbData,
+  pp_stepperData,
+  pp_pull_to_refreshData,
+  pp_swipe_itemData,
+  pp_segmentData,
+  pp_scroll_segmentData,
+  pp_web_toastData,
+  pp_tabsData,
+  pp_scroll_areaData,
+  pp_collapseData,
+  pp_carouselData,
+  pp_pin_securityData,
+  pp_keyboardsData,
+  pp_data_displayData,
+  pp_iconsData
 ];

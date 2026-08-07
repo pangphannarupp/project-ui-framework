@@ -326,31 +326,35 @@ class _PPSidebarNavigationState extends State<PPSidebarNavigation> {
                       : MainAxisAlignment.spaceBetween,
                   children: [
                     if (isM3Rail)
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                            decoration: BoxDecoration(
-                              color: isActive ? _bgActive : Colors.transparent,
-                              borderRadius: BorderRadius.circular(16),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                              decoration: BoxDecoration(
+                                color: isActive ? _bgActive : Colors.transparent,
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Icon(
+                                item.icon,
+                                size: 24,
+                                color: isActive ? _accentColor : _textColor,
+                              ),
                             ),
-                            child: Icon(
-                              item.icon,
-                              size: 24,
-                              color: isActive ? _accentColor : _textColor,
+                            const SizedBox(height: 4),
+                            Text(
+                              item.label,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: isActive ? _textActiveColor : _textColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            item.label,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: isActive ? _textActiveColor : _textColor,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       )
                     else
                       Row(
