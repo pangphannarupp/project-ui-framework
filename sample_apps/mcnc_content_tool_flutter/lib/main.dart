@@ -4,9 +4,83 @@ import 'package:flutter_ui_framework/flutter_ui_framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/home_screen.dart';
 import 'screens/compare_screen.dart';
-import 'screens/settings_screen.dart';
 
-void main() {
+import 'dart:io' show exit, Platform;
+import 'package:flutter/services.dart';
+
+class AppSettings {
+  static final ValueNotifier<ThemeMode> themeMode = ValueNotifier(ThemeMode.system);
+  static final ValueNotifier<Color> themeColor = ValueNotifier(const Color(0xFF4F46E5));
+  static final ValueNotifier<String> language = ValueNotifier('English');
+  
+  static Future<void> loadSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+    
+    final themeStr = prefs.getString('themeMode');
+    if (themeStr == 'Light') themeMode.value = ThemeMode.light;
+    else if (themeStr == 'Dark') themeMode.value = ThemeMode.dark;
+    else themeMode.value = ThemeMode.system;
+    
+    final colorVal = prefs.getInt('themeColor');
+    if (colorVal != null) themeColor.value = Color(colorVal);
+    
+    language.value = prefs.getString('language') ?? 'English';
+  }
+
+  static Future<void> saveThemeMode(String val) async {
+    if (val == 'Light') themeMode.value = ThemeMode.light;
+    else if (val == 'Dark') themeMode.value = ThemeMode.dark;
+    else themeMode.value = ThemeMode.system;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('themeMode', val);
+  }
+
+  static Future<void> saveThemeColor(Color val) async {
+    themeColor.value = val;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('themeColor', val.value);
+  }
+
+  static Future<void> saveLanguage(String val) async {
+    language.value = val;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language', val);
+  }
+}
+
+const _khmerStrings = {
+  'Home': 'ទំព័រដើម',
+  'Compare': 'ប្រៀបធៀប',
+  'Settings': 'ការកំណត់',
+  'Check Update': 'ពិនិត្យ',
+  'Download Content': 'ទាញយក',
+  'Actions': 'សកម្មភាព',
+  'Tools': 'ឧបករណ៍',
+  'Import cURL': 'នាំចូល cURL',
+  'Profiles': 'ប្រវត្តិរូប',
+  'Save': 'រក្សាទុក',
+  'Delete': 'លុប',
+  'File Selection': 'ជ្រើសរើសឯកសារ',
+  'Remote Archive': 'ឯកសារពីចម្ងាយ',
+  'Local Archive': 'ឯកសារក្នុងម៉ាស៊ីន',
+  'Analysis': 'វិភាគ',
+  'Compare Zips': 'ប្រៀបធៀបឯកសារ',
+  'Language': 'ភាសា',
+  'Interface Theme': 'រូបរាង',
+  'About App': 'អំពីកម្មវិធី',
+  'Exit': 'ចាកចេញ',
+};
+
+String t(String key) {
+  if (AppSettings.language.value == 'Khmer') {
+    return _khmerStrings[key] ?? key;
+  }
+  return key;
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppSettings.loadSettings();
   runApp(const McncContentToolApp());
 }
 
@@ -15,18 +89,44 @@ class McncContentToolApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'mcnc-content-tool',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6B4EE6),
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFF3F4F6),
-      ),
-      home: const MainLayoutScreen(),
-      debugShowCheckedModeBanner: false,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: AppSettings.themeMode,
+      builder: (context, mode, _) {
+        return ValueListenableBuilder<Color>(
+          valueListenable: AppSettings.themeColor,
+          builder: (context, color, _) {
+            return ValueListenableBuilder<String>(
+              valueListenable: AppSettings.language,
+              builder: (context, lang, _) {
+                return MaterialApp(
+                  title: 'mcnc-content-tool',
+                  themeMode: mode,
+                  theme: ThemeData(
+                    colorScheme: ColorScheme.fromSeed(
+                      seedColor: color,
+                      brightness: Brightness.light,
+                    ),
+                    useMaterial3: true,
+                    scaffoldBackgroundColor: const Color(0xFFF8F9FA),
+                  ),
+                  darkTheme: ThemeData(
+                    colorScheme: ColorScheme.fromSeed(
+                      seedColor: color,
+                      brightness: Brightness.dark,
+                    ),
+                    useMaterial3: true,
+                    scaffoldBackgroundColor: const Color(0xFF1E1E1E),
+                  ),
+                  home: MainLayoutScreen(),
+                  debugShowCheckedModeBanner: false,
+                );
+              },
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -120,8 +220,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
           key: _compareScreenKey,
           initialRemoteZipPath: _remoteZipPath,
         );
-      case 'settings':
-        return const SettingsScreen();
       default:
         return HomeScreen(key: _homeScreenKey);
     }
@@ -135,8 +233,10 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F4F6),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: [
           PPRibbon(
@@ -150,13 +250,13 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
             tabs: [
               PPRibbonTab(
                 id: 'home',
-                title: 'Home',
+                title: t('Home'),
                 groups: [
                   PPRibbonGroup(
-                    title: 'Actions',
+                    title: t('Actions'),
                     children: [
                       PPRibbonButton(
-                        label: 'Check Update',
+                        label: t('Check Update'),
                         icon: Icons.sync,
                         active: true,
                         onPressed: () async {
@@ -186,7 +286,7 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                         valueListenable: _canDownload,
                         builder: (context, canDownload, _) {
                           return PPRibbonButton(
-                            label: 'Download Content',
+                            label: t('Download Content'),
                             icon: Icons.download_outlined,
                             disabled: !canDownload,
                             onPressed: canDownload ? () async {
@@ -210,10 +310,10 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                     ],
                   ),
                   PPRibbonGroup(
-                    title: 'Tools',
+                    title: t('Tools'),
                     children: [
                       PPRibbonButton(
-                        label: 'Import cURL',
+                        label: t('Import cURL'),
                         icon: Icons.upload_outlined,
                         onPressed: () {
                           _curlInput = '';
@@ -254,58 +354,38 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                     ],
                   ),
                   PPRibbonGroup(
-                    title: 'Profiles',
+                    title: t('Profiles'),
                     children: [
                       SizedBox(
                         width: 150,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 24,
-                              margin: const EdgeInsets.only(bottom: 4),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey.shade300),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  isExpanded: true,
-                                  isDense: true,
-                                  dropdownColor: Colors.white,
-                                  focusColor: Colors.transparent,
-                                  icon: const Icon(Icons.arrow_drop_down, size: 16),
-                                  hint: const Padding(
-                                    padding: EdgeInsets.only(left: 8),
-                                    child: Text('Load Profile...', style: TextStyle(fontSize: 11)),
-                                  ),
-                                  value: _selectedProfile != null && _profiles.containsKey(_selectedProfile) ? _selectedProfile : null,
-                                  items: _profiles.keys.map((String key) {
-                                    return DropdownMenuItem<String>(
-                                      value: key,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 8),
-                                        child: Text(key, style: const TextStyle(fontSize: 11), overflow: TextOverflow.ellipsis),
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? val) {
-                                    if (val != null) _applyProfile(val);
-                                  },
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 4),
+                              child: PPSelect(
+                                size: PPSelectSize.sm,
+                                borderRadius: 4.0,
+                                placeholder: 'Load Profile...',
+                                value: _selectedProfile != null && _profiles.containsKey(_selectedProfile) ? _selectedProfile : null,
+                                options: _profiles.keys.map((String key) {
+                                  return PPSelectOption(label: key, value: key);
+                                }).toList(),
+                                onChanged: (String? val) {
+                                  if (val != null) _applyProfile(val);
+                                },
                               ),
                             ),
                             Container(
                               height: 24,
                               decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey.shade300),
+                                color: isDark ? const Color(0xFF333333) : Colors.white,
+                                border: Border.all(color: isDark ? const Color(0xFF555555) : Colors.grey.shade300),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: TextField(
                                 controller: _newProfileCtrl,
-                                style: const TextStyle(fontSize: 11),
+                                style: TextStyle(fontSize: 11, color: isDark ? Colors.white : Colors.black),
                                 textAlignVertical: TextAlignVertical.center,
                                 decoration: const InputDecoration(
                                   hintText: 'New Profile...',
@@ -320,16 +400,164 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                         ),
                       ),
                       PPRibbonButton(
-                        label: 'Save',
+                        label: t('Save'),
                         icon: Icons.save_outlined,
                         size: PPRibbonButtonSize.small,
                         onPressed: _saveCurrentProfile,
                       ),
                       PPRibbonButton(
-                        label: 'Delete',
+                        label: t('Delete'),
                         icon: Icons.delete_outline,
                         size: PPRibbonButtonSize.small,
                         onPressed: _selectedProfile != null ? _deleteProfile : null,
+                      ),
+                    ],
+                  ),
+                  PPRibbonGroup(
+                    title: t('Language'),
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(t('Language'), style: const TextStyle(fontSize: 10)),
+                            const SizedBox(height: 4),
+                            Container(
+                              height: 24,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF333333) : Colors.white,
+                                border: Border.all(color: Colors.grey.shade400),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  isDense: true,
+                                  dropdownColor: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF333333) : Colors.white,
+                                  value: AppSettings.language.value,
+                                  items: ['English', 'Khmer'].map((String val) {
+                                    return DropdownMenuItem<String>(
+                                      value: val,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8),
+                                        child: Text(t(val), style: TextStyle(fontSize: 11, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? val) {
+                                    if (val != null) AppSettings.saveLanguage(val);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  PPRibbonGroup(
+                    title: t('Interface Theme'),
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(t('Interface Theme'), style: const TextStyle(fontSize: 10)),
+                            const SizedBox(height: 4),
+                            Container(
+                              height: 24,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF333333) : Colors.white,
+                                border: Border.all(color: Colors.grey.shade400),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  isDense: true,
+                                  dropdownColor: Theme.of(context).brightness == Brightness.dark ? const Color(0xFF333333) : Colors.white,
+                                  value: AppSettings.themeMode.value == ThemeMode.light 
+                                      ? 'Light' : (AppSettings.themeMode.value == ThemeMode.dark ? 'Dark' : 'System'),
+                                  items: ['System', 'Light', 'Dark'].map((String val) {
+                                    return DropdownMenuItem<String>(
+                                      value: val,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8),
+                                        child: Text(t(val), style: TextStyle(fontSize: 11, color: Theme.of(context).textTheme.bodyMedium?.color)),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? val) {
+                                    if (val != null) AppSettings.saveThemeMode(val);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  PPRibbonGroup(
+                    title: '',
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          // Cycle through some colors
+                          final colors = [const Color(0xFF4F46E5), Colors.pink, Colors.orange, Colors.green, Colors.teal];
+                          final idx = colors.indexOf(AppSettings.themeColor.value);
+                          AppSettings.saveThemeColor(colors[(idx + 1) % colors.length]);
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 24,
+                          margin: const EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            color: AppSettings.themeColor.value,
+                            border: Border.all(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  PPRibbonGroup(
+                    title: '',
+                    children: [
+                      PPRibbonButton(
+                        label: t('About App'),
+                        icon: Icons.info_outline,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: Text(t('About App')),
+                              content: const Text('MCNC Content Tool\nVersion 1.0.0+1\nDeveloped by MCNC.'),
+                              actions: [
+                                TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('OK'))
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  PPRibbonGroup(
+                    title: '',
+                    children: [
+                      PPRibbonButton(
+                        label: t('Exit'),
+                        icon: Icons.exit_to_app,
+                        onPressed: () {
+                          if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+                            exit(0);
+                          } else {
+                            SystemNavigator.pop();
+                          }
+                        },
                       ),
                     ],
                   ),
@@ -337,20 +565,20 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
               ),
               PPRibbonTab(
                 id: 'compare',
-                title: 'Compare',
+                title: t('Compare'),
                 groups: [
                   PPRibbonGroup(
-                    title: 'File Selection',
+                    title: t('File Selection'),
                     children: [
                       PPRibbonButton(
-                        label: 'Remote Archive',
+                        label: t('Remote Archive'),
                         icon: Icons.note_add_outlined,
                         onPressed: () {
                           _compareScreenKey.currentState?.pickRemoteArchive();
                         },
                       ),
                       PPRibbonButton(
-                        label: 'Local Archive',
+                        label: t('Local Archive'),
                         icon: Icons.folder_open_outlined,
                         onPressed: () {
                           _compareScreenKey.currentState?.pickLocalArchive();
@@ -359,10 +587,10 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                     ],
                   ),
                   PPRibbonGroup(
-                    title: 'Analysis',
+                    title: t('Analysis'),
                     children: [
                       PPRibbonButton(
-                        label: 'Compare Zips',
+                        label: t('Compare Zips'),
                         icon: Icons.compare_arrows,
                         onPressed: () {
                           if (_compareScreenKey.currentState?.remoteZipPath == null ||
@@ -374,106 +602,6 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
                           }
                           _compareScreenKey.currentState?.runCompare();
                         },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              PPRibbonTab(
-                id: 'settings',
-                title: 'Settings',
-                groups: [
-                  PPRibbonGroup(
-                    title: 'Language',
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Language', style: TextStyle(fontSize: 10)),
-                            const SizedBox(height: 4),
-                            Container(
-                              height: 24,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey.shade300),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: const Row(
-                                children: [
-                                  Expanded(child: Padding(padding: EdgeInsets.only(left: 8), child: Text('English', style: TextStyle(fontSize: 11)))),
-                                  Icon(Icons.arrow_drop_down, size: 16),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  PPRibbonGroup(
-                    title: 'Interface Theme',
-                    children: [
-                      SizedBox(
-                        width: 100,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Interface Theme', style: TextStyle(fontSize: 10)),
-                            const SizedBox(height: 4),
-                            Container(
-                              height: 24,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey.shade300),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: const Row(
-                                children: [
-                                  Expanded(child: Padding(padding: EdgeInsets.only(left: 8), child: Text('Light', style: TextStyle(fontSize: 11)))),
-                                  Icon(Icons.arrow_drop_down, size: 16),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  PPRibbonGroup(
-                    title: '',
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 24,
-                        margin: const EdgeInsets.only(top: 10),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF9370DB),
-                          border: Border.all(color: Colors.grey),
-                        ),
-                      ),
-                    ],
-                  ),
-                  PPRibbonGroup(
-                    title: '',
-                    children: [
-                      PPRibbonButton(
-                        label: 'About App',
-                        icon: Icons.info_outline,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  PPRibbonGroup(
-                    title: '',
-                    children: [
-                      PPRibbonButton(
-                        label: 'Exit',
-                        icon: Icons.exit_to_app,
-                        onPressed: () {},
                       ),
                     ],
                   ),

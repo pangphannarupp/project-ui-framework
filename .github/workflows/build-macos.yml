@@ -1,0 +1,39 @@
+name: Build macOS App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: sample_apps/mcnc_content_tool_flutter
+
+      - name: Build macOS release (Universal Binary for Intel & Apple Silicon)
+        run: flutter build macos
+        working-directory: sample_apps/mcnc_content_tool_flutter
+
+      - name: Zip the macOS app
+        run: ditto -c -k --keepParent "build/macos/Build/Products/Release/mcnc_content_tool_flutter.app" "mcnc_content_tool_macos.zip"
+        working-directory: sample_apps/mcnc_content_tool_flutter
+
+      - name: Upload macOS build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-build
+          path: sample_apps/mcnc_content_tool_flutter/mcnc_content_tool_macos.zip

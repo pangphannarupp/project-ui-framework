@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum PPRibbonButtonSize { large, small }
 
-class PPRibbonButton extends StatelessWidget {
+class PPRibbonButton extends StatefulWidget {
   final String label;
   final bool hideLabel;
   final IconData? icon;
@@ -25,35 +25,51 @@ class PPRibbonButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<PPRibbonButton> createState() => _PPRibbonButtonState();
+}
+
+class _PPRibbonButtonState extends State<PPRibbonButton> {
+  bool _isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     // Styling constants
-    const Color defaultColor = Color(0xFF374151); // Darker, crisper gray
-    const Color activeBgColor = Color(0xFFE0E7FF);
-    const Color activeBorderColor = Color(0xFFC7D2FE);
-    const Color activeColor = Color(0xFF3730A3);
-    const Color hoverBgColor = Color(0xFFE5E7EB); // Darker hover since background is now F3F4F6
+    final Color defaultColor = isDark ? const Color(0xFFD1D5DB) : const Color(0xFF374151);
+    final Color activeBgColor = isDark ? const Color(0xFF3E3E42) : const Color(0xFFE2E8F0); // Flat subtle background
+    const Color activeBorderColor = Colors.transparent; // No border for a flat look
+    final Color activeColor = isDark ? Colors.white : const Color(0xFF185ABD); // Word Blue
+    final Color hoverBgColor = isDark ? const Color(0xFF3E3E42) : const Color(0xFFE2E8F0); // Flat subtle hover
     
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: disabled ? null : onPressed,
+        onTap: widget.disabled ? null : widget.onPressed,
+        onTapDown: widget.disabled ? null : (_) => setState(() => _isPressed = true),
+        onTapUp: widget.disabled ? null : (_) => setState(() => _isPressed = false),
+        onTapCancel: () => setState(() => _isPressed = false),
         borderRadius: BorderRadius.circular(4),
         hoverColor: hoverBgColor,
         splashColor: activeBgColor,
-        child: Opacity(
-          opacity: disabled ? 0.4 : 1.0,
-          child: Container(
-            decoration: BoxDecoration(
-              color: active ? activeBgColor : Colors.transparent,
-              border: Border.all(
-                color: active ? activeBorderColor : Colors.transparent,
-                width: 1,
+        child: AnimatedScale(
+          scale: _isPressed && !widget.disabled ? 0.90 : 1.0,
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.easeInOut,
+          child: Opacity(
+            opacity: widget.disabled ? 0.4 : 1.0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: widget.active ? activeBgColor : Colors.transparent,
+                border: Border.all(
+                  color: widget.active ? activeBorderColor : Colors.transparent,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(4),
               ),
-              borderRadius: BorderRadius.circular(4),
+              child: widget.size == PPRibbonButtonSize.large
+                  ? _buildLargeLayout(defaultColor, activeColor)
+                  : _buildSmallLayout(defaultColor, activeColor),
             ),
-            child: size == PPRibbonButtonSize.large
-                ? _buildLargeLayout(defaultColor, activeColor)
-                : _buildSmallLayout(defaultColor, activeColor),
           ),
         ),
       ),
@@ -72,24 +88,24 @@ class PPRibbonButton extends StatelessWidget {
           SizedBox(
             height: 34,
             child: Center(
-              child: customIcon ??
-                  (icon != null
+              child: widget.customIcon ??
+                  (widget.icon != null
                       ? Icon(
-                          icon,
+                          widget.icon,
                           size: 30,
-                          color: active ? activeColor : defaultColor,
+                          color: widget.active ? activeColor : defaultColor,
                         )
                       : const SizedBox.shrink()),
             ),
           ),
           const SizedBox(height: 6),
-          if (!hideLabel)
+          if (!widget.hideLabel)
             Text(
-              label,
+              widget.label,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 12,
-                color: active ? activeColor : defaultColor,
+                color: widget.active ? activeColor : defaultColor,
                 height: 1.1,
               ),
             ),
@@ -101,32 +117,33 @@ class PPRibbonButton extends StatelessWidget {
   Widget _buildSmallLayout(Color defaultColor, Color activeColor) {
     return Container(
       height: 24,
-      padding: EdgeInsets.symmetric(horizontal: hideLabel ? 4 : 8, vertical: 2),
+      padding: EdgeInsets.symmetric(horizontal: widget.hideLabel ? 4 : 8, vertical: 2),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (customIcon != null || icon != null)
+          if (widget.customIcon != null || widget.icon != null)
             SizedBox(
               width: 18,
               height: 18,
               child: Center(
-                child: customIcon ??
+                child: widget.customIcon ??
                     Icon(
-                      icon,
+                      widget.icon,
                       size: 16,
-                      color: active ? activeColor : defaultColor,
+                      color: widget.active ? activeColor : defaultColor,
                     ),
               ),
             ),
-          if (!hideLabel) ...[
-            if (customIcon != null || icon != null) const SizedBox(width: 6),
+          if (!widget.hideLabel) ...[
+            if (widget.customIcon != null || widget.icon != null) const SizedBox(width: 6),
             Text(
-              label,
+              widget.label,
               style: TextStyle(
                 fontSize: 12,
-                color: active ? activeColor : defaultColor,
+                color: widget.active ? activeColor : defaultColor,
                 height: 1.1,
+                fontWeight: widget.active ? FontWeight.w500 : FontWeight.w400,
               ),
             ),
           ]
@@ -148,11 +165,13 @@ class PPRibbonGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       padding: const EdgeInsets.only(right: 12),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         border: Border(
-          right: BorderSide(color: Color(0xFFE5E7EB), width: 1),
+          right: BorderSide(color: isDark ? const Color(0xFF3E3E42) : const Color(0xFFE5E7EB), width: 1),
         ),
       ),
       child: Stack(
@@ -179,9 +198,9 @@ class PPRibbonGroup extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 11,
-                color: Color(0xFF6B7280),
+                color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
               ),
             ),
           ),
@@ -226,11 +245,19 @@ class PPRibbon extends StatefulWidget {
 class _PPRibbonState extends State<PPRibbon> {
   late String _activeTabId;
   bool _isCollapsed = false;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
     _activeTabId = widget.initialActiveTabId ?? (widget.tabs.isNotEmpty ? widget.tabs.first.id : '');
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void _handleTabClick(String id) {
@@ -252,24 +279,19 @@ class _PPRibbonState extends State<PPRibbon> {
     if (widget.tabs.isEmpty) return const SizedBox.shrink();
 
     final activeTab = widget.tabs.firstWhere((t) => t.id == _activeTabId, orElse: () => widget.tabs.first);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      color: const Color(0xFFF3F6FB), // Ribbon backdrop color with a subtle blue tint
+      color: isDark ? const Color(0xFF1E1E1E) : Colors.white, 
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Decorative Header (simulates Word Title Bar)
-          Container(
-            height: 32,
-            color: const Color(0xFF2B579A),
-            width: double.infinity,
-          ),
           // Header / Tab bar
           Container(
-            padding: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 12, left: 8, right: 8),
             decoration: const BoxDecoration(
-              color: Color(0xFFF3F4F6), // Inactive tab row background is light grey
+              color: Color(0xFF185ABD), // Modern Word Blue
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -304,28 +326,26 @@ class _PPRibbonState extends State<PPRibbon> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white, // Ribbon body is white
+                color: isDark ? const Color(0xFF252526) : const Color(0xFFF3F6FB), // Little blue and flat or dark
                 border: Border(
-                  bottom: BorderSide(color: Colors.grey.shade300, width: 1)
+                  bottom: BorderSide(color: isDark ? const Color(0xFF3E3E42) : const Color(0xFFE2E8F0), width: 1)
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.02),
-                    offset: const Offset(0, 2),
-                    blurRadius: 4,
-                  )
-                ],
               ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: activeTab.groups.map((group) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: group,
-                    );
-                  }).toList(),
+              child: Scrollbar(
+                controller: _scrollController,
+                thumbVisibility: true,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: activeTab.groups.map((group) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8, bottom: 8),
+                        child: group,
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
             ),
@@ -337,24 +357,27 @@ class _PPRibbonState extends State<PPRibbon> {
   Widget _buildTabHeader(PPRibbonTab tab) {
     final isActive = _activeTabId == tab.id;
     final isSpecial = tab.color != null;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: () => _handleTabClick(tab.id),
-        hoverColor: Colors.grey.withOpacity(0.1),
+        hoverColor: Colors.white.withOpacity(0.1),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           decoration: BoxDecoration(
-            color: isActive ? Colors.white : (isSpecial ? tab.color! : Colors.transparent),
+            color: isActive ? (isDark ? const Color(0xFF252526) : const Color(0xFFF3F6FB)) : (isSpecial ? tab.color! : Colors.transparent),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
           ),
-          margin: EdgeInsets.zero,
+          margin: const EdgeInsets.only(right: 2),
           child: Text(
-            tab.title.toUpperCase(),
+            tab.title,
             style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: isActive ? const Color(0xFF2B579A) : (isSpecial ? Colors.white : const Color(0xFF4B5563)),
+              fontSize: 13,
+              fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+              color: isActive ? (isDark ? Colors.white : const Color(0xFF185ABD)) : Colors.white,
             ),
           ),
         ),

@@ -1,4 +1,9 @@
+import 'dart:math';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_highlight/flutter_highlight.dart';
+import 'package:flutter_highlight/themes/github.dart';
+import 'package:flutter_highlight/themes/darcula.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_framework/flutter_ui_framework.dart';
@@ -271,22 +276,23 @@ class CompareScreenState extends State<CompareScreen> {
   }
 
   Widget _buildPathCard(String title, String? path) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: isDark ? const Color(0xFF333333) : Colors.grey.shade200),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF9370DB),
+              color: isDark ? const Color(0xFFB493E6) : const Color(0xFF9370DB),
             ),
           ),
           const SizedBox(height: 12),
@@ -294,15 +300,15 @@ class CompareScreenState extends State<CompareScreen> {
             width: double.infinity,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFFF3F4F6),
+              color: isDark ? const Color(0xFF2D2D30) : const Color(0xFFF3F4F6),
               borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: const Color(0xFFE5E7EB)),
+              border: Border.all(color: isDark ? const Color(0xFF3E3E42) : const Color(0xFFE5E7EB)),
             ),
             child: Text(
               path ?? 'No file selected.',
               style: TextStyle(
                 fontSize: 13,
-                color: path == null ? Colors.grey.shade500 : Colors.grey.shade800,
+                color: path == null ? (isDark ? Colors.grey.shade600 : Colors.grey.shade500) : (isDark ? Colors.grey.shade300 : Colors.grey.shade800),
                 fontFamily: 'Courier',
               ),
               maxLines: 1,
@@ -315,28 +321,40 @@ class CompareScreenState extends State<CompareScreen> {
   }
   
   Widget _buildDashboard() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: const Color(0xFFF9FAFB),
+        color: isDark ? const Color(0xFF1E1E1E) : const Color(0xFFF9FAFB),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: isDark ? const Color(0xFF333333) : Colors.grey.shade200),
       ),
       child: Row(
         children: [
-          // Simplified "Donut" placeholder for now
-          Container(
+          // Proper Donut Chart
+          SizedBox(
             width: 120,
             height: 120,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.grey.shade400, width: 12),
-            ),
-            child: Center(
-              child: Text(
-                '$_totalCount',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: CustomPaint(
+                    painter: DonutChartPainter(
+                      same: _sameCount,
+                      modify: _modifyCount,
+                      newFile: _newCount,
+                      delete: _deleteCount,
+                      baseColor: isDark ? const Color(0xFF333333) : Colors.grey.shade300,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    '$_totalCount',
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(width: 32),
@@ -392,11 +410,12 @@ class CompareScreenState extends State<CompareScreen> {
   }
   
   Widget _buildLegendItem(String label, int count, Color color) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Row(
         children: [
-          Container(width: 12, height: 12, decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(2))),
+          Container(width: 12, height: 12, decoration: BoxDecoration(color: color ?? (isDark ? Colors.white70 : Colors.black87), borderRadius: BorderRadius.circular(2))),
           const SizedBox(width: 8),
           Text('$label ($count)', style: const TextStyle(fontSize: 14)),
         ],
@@ -404,21 +423,22 @@ class CompareScreenState extends State<CompareScreen> {
     );
   }
   
-  Widget _buildExportBtn(String label, IconData icon, VoidCallback onTap, {Color color = Colors.black87}) {
+  Widget _buildExportBtn(String label, IconData icon, VoidCallback onTap, {Color? color}) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return InkWell(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey.shade300),
+          color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+          border: Border.all(color: isDark ? const Color(0xFF444444) : Colors.grey.shade300),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Column(
           children: [
-            Icon(icon, size: 18, color: color),
+            Icon(icon, size: 18, color: color ?? (isDark ? Colors.white70 : Colors.black87)),
             const SizedBox(height: 4),
-            Text(label, style: TextStyle(fontSize: 12, color: color)),
+            Text(label, style: TextStyle(fontSize: 12, color: color ?? (isDark ? Colors.white70 : Colors.black87))),
           ],
         ),
       ),
@@ -426,6 +446,7 @@ class CompareScreenState extends State<CompareScreen> {
   }
 
   Widget _buildFileList() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final filtered = results!.where((r) {
       if (_filterStatus != null && r.status != _filterStatus) return false;
       if (_searchQuery.isNotEmpty && !r.path.toLowerCase().contains(_searchQuery.toLowerCase())) return false;
@@ -434,9 +455,9 @@ class CompareScreenState extends State<CompareScreen> {
     
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: isDark ? const Color(0xFF333333) : Colors.grey.shade200),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -461,7 +482,7 @@ class CompareScreenState extends State<CompareScreen> {
                 _buildFilterBtn('New', CompareStatus.newFile, color: Colors.green),
                 _buildFilterBtn('Modify', CompareStatus.modify, color: Colors.blue),
                 _buildFilterBtn('Delete', CompareStatus.delete, color: Colors.red),
-                _buildFilterBtn('Same', CompareStatus.same, color: Colors.grey.shade700),
+                _buildFilterBtn('Same', CompareStatus.same, color: isDark ? Colors.grey.shade400 : Colors.grey.shade700),
               ],
             ),
           ),
@@ -492,7 +513,7 @@ class CompareScreenState extends State<CompareScreen> {
                 onTap: () => _selectFile(file),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  color: isSelected ? const Color(0xFFF3F4F6) : Colors.white,
+                  color: isSelected ? (isDark ? const Color(0xFF333333) : const Color(0xFFF3F4F6)) : (isDark ? const Color(0xFF1E1E1E) : Colors.white),
                   child: Row(
                     children: [
                       const Icon(Icons.insert_drive_file, size: 16, color: Colors.grey),
@@ -526,6 +547,7 @@ class CompareScreenState extends State<CompareScreen> {
   }
   
   Widget _buildFilterBtn(String label, CompareStatus? status, {Color? color}) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isSelected = _filterStatus == status;
     return GestureDetector(
       onTap: () => setState(() => _filterStatus = status),
@@ -533,7 +555,7 @@ class CompareScreenState extends State<CompareScreen> {
         margin: const EdgeInsets.only(right: 8),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: isSelected ? (color ?? Colors.grey.shade800).withOpacity(0.1) : Colors.transparent,
+          color: isSelected ? (color ?? (isDark ? Colors.white70 : Colors.grey.shade800)).withOpacity(isDark ? 0.2 : 0.1) : Colors.transparent,
           borderRadius: BorderRadius.circular(4),
         ),
         child: Text(
@@ -541,7 +563,7 @@ class CompareScreenState extends State<CompareScreen> {
           style: TextStyle(
             fontSize: 13,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-            color: color ?? Colors.black87,
+            color: color ?? (isDark ? Colors.white70 : Colors.black87) ?? Colors.black87,
           ),
         ),
       ),
@@ -549,12 +571,13 @@ class CompareScreenState extends State<CompareScreen> {
   }
 
   Widget _buildFilePreview() {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       height: 600,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: isDark ? const Color(0xFF333333) : Colors.grey.shade200),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -562,11 +585,11 @@ class CompareScreenState extends State<CompareScreen> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey.shade200)),
+              border: Border(bottom: BorderSide(color: isDark ? const Color(0xFF333333) : Colors.grey.shade200)),
             ),
-            child: const Text(
+            child: Text(
               'Select a file to preview',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF9370DB)),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: isDark ? const Color(0xFFB493E6) : const Color(0xFF9370DB)),
             ),
           ),
           Expanded(
@@ -595,9 +618,22 @@ class CompareScreenState extends State<CompareScreen> {
     } else if (type == 'svg') {
       return SvgPicture.memory(_previewData!['bytes']);
     } else {
-      return Text(
+      String language = 'plaintext';
+      if (_selectedFile != null) {
+        if (_selectedFile!.path.endsWith('.json')) language = 'json';
+        else if (_selectedFile!.path.endsWith('.js')) language = 'javascript';
+        else if (_selectedFile!.path.endsWith('.css')) language = 'css';
+        else if (_selectedFile!.path.endsWith('.html')) language = 'xml';
+      }
+
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+
+      return HighlightView(
         _previewData!['content'],
-        style: const TextStyle(fontFamily: 'Courier', fontSize: 13),
+        language: language,
+        theme: isDark ? darculaTheme : githubTheme,
+        padding: const EdgeInsets.all(8),
+        textStyle: const TextStyle(fontFamily: 'Courier', fontSize: 13),
       );
     }
   }
@@ -740,3 +776,59 @@ Future<void> _createExportZip(Map<String, dynamic> args) async {
   }
 }
 
+class DonutChartPainter extends CustomPainter {
+  final int same;
+  final int modify;
+  final int newFile;
+  final int delete;
+  final Color baseColor;
+
+  DonutChartPainter({
+    required this.same,
+    required this.modify,
+    required this.newFile,
+    required this.delete,
+    required this.baseColor,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final int total = same + modify + newFile + delete;
+    final Paint paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 14
+      ..strokeCap = StrokeCap.butt;
+
+    final Rect rect = Rect.fromLTWH(7, 7, size.width - 14, size.height - 14);
+
+    if (total == 0) {
+      paint.color = baseColor;
+      canvas.drawArc(rect, 0, 2 * pi, false, paint);
+      return;
+    }
+
+    double startAngle = -pi / 2;
+
+    void drawSegment(int count, Color color) {
+      if (count == 0) return;
+      final sweepAngle = (count / total) * 2 * pi;
+      paint.color = color;
+      canvas.drawArc(rect, startAngle, sweepAngle, false, paint);
+      startAngle += sweepAngle;
+    }
+
+    drawSegment(same, Colors.grey);
+    drawSegment(modify, Colors.blue);
+    drawSegment(newFile, Colors.green);
+    drawSegment(delete, Colors.red);
+  }
+
+  @override
+  bool shouldRepaint(covariant DonutChartPainter oldDelegate) {
+    return oldDelegate.same != same ||
+        oldDelegate.modify != modify ||
+        oldDelegate.newFile != newFile ||
+        oldDelegate.delete != delete ||
+        oldDelegate.baseColor != baseColor;
+  }
+}

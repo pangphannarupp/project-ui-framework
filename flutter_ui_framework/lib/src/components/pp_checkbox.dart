@@ -21,6 +21,7 @@ class PPCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     final groupData = PPCheckboxGroupData.of(context);
     final bool isGrouped = groupData != null && groupValue != null;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     
     final bool isChecked = isGrouped 
         ? groupData.values.contains(groupValue) 
@@ -49,10 +50,10 @@ class PPCheckbox extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.0),
               border: Border.all(
-                color: isChecked ? const Color(0xFF1A2A5E) : const Color(0xFFCCCCCC),
+                color: isChecked ? Theme.of(context).colorScheme.primary : (isDark ? const Color(0xFF555555) : const Color(0xFFCCCCCC)),
                 width: 1.5,
               ),
-              color: isChecked ? const Color(0xFF1A2A5E) : Colors.white,
+              color: isChecked ? Theme.of(context).colorScheme.primary : (isDark ? const Color(0xFF1E1E1E) : Colors.white),
             ),
             child: Center(
               child: AnimatedScale(
@@ -76,9 +77,9 @@ class PPCheckbox extends StatelessWidget {
             labelWidget ??
                 Text(
                   label!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF333333),
+                    color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF333333),
                   ),
                 ),
           ],

@@ -178,7 +178,9 @@ class _PPInputState extends State<PPInput> {
     return widget.rounded ? BorderRadius.circular(100.0) : BorderRadius.circular(6.0);
   }
 
-  BoxBorder get _border {
+  BoxBorder _border(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     if (widget.variant == PPInputVariant.underlined) {
       return Border(
         bottom: BorderSide(
@@ -190,24 +192,30 @@ class _PPInputState extends State<PPInput> {
 
     if (widget.variant == PPInputVariant.filled) {
       return Border.all(
-        color: _isFocused ? const Color(0xFF1A2A5E) : Colors.transparent,
+        color: _isFocused ? (isDark ? Colors.white : const Color(0xFF1A2A5E)) : Colors.transparent,
         width: 1.0,
       );
     }
 
     // Outline variant
     return Border.all(
-      color: _isFocused ? const Color(0xFF1A2A5E) : const Color(0xFFCCCCCC),
+      color: _isFocused 
+          ? (isDark ? Colors.white : const Color(0xFF1A2A5E)) 
+          : (isDark ? const Color(0xFF555555) : const Color(0xFFCCCCCC)),
       width: 1.0,
     );
   }
 
-  Color get _backgroundColor {
+  Color _backgroundColor(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     if (widget.variant == PPInputVariant.underlined) return Colors.transparent;
     if (widget.variant == PPInputVariant.filled) {
-      return _isFocused ? const Color(0xFFE9ECEF) : const Color(0xFFF1F3F5);
+      return _isFocused 
+          ? (isDark ? const Color(0xFF333333) : const Color(0xFFE9ECEF)) 
+          : (isDark ? const Color(0xFF252526) : const Color(0xFFF1F3F5));
     }
-    return Colors.white; // outline
+    return isDark ? const Color(0xFF1E1E1E) : Colors.white; // outline
   }
 
   List<BoxShadow>? get _boxShadow {
@@ -225,6 +233,7 @@ class _PPInputState extends State<PPInput> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final bool showClear = widget.clearable && _controller.text.isNotEmpty;
     
     return Column(
@@ -234,9 +243,9 @@ class _PPInputState extends State<PPInput> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 13,
-              color: Color(0xFF333333),
+              color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF333333),
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -248,9 +257,9 @@ class _PPInputState extends State<PPInput> {
               ? EdgeInsets.zero
               : const EdgeInsets.symmetric(horizontal: 16.0),
           decoration: BoxDecoration(
-            color: _backgroundColor,
+            color: _backgroundColor(context),
             borderRadius: _borderRadius,
-            border: _border,
+            border: _border(context),
             boxShadow: _boxShadow,
           ),
           child: Row(
@@ -280,8 +289,8 @@ class _PPInputState extends State<PPInput> {
                     isDense: true,
                     contentPadding: EdgeInsets.zero,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF333333),
+                  style: TextStyle(
+                    color: isDark ? Colors.white : const Color(0xFF333333),
                     fontSize: 16,
                   ),
                 ),

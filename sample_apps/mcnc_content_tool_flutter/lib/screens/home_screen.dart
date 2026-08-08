@@ -167,7 +167,21 @@ class HomeScreenState extends State<HomeScreen> {
   Future<String?> downloadUpdate() async {
     if (remoteVersionInfo == null) return null;
     
-    final fileName = remoteVersionInfo!['body']?['content_filename'] ?? 'update.zip';
+    String fileName = remoteVersionInfo!['body']?['content_filename'] ?? '';
+    if (fileName.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No content update available (filename missing from response)'),
+            backgroundColor: Colors.orange,
+          ),
+        );
+      }
+      setState(() {
+        isDownloading = false;
+      });
+      return null;
+    }
     
     final savePath = await FilePicker.platform.saveFile(
       dialogTitle: 'Save Content Update',
@@ -198,7 +212,7 @@ class HomeScreenState extends State<HomeScreen> {
       final response = await client.send(request);
       
       if (response.statusCode != 200) {
-        throw Exception('HTTP Error ${response.statusCode}: ${response.reasonPhrase}');
+        throw Exception('HTTP Error ${response.statusCode} for $downloadUrl: ${response.reasonPhrase}');
       }
       
       final totalBytes = response.contentLength ?? 0;
@@ -247,6 +261,8 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(24.0),
@@ -261,9 +277,9 @@ class HomeScreenState extends State<HomeScreen> {
                   margin: const EdgeInsets.only(bottom: 24.0),
                   padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE5F1FB),
+                    color: isDark ? const Color(0xFF1E293B) : const Color(0xFFE5F1FB),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: const Color(0xFFCCE4F7)),
+                    border: Border.all(color: isDark ? const Color(0xFF334155) : const Color(0xFFCCE4F7)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -274,10 +290,10 @@ class HomeScreenState extends State<HomeScreen> {
                           Expanded(
                             child: Text(
                               "Downloading ${remoteVersionInfo?['body']?['content_filename'] ?? 'Content'}...",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: Color(0xFF0067C0),
+                                color: isDark ? const Color(0xFF60A5FA) : const Color(0xFF0067C0),
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -286,10 +302,10 @@ class HomeScreenState extends State<HomeScreen> {
                           const SizedBox(width: 16),
                           Text(
                             '${(downloadProgress * 100).toInt()}%',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF0067C0),
+                              color: isDark ? const Color(0xFF60A5FA) : const Color(0xFF0067C0),
                             ),
                           ),
                         ],
@@ -309,163 +325,225 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
               Container(
                 decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey.shade200),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
+                  color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: isDark ? const Color(0xFF333333) : const Color(0xFFE2E8F0)),
                 ),
-              ],
-            ),
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'API Configuration Settings',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF9370DB),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: Color(0xFFE5E7EB)),
-                const SizedBox(height: 16),
-                
-                // Form Layout
-                PPInput(
-                  label: 'Base URL',
-                  placeholder: 'Enter base URL',
-                  value: _baseUrl,
-                  onChanged: (v) => _baseUrl = v,
-                ),
-                const SizedBox(height: 16),
-                
-                Row(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Expanded(
-                      child: PPInput(
-                        label: 'App Key',
-                        placeholder: '',
-                        value: _appKey,
-                        onChanged: (v) => _appKey = v,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: PPInput(
-                        label: 'OS Type',
-                        placeholder: 'Android',
-                        value: _osType,
-                        onChanged: (v) => _osType = v,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: PPInput(
-                        label: 'App Major Version',
-                        placeholder: '1',
-                        value: _appMajor,
-                        onChanged: (v) => _appMajor = v,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                
-                Row(
-                  children: [
-                    Expanded(
-                      child: PPInput(
-                        label: 'App Minor Version',
-                        placeholder: '0',
-                        value: _appMinor,
-                        onChanged: (v) => _appMinor = v,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: PPInput(
-                        label: 'App Build Version',
-                        placeholder: '0',
-                        value: _appBuild,
-                        onChanged: (v) => _appBuild = v,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: PPInput(
-                        label: 'Content Major Version',
-                        placeholder: '0',
-                        value: _contentMajor,
-                        onChanged: (v) => _contentMajor = v,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                
-                Row(
-                  children: [
-                    Expanded(
-                      child: PPInput(
-                        label: 'Content Minor Version',
-                        placeholder: '0',
-                        value: _contentMinor,
-                        onChanged: (v) => _contentMinor = v,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    const Expanded(child: SizedBox()),
-                    const SizedBox(width: 16),
-                    const Expanded(child: SizedBox()),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                
-                PPCheckbox(
-                  label: 'Enable App Tester Mode',
-                  value: _testerMode,
-                  onChanged: (val) => setState(() => _testerMode = val ?? false),
-                ),
-                
-                if (remoteVersionInfo != null) ...[
-                  const SizedBox(height: 24),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF3F4F6),
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: const Color(0xFFE5E7EB)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        const Text(
-                          'Server Response:',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF185ABD),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Icon(Icons.tune_rounded, size: 28, color: Colors.white),
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(width: 16),
                         Text(
-                          const JsonEncoder.withIndent('  ').convert(remoteVersionInfo),
-                          style: const TextStyle(
-                            fontFamily: 'Courier',
-                            fontSize: 13,
+                          'API Configuration',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: -0.5,
+                            color: isDark ? Colors.white : const Color(0xFF0F172A),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ],
-            ),
-          ),
+                    const SizedBox(height: 32),
+                    
+                    // Connection Section
+                    Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: isDark ? const Color(0xFF252526) : Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: isDark ? const Color(0xFF3E3E42) : const Color(0xFFE2E8F0)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.link_rounded, size: 18, color: Color(0xFF64748B)),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Connection Details',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                  color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF334155),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          PPInput(
+                            label: 'Base URL',
+                            placeholder: 'Enter base URL',
+                            value: _baseUrl,
+                            onChanged: (v) => _baseUrl = v,
+                          ),
+                          const SizedBox(height: 16),
+                          PPInput(
+                            label: 'App Key',
+                            placeholder: 'Enter application key',
+                            value: _appKey,
+                            onChanged: (v) => _appKey = v,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    
+                    // Version Info Section
+                    Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: isDark ? const Color(0xFF252526) : Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: isDark ? const Color(0xFF3E3E42) : const Color(0xFFE2E8F0)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.info_outline_rounded, size: 18, color: Color(0xFF64748B)),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Platform & Version Info',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                  color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF334155),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: PPInput(
+                                  label: 'OS Type',
+                                  placeholder: 'Android',
+                                  value: _osType,
+                                  onChanged: (v) => _osType = v,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: PPInput(
+                                  label: 'App Major',
+                                  placeholder: '1',
+                                  value: _appMajor,
+                                  onChanged: (v) => _appMajor = v,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: PPInput(
+                                  label: 'App Minor',
+                                  placeholder: '0',
+                                  value: _appMinor,
+                                  onChanged: (v) => _appMinor = v,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: PPInput(
+                                  label: 'App Build',
+                                  placeholder: '0',
+                                  value: _appBuild,
+                                  onChanged: (v) => _appBuild = v,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: PPInput(
+                                  label: 'Content Major',
+                                  placeholder: '0',
+                                  value: _contentMajor,
+                                  onChanged: (v) => _contentMajor = v,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: PPInput(
+                                  label: 'Content Minor',
+                                  placeholder: '0',
+                                  value: _contentMinor,
+                                  onChanged: (v) => _contentMinor = v,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                      decoration: BoxDecoration(
+                        color: isDark ? const Color(0xFF252526) : const Color(0xFFF8FAFC),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: isDark ? const Color(0xFF3E3E42) : const Color(0xFFE2E8F0)),
+                      ),
+                      child: PPCheckbox(
+                        label: 'Enable App Tester Mode',
+                        value: _testerMode,
+                        onChanged: (val) => setState(() => _testerMode = val ?? false),
+                      ),
+                    ),
+                    
+                    if (remoteVersionInfo != null) ...[
+                      const SizedBox(height: 24),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: isDark ? const Color(0xFF1E1E1E) : const Color(0xFFF1F5F9),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: isDark ? const Color(0xFF333333) : const Color(0xFFE2E8F0)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Server Response:',
+                              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF334155)),
+                            ),
+                            const SizedBox(height: 12),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: SelectableText(
+                                const JsonEncoder.withIndent('  ').convert(remoteVersionInfo),
+                                style: TextStyle(
+                                  fontFamily: 'Courier',
+                                  fontSize: 13,
+                                  color: isDark ? const Color(0xFF9CA3AF) : const Color(0xFF475569),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
             ],
           ),
         ),

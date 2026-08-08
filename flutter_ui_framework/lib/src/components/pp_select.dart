@@ -8,6 +8,7 @@ class PPSelectOption {
 }
 
 enum PPSelectVariant { outlined, filled, flushed, soft }
+enum PPSelectSize { sm, md, lg }
 
 class PPSelect extends StatelessWidget {
   final String? value;
@@ -22,6 +23,8 @@ class PPSelect extends StatelessWidget {
   final bool isRequired;
   final IconData? prefixIcon;
   final Color? activeColor;
+  final PPSelectSize size;
+  final double borderRadius;
 
   const PPSelect({
     Key? key,
@@ -37,32 +40,35 @@ class PPSelect extends StatelessWidget {
     this.isRequired = false,
     this.prefixIcon,
     this.activeColor,
+    this.size = PPSelectSize.md,
+    this.borderRadius = 6.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     final color = activeColor ?? theme.primaryColor;
 
     InputBorder getEnabledBorder() {
       switch (variant) {
         case PPSelectVariant.outlined:
           return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFFCCCCCC)),
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: isDark ? const Color(0xFF555555) : const Color(0xFFCCCCCC)),
           );
         case PPSelectVariant.filled:
           return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: const BorderSide(color: Colors.transparent),
           );
         case PPSelectVariant.flushed:
-          return const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFCCCCCC)),
+          return UnderlineInputBorder(
+            borderSide: BorderSide(color: isDark ? const Color(0xFF555555) : const Color(0xFFCCCCCC)),
           );
         case PPSelectVariant.soft:
           return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: const BorderSide(color: Colors.transparent),
           );
       }
@@ -72,12 +78,12 @@ class PPSelect extends StatelessWidget {
       switch (variant) {
         case PPSelectVariant.outlined:
           return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(color: color, width: 2),
           );
         case PPSelectVariant.filled:
           return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(color: color, width: 2),
           );
         case PPSelectVariant.flushed:
@@ -86,38 +92,50 @@ class PPSelect extends StatelessWidget {
           );
         case PPSelectVariant.soft:
           return OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(color: color.withOpacity(0.5), width: 2),
           );
       }
     }
 
     Color getFillColor() {
-      if (disabled) return const Color(0xFFF5F5F5);
+      if (disabled) return isDark ? const Color(0xFF333333) : const Color(0xFFF5F5F5);
       switch (variant) {
         case PPSelectVariant.outlined:
         case PPSelectVariant.flushed:
-          return Colors.white;
+          return isDark ? const Color(0xFF1E1E1E) : Colors.white;
         case PPSelectVariant.filled:
-          return const Color(0xFFF5F5F5);
+          return isDark ? const Color(0xFF252526) : const Color(0xFFF5F5F5);
         case PPSelectVariant.soft:
           return color.withOpacity(0.1);
+      }
+    }
+
+    EdgeInsetsGeometry getContentPadding() {
+      switch (size) {
+        case PPSelectSize.sm:
+          return const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+        case PPSelectSize.md:
+          return const EdgeInsets.symmetric(horizontal: 16, vertical: 16);
+        case PPSelectSize.lg:
+          return const EdgeInsets.symmetric(horizontal: 16, vertical: 20);
       }
     }
 
     final field = DropdownButtonFormField<String>(
       value: value,
       isExpanded: true,
-      dropdownColor: Colors.white,
-      borderRadius: BorderRadius.circular(12),
+      dropdownColor: isDark ? const Color(0xFF333333) : Colors.white,
+      borderRadius: BorderRadius.circular(borderRadius),
       items: options.map((opt) {
         return DropdownMenuItem(
           value: opt.value,
           child: Text(
             opt.label,
-            style: const TextStyle(
-              fontSize: 14,
+            style: TextStyle(
+              fontSize: size == PPSelectSize.sm ? 12 : 14,
               fontWeight: FontWeight.w400,
+              color: isDark ? Colors.white : Colors.black,
             ),
           ),
         );
@@ -130,15 +148,16 @@ class PPSelect extends StatelessWidget {
         prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: const Color(0xFF666666)) : null,
         filled: true,
         fillColor: getFillColor(),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: getContentPadding(),
+        isDense: size == PPSelectSize.sm,
         enabledBorder: getEnabledBorder(),
         focusedBorder: getFocusedBorder(),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(borderRadius),
           borderSide: const BorderSide(color: Colors.red),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(borderRadius),
           borderSide: const BorderSide(color: Colors.red, width: 2),
         ),
       ),
@@ -152,10 +171,10 @@ class PPSelect extends StatelessWidget {
           RichText(
             text: TextSpan(
               text: label,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: size == PPSelectSize.sm ? 12 : 14,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF333333),
+                color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF333333),
               ),
               children: [
                 if (isRequired)
