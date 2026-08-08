@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_ui_framework/flutter_ui_framework.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -63,9 +65,14 @@ class HomeScreenState extends State<HomeScreen> {
     if (url == null) return;
 
     try {
-      final ioClient = HttpClient()
-        ..badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
-      final client = IOClient(ioClient);
+      http.Client client;
+      if (kIsWeb) {
+        client = http.Client();
+      } else {
+        final ioClient = HttpClient()
+          ..badCertificateCallback = ((X509Certificate cert, String host, int port) => true);
+        client = IOClient(ioClient);
+      }
 
       final response = await client.post(
         url,
@@ -180,6 +187,22 @@ class HomeScreenState extends State<HomeScreen> {
       setState(() {
         isDownloading = false;
       });
+      return null;
+    }
+
+    if (kIsWeb) {
+      final rootUrl = _baseUrl.endsWith('/update-check') 
+          ? _baseUrl.substring(0, _baseUrl.length - '/update-check'.length) 
+          : _baseUrl;
+      final downloadUrl = Uri.parse('$rootUrl/download/update/content?file_name=$fileName&os_type=$_osType');
+      
+      launchUrl(downloadUrl, webOnlyWindowName: '_self');
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Download started.'), backgroundColor: Colors.green),
+        );
+      }
       return null;
     }
     
