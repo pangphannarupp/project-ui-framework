@@ -51,12 +51,12 @@ jobs:
           architecture: x64
           
       - name: Build Flutter web app
-        working-directory: ./sample_apps/mcnc_content_tool_flutter
+        working-directory: ./flutter_sample
         run: |
           flutter pub get
           flutter build web --release --base-href /project-ui-framework/flutter-sample/
-          mkdir -p ../../web/dist/production/contents/flutter-sample
-          cp -r build/web/* ../../web/dist/production/contents/flutter-sample/
+          mkdir -p ../web/dist/production/contents/flutter-sample
+          cp -r build/web/* ../web/dist/production/contents/flutter-sample/
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
