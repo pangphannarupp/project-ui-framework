@@ -71,16 +71,16 @@ withDefaults(defineProps<{
 
 /* Sizes */
 .pp-button--size-small {
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 6px 12px;
+  font-size: 12px;
 }
 .pp-button--size-medium {
-  padding: 16px 24px;
-  font-size: 16px;
+  padding: 10px 16px;
+  font-size: 14px;
 }
 .pp-button--size-large {
-  padding: 20px 32px;
-  font-size: 18px;
+  padding: 14px 24px;
+  font-size: 16px;
 }
 
 .pp-button--rounded {
