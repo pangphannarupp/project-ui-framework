@@ -1,15 +1,53 @@
-*/.idea
-*/.idea/*
-/node_modules
-*/node_modules
-*/node_modules/**
-web/node_modules/.bin/acorn
-*/dist
-*/dist/**
-*/.angular
+# Dependencies
+node_modules
+node_modules/
+**/node_modules
+**/node_modules/**
 
-web/ui-framework/node_modules/*
-web/ui-framework/dist/*
+# Build outputs
+dist
+dist/
+**/dist
+**/dist/**
+build
+build/
+**/build
+**/build/**
+
+# IDE & Editor files
+.idea
+.idea/
+**/.idea
+**/.idea/**
+.vscode
+.vscode/
+**/.vscode
+**/.vscode/**
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Framework and caches
+.angular
+.angular/
+**/.angular/**
+.turbo
+.turbo/
+**/.turbo/**
+.cache
+.cache/
+**/.cache/**
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Android specific ignores
 android/ui-framework-sample/app/src/main/res/xml/backup_rules.xml
 android/ui-framework-sample/.idea/runConfigurations.xml
 android/ui-framework-sample/.idea/AndroidProjectSystem.xml
@@ -17,4 +55,3 @@ android/ui-framework-sample/.idea/compiler.xml
 android/ui-framework-sample/.idea/deploymentTargetSelector.xml
 android/ui-framework-sample/.idea/gradle.xml
 android/ui-framework-sample/.idea/misc.xml
-*/contents/*

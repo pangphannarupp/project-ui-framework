@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/clinicdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/clinicstore.ts","./src/types/clinic.ts","./src/app.vue","./src/views/cliniccheckoutview.vue","./src/views/clinichomeview.vue","./src/views/clinicmyticketsview.vue","./src/views/clinicstatusview.vue"],"errors":true,"version":"5.9.3"}

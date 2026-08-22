@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/flightdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/flightstore.ts","./src/types/flight.ts","./src/app.vue","./src/views/flightcheckoutview.vue","./src/views/flighthomeview.vue","./src/views/flightmyticketsview.vue","./src/views/flightstatusview.vue"],"errors":true,"version":"5.9.3"}

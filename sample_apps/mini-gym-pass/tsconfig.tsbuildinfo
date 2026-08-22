@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/gymdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/gymstore.ts","./src/types/gym.ts","./src/app.vue","./src/views/gymcheckoutview.vue","./src/views/gymhomeview.vue","./src/views/gymmypassesview.vue","./src/views/gympassview.vue"],"version":"5.9.3"}

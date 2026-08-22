@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/wheeldata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/wheelstore.ts","./src/types/wheel.ts","./src/app.vue","./src/views/wheelcheckoutview.vue","./src/views/wheelhomeview.vue","./src/views/wheelmyvouchersview.vue"],"errors":true,"version":"5.9.3"}

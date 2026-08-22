@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/eventdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/eventstore.ts","./src/types/event.ts","./src/app.vue","./src/views/eventcheckoutview.vue","./src/views/eventhomeview.vue","./src/views/eventmyticketsview.vue","./src/views/eventpassview.vue"],"version":"5.9.3"}

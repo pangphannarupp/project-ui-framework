@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/evdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/evstore.ts","./src/types/ev.ts","./src/app.vue","./src/views/evcheckoutview.vue","./src/views/evhomeview.vue","./src/views/evmypassesview.vue","./src/views/evstatusview.vue"],"errors":true,"version":"5.9.3"}

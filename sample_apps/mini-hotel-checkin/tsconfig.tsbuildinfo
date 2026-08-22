@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/hoteldata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/hotelstore.ts","./src/types/hotel.ts","./src/app.vue","./src/views/hotelcheckoutview.vue","./src/views/hotelhomeview.vue","./src/views/hotelmystaysview.vue","./src/views/hotelpassview.vue"],"version":"5.9.3"}

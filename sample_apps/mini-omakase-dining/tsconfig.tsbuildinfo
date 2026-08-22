@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/omakasedata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/omakasestore.ts","./src/types/omakase.ts","./src/app.vue","./src/views/omakasecheckoutview.vue","./src/views/omakasehomeview.vue","./src/views/omakasemyticketsview.vue","./src/views/omakasestatusview.vue"],"version":"5.9.3"}

@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/scooterdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/scooterstore.ts","./src/types/scooter.ts","./src/app.vue","./src/views/scootercheckoutview.vue","./src/views/scooterhomeview.vue","./src/views/scootermyticketsview.vue","./src/views/scooterstatusview.vue"],"errors":true,"version":"5.9.3"}

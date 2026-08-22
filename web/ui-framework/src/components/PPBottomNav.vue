@@ -435,10 +435,11 @@ watch(() => props.items, updateIndicator, { deep: true });
   height: 56px;
   background-color: #eef0f4;
   border-radius: 28px;
-  margin: 12px 16px;
+  margin: 12px 16px calc(12px + env(safe-area-inset-bottom, 0)) 16px;
   width: calc(100% - 32px);
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
   box-sizing: border-box;
+  padding-bottom: 0;
 }
 .is-variant-pill-slide .pp-sliding-indicator {
   padding: 4px;

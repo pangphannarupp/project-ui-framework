@@ -15,41 +15,6 @@
         <slot name="background"></slot>
       </div>
 
-      <!-- Toolbar Layer (always at top) -->
-      <div 
-        class="pp-collapsing-toolbar"
-        :style="{ 
-          height: `calc(${collapsedHeight}px + var(--ion-safe-area-top, 0px))`,
-          paddingTop: `var(--ion-safe-area-top, 0px)`
-        }"
-      >
-        <div class="pp-toolbar-start">
-          <slot name="start"></slot>
-        </div>
-        
-        <!-- Profile moving and shrinking -->
-        <div 
-          v-if="$slots.profile"
-          class="pp-collapsing-profile"
-          :style="{
-            transform: `translate(${profileX}px, ${profileY}px) scale(${profileScale})`,
-          }"
-        >
-          <slot name="profile"></slot>
-        </div>
-
-        <!-- Title moving and shrinking -->
-        <div 
-          class="pp-collapsing-title"
-          :style="titleStyle"
-        >
-          <slot name="title">{{ title }}</slot>
-        </div>
-
-        <div class="pp-toolbar-end">
-          <slot name="end"></slot>
-        </div>
-      </div>
     </div>
 
     <!-- Scrollable Content -->
@@ -63,6 +28,43 @@
         <slot></slot>
       </div>
     </div>
+
+    <!-- Toolbar Layer (always at top) -->
+    <div 
+      class="pp-collapsing-toolbar"
+      :style="{ 
+        height: `calc(${collapsedHeight}px + var(--ion-safe-area-top, 0px))`,
+        paddingTop: `var(--ion-safe-area-top, 0px)`
+      }"
+    >
+      <div class="pp-toolbar-start">
+        <slot name="start"></slot>
+      </div>
+      
+      <!-- Profile moving and shrinking -->
+      <div 
+        v-if="$slots.profile"
+        class="pp-collapsing-profile"
+        :style="{
+          transform: `translate(${profileX}px, ${profileY}px) scale(${profileScale})`,
+        }"
+      >
+        <slot name="profile"></slot>
+      </div>
+
+      <!-- Title moving and shrinking -->
+      <div 
+        class="pp-collapsing-title"
+        :style="titleStyle"
+      >
+        <slot name="title">{{ title }}</slot>
+      </div>
+
+      <div class="pp-toolbar-end">
+        <slot name="end"></slot>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -175,10 +177,9 @@ const titleStyle = computed(() => {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 1;
   background-color: var(--pp-primary-variant, #1a2a5e);
   color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   overflow: hidden;
   will-change: height;
 }
@@ -208,7 +209,7 @@ const titleStyle = computed(() => {
   display: flex;
   align-items: center;
   padding: 0 16px;
-  z-index: 2;
+  z-index: 10;
   box-sizing: border-box;
 }
 
@@ -250,8 +251,10 @@ const titleStyle = computed(() => {
 .pp-collapsing-content {
   flex: 1;
   overflow-y: auto;
-  height: 100%;
+  overflow-x: hidden;
+  z-index: 2;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 .pp-collapsing-spacer {

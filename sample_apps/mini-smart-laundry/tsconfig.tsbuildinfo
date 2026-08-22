@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/laundrydata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/laundrystore.ts","./src/types/laundry.ts","./src/app.vue","./src/views/laundrycheckoutview.vue","./src/views/laundryhomeview.vue","./src/views/laundrymysessionsview.vue","./src/views/laundrystatusview.vue"],"version":"5.9.3"}

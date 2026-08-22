@@ -43,7 +43,7 @@ withDefaults(defineProps<{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: env(safe-area-inset-top, 0) 24px 0 24px;
   width: 100%;
   box-sizing: border-box;
   transition: background-color 0.3s ease, border-color 0.3s ease;

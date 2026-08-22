@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/washdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/washstore.ts","./src/types/wash.ts","./src/app.vue","./src/views/washcheckoutview.vue","./src/views/washhomeview.vue","./src/views/washmyticketsview.vue","./src/views/washpassview.vue"],"version":"5.9.3"}

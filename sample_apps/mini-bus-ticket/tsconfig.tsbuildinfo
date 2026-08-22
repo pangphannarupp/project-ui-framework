@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/busdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/busstore.ts","./src/types/bus.ts","./src/app.vue","./src/views/buscheckoutview.vue","./src/views/bushomeview.vue","./src/views/busmyticketsview.vue","./src/views/buspassview.vue"],"errors":true,"version":"5.9.3"}

@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/parceldata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/parcelstore.ts","./src/types/parcel.ts","./src/app.vue","./src/views/parcelcheckoutview.vue","./src/views/parcelhomeview.vue","./src/views/parcelmyhistoryview.vue","./src/views/parcelstatusview.vue"],"version":"5.9.3"}

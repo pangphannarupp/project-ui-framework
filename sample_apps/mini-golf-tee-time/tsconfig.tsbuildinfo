@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/golfdata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/golfstore.ts","./src/types/golf.ts","./src/app.vue","./src/views/golfcheckoutview.vue","./src/views/golfhomeview.vue","./src/views/golfmyticketsview.vue","./src/views/golfstatusview.vue"],"errors":true,"version":"5.9.3"}

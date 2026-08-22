@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/coffeedata.ts","./src/i18n/index.ts","./src/router/index.ts","./src/store/coffeestore.ts","./src/types/coffee.ts","./src/app.vue","./src/views/coffeecheckoutview.vue","./src/views/coffeehomeview.vue","./src/views/coffeemyordersview.vue","./src/views/coffeestatusview.vue"],"version":"5.9.3"}
