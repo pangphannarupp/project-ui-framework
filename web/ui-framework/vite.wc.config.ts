@@ -20,9 +20,15 @@ export default defineConfig({
       fileName: (format) => `wc/ui-framework-wc.${format}.js`
     },
     rollupOptions: {
-      // For Web Components, we typically bundle Vue, but if we don't, we can externalize it.
-      // Assuming consumers might not have Vue, we let Vite bundle the necessary Vue Custom Element runtime.
-      // So we don't externalize vue here.
+      external: ['vue', '@ionic/vue', 'ionicons/icons', 'pdfjs-dist', 'pdfjs-dist/build/pdf.worker.mjs?url'],
+      output: {
+        globals: {
+          vue: 'Vue',
+          '@ionic/vue': 'IonicVue',
+          'ionicons/icons': 'IoniconsIcons',
+          'pdfjs-dist': 'pdfjsLib'
+        }
+      }
     }
   }
 })
