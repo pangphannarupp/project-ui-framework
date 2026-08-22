@@ -29,45 +29,85 @@ jobs:
         with:
           node-version: 22
           
-      - name: Install dependencies
-        working-directory: ./web
-        run: yarn install
-        
-      - name: Build ui-framework
+      - name: Install & Build web ui-framework
         working-directory: ./web/ui-framework
         run: |
           yarn install
           yarn build
-          cp -r dist ../node_modules/@phanna/ui-framework/
-          
-      - name: Build project
+
+      - name: Install dependencies & Build main web docs
         working-directory: ./web
-        run: VITE_ENVIRONMENT=production yarn build
-        
+        run: |
+          yarn install
+          cp -r ui-framework/dist node_modules/@phanna/ui-framework/
+          VITE_ENVIRONMENT=production yarn build
+
+      - name: Build all Web / Vue Sample Apps
+        run: |
+          DIST_ROOT="$GITHUB_WORKSPACE/web/dist/production/contents"
+          mkdir -p "$DIST_ROOT/sample-apps"
+
+          for app in sample_apps/*; do
+            if [ -f "$app/package.json" ]; then
+              APP_NAME=$(basename "$app")
+              echo "=================================================="
+              echo "Building Web Sample App: $APP_NAME"
+              echo "=================================================="
+              (
+                cd "$app"
+                yarn install
+                # Build with base URL matching GitHub Pages repository subpath
+                npx vite build --base "/project-ui-framework/sample-apps/$APP_NAME/" --outDir "dist"
+                mkdir -p "$DIST_ROOT/sample-apps/$APP_NAME"
+                cp -r dist/* "$DIST_ROOT/sample-apps/$APP_NAME/"
+              )
+            fi
+          done
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           architecture: x64
-          
-      - name: Build Flutter web app
+
+      - name: Build Flutter web sample (flutter_sample)
         working-directory: ./flutter_sample
         run: |
           flutter pub get
           flutter build web --release --base-href /project-ui-framework/flutter-sample/
           mkdir -p ../web/dist/production/contents/flutter-sample
           cp -r build/web/* ../web/dist/production/contents/flutter-sample/
-          
+
+      - name: Build Flutter web apps in sample_apps
+        run: |
+          DIST_ROOT="$GITHUB_WORKSPACE/web/dist/production/contents/sample-apps"
+
+          for app in sample_apps/*; do
+            if [ -f "$app/pubspec.yaml" ]; then
+              APP_NAME=$(basename "$app")
+              echo "=================================================="
+              echo "Building Flutter Web App: $APP_NAME"
+              echo "=================================================="
+              (
+                cd "$app"
+                flutter pub get
+                flutter build web --release --base-href "/project-ui-framework/sample-apps/$APP_NAME/"
+                mkdir -p "$DIST_ROOT/$APP_NAME"
+                cp -r build/web/* "$DIST_ROOT/$APP_NAME/"
+              )
+            fi
+          done
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
           enablement: true
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './web/dist/production/contents'
-          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
