@@ -55,3 +55,6 @@ android/ui-framework-sample/.idea/compiler.xml
 android/ui-framework-sample/.idea/deploymentTargetSelector.xml
 android/ui-framework-sample/.idea/gradle.xml
 android/ui-framework-sample/.idea/misc.xml
+
+.DS_Store
+*/.DS_Store
