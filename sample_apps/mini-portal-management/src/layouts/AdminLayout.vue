@@ -10,6 +10,7 @@ import {
   personCircleOutline,
   cardOutline,
   notificationsOutline,
+  shieldCheckmarkOutline,
   terminalOutline,
   settingsOutline
 } from 'ionicons/icons'
@@ -33,6 +34,7 @@ const sidebarGroups = [
       { id: '/customers', label: 'Customers', icon: personCircleOutline },
       { id: '/payments', label: 'Payment Setup', icon: cardOutline },
       { id: '/push', label: 'Push Alerts', icon: notificationsOutline },
+      { id: '/consent', label: 'Consent Management', icon: shieldCheckmarkOutline },
       { id: '/logs', label: 'Log Viewer', icon: terminalOutline },
       { id: '/settings', label: 'Settings', icon: settingsOutline }
     ]

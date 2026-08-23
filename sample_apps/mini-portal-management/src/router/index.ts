@@ -6,6 +6,7 @@ import UsersView from '../views/UsersView.vue'
 import CustomersView from '../views/CustomersView.vue'
 import PaymentSetupView from '../views/PaymentSetupView.vue'
 import PushManagementView from '../views/PushManagementView.vue'
+import ConsentManagementView from '../views/ConsentManagementView.vue'
 import LogViewerView from '../views/LogViewerView.vue'
 import SettingsView from '../views/SettingsView.vue'
 import CategoriesView from '../views/CategoriesView.vue'
@@ -60,6 +61,11 @@ const routes = [
     path: '/push',
     name: 'Push',
     component: PushManagementView
+  },
+  {
+    path: '/consent',
+    name: 'Consent',
+    component: ConsentManagementView
   },
   {
     path: '/logs',

@@ -579,3 +579,174 @@ export const mockPushCampaigns: PushCampaign[] = [
     status: 'Scheduled'
   }
 ]
+
+export interface ConsentPolicy {
+  id: string
+  title: string
+  category: 'Terms of Service' | 'Privacy Policy' | 'Location Access' | 'Push Alerts' | 'Camera & Media' | 'Payment Authorization' | 'Data Sharing'
+  scopeApp: string // e.g. "Global (All Mini Apps)" or specific app
+  version: string
+  content: string
+  status: 'Active' | 'Draft' | 'Deprecated'
+  isRequired: boolean
+  requireReconsentOnUpdate: boolean
+  consentedUsersCount: number
+  lastUpdated: string
+}
+
+export interface UserConsentRecord {
+  id: string
+  customerId: string
+  customerName: string
+  customerPhone: string
+  policyId: string
+  policyTitle: string
+  appScope: string
+  consentStatus: 'Granted' | 'Revoked' | 'Pending'
+  consentedVersion: string
+  consentedAt: string
+  ipAddress: string
+  userAgent: string
+}
+
+export const mockConsentPolicies: ConsentPolicy[] = [
+  {
+    id: 'pol-1',
+    title: 'General Mini-App Platform Terms of Service',
+    category: 'Terms of Service',
+    scopeApp: 'Global (All Mini Apps)',
+    version: 'v2.1.0',
+    content: 'By accessing and running any mini application hosted within the MCNC Mini App Portal, you agree to comply with system acceptable usage policies, transaction processing standards, and rate limiting guidelines.',
+    status: 'Active',
+    isRequired: true,
+    requireReconsentOnUpdate: true,
+    consentedUsersCount: 148200,
+    lastUpdated: '2026-08-10'
+  },
+  {
+    id: 'pol-2',
+    title: 'Customer Data Privacy & Profile Telemetry',
+    category: 'Privacy Policy',
+    scopeApp: 'Global (All Mini Apps)',
+    version: 'v1.4.0',
+    content: 'We collect masked device identifiers, aggregated analytics, and session duration to ensure uninterrupted runtime stability and prevent fraudulent transaction exploits.',
+    status: 'Active',
+    isRequired: true,
+    requireReconsentOnUpdate: false,
+    consentedUsersCount: 142100,
+    lastUpdated: '2026-07-28'
+  },
+  {
+    id: 'pol-3',
+    title: 'Precise GPS & Nearby Store Discovery',
+    category: 'Location Access',
+    scopeApp: 'Coffee Pickup, EV Charge Station',
+    version: 'v1.2.0',
+    content: 'Grants continuous foreground GPS geolocation to calculate driving distances to pickup counters and reserve available EV charging poles.',
+    status: 'Active',
+    isRequired: false,
+    requireReconsentOnUpdate: false,
+    consentedUsersCount: 89450,
+    lastUpdated: '2026-06-15'
+  },
+  {
+    id: 'pol-4',
+    title: 'Bakong KHQR Instant Auto-Debit Mandate',
+    category: 'Payment Authorization',
+    scopeApp: 'Bakong KHQR Hub, Cinema Ticket Booking',
+    version: 'v1.0.0',
+    content: 'Enables single-tap biometric checkouts up to $100 per transaction without requiring secondary PIN validation.',
+    status: 'Active',
+    isRequired: false,
+    requireReconsentOnUpdate: true,
+    consentedUsersCount: 65200,
+    lastUpdated: '2026-08-01'
+  },
+  {
+    id: 'pol-5',
+    title: 'Partner Targeted Promotional Push Campaigns',
+    category: 'Push Alerts',
+    scopeApp: 'Global (All Mini Apps)',
+    version: 'v1.1.0',
+    content: 'Allows registered partner merchants to deliver personalized flash sales, ticket discounts, and coupon reminders.',
+    status: 'Draft',
+    isRequired: false,
+    requireReconsentOnUpdate: false,
+    consentedUsersCount: 0,
+    lastUpdated: '2026-08-20'
+  }
+]
+
+export const mockUserConsentRecords: UserConsentRecord[] = [
+  {
+    id: 'uc-101',
+    customerId: 'CUST-8821',
+    customerName: 'Sokha Meng',
+    customerPhone: '+855 12 345 678',
+    policyId: 'pol-1',
+    policyTitle: 'General Mini-App Platform Terms of Service',
+    appScope: 'Global (All Mini Apps)',
+    consentStatus: 'Granted',
+    consentedVersion: 'v2.1.0',
+    consentedAt: '2026-08-23 09:14:22',
+    ipAddress: '110.74.210.45',
+    userAgent: 'iOS 18.2 / MCNC-Portal-App v4.2.0'
+  },
+  {
+    id: 'uc-102',
+    customerId: 'CUST-8821',
+    customerName: 'Sokha Meng',
+    customerPhone: '+855 12 345 678',
+    policyId: 'pol-3',
+    policyTitle: 'Precise GPS & Nearby Store Discovery',
+    appScope: 'Coffee Pickup',
+    consentStatus: 'Granted',
+    consentedVersion: 'v1.2.0',
+    consentedAt: '2026-08-23 09:15:02',
+    ipAddress: '110.74.210.45',
+    userAgent: 'iOS 18.2 / MCNC-Portal-App v4.2.0'
+  },
+  {
+    id: 'uc-103',
+    customerId: 'CUST-5510',
+    customerName: 'Vanna Roth',
+    customerPhone: '+855 98 765 432',
+    policyId: 'pol-4',
+    policyTitle: 'Bakong KHQR Instant Auto-Debit Mandate',
+    appScope: 'Cinema Ticket Booking',
+    consentStatus: 'Revoked',
+    consentedVersion: 'v1.0.0',
+    consentedAt: '2026-08-22 14:30:10',
+    ipAddress: '203.144.144.10',
+    userAgent: 'Android 15 / MCNC-Portal-App v4.2.0'
+  },
+  {
+    id: 'uc-104',
+    customerId: 'CUST-3319',
+    customerName: 'Dara Chan',
+    customerPhone: '+855 77 889 900',
+    policyId: 'pol-1',
+    policyTitle: 'General Mini-App Platform Terms of Service',
+    appScope: 'Global (All Mini Apps)',
+    consentStatus: 'Granted',
+    consentedVersion: 'v2.1.0',
+    consentedAt: '2026-08-21 18:22:45',
+    ipAddress: '103.216.50.88',
+    userAgent: 'Android 14 / Chrome Mobile 128'
+  },
+  {
+    id: 'uc-105',
+    customerId: 'CUST-9902',
+    customerName: 'Bopha Pich',
+    customerPhone: '+855 85 112 233',
+    policyId: 'pol-2',
+    policyTitle: 'Customer Data Privacy & Profile Telemetry',
+    appScope: 'Global (All Mini Apps)',
+    consentStatus: 'Pending',
+    consentedVersion: 'v1.4.0',
+    consentedAt: '2026-08-23 11:05:12',
+    ipAddress: '110.74.195.12',
+    userAgent: 'iOS 17.6 / Safari 17.6'
+  }
+]
+
