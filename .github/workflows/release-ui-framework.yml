@@ -31,22 +31,17 @@ jobs:
         run: npm run build
 
       - name: Pack NPM Package
-        working-directory: web/ui-framework
-        run: npm pack
-        
-      - name: Get Package Name and Version
-        id: package_info
+        id: pack_step
         working-directory: web/ui-framework
         run: |
-          # npm pack creates a file based on package name and version
-          # We can use ls to find the generated .tgz file
-          TGZ_FILE=$(ls *.tgz)
-          echo "tgz_file=$TGZ_FILE" >> $GITHUB_OUTPUT
+          PACK_OUTPUT=$(npm pack)
+          echo "pack_file=$PACK_OUTPUT" >> $GITHUB_OUTPUT
+          echo "Packed file: $PACK_OUTPUT"
 
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v2
         with:
-          files: web/ui-framework/${{ steps.package_info.outputs.tgz_file }}
+          files: web/ui-framework/*.tgz
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
