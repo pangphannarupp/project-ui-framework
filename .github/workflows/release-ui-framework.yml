@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Dependencies
         working-directory: web/ui-framework
-        run: npm ci
+        run: npm install
 
       - name: Build Framework
         working-directory: web/ui-framework
