@@ -1,6 +1,21 @@
 <template>
 <div class="guide-section">
-        <h2>Framework Usage Guide</h2>
+        <h2>Installation & Package Setup</h2>
+        <p class="custom-guide">
+          Install <code>@phanna/ui-framework</code> directly from GitHub Releases or Git tags without needing public npm.
+        </p>
+
+        <div class="variant-group">
+          <h3>📦 1. Installation (GitHub Release)</h3>
+          <p class="custom-guide">Install the pre-built release package directly into your project:</p>
+          <pre class="code-block" v-pre><code># Direct GitHub Release URL (.tgz)
+npm install https://github.com/pangphannarupp/project-ui-framework/releases/download/v1.0.11/phanna-ui-framework-1.0.11.tgz
+
+# Or via Git Repository Tag
+npm install git+https://github.com/pangphannarupp/project-ui-framework.git#v1.0.11</code></pre>
+        </div>
+
+        <h2 style="margin-top: 32px;">Framework Usage Guide</h2>
         <p class="custom-guide">
           This library can be used as standard Vue components OR as framework-agnostic Web Components.
         </p>
