@@ -1,19 +1,138 @@
+export interface MiniAppCategory {
+  id: string
+  name: string
+  slug: string
+  icon: string
+  description: string
+  color: string
+  appCount: number
+  status: 'active' | 'inactive'
+  order: number
+  createdAt: string
+}
+
+export type ApiAuthType = 
+  | 'none' 
+  | 'bearer' 
+  | 'apiKey' 
+  | 'basic' 
+  | 'oauth2_client_credentials' 
+  | 'oauth2_auth_code' 
+  | 'hmac_sha256' 
+  | 'mtls' 
+  | 'aws_sigv4' 
+  | 'jwt_signed'
+
+export interface ApiAuthConfiguration {
+  authType: ApiAuthType
+  apiKey?: string
+  apiSecret?: string
+  headerName?: string // e.g. "X-API-Key" or "Authorization"
+  bearerToken?: string
+  username?: string
+  password?: string
+  tokenUrl?: string
+  clientId?: string
+  clientSecret?: string
+  scope?: string
+  signatureSecret?: string // for HMAC-SHA256
+  privateKeyPem?: string // for JWT signed or mTLS client cert
+}
+
+export type TransformFunctionType =
+  | 'addSuffix'
+  | 'addPrefix'
+  | 'replace'
+  | 'trim'
+  | 'toUpperCase'
+  | 'toLowerCase'
+  | 'capitalize'
+  | 'currencyFormat'
+  | 'numberFormat'
+  | 'round'
+  | 'mathMultiply'
+  | 'mathDivide'
+  | 'dateFormat'
+  | 'timestampToDate'
+  | 'relativeTime'
+  | 'toBoolean'
+  | 'booleanInvert'
+  | 'coalesce'
+  | 'split'
+  | 'join'
+  | 'arrayMap'
+  | 'arrayFilter'
+  | 'arraySlice'
+  | 'arraySum'
+  | 'arrayCount'
+  | 'valueLookup'
+  | 'maskSensitive'
+  | 'template'
+  | 'customScript'
+
+export interface FieldTransformConfig {
+  type: TransformFunctionType
+  param?: string // e.g. "$.items[0].currency", " USD", "YYYY-MM-DD", "0.01", "active:Active, inactive:Inactive", etc.
+}
+
+export interface FieldMappingItem {
+  targetField: string // e.g. "id", "name", "description", "price", "currency", "category", "badge", "imageUrl"
+  sourceJsonPath: string // e.g. "$[*].id" or "$[*].title" or "$.data.items[*].price"
+  defaultValue?: string // e.g. "USD" or "N/A"
+  transform?: FieldTransformConfig
+  showTransform?: boolean
+}
+
+export type ApiContentType =
+  | 'application/json'
+  | 'application/x-www-form-urlencoded'
+  | 'multipart/form-data'
+  | 'text/plain'
+  | 'application/xml'
+
+export interface MiniAppApiEndpoint {
+  id: string
+  name: string // e.g. "Product Catalog", "Order Checkout"
+  path: string // Source URL e.g. "/product"
+  httpMethod: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
+  contentType?: ApiContentType
+  queryParams?: string // e.g. "page=1&limit=20&category=coffee"
+  requestHeaders?: string
+  requestPayloadSchema?: string // Request body content
+  uiTemplate?: string // e.g. "Template 1 (Product List & Card)", "Template 2 (Order Detail)"
+  targetFormatJson: string // JSON representation of target format schema
+  partnerMatchesFormat?: boolean // Toggle "Partner response already matches this format"
+  fieldMappings: FieldMappingItem[]
+}
+
+export interface MiniAppApiConfig {
+  baseUrl: string
+  auth: ApiAuthConfiguration
+  endpoints: MiniAppApiEndpoint[]
+  timeoutMs: number
+}
+
 export interface MiniApp {
   id: string
   name: string
   slug: string
-  category: 'Food & Beverage' | 'Entertainment' | 'Services' | 'Mobility' | 'Finance'
-  icon: string
+  category: string
+  icon: string // URL or base64 data url for app icon
+  banner?: string // URL or base64 data url for app banner
   version: string
-  packageType: 'zip' | 'web_url' | 'native_aar'
+  packageType: 'zip' | 'web_url' | 'native_aar' | 'api'
   packageUrl?: string
   fileName?: string
   fileSize?: string
   androidPackageName?: string
   androidActivityClass?: string
   iosViewControllerClass?: string
+  apiConfig?: MiniAppApiConfig
   status: 'active' | 'staging' | 'maintenance' | 'deprecated'
   usersCount: number
+  viewCount: number // Total impressions / views count
+  tags?: string[] // Discoverability tags e.g. ["Coffee", "Popular", "Fast Delivery"]
+  order?: number // Display ranking order
   rating: number
   path: string
   updatedAt: string
@@ -66,19 +185,121 @@ export interface PushCampaign {
   status: 'Sent' | 'Scheduled' | 'Draft'
 }
 
+export interface MiniAppTag {
+  id: string
+  name: string
+  slug: string
+  color: string
+  icon?: string
+  description?: string
+  appCount: number
+  isFeatured: boolean
+  createdAt: string
+}
+
+export const mockTags: MiniAppTag[] = [
+  { id: 'tag-1', name: 'Bakong KHQR', slug: 'bakong-khqr', color: '#ef4444', icon: 'qr-code', description: 'National standardized QR payment supported apps', appCount: 4, isFeatured: true, createdAt: '2025-01-05' },
+  { id: 'tag-2', name: 'Barista', slug: 'barista', color: '#f59e0b', icon: 'coffee', description: 'Handcrafted drinks and gourmet espresso ordering', appCount: 3, isFeatured: true, createdAt: '2025-01-10' },
+  { id: 'tag-3', name: 'Express Pickup', slug: 'express-pickup', color: '#10b981', icon: 'flash', description: 'Zero-wait in-store counter pickup orders', appCount: 5, isFeatured: true, createdAt: '2025-01-12' },
+  { id: 'tag-4', name: 'Smart Hub', slug: 'smart-hub', color: '#3b82f6', icon: 'cube', description: 'Central gateway services and utility bills', appCount: 6, isFeatured: true, createdAt: '2025-01-15' },
+  { id: 'tag-5', name: '3D Cinema', slug: '3d-cinema', color: '#8b5cf6', icon: 'film', description: 'Movie booking, IMAX seats & trailer streaming', appCount: 2, isFeatured: false, createdAt: '2025-02-01' },
+  { id: 'tag-6', name: 'EV Charger', slug: 'ev-charger', color: '#06b6d4', icon: 'battery-charging', description: 'Electric vehicle charging pole IoT reservations', appCount: 2, isFeatured: true, createdAt: '2025-02-10' },
+  { id: 'tag-7', name: 'Massage', slug: 'massage', color: '#ec4899', icon: 'sparkles', description: 'Spa relaxation, aromatherapy and wellness treatments', appCount: 3, isFeatured: false, createdAt: '2025-02-15' },
+  { id: 'tag-8', name: 'POS Terminal', slug: 'pos-terminal', color: '#14b8a6', icon: 'card', description: 'Merchant point-of-sale and terminal checkout', appCount: 4, isFeatured: true, createdAt: '2025-02-20' }
+]
+
+export const mockCategories: MiniAppCategory[] = [
+  {
+    id: 'cat-1',
+    name: 'Food & Beverage',
+    slug: 'food-beverage',
+    icon: '🍔',
+    description: 'Restaurants, coffee shops, food delivery & table reservations',
+    color: '#f59e0b',
+    appCount: 8,
+    status: 'active',
+    order: 1,
+    createdAt: '2025-01-10'
+  },
+  {
+    id: 'cat-2',
+    name: 'Entertainment',
+    slug: 'entertainment',
+    icon: '🎬',
+    description: 'Cinema tickets, gaming events, streaming media & concert passes',
+    color: '#8b5cf6',
+    appCount: 6,
+    status: 'active',
+    order: 2,
+    createdAt: '2025-01-15'
+  },
+  {
+    id: 'cat-3',
+    name: 'Services',
+    slug: 'services',
+    icon: '🛠️',
+    description: 'Beauty & spa, home cleaning, professional services & utility bill hubs',
+    color: '#3b82f6',
+    appCount: 7,
+    status: 'active',
+    order: 3,
+    createdAt: '2025-02-01'
+  },
+  {
+    id: 'cat-4',
+    name: 'Mobility',
+    slug: 'mobility',
+    icon: '🚗',
+    description: 'EV charging stations, ride hailing, parking & smart transit',
+    color: '#10b981',
+    appCount: 4,
+    status: 'active',
+    order: 4,
+    createdAt: '2025-02-18'
+  },
+  {
+    id: 'cat-5',
+    name: 'Finance',
+    slug: 'finance',
+    icon: '💳',
+    description: 'KHQR payments, micro-loans, insurance, POS terminals & wallets',
+    color: '#ec4899',
+    appCount: 5,
+    status: 'active',
+    order: 5,
+    createdAt: '2025-03-01'
+  },
+  {
+    id: 'cat-6',
+    name: 'Healthcare',
+    slug: 'healthcare',
+    icon: '🏥',
+    description: 'Doctor appointments, tele-health consultations & pharmacy deliveries',
+    color: '#06b6d4',
+    appCount: 2,
+    status: 'active',
+    order: 6,
+    createdAt: '2025-05-12'
+  }
+]
+
 export const mockMiniApps: MiniApp[] = [
   {
     id: 'app-1',
     name: 'Coffee Pickup',
     slug: 'mini-coffee-pickup',
     category: 'Food & Beverage',
-    icon: 'cafe-outline',
+    icon: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=160&h=160&fit=crop&crop=faces',
+    banner: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=300&fit=crop',
     version: 'v2.4.1',
     packageType: 'zip',
     fileName: 'coffee-pickup-v2.4.1.zip',
     fileSize: '4.8 MB',
     status: 'active',
     usersCount: 24500,
+    viewCount: 142800,
+    tags: ['Barista', 'Beverages', 'Express Pickup', 'Bakong KHQR'],
+    order: 1,
     rating: 4.9,
     path: '/sample-apps/mini-coffee-pickup/',
     updatedAt: '2026-08-20',
@@ -89,12 +310,16 @@ export const mockMiniApps: MiniApp[] = [
     name: 'Smart Mini App Hub',
     slug: 'smart-mini-app',
     category: 'Services',
-    icon: 'apps-outline',
+    icon: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=160&h=160&fit=crop',
+    banner: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=300&fit=crop',
     version: 'v3.0.0',
     packageType: 'web_url',
     packageUrl: 'https://cdn.miniportal.io/apps/smart-hub/index.html',
     status: 'active',
     usersCount: 88400,
+    viewCount: 495000,
+    tags: ['Lifestyle', 'Utilities', 'Digital ID', 'Smart Hub'],
+    order: 2,
     rating: 4.8,
     path: '/sample-apps/smart-mini-app/',
     updatedAt: '2026-08-22',
@@ -105,13 +330,17 @@ export const mockMiniApps: MiniApp[] = [
     name: 'Cinema Ticket Booking',
     slug: 'mini-cinema',
     category: 'Entertainment',
-    icon: 'film-outline',
+    icon: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=160&h=160&fit=crop',
+    banner: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=300&fit=crop',
     version: 'v1.8.2',
     packageType: 'zip',
     fileName: 'cinema-booking-prod.zip',
     fileSize: '6.2 MB',
     status: 'active',
     usersCount: 15300,
+    viewCount: 98600,
+    tags: ['Movies', 'Tickets', '3D Cinema', 'Popcorn Combo'],
+    order: 3,
     rating: 4.7,
     path: '/sample-apps/mini-cinema/',
     updatedAt: '2026-08-19',
@@ -122,13 +351,17 @@ export const mockMiniApps: MiniApp[] = [
     name: 'EV Charge Station',
     slug: 'mini-ev-charge',
     category: 'Mobility',
-    icon: 'flash-outline',
+    icon: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=160&h=160&fit=crop',
+    banner: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=300&fit=crop',
     version: 'v2.1.0',
     packageType: 'native_aar',
     fileName: 'ev-charge-sdk-release.aar',
     fileSize: '12.4 MB',
     status: 'active',
     usersCount: 9200,
+    viewCount: 61400,
+    tags: ['EV Charger', 'Green Energy', 'Fast Charging', 'IoT Pole'],
+    order: 4,
     rating: 4.9,
     path: '/sample-apps/mini-ev-charge/',
     updatedAt: '2026-08-21',
@@ -139,13 +372,17 @@ export const mockMiniApps: MiniApp[] = [
     name: 'Spa & Wellness',
     slug: 'spa_app',
     category: 'Services',
-    icon: 'flower-outline',
+    icon: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=160&h=160&fit=crop',
+    banner: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&h=300&fit=crop',
     version: 'v1.5.0',
     packageType: 'zip',
     fileName: 'spa-wellness-bundle.zip',
     fileSize: '3.9 MB',
     status: 'staging',
     usersCount: 4200,
+    viewCount: 22800,
+    tags: ['Massage', 'Aromatherapy', 'Beauty', 'VIP Room'],
+    order: 5,
     rating: 4.6,
     path: '/sample-apps/spa_app/',
     updatedAt: '2026-08-18',
@@ -156,13 +393,17 @@ export const mockMiniApps: MiniApp[] = [
     name: 'Mini POS Merchant',
     slug: 'mini-pos',
     category: 'Finance',
-    icon: 'card-outline',
+    icon: 'https://images.unsplash.com/photo-1556742049-0a67e55722c0?w=160&h=160&fit=crop',
+    banner: 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&h=300&fit=crop',
     version: 'v2.0.4',
     packageType: 'native_aar',
     fileName: 'mini-pos-engine-v2.0.4.aar',
     fileSize: '8.7 MB',
     status: 'active',
     usersCount: 31000,
+    viewCount: 215000,
+    tags: ['Merchant', 'KHQR Scan', 'POS Terminal', 'Audio Chime'],
+    order: 6,
     rating: 4.95,
     path: '/sample-apps/mini-pos/',
     updatedAt: '2026-08-22',

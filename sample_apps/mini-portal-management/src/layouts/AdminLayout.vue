@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import {
+  gridOutline,
+  appsOutline,
+  folderOutline,
+  pricetagOutline,
+  peopleOutline,
+  personCircleOutline,
+  cardOutline,
+  notificationsOutline,
+  terminalOutline,
+  settingsOutline
+} from 'ionicons/icons'
 
 const router = useRouter()
 const route = useRoute()
@@ -9,21 +21,37 @@ const isSidebarCollapsed = ref(false)
 const searchQuery = ref('')
 const showNotifications = ref(false)
 
-const navItems = [
-  { name: 'Dashboard', path: '/dashboard', icon: 'grid-outline', badge: '' },
-  { name: 'Mini Apps', path: '/mini-apps', icon: 'apps-outline', badge: '30' },
-  { name: 'Portal Users', path: '/users', icon: 'people-outline', badge: '' },
-  { name: 'Customers', path: '/customers', icon: 'person-circle-outline', badge: '' },
-  { name: 'Payment Setup', path: '/payments', icon: 'card-outline', badge: 'Active' },
-  { name: 'Push Alerts', path: '/push', icon: 'notifications-outline', badge: 'New' },
-  { name: 'Log Viewer', path: '/logs', icon: 'terminal-outline', badge: 'Live' },
-  { name: 'Settings', path: '/settings', icon: 'settings-outline', badge: '' },
+const sidebarGroups = [
+  {
+    groupLabel: 'PORTAL MANAGEMENT',
+    items: [
+      { id: '/dashboard', label: 'Dashboard', icon: gridOutline },
+      { id: '/mini-apps', label: 'Mini Apps', icon: appsOutline },
+      { id: '/categories', label: 'App Categories', icon: folderOutline },
+      { id: '/tags', label: 'App Tags', icon: pricetagOutline },
+      { id: '/users', label: 'Portal Users', icon: peopleOutline },
+      { id: '/customers', label: 'Customers', icon: personCircleOutline },
+      { id: '/payments', label: 'Payment Setup', icon: cardOutline },
+      { id: '/push', label: 'Push Alerts', icon: notificationsOutline },
+      { id: '/logs', label: 'Log Viewer', icon: terminalOutline },
+      { id: '/settings', label: 'Settings', icon: settingsOutline }
+    ]
+  }
 ]
 
 const currentTitle = computed(() => {
-  const current = navItems.find(item => item.path === route.path)
-  return current ? current.name : 'Mini Portal Management'
+  for (const group of sidebarGroups) {
+    const found = group.items.find(i => i.id === route.path)
+    if (found) return found.label
+  }
+  return 'Mini Portal Management'
 })
+
+const handleNavSelect = (path: string) => {
+  if (path && route.path !== path) {
+    router.push(path)
+  }
+}
 
 const toggleSidebar = () => {
   isSidebarCollapsed.value = !isSidebarCollapsed.value
@@ -36,74 +64,64 @@ const handleLogout = () => {
 
 <template>
   <div class="admin-layout">
-    <!-- Sidebar -->
-    <aside class="sidebar" :class="{ 'collapsed': isSidebarCollapsed }">
-      <div class="sidebar-header">
-        <div class="brand">
-          <div class="brand-logo">⚡</div>
-          <div class="brand-text" v-if="!isSidebarCollapsed">
-            <h3>Mini Portal</h3>
-            <span>Management Console</span>
+    <!-- UI Framework Sidebar Navigation -->
+    <PPSidebarNavigation
+      :model-value="route.path"
+      :items="sidebarGroups"
+      theme="dark"
+      variant="indicator"
+      :collapsed="isSidebarCollapsed"
+      width="260px"
+      collapsed-width="80px"
+      @update:model-value="handleNavSelect"
+    >
+      <template #header>
+        <div class="sidebar-header-content">
+          <div class="brand">
+            <div class="brand-logo">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#60a5fa" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div class="brand-text" v-if="!isSidebarCollapsed">
+              <h3>Mini Portal</h3>
+              <span>Management Console</span>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
 
-      <nav class="sidebar-nav">
-        <RouterLink
-          v-for="item in navItems"
-          :key="item.path"
-          :to="item.path"
-          class="nav-link"
-          :class="{ 'active': route.path === item.path }"
-        >
-          <span class="nav-icon">
-            <span v-if="item.name === 'Dashboard'">📊</span>
-            <span v-else-if="item.name === 'Mini Apps'">📱</span>
-            <span v-else-if="item.name === 'Portal Users'">👥</span>
-            <span v-else-if="item.name === 'Customers'">👤</span>
-            <span v-else-if="item.name === 'Payment Setup'">💳</span>
-            <span v-else-if="item.name === 'Push Alerts'">🔔</span>
-            <span v-else-if="item.name === 'Log Viewer'">💻</span>
-            <span v-else>⚙️</span>
-          </span>
-          <span class="nav-label" v-if="!isSidebarCollapsed">{{ item.name }}</span>
-          <span class="nav-badge" v-if="!isSidebarCollapsed && item.badge">{{ item.badge }}</span>
-        </RouterLink>
-      </nav>
-
-      <div class="sidebar-footer" v-if="!isSidebarCollapsed">
-        <div class="user-chip">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop" class="avatar-img" />
-          <div class="user-info">
-            <strong>Phanna Pang</strong>
-            <small>Super Admin</small>
+      <template #footer>
+        <div class="sidebar-footer-content" v-if="!isSidebarCollapsed">
+          <div class="user-chip">
+            <PPAvatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop" name="Phanna Pang" size="sm" />
+            <div class="user-info">
+              <strong>Phanna Pang</strong>
+              <small>Super Admin</small>
+            </div>
+            <button @click="handleLogout" class="logout-btn" title="Sign out">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </button>
           </div>
-          <button @click="handleLogout" class="logout-btn" title="Sign out">
-            🚪
-          </button>
         </div>
-      </div>
-    </aside>
+      </template>
+    </PPSidebarNavigation>
 
     <!-- Main Content Area -->
     <div class="main-wrapper">
       <!-- Top Navbar -->
       <header class="top-nav glass-panel">
         <div class="top-nav-left">
-          <button @click="toggleSidebar" class="toggle-btn">
-            ☰
+          <button @click="toggleSidebar" class="toggle-btn" title="Toggle Navigation">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
           <div class="page-title">
             <h2>{{ currentTitle }}</h2>
-            <span class="env-pill">Production Cluster</span>
+            <PPChip label="Production Cluster" color="success" variant="soft" size="sm" />
           </div>
         </div>
 
         <div class="top-nav-right">
           <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input
-              type="text"
+            <PPInput
               v-model="searchQuery"
               placeholder="Search apps, logs, users..."
             />
@@ -111,11 +129,11 @@ const handleLogout = () => {
 
           <div class="header-actions">
             <button class="icon-btn" @click="showNotifications = !showNotifications" title="System Notifications">
-              🔔
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
               <span class="dot-indicator"></span>
             </button>
             <a href="https://github.com/pangphannarupp/project-ui-framework" target="_blank" class="icon-btn" title="GitHub Repository">
-              ⭐
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </a>
           </div>
         </div>
@@ -136,26 +154,17 @@ const handleLogout = () => {
   background: #0b1120;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 260px;
-  background: #111827;
-  border-right: 1px solid #1f2937;
-  display: flex;
-  flex-direction: column;
-  transition: width 0.25s ease;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  z-index: 50;
+:deep(.pp-sidebar) {
+  background: #111827 !important;
+  border-right: 1px solid #1f2937 !important;
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  z-index: 50 !important;
 }
 
-.sidebar.collapsed {
-  width: 80px;
-}
-
-.sidebar-header {
-  padding: 24px 20px;
+.sidebar-header-content {
+  padding: 20px 16px;
   border-bottom: 1px solid #1f2937;
 }
 
@@ -191,44 +200,37 @@ const handleLogout = () => {
   letter-spacing: 0.5px;
 }
 
-.sidebar-nav {
-  padding: 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  overflow-y: auto;
+:deep(.pp-sidebar .nav-section-title) {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.8px !important;
+  color: #64748b !important;
+  padding: 12px 14px 6px !important;
 }
 
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+:deep(.pp-sidebar .nav-item) {
+  color: #94a3b8 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 10px !important;
+  margin: 2px 8px !important;
+  transition: all 0.2s ease !important;
 }
 
-.nav-link:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #f8fafc;
+:deep(.pp-sidebar .nav-item:hover) {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #f8fafc !important;
 }
 
-.nav-link.active {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2));
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+:deep(.pp-sidebar .nav-item.active) {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.2)) !important;
+  color: #60a5fa !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
 }
 
-.nav-icon {
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.sidebar-footer-content {
+  padding: 14px 16px;
+  border-top: 1px solid #1f2937;
 }
 
 .nav-badge {

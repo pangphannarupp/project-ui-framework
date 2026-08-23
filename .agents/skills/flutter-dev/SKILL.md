@@ -14,9 +14,10 @@ This skill outlines the workflow for interacting with the Flutter components and
    - Ensure the component is prefixed appropriately (e.g., `pp_`).
    - Export it from the main `flutter_ui_framework` library file.
 
-2. **Creating a Demo**:
+2. **Creating a Demo & Screen Architecture**:
    - Place the demo file in `flutter_sample/lib/data/demos/`.
    - Register the demo in `flutter_sample/lib/data/component_data.dart`.
+   - **MANDATORY**: Separate screen architectures into **Stateful Containers** (StatefulWidget / ChangeNotifier managing controllers and actions) and **Stateless Presentational Widgets** (StatelessWidget for UI building blocks, cards, and list cells).
 
 3. **Scripts**:
    - If generating icons or updating components, use the root scripts like `generate_icons.dart` or `generate_components.py` where applicable.

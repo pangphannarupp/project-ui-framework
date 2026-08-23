@@ -38,9 +38,7 @@
     "ionicons": "^7.0.0 || ^8.0.0",
     "vue": "^3.3.0"
   },
-  "dependencies": {
-    "pdfjs-dist": "^4.0.379"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@ionic/vue": "^8.0.0",
     "@vitejs/plugin-vue": "^4.0.0",

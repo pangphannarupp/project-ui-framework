@@ -1,57 +1,22 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
-import { mockLogs, type AuditLog } from '../data/mockData'
+import { useLogViewerViewModel } from '../viewmodels/useLogViewerViewModel'
 
-const logs = ref<AuditLog[]>([...mockLogs])
-const filterLevel = ref('all')
-const searchQuery = ref('')
-const isStreaming = ref(true)
-
-const levels = ['all', 'info', 'warn', 'error', 'success']
-
-const filteredLogs = computed(() => {
-  return logs.value.filter(l => {
-    const matchLevel = filterLevel.value === 'all' || l.level === filterLevel.value
-    const matchSearch = l.action.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                        l.actor.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                        l.target.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                        l.details.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                        l.ip.includes(searchQuery.value)
-    return matchLevel && matchSearch
-  })
-})
-
-const getBadgeClass = (lvl: string) => {
-  if (lvl === 'success') return 'badge-success'
-  if (lvl === 'warn') return 'badge-warn'
-  if (lvl === 'error') return 'badge-error'
-  return 'badge-info'
-}
-
-const clearLogs = () => {
-  logs.value = []
-}
-
-const generateSampleLog = () => {
-  const sampleActions = ['TOKEN_REFRESH', 'SANDBOX_RELOAD', 'CACHE_PURGE', 'RATE_LIMIT_HIT']
-  const sampleActors = ['SYSTEM_DAEMON', 'Phanna Pang', 'Cron Worker', 'Gateway Router']
-  const sampleTargets = ['mini-cinema', 'smart-mini-app', 'Payment Proxy', 'Auth Server']
-  const sampleLevels: ('info' | 'warn' | 'error' | 'success')[] = ['info', 'warn', 'success', 'error']
-
-  const randomIdx = Math.floor(Math.random() * 4)
-
-  logs.value.unshift({
-    id: `log-${Date.now()}`,
-    timestamp: new Date().toISOString().replace('T', ' ').slice(0, 19),
-    action: sampleActions[randomIdx],
-    actor: sampleActors[randomIdx],
-    target: sampleTargets[randomIdx],
-    level: sampleLevels[randomIdx],
-    details: 'Auto-generated telemetry heartbeat snapshot',
-    ip: '10.244.0.8'
-  })
-}
+const {
+  isLoading,
+  filterLevel,
+  searchQuery,
+  isStreaming,
+  currentPage,
+  pageSize,
+  totalFilteredLogs,
+  levels,
+  filteredLogs,
+  paginatedLogs,
+  getBadgeVariant,
+  clearLogs,
+  generateSampleLog
+} = useLogViewerViewModel()
 </script>
 
 <template>
@@ -64,35 +29,34 @@ const generateSampleLog = () => {
             <span>{{ isStreaming ? 'Live Stream Active' : 'Stream Paused' }}</span>
           </div>
 
-          <div class="level-filters">
-            <button
-              v-for="lvl in levels"
-              :key="lvl"
-              class="lvl-btn"
-              :class="{ 'active': filterLevel === lvl }"
-              @click="filterLevel = lvl"
-            >
-              {{ lvl.toUpperCase() }}
-            </button>
+          <div class="level-segment-wrapper">
+            <PPSegment v-model="filterLevel" variant="pill">
+              <PPSegmentButton
+                v-for="lvl in levels"
+                :key="lvl"
+                :value="lvl"
+              >
+                {{ lvl.toUpperCase() }}
+              </PPSegmentButton>
+            </PPSegment>
           </div>
         </div>
 
         <div class="toolbar-right">
           <div class="search-box">
-            <span>🔍</span>
-            <input type="text" v-model="searchQuery" placeholder="Filter audit stream..." />
+            <PPInput v-model="searchQuery" placeholder="Filter audit stream..." />
           </div>
 
-          <button @click="generateSampleLog" class="btn btn-secondary">
-            + Emit Event
-          </button>
-          <button @click="clearLogs" class="btn btn-danger">
-            Clear Buffer
-          </button>
+          <PPButton size="small" variant="primary" @click="generateSampleLog">
+            <span>+ Emit Event</span>
+          </PPButton>
+          <PPButton size="small" variant="outline" @click="clearLogs">
+            <span>Clear Buffer</span>
+          </PPButton>
         </div>
       </div>
 
-      <!-- Console Log Terminal Container -->
+      <!-- Console Log Terminal Container with PPSkeleton -->
       <div class="terminal-container glass-panel">
         <div class="terminal-header">
           <div class="dots">
@@ -100,25 +64,82 @@ const generateSampleLog = () => {
             <span class="dot yellow"></span>
             <span class="dot green"></span>
           </div>
-          <span class="terminal-title">mini-portal-cluster-edge-tail: /var/log/audit.json</span>
-          <span class="counter font-mono">{{ filteredLogs.length }} events</span>
+          <span class="terminal-title">cluster-telemetry-output.log — /dev/pts/1</span>
+          <span class="terminal-counter">{{ totalFilteredLogs }} events</span>
         </div>
 
-        <div class="terminal-body font-mono">
-          <div v-if="filteredLogs.length === 0" class="empty-logs">
-            [No telemetry records matched current criteria]
+        <PPSkeleton :loading="isLoading" :animated="true">
+          <template #template>
+            <div class="skeleton-table" style="background: transparent; padding: 16px 20px;">
+              <div v-for="i in 6" :key="i" style="display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+                <PPSkeletonItem variant="text" width="140px" />
+                <PPSkeletonItem variant="rect" width="70px" height="22px" style="border-radius: 6px;" />
+                <PPSkeletonItem variant="text" width="130px" />
+                <PPSkeletonItem variant="text" width="100px" />
+                <PPSkeletonItem variant="text" width="120px" />
+                <PPSkeletonItem variant="text" width="90px" />
+                <PPSkeletonItem variant="text" width="30%" />
+              </div>
+            </div>
+          </template>
+
+          <div class="table-wrapper">
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>TIMESTAMP</th>
+                  <th>LEVEL</th>
+                  <th>ACTION</th>
+                  <th>ACTOR</th>
+                  <th>TARGET COMPONENT</th>
+                  <th>IP ORIGIN</th>
+                  <th>EVENT DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="log in paginatedLogs" :key="log.id" class="log-row">
+                  <td class="font-mono text-dim">{{ log.timestamp }}</td>
+                  <td>
+                    <PPChip
+                      :label="log.level.toUpperCase()"
+                      :color="getBadgeVariant(log.level)"
+                      size="sm"
+                      variant="soft"
+                    />
+                  </td>
+                  <td class="font-bold text-accent">{{ log.action }}</td>
+                  <td class="text-white">{{ log.actor }}</td>
+                  <td class="text-cyan">{{ log.target }}</td>
+                  <td class="font-mono text-dim">{{ log.ip }}</td>
+                  <td class="text-muted">{{ log.details }}</td>
+                </tr>
+                <tr v-if="filteredLogs.length === 0">
+                  <td colspan="7" class="empty-terminal">
+                    No log records match the current stream criteria.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div v-for="log in filteredLogs" :key="log.id" class="log-line">
-            <span class="time">{{ log.timestamp }}</span>
-            <span class="lvl-badge" :class="getBadgeClass(log.level)">{{ log.level.toUpperCase() }}</span>
-            <span class="action">[{{ log.action }}]</span>
-            <span class="actor">&lt;{{ log.actor }}&gt;</span>
-            <span class="target">{{ log.target }}</span>
-            <span class="ip text-muted">({{ log.ip }})</span>
-            <span class="details">{{ log.details }}</span>
+          <!-- Log Pagination Bar -->
+          <div v-if="totalFilteredLogs > pageSize" class="log-pagination-bar">
+            <span class="pagination-summary">
+              Showing <strong>{{ ((currentPage - 1) * pageSize) + 1 }}</strong> to
+              <strong>{{ Math.min(currentPage * pageSize, totalFilteredLogs) }}</strong> of
+              <strong>{{ totalFilteredLogs }}</strong> log entries
+            </span>
+            <PPPagination
+              :total="totalFilteredLogs"
+              :page-size="pageSize"
+              :current-page="currentPage"
+              variant="outline"
+              shape="rounded"
+              size="normal"
+              @update:current-page="(page: number) => currentPage = page"
+            />
           </div>
-        </div>
+        </PPSkeleton>
       </div>
     </div>
   </AdminLayout>
@@ -139,12 +160,15 @@ const generateSampleLog = () => {
   background: #111827;
   border: 1px solid #1f2937;
   border-radius: 14px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.toolbar-left, .toolbar-right {
+.toolbar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .live-pill {
@@ -152,9 +176,9 @@ const generateSampleLog = () => {
   align-items: center;
   gap: 8px;
   background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid #10b981;
   color: #10b981;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
@@ -168,91 +192,67 @@ const generateSampleLog = () => {
 }
 
 .live-pill.pulse .live-dot {
-  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: pulse 1.8s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.95); opacity: 0.7; }
-  50% { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0.7; }
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-.level-filters {
+.level-segment-wrapper :deep(.pp-segment) {
+  background-color: #0f172a !important;
+  border: 1px solid #1f2937 !important;
+  padding: 3px !important;
+}
+
+.level-segment-wrapper :deep(.pp-segment-button) {
+  padding: 5px 12px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  border-radius: 20px !important;
+  letter-spacing: 0.5px !important;
+}
+
+.level-segment-wrapper :deep(.pp-segment-button--active) {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.level-segment-wrapper :deep(.pp-segment-indicator) {
+  background-color: #2563eb !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4) !important;
+}
+
+.toolbar-right {
   display: flex;
-  gap: 6px;
-}
-
-.lvl-btn {
-  background: #1f2937;
-  border: 1px solid #374151;
-  color: #9ca3af;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.lvl-btn.active {
-  background: #3b82f6;
-  color: #fff;
-  border-color: #3b82f6;
+  align-items: center;
+  gap: 12px;
 }
 
 .search-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #0f172a;
-  border: 1px solid #374151;
-  padding: 6px 12px;
-  border-radius: 8px;
+  width: 220px;
 }
 
-.search-box input {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 13px;
-  outline: none;
-}
-
-.btn {
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-secondary {
-  background: #1f2937;
-  border: 1px solid #374151;
-  color: #cbd5e1;
-}
-
-.btn-danger {
-  background: rgba(239, 68, 68, 0.2);
-  border: 1px solid rgba(239, 68, 68, 0.4);
-  color: #fca5a5;
-}
-
-/* Terminal */
 .terminal-container {
   background: #090d16;
   border: 1px solid #1f2937;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .terminal-header {
-  background: #111827;
-  padding: 12px 16px;
+  background: #0f172a;
+  padding: 12px 18px;
+  border-bottom: 1px solid #1f2937;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #1f2937;
 }
 
 .dots {
@@ -265,65 +265,82 @@ const generateSampleLog = () => {
   height: 10px;
   border-radius: 50%;
 }
+
 .dot.red { background: #ef4444; }
 .dot.yellow { background: #f59e0b; }
 .dot.green { background: #10b981; }
 
 .terminal-title {
+  font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   color: #94a3b8;
 }
 
-.counter {
-  font-size: 12px;
+.terminal-counter {
+  font-size: 11px;
   color: #64748b;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.terminal-body {
-  padding: 16px;
-  min-height: 480px;
+.table-wrapper {
+  overflow-x: auto;
   max-height: 600px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
-.log-line {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: background 0.15s;
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
 }
 
-.log-line:hover {
-  background: rgba(255, 255, 255, 0.03);
+.log-table th {
+  background: #0f172a;
+  color: #64748b;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1f2937;
 }
 
-.time { color: #64748b; }
-.action { color: #60a5fa; font-weight: 600; }
-.actor { color: #e2e8f0; }
-.target { color: #c084fc; }
-.ip { color: #475569; }
-.details { color: #cbd5e1; flex: 1; }
-
-.lvl-badge {
-  font-size: 10px;
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-weight: 700;
+.log-row td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(31, 41, 55, 0.5);
 }
-.badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-.badge-warn { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
-.badge-error { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
-.badge-info { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
 
-.empty-logs {
-  color: #475569;
+.log-row:hover {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.text-dim { color: #64748b; }
+.text-accent { color: #818cf8; }
+.text-cyan { color: #38bdf8; }
+.text-white { color: #f8fafc; font-weight: 500; }
+.text-muted { color: #94a3b8; }
+.empty-terminal {
   text-align: center;
-  margin-top: 40px;
+  padding: 40px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.log-pagination-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: #0f172a;
+  border-top: 1px solid #1f2937;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-summary {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.pagination-summary strong {
+  color: #f8fafc;
 }
 </style>

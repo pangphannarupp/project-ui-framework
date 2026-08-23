@@ -1,48 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
+import { usePaymentSetupViewModel } from '../viewmodels/usePaymentSetupViewModel'
 
-const gateways = ref([
-  {
-    id: 'bakong',
-    name: 'Bakong KHQR Universal',
-    status: true,
-    currency: 'KHR & USD',
-    merchantId: 'MCNC_KHQR_99014',
-    fee: '0.00% (National QR)',
-    webhookUrl: 'https://api.miniportal.io/v1/webhooks/bakong-settlement',
-    icon: '🇰🇭'
-  },
-  {
-    id: 'payway',
-    name: 'ABA PayWay Gateway',
-    status: true,
-    currency: 'USD & KHR',
-    merchantId: 'ec44102919_abaprod',
-    fee: '1.20% + $0.10 / txn',
-    webhookUrl: 'https://api.miniportal.io/v1/webhooks/aba-payway',
-    icon: '💳'
-  },
-  {
-    id: 'wing',
-    name: 'Wing Bank Commerce',
-    status: false,
-    currency: 'USD',
-    merchantId: 'WING_BIZ_88301',
-    fee: '0.80%',
-    webhookUrl: 'https://api.miniportal.io/v1/webhooks/wing-notify',
-    icon: '🏦'
-  }
-])
-
-const saveSuccess = ref(false)
-
-const handleSaveSettings = () => {
-  saveSuccess.value = true
-  setTimeout(() => {
-    saveSuccess.value = false
-  }, 3000)
-}
+const {
+  isLoading,
+  gateways,
+  saveSuccess,
+  handleSaveSettings
+} = usePaymentSetupViewModel()
 </script>
 
 <template>
@@ -53,52 +18,87 @@ const handleSaveSettings = () => {
           <h2>Payment Gateways & KHQR Settlement</h2>
           <p>Manage payment merchant credentials, webhook routing, transaction fees, and multi-currency payout rules.</p>
         </div>
-        <button @click="handleSaveSettings" class="btn btn-primary">
-          💾 Save Gateway Configuration
-        </button>
+        <PPButton @click="handleSaveSettings" variant="primary" size="small">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span>Save Gateway Configuration</span>
+        </PPButton>
       </div>
 
       <div v-if="saveSuccess" class="alert-banner">
-        ✅ Payment routing preferences saved and pushed to all active mini apps successfully!
+        <PPChip label="SYNCHRONIZED" color="success" size="sm" variant="soft" />
+        <span>Payment routing preferences saved and pushed to all active mini apps successfully!</span>
       </div>
 
-      <div class="gateways-grid">
-        <div v-for="g in gateways" :key="g.id" class="gateway-card glass-panel">
-          <div class="gateway-header">
-            <div class="gateway-icon">{{ g.icon }}</div>
-            <div class="gateway-info">
-              <h3>{{ g.name }}</h3>
-              <small>{{ g.currency }} • {{ g.fee }}</small>
-            </div>
-            <label class="switch">
-              <input type="checkbox" v-model="g.status" />
-              <span class="slider round"></span>
-            </label>
-          </div>
-
-          <div class="gateway-fields">
-            <div class="field-group">
-              <label>Merchant / Terminal ID</label>
-              <input type="text" v-model="g.merchantId" />
-            </div>
-
-            <div class="field-group">
-              <label>Webhook Callback URL</label>
-              <input type="text" v-model="g.webhookUrl" class="font-mono" />
-            </div>
-
-            <div class="field-group">
-              <label>Secret API Key (Encrypted HSM)</label>
-              <input type="password" value="sk_live_99812903810293810293" />
+      <!-- PPSkeleton Loading State -->
+      <PPSkeleton :loading="isLoading" :animated="true">
+        <template #template>
+          <div class="gateways-grid">
+            <div v-for="i in 3" :key="i" class="skeleton-card" style="padding: 24px; height: 380px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <PPSkeletonItem variant="rect" width="46px" height="46px" style="border-radius: 12px;" />
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <PPSkeletonItem variant="text" width="140px" height="18px" />
+                    <PPSkeletonItem variant="text" width="90px" height="12px" />
+                  </div>
+                </div>
+                <PPSkeletonItem variant="rect" width="48px" height="26px" style="border-radius: 13px;" />
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 20px;">
+                <PPSkeletonItem variant="rect" height="40px" style="border-radius: 8px;" />
+                <PPSkeletonItem variant="rect" height="40px" style="border-radius: 8px;" />
+                <PPSkeletonItem variant="rect" height="40px" style="border-radius: 8px;" />
+              </div>
             </div>
           </div>
+        </template>
 
-          <div class="gateway-footer">
-            <button class="test-btn">⚡ Test Webhook Ping</button>
-            <button class="small-link">View Logs</button>
+        <div class="gateways-grid">
+          <div v-for="g in gateways" :key="g.id" class="gateway-card glass-panel">
+            <div class="gateway-header">
+              <div class="gateway-icon-svg" :style="{ color: g.color, backgroundColor: `${g.color}15`, borderColor: `${g.color}35` }">
+                <svg v-if="g.icon === 'qr-code'" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <svg v-else-if="g.icon === 'card'" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                <svg v-else viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <div class="gateway-info">
+                <h3>{{ g.name }}</h3>
+                <small>{{ g.currency }} • {{ g.fee }}</small>
+              </div>
+              <PPSwitch v-model="g.status" />
+            </div>
+
+            <div class="gateway-fields">
+              <div class="field-group">
+                <label>Merchant / Terminal ID</label>
+                <PPInput v-model="g.merchantId" />
+              </div>
+
+              <div class="field-group">
+                <label>Webhook Callback URL</label>
+                <PPInput v-model="g.webhookUrl" />
+              </div>
+
+              <div class="field-group">
+                <label>Secret API Key (Encrypted HSM)</label>
+                <PPInput type="password" modelValue="sk_live_99812903810293810293" />
+              </div>
+            </div>
+
+            <div class="gateway-footer">
+              <PPButton size="small" variant="outline">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                <span>Test Webhook Ping</span>
+              </PPButton>
+              <RouterLink to="/logs" style="text-decoration:none;">
+                <PPButton size="small" variant="outline">
+                  <span>View Logs</span>
+                </PPButton>
+              </RouterLink>
+            </div>
           </div>
         </div>
-      </div>
+      </PPSkeleton>
     </div>
   </AdminLayout>
 </template>
@@ -118,6 +118,8 @@ const handleSaveSettings = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .header-card h2 {
@@ -139,6 +141,9 @@ const handleSaveSettings = () => {
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .gateways-grid {
@@ -163,12 +168,11 @@ const handleSaveSettings = () => {
   gap: 14px;
 }
 
-.gateway-icon {
-  font-size: 24px;
+.gateway-icon-svg {
   width: 44px;
   height: 44px;
-  background: #1f2937;
   border-radius: 12px;
+  border: 1px solid;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,6 +188,7 @@ const handleSaveSettings = () => {
 }
 
 .gateway-info small {
+  font-size: 12px;
   color: #94a3b8;
 }
 
@@ -205,91 +210,11 @@ const handleSaveSettings = () => {
   font-weight: 500;
 }
 
-.field-group input {
-  background: #0f172a;
-  border: 1px solid #374151;
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 13px;
-  outline: none;
-}
-
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
-}
-
 .gateway-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 14px;
   border-top: 1px solid #1f2937;
-}
-
-.test-btn {
-  background: #1f2937;
-  border: 1px solid #374151;
-  color: #cbd5e1;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.small-link {
-  background: transparent;
-  border: none;
-  color: #60a5fa;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #2563eb, #4f46e5);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Switch */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 44px;
-  height: 24px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #374151;
-  transition: .3s;
-  border-radius: 24px;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .3s;
-  border-radius: 50%;
-}
-input:checked + .slider {
-  background-color: #10b981;
-}
-input:checked + .slider:before {
-  transform: translateX(20px);
 }
 </style>

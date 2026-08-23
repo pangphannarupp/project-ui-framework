@@ -1,24 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
+import { useSettingsViewModel } from '../viewmodels/useSettingsViewModel'
 
-const generalSettings = ref({
-  portalName: 'Mini Portal Management',
-  clusterRegion: 'ap-southeast-1 (Singapore)',
-  cdnDomain: 'https://pangphannarupp.github.io/project-ui-framework',
-  maintenanceMode: false,
-  autoPurgeDays: 30,
-  enforce2FA: true
-})
-
-const isSaved = ref(false)
-
-const handleSave = () => {
-  isSaved.value = true
-  setTimeout(() => {
-    isSaved.value = false
-  }, 2500)
-}
+const {
+  settings,
+  saved,
+  handleSave
+} = useSettingsViewModel()
 </script>
 
 <template>
@@ -26,64 +14,50 @@ const handleSave = () => {
     <div class="settings-view">
       <div class="header-card glass-panel">
         <div>
-          <h2>Portal & Edge Node Preferences</h2>
-          <p>Configure global cluster properties, security boundaries, and telemetry purge policies.</p>
+          <h2>Portal Cluster & Security Policies</h2>
+          <p>Configure portal branding, security authentication protocols, and global logging limits.</p>
         </div>
-        <button @click="handleSave" class="btn btn-primary">
-          💾 Save Portal Settings
-        </button>
+        <PPButton @click="handleSave" variant="primary" size="small">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span>Save Changes</span>
+        </PPButton>
       </div>
 
-      <div v-if="isSaved" class="alert-banner">
-        ✅ System preferences updated successfully!
+      <div v-if="saved" class="alert-banner">
+        <PPChip label="PERSISTED" color="success" size="sm" variant="soft" />
+        <span>Portal settings updated across distributed edge nodes!</span>
       </div>
 
-      <div class="settings-grid">
-        <!-- General Card -->
+      <div class="settings-cards">
         <div class="card glass-panel">
-          <h3>🏢 General Configuration</h3>
+          <h3>General Brand Configuration</h3>
           <div class="form-group">
-            <label>Portal Title</label>
-            <input type="text" v-model="generalSettings.portalName" />
-          </div>
-          <div class="form-group">
-            <label>Primary Deployment CDN</label>
-            <input type="text" v-model="generalSettings.cdnDomain" class="font-mono" />
-          </div>
-          <div class="form-group">
-            <label>Primary Cluster Cloud Region</label>
-            <input type="text" v-model="generalSettings.clusterRegion" />
-          </div>
-        </div>
-
-        <!-- Security Card -->
-        <div class="card glass-panel">
-          <h3>🔒 Security & Authentication</h3>
-          <div class="toggle-row">
-            <div>
-              <strong>Enforce Mandatory 2FA</strong>
-              <p>Require OTP code for all administrators upon login.</p>
-            </div>
-            <label class="switch">
-              <input type="checkbox" v-model="generalSettings.enforce2FA" />
-              <span class="slider round"></span>
-            </label>
+            <label>Console Title</label>
+            <PPInput v-model="settings.portalName" />
           </div>
 
           <div class="toggle-row">
             <div>
-              <strong>Global Maintenance Mode</strong>
-              <p>Temporarily lock non-admin access to all 30 mini apps.</p>
+              <strong>Developer Sandbox Testing Mode</strong>
+              <p>Allow unverified local mini apps to mount without cryptographic signature checks.</p>
             </div>
-            <label class="switch">
-              <input type="checkbox" v-model="generalSettings.maintenanceMode" />
-              <span class="slider round"></span>
-            </label>
+            <PPSwitch v-model="settings.sandboxMode" />
+          </div>
+        </div>
+
+        <div class="card glass-panel">
+          <h3>Authentication & Single Sign-On</h3>
+          <div class="form-group">
+            <label>Identity Provider</label>
+            <PPInput v-model="settings.ssoProvider" />
           </div>
 
-          <div class="form-group">
-            <label>Audit Log Retention Window (Days)</label>
-            <input type="number" v-model="generalSettings.autoPurgeDays" />
+          <div class="toggle-row">
+            <div>
+              <strong>Enforce Hardware Multi-Factor Authentication (MFA)</strong>
+              <p>Require FIDO2 WebAuthn / TOTP authenticators for all operator accounts.</p>
+            </div>
+            <PPSwitch v-model="settings.enforceMfa" />
           </div>
         </div>
       </div>
@@ -106,6 +80,8 @@ const handleSave = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .header-card h2 {
@@ -126,13 +102,15 @@ const handleSave = () => {
   padding: 12px 16px;
   border-radius: 10px;
   font-size: 13px;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.settings-grid {
+.settings-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 24px;
+  gap: 20px;
 }
 
 .card {
@@ -142,13 +120,12 @@ const handleSave = () => {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .card h3 {
   font-size: 16px;
   color: #fff;
-  margin-bottom: 4px;
 }
 
 .form-group {
@@ -158,89 +135,28 @@ const handleSave = () => {
 }
 
 .form-group label {
-  font-size: 13px;
+  font-size: 12px;
   color: #cbd5e1;
-  font-weight: 500;
-}
-
-.form-group input {
-  background: #0f172a;
-  border: 1px solid #374151;
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 13px;
-  outline: none;
-}
-
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
 }
 
 .toggle-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #1f2937;
+  padding-top: 14px;
+  border-top: 1px solid #1f2937;
+  gap: 16px;
 }
 
 .toggle-row strong {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   color: #fff;
 }
 
 .toggle-row p {
   font-size: 12px;
   color: #94a3b8;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #2563eb, #4f46e5);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Switch */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 44px;
-  height: 24px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #374151;
-  transition: .3s;
-  border-radius: 24px;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .3s;
-  border-radius: 50%;
-}
-input:checked + .slider {
-  background-color: #10b981;
-}
-input:checked + .slider:before {
-  transform: translateX(20px);
+  margin-top: 2px;
 }
 </style>

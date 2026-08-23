@@ -1,26 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
-import { mockUsers, type PortalUser } from '../data/mockData'
+import { useUsersViewModel } from '../viewmodels/useUsersViewModel'
 
-const users = ref<PortalUser[]>([...mockUsers])
-const searchQuery = ref('')
-const selectedRole = ref('All')
-
-const roles = ['All', 'Super Admin', 'Operator', 'Developer', 'Auditor']
-
-const filteredUsers = computed(() => {
-  return users.value.filter(u => {
-    const matchRole = selectedRole.value === 'All' || u.role === selectedRole.value
-    const matchSearch = u.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-                        u.email.toLowerCase().includes(searchQuery.value.toLowerCase())
-    return matchRole && matchSearch
-  })
-})
-
-const toggleUserStatus = (user: PortalUser) => {
-  user.status = user.status === 'active' ? 'suspended' : 'active'
-}
+const {
+  isLoading,
+  searchQuery,
+  filteredUsers,
+  toggleUserStatus
+} = useUsersViewModel()
 </script>
 
 <template>
@@ -33,59 +20,91 @@ const toggleUserStatus = (user: PortalUser) => {
         </div>
         <div class="header-actions">
           <div class="search-box">
-            <span>🔍</span>
-            <input type="text" v-model="searchQuery" placeholder="Search team members..." />
+            <PPInput v-model="searchQuery" placeholder="Search team members..." />
           </div>
-          <button class="btn btn-primary">+ Invite Team Member</button>
+          <PPButton variant="filled">
+            <span>+ Invite Team Member</span>
+          </PPButton>
         </div>
       </div>
 
       <div class="card glass-panel">
-        <div class="table-container">
-          <table class="portal-table">
-            <thead>
-              <tr>
-                <th>USER</th>
-                <th>ROLE</th>
-                <th>STATUS</th>
-                <th>MANAGED APPS</th>
-                <th>LAST LOGIN</th>
-                <th>ACTIONS</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="u in filteredUsers" :key="u.id">
-                <td>
-                  <div class="user-cell">
-                    <img :src="u.avatar" class="avatar-cell" />
-                    <div>
-                      <strong>{{ u.name }}</strong>
-                      <small class="text-muted">{{ u.email }}</small>
+        <!-- PPSkeleton Loading State -->
+        <PPSkeleton :loading="isLoading" :animated="true">
+          <template #template>
+            <div class="skeleton-table">
+              <div v-for="i in 5" :key="i" style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                <div style="display: flex; align-items: center; gap: 12px; width: 30%;">
+                  <PPSkeletonItem variant="circle" width="36px" height="36px" />
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 4px;">
+                    <PPSkeletonItem variant="text" width="70%" />
+                    <PPSkeletonItem variant="text" width="45%" height="12px" />
+                  </div>
+                </div>
+                <PPSkeletonItem variant="rect" width="80px" height="24px" style="border-radius: 6px;" />
+                <PPSkeletonItem variant="rect" width="60px" height="24px" style="border-radius: 6px;" />
+                <PPSkeletonItem variant="text" width="100px" />
+                <PPSkeletonItem variant="text" width="90px" />
+                <PPSkeletonItem variant="rect" width="120px" height="28px" style="border-radius: 6px;" />
+              </div>
+            </div>
+          </template>
+
+          <div class="table-container">
+            <table class="portal-table">
+              <thead>
+                <tr>
+                  <th>USER</th>
+                  <th>ROLE</th>
+                  <th>STATUS</th>
+                  <th>MANAGED APPS</th>
+                  <th>LAST LOGIN</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="u in filteredUsers" :key="u.id">
+                  <td>
+                    <div class="user-cell">
+                      <PPAvatar :src="u.avatar" :name="u.name" size="sm" />
+                      <div>
+                        <strong>{{ u.name }}</strong>
+                        <small class="text-muted block">{{ u.email }}</small>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <span class="role-badge" :class="u.role.toLowerCase().replace(' ', '-')">
-                    {{ u.role }}
-                  </span>
-                </td>
-                <td>
-                  <span class="status-pill" :class="u.status">{{ u.status }}</span>
-                </td>
-                <td><strong>{{ u.assignedApps }}</strong> mini apps</td>
-                <td class="font-mono text-muted">{{ u.lastLogin }}</td>
-                <td>
-                  <div class="actions">
-                    <button @click="toggleUserStatus(u)" class="small-btn" :class="{ 'danger': u.status === 'active' }">
-                      {{ u.status === 'active' ? 'Suspend' : 'Activate' }}
-                    </button>
-                    <button class="small-btn">Edit Roles</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                  </td>
+                  <td>
+                    <PPChip :label="u.role" />
+                  </td>
+                  <td>
+                    <PPChip
+                      :label="u.status.toUpperCase()"
+                      :color="u.status === 'active' ? 'success' : 'danger'"
+                      size="sm"
+                      variant="soft"
+                    />
+                  </td>
+                  <td><strong>{{ u.assignedApps }}</strong> mini apps</td>
+                  <td class="font-mono text-muted">{{ u.lastLogin }}</td>
+                  <td>
+                    <div class="actions">
+                      <PPButton
+                        size="sm"
+                        :variant="u.status === 'active' ? 'outline' : 'filled'"
+                        @click="toggleUserStatus(u)"
+                      >
+                        <span>{{ u.status === 'active' ? 'Suspend' : 'Activate' }}</span>
+                      </PPButton>
+                      <PPButton size="sm" variant="outline">
+                        <span>Edit Roles</span>
+                      </PPButton>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </PPSkeleton>
       </div>
     </div>
   </AdminLayout>
@@ -106,6 +125,8 @@ const toggleUserStatus = (user: PortalUser) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .header-text h2 {
@@ -121,42 +142,19 @@ const toggleUserStatus = (user: PortalUser) => {
 
 .header-actions {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
 .search-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #0f172a;
-  border: 1px solid #374151;
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-
-.search-box input {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 13px;
-  outline: none;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #2563eb, #4f46e5);
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
+  width: 240px;
 }
 
 .card {
   background: #111827;
   border: 1px solid #1f2937;
   border-radius: 16px;
-  padding: 20px;
+  overflow: hidden;
 }
 
 .table-container {
@@ -171,13 +169,15 @@ const toggleUserStatus = (user: PortalUser) => {
 
 .portal-table th {
   font-size: 11px;
+  letter-spacing: 0.5px;
   color: #64748b;
-  padding: 12px;
+  padding: 14px 18px;
   border-bottom: 1px solid #1f2937;
+  background: #0d1321;
 }
 
 .portal-table td {
-  padding: 14px 12px;
+  padding: 16px 18px;
   font-size: 13px;
   border-bottom: 1px solid #1f2937;
   color: #e2e8f0;
@@ -189,60 +189,16 @@ const toggleUserStatus = (user: PortalUser) => {
   gap: 12px;
 }
 
-.avatar-cell {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
+.text-muted {
+  color: #94a3b8;
 }
 
-.user-cell strong {
+.block {
   display: block;
-  font-size: 14px;
 }
-
-.role-badge {
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 600;
-  background: #1f2937;
-  color: #cbd5e1;
-}
-
-.role-badge.super-admin {
-  background: rgba(99, 102, 241, 0.2);
-  color: #a5b4fc;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-}
-
-.status-pill {
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 12px;
-  text-transform: capitalize;
-}
-
-.status-pill.active { background: rgba(16, 185, 129, 0.15); color: #10b981; }
-.status-pill.suspended { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
 
 .actions {
   display: flex;
   gap: 8px;
-}
-
-.small-btn {
-  padding: 5px 10px;
-  font-size: 12px;
-  background: #1f2937;
-  border: 1px solid #374151;
-  color: #cbd5e1;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.small-btn.danger {
-  color: #f87171;
-  border-color: rgba(239, 68, 68, 0.4);
 }
 </style>

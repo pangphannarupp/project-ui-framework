@@ -8,6 +8,8 @@ import PaymentSetupView from '../views/PaymentSetupView.vue'
 import PushManagementView from '../views/PushManagementView.vue'
 import LogViewerView from '../views/LogViewerView.vue'
 import SettingsView from '../views/SettingsView.vue'
+import CategoriesView from '../views/CategoriesView.vue'
+import TagsView from '../views/TagsView.vue'
 
 const routes = [
   {
@@ -28,6 +30,16 @@ const routes = [
     path: '/mini-apps',
     name: 'MiniApps',
     component: MiniAppsView
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: CategoriesView
+  },
+  {
+    path: '/tags',
+    name: 'Tags',
+    component: TagsView
   },
   {
     path: '/users',

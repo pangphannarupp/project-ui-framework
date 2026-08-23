@@ -5,7 +5,9 @@ description: "Rules for Flutter development within flutter_ui_framework and flut
 
 # Flutter & Dart Rules
 
-1. **State Management**: Prefer stateless widgets where possible. For stateful logic in samples, ensure state is handled cleanly.
+1. **State Management & Architecture (STRICT STATEFUL VS STATELESS SEPARATION)**:
+   - All screens and complex layouts must clearly separate into **Stateful Containers / Views** (managing controller state, lifecycle, Streams/ChangeNotifiers) and **Stateless Presentational Widgets** (`StatelessWidget` receiving typed data and invoking VoidCallback / Function callbacks).
+   - Prefer lightweight `StatelessWidget` for all UI subcomponents, cards, rows, badges, and list items.
 2. **Imports**: Prefer absolute imports for files within `lib/`. Avoid circular dependencies.
 3. **UI Framework Usage (STRICT REQUIREMENT)**: All sample apps and demo pages in `flutter_sample/` MUST utilize components from `flutter_ui_framework` (e.g., `PpButton`, `PpTextField`, `PpCard`, `PpBottomSheet`, `PpColorPicker`, `PpPinDots`, `PpKeypad`, `PpProgressGauge`, `PpSegment`, `PpBottomNav`, `PpAppBar`, etc.) rather than plain raw Flutter widgets wherever a framework component exists.
 4. **Documentation**: Add standard doc comments (`///`) to all public components, parameters, and classes in the `flutter_ui_framework`.

@@ -12,7 +12,6 @@ import PPSelect from './components/PPSelect.vue'
 import PPFileUpload from './components/PPFileUpload.vue'
 import PPImageCropper from './components/PPImageCropper.vue'
 import PPImagePreview from './components/PPImagePreview.vue'
-import PPPdfViewer from './components/PPPdfViewer.vue'
 import PPFilePreview from './components/PPFilePreview.vue'
 import PPTransferList from './components/PPTransferList.vue'
 import PPAutocomplete from './components/PPAutocomplete.vue'
@@ -232,7 +231,6 @@ export {
   PPFileUpload,
   PPImageCropper,
   PPImagePreview,
-  PPPdfViewer,
   PPFilePreview,
   PPTransferList,
   PPAutocomplete, 
@@ -409,7 +407,6 @@ export default {
     app.component('PPFileUpload', PPFileUpload)
     app.component('PPImageCropper', PPImageCropper)
     app.component('PPImagePreview', PPImagePreview)
-    app.component('PPPdfViewer', PPPdfViewer)
     app.component('PPFilePreview', PPFilePreview)
     app.component('PPTransferList', PPTransferList)
     app.component('PPAutocomplete', PPAutocomplete)

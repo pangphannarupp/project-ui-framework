@@ -14,11 +14,6 @@
           <PPImagePreview :src="fileUrl" />
         </template>
         
-        <!-- PDF Preview -->
-        <template v-else-if="isPdf">
-          <PPPdfViewer :src="fileUrl" :sidebarPosition="sidebarPosition" />
-        </template>
-        
         <!-- Unsupported File -->
         <template v-else>
           <div class="unsupported-message">
@@ -37,7 +32,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, onUnmounted } from 'vue';
 import PPImagePreview from './PPImagePreview.vue';
-import PPPdfViewer from './PPPdfViewer.vue';
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
@@ -54,14 +48,6 @@ const isImage = computed(() => {
   if (props.file instanceof File) return props.file.type?.startsWith('image/');
   if (props.file.file instanceof File) return props.file.file.type?.startsWith('image/');
   if (props.file.type) return props.file.type.startsWith('image/');
-  return false;
-});
-
-const isPdf = computed(() => {
-  if (!props.file) return false;
-  if (props.file instanceof File) return props.file.type === 'application/pdf';
-  if (props.file.file instanceof File) return props.file.file.type === 'application/pdf';
-  if (props.file.type) return props.file.type === 'application/pdf';
   return false;
 });
 

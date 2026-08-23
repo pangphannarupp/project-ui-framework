@@ -36,8 +36,13 @@ withDefaults(defineProps<{
 }
 
 .pp-skeleton-template-container.is-animated :deep(.pp-skeleton-item) {
-  background: #f0f0f0;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: var(--pp-skeleton-bg, #f0f0f0);
+  background: linear-gradient(
+    90deg,
+    var(--pp-skeleton-bg, #f0f0f0) 25%,
+    var(--pp-skeleton-highlight, #e0e0e0) 50%,
+    var(--pp-skeleton-bg, #f0f0f0) 75%
+  );
   background-size: 200% 100%;
   animation: pp-shimmer 1.5s infinite;
 }

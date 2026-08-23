@@ -20,13 +20,12 @@ export default defineConfig({
       fileName: (format) => `wc/ui-framework-wc.${format}.js`
     },
     rollupOptions: {
-      external: ['vue', '@ionic/vue', 'ionicons/icons', 'pdfjs-dist', 'pdfjs-dist/build/pdf.worker.mjs?url'],
+      external: ['vue', '@ionic/vue', 'ionicons/icons'],
       output: {
         globals: {
           vue: 'Vue',
           '@ionic/vue': 'IonicVue',
-          'ionicons/icons': 'IoniconsIcons',
-          'pdfjs-dist': 'pdfjsLib'
+          'ionicons/icons': 'IoniconsIcons'
         }
       }
     }

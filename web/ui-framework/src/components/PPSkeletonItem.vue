@@ -27,7 +27,7 @@ const computedStyle = computed(() => {
 
 <style scoped>
 .pp-skeleton-item {
-  background: #f0f0f0; /* Fallback without animation */
+  background: var(--pp-skeleton-bg, #f0f0f0);
   flex-shrink: 0;
 }
 
