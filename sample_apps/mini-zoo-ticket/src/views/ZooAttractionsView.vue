@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import ZooHeader from '../components/ZooHeader.vue';
 import { ZOO_ZONES, ANIMAL_LIST, DAILY_SHOWS } from '../data/animals';
 
+const router = useRouter()
 const selectedZoneFilter = ref('ALL');
 const searchQuery = ref('');
 

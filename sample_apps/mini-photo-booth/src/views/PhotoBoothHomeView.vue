@@ -133,6 +133,7 @@ import { FRAME_THEMES } from '../data/photoboothData'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = usePhotoBoothStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

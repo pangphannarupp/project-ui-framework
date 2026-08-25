@@ -183,6 +183,7 @@ import { useI18n } from '../i18n'
 import type { LaundryMachine } from '../types/laundry'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useLaundryStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

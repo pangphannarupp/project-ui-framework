@@ -47,6 +47,7 @@ import { PPButton } from '@phanna/ui-framework'
 import { usePhotoBoothStore } from '../store/photoboothStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = usePhotoBoothStore()
 const { t } = useI18n()
 </script>

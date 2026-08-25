@@ -97,6 +97,7 @@ import { useI18n } from '../i18n'
 import type { ClinicService } from '../types/appointment'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useAppointmentStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

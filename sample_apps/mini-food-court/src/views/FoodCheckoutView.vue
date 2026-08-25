@@ -90,6 +90,7 @@ import { useI18n } from '../i18n'
 import type { FoodItem } from '../types/food'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useFoodStore()
 const { t, currentLanguage } = useI18n()

@@ -72,6 +72,7 @@ import { useWashStore } from '../store/washStore'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useWashStore()
 const { t } = useI18n()

@@ -62,6 +62,7 @@ import { PPButton } from '@phanna/ui-framework'
 import { useClinicStore } from '../store/clinicStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = useClinicStore()
 const { t, currentLanguage } = useI18n()
 

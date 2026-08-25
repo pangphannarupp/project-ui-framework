@@ -44,6 +44,7 @@ import { PPQRCode, PPButton } from '@phanna/ui-framework'
 import { useScooterStore } from '../store/scooterStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = useScooterStore()
 const { t } = useI18n()
 

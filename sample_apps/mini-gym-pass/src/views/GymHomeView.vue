@@ -169,6 +169,7 @@ import { useI18n } from '../i18n'
 import type { GymPass } from '../types/gym'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useGymStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

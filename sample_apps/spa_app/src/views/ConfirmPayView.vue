@@ -93,6 +93,7 @@ import { PPAlert, PPConfirm } from '@phanna/ui-framework'
 import { services } from '../data/mockData'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 
 const isPaying = ref(false)

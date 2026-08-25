@@ -172,6 +172,7 @@ import { COFFEE_ITEMS } from '../data/coffeeData'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useCoffeeStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

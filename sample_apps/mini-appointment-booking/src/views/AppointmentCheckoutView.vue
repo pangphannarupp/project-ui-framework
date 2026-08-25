@@ -108,6 +108,7 @@ import { TIME_SLOTS } from '../data/appointmentData'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useAppointmentStore()
 const { t } = useI18n()

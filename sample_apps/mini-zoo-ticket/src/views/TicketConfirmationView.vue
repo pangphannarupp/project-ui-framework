@@ -86,6 +86,7 @@ import { useI18n } from '../i18n'
 import type { BookedTicketRecord } from '../types/zoo'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const route = useRoute()
 const store = useZooStore()
 const { t } = useI18n()

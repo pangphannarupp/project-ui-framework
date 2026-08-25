@@ -116,6 +116,7 @@ import { useLaundryStore } from '../store/laundryStore'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useLaundryStore()
 const { t } = useI18n()

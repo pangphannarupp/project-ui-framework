@@ -87,6 +87,7 @@ import { useEVStore } from '../store/evStore'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useEVStore()
 const { t } = useI18n()

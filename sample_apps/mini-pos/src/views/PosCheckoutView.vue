@@ -119,6 +119,7 @@ import type { Product } from '../data/mockData'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const { cart, totalCount, subtotal, tax, grandTotal, addToCart, removeFromCart, clearCart } = usePosStore()
 const { t, currentLanguage } = useI18n()

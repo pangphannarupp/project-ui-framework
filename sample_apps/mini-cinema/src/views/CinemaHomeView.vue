@@ -137,6 +137,7 @@ import { useI18n } from '../i18n'
 import type { MovieItem, ShowtimeSlot } from '../types/cinema'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useCinemaStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

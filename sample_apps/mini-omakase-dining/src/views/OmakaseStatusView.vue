@@ -53,6 +53,7 @@ import { PPQRCode, PPButton } from '@phanna/ui-framework'
 import { useOmakaseStore } from '../store/omakaseStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = useOmakaseStore()
 const { t } = useI18n()
 

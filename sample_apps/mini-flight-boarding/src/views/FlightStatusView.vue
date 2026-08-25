@@ -69,6 +69,7 @@ import { useRouter } from 'vue-router'
 import { PPQRCode, PPButton } from '@phanna/ui-framework'
 import { useFlightStore } from '../store/flightStore'
 
+const router = useRouter()
 const store = useFlightStore()
 
 const latest = computed(() => store.state.latestPass || store.state.boardingPasses[0])

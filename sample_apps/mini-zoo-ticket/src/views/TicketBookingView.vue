@@ -7,6 +7,7 @@ import AddonSelector from '../components/AddonSelector.vue';
 import { TIME_SLOTS } from '../data/tickets';
 import { useZooStore } from '../store/zooStore';
 
+const router = useRouter()
 const store = useZooStore();
 
 const promoInput = ref('');

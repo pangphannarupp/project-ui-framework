@@ -47,6 +47,7 @@ import { PPButton } from '@phanna/ui-framework'
 import { useGolfStore } from '../store/golfStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = useGolfStore()
 const { t } = useI18n()
 </script>

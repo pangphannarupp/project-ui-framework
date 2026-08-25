@@ -44,6 +44,7 @@ import { PPButton } from '@phanna/ui-framework'
 import { useFlightStore } from '../store/flightStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = useFlightStore()
 const { t } = useI18n()
 </script>

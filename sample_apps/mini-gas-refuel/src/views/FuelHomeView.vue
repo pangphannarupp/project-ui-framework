@@ -149,6 +149,7 @@ import { FUEL_PUMPS, FUEL_GRADES } from '../data/fuelData'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useFuelStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

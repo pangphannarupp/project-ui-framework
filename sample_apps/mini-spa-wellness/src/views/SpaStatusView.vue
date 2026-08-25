@@ -53,6 +53,7 @@ import { PPQRCode, PPButton } from '@phanna/ui-framework'
 import { useSpaStore } from '../store/spaStore'
 import { useI18n } from '../i18n'
 
+const router = useRouter()
 const store = useSpaStore()
 const { t, currentLanguage } = useI18n()
 

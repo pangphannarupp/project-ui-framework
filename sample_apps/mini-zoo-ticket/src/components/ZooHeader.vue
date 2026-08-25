@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useZooStore } from '../store/zooStore';
 
+const router = useRouter()
 const route = useRoute();
 const store = useZooStore();
 

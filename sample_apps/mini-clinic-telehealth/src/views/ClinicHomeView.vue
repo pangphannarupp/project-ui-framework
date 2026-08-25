@@ -165,6 +165,7 @@ import { DOCTORS_LIST } from '../data/clinicData'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useClinicStore()
 const { t, currentLanguage, currentLangObj, supportedLanguages, setLanguage } = useI18n()

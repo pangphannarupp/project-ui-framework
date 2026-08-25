@@ -86,6 +86,7 @@ import { useParcelStore } from '../store/parcelStore'
 import { useI18n } from '../i18n'
 import '@/lib/mini.app.lib.js'
 
+const router = useRouter()
 const MiniApp = (window as any).MiniApp
 const store = useParcelStore()
 const { t } = useI18n()
