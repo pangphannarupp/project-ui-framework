@@ -237,6 +237,10 @@ const handlePay = async () => {
     amount: store.grandTotal.value,
     currency: 'USD',
     partnerCode: 'WILD_SAFARI_ZOO',
+    appId: "0000000016",
+    apiKey: "pk_live_0000000016_1",
+    secretKey: "sk_live_561756573A6B4777907EDF6932131B93",
+    merchantId: "0000000001",
     metadata: {
       visitDate: store.state.selectedVisitDate,
       timeSlot: store.state.selectedTimeSlot,

@@ -93,6 +93,10 @@ const handlePay = async () => {
     amount: store.state.selectedTier.price,
     currency: 'USD',
     partnerCode: 'ULTRA_GLOSS_CARWASH',
+    appId: "0000000016",
+    apiKey: "pk_live_0000000016_1",
+    secretKey: "sk_live_561756573A6B4777907EDF6932131B93",
+    merchantId: "0000000001",
     metadata: {
       plate: store.state.plateNumber,
       tier: store.state.selectedTier.name.en

@@ -5,12 +5,9 @@
 (function (global, factory) {
   if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = factory(global);
-    global.MiniApp = module.exports; // Force attach to window for Vite
   } else if (typeof define === 'function' && define.amd) {
     define([], function () {
-      var app = factory(global);
-      global.MiniApp = app;
-      return app;
+      return factory(global);
     });
   } else {
     global.MiniApp = factory(global);
@@ -23,6 +20,8 @@
     MOBILE_TOPUP: 'MOBILE_TOPUP',
     BILL_PAYMENT: 'BILL_PAYMENT',
     KHQR_PURCHASE: 'KHQR_PURCHASE',
+    KHQR_PERSONAL: 'KHQR_PERSONAL',
+    PERSONAL_PAYMENT: 'PERSONAL_PAYMENT',
     CARD_PAYMENT: 'CARD_PAYMENT'
   };
 
@@ -291,7 +290,12 @@
           amount: payload.amount,
           currency: String(payload.currency).toUpperCase(),
           partnerCode: payload.partnerCode,
-          metadata: payload.metadata || {}
+          metadata: payload.metadata || {},
+          appId: payload.appId,
+          apiKey: payload.apiKey || payload.appKey,
+          secret: payload.secret || payload.secretKey,
+          merchantId: payload.merchantId,
+          merchantName: payload.merchantName
         };
 
         const callbackName = createUniqueCallbackName('payment');
@@ -437,8 +441,227 @@
       } else {
         this.exit(false);
       }
+    },
+
+    /**
+     * Share content (text, URL, title) using native Intent Chooser / Share Sheet
+     * @param {Object|string} options - Share options { text: string, title?: string, subject?: string, url?: string } or plain text
+     * @returns {Promise<Object>}
+     */
+    share: function (options) {
+      const payload = typeof options === 'string' ? { text: options } : (options || {});
+      const jsonString = JSON.stringify(payload);
+
+      return new Promise(function (resolve, reject) {
+        try {
+          // 1. Android SuperApp Interface
+          if (window.SuperApp && typeof window.SuperApp.share === 'function') {
+            const res = window.SuperApp.share(jsonString);
+            return resolve({ status: 'SUCCESS', result: res });
+          }
+
+          // 2. iOS WKWebView MessageHandler
+          if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.share
+          ) {
+            window.webkit.messageHandlers.share.postMessage(payload);
+            return resolve({ status: 'SUCCESS' });
+          }
+
+          // 3. Web Share API fallback
+          if (typeof navigator !== 'undefined' && navigator.share) {
+            navigator.share({
+              title: payload.title || '',
+              text: payload.text || '',
+              url: payload.url || ''
+            }).then(function () {
+              resolve({ status: 'SUCCESS' });
+            }).catch(function (err) {
+              reject({ status: 'ERROR', errorMessage: err && err.message });
+            });
+            return;
+          }
+
+          // 4. Fallback alert / clipboard simulation
+          console.warn('[MiniApp JS SDK] Native share not available, fallback simulation.');
+          resolve({ status: 'SUCCESS', simulation: true });
+        } catch (error) {
+          reject({ status: 'ERROR', errorMessage: error && error.message });
+        }
+      });
+    },
+
+    /**
+     * Open external URL or deep link in the device default browser or external application
+     * @param {string} url - The URL or deep link to open
+     * @returns {Promise<Object>}
+     */
+    openExternal: function (url) {
+      return new Promise(function (resolve, reject) {
+        if (!url || typeof url !== 'string') {
+          return reject({ status: 'ERROR', errorMessage: 'URL must be a non-empty string' });
+        }
+
+        try {
+          // 1. Android SuperApp Interface
+          if (window.SuperApp && typeof window.SuperApp.openExternal === 'function') {
+            window.SuperApp.openExternal(url);
+            return resolve({ status: 'SUCCESS' });
+          }
+
+          // 2. iOS WKWebView MessageHandler
+          if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.openExternal
+          ) {
+            window.webkit.messageHandlers.openExternal.postMessage({ url: url });
+            return resolve({ status: 'SUCCESS' });
+          }
+
+          // 3. Standard Browser window.open fallback
+          window.open(url, '_blank');
+          resolve({ status: 'SUCCESS' });
+        } catch (error) {
+          reject({ status: 'ERROR', errorMessage: error && error.message });
+        }
+      });
+    },
+
+    /**
+     * Alias for openExternal
+     * @param {string} url
+     */
+    openBrowser: function (url) {
+      return this.openExternal(url);
+    },
+
+    /**
+     * Get consent status and terms for this mini app
+     * @param {Object} [options] - { version?: number, userId?: string, appId?: string }
+     * @returns {Promise<Object>} Resolves with { userId, appId, version, term, isAccepted, acceptedAt }
+     */
+    getConsent: function (options) {
+      return new Promise(function (resolve, reject) {
+        try {
+          const optionsStr = options ? JSON.stringify(options) : '';
+
+          // 1. Android SuperApp Interface
+          if (window.SuperApp && typeof window.SuperApp.getConsent === 'function') {
+            const raw = window.SuperApp.getConsent(optionsStr);
+            try {
+              const parsed = JSON.parse(raw);
+              if (parsed.status === 'ERROR') {
+                return reject(parsed);
+              }
+              return resolve(parsed.data || parsed);
+            } catch (e) {
+              return resolve(raw);
+            }
+          }
+
+          // 2. iOS WKWebView MessageHandler
+          if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.getConsent
+          ) {
+            const callbackName = createUniqueCallbackName('getConsent');
+            window[callbackName] = function (res) {
+              delete window[callbackName];
+              if (res && res.status === 'ERROR') {
+                return reject(res);
+              }
+              return resolve((res && res.data) || res);
+            };
+            window.webkit.messageHandlers.getConsent.postMessage({
+              options: options || {},
+              callback: callbackName
+            });
+            return;
+          }
+
+          // 3. Fallback mock
+          resolve({
+            userId: (options && options.userId) || 'guest',
+            appId: (options && options.appId) || 'mock_app',
+            version: (options && options.version) || 1,
+            term: 'Terms of service accepted.',
+            isAccepted: true
+          });
+        } catch (error) {
+          reject({ status: 'ERROR', errorMessage: error && error.message });
+        }
+      });
+    },
+
+    /**
+     * Update user consent acceptance or rejection
+     * @param {Object} payload - { appId?: string, version: number, userId?: string, isAccepted: boolean }
+     * @returns {Promise<Object>}
+     */
+    updateConsent: function (payload) {
+      return new Promise(function (resolve, reject) {
+        if (!payload || typeof payload !== 'object') {
+          payload = { isAccepted: true, version: 1 };
+        }
+
+        try {
+          const payloadStr = JSON.stringify(payload);
+
+          // 1. Android SuperApp Interface
+          if (window.SuperApp && typeof window.SuperApp.updateConsent === 'function') {
+            const raw = window.SuperApp.updateConsent(payloadStr);
+            try {
+              const parsed = JSON.parse(raw);
+              if (parsed.status === 'ERROR') {
+                return reject(parsed);
+              }
+              return resolve(parsed);
+            } catch (e) {
+              return resolve({ status: 'SUCCESS', raw: raw });
+            }
+          }
+
+          // 2. iOS WKWebView MessageHandler
+          if (
+            window.webkit &&
+            window.webkit.messageHandlers &&
+            window.webkit.messageHandlers.updateConsent
+          ) {
+            const callbackName = createUniqueCallbackName('updateConsent');
+            window[callbackName] = function (res) {
+              delete window[callbackName];
+              if (res && res.status === 'ERROR') {
+                return reject(res);
+              }
+              return resolve(res || { status: 'SUCCESS' });
+            };
+            window.webkit.messageHandlers.updateConsent.postMessage({
+              payload: payload,
+              callback: callbackName
+            });
+            return;
+          }
+
+          // 3. Fallback mock
+          resolve({
+            status: 'SUCCESS',
+            appId: payload.appId || 'mock_app',
+            version: payload.version || 1,
+            isAccepted: payload.isAccepted !== false,
+            message: 'Consent saved locally'
+          });
+        } catch (error) {
+          reject({ status: 'ERROR', errorMessage: error && error.message });
+        }
+      });
     }
   };
 
   return MiniApp;
 });
+
+

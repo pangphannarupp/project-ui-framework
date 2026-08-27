@@ -2,15 +2,15 @@
   <div class="section">
     <h3 class="section-title">Available Add-ons</h3>
     <div class="horizontal-scroll">
-      <div class="add-on-card" @click="$emit('purchase', 'Data Pack 1')">
+      <div class="add-on-card" @click="$emit('purchase', { name: 'Data Pack 1', price: 1.00 })">
         <div class="add-on-name">Data Pack 1</div>
         <div class="add-on-price"><span class="price-green">1$</span> / 7 Days</div>
       </div>
-      <div class="add-on-card" @click="$emit('purchase', 'Data Pack 1.5')">
+      <div class="add-on-card" @click="$emit('purchase', { name: 'Data Pack 1.5', price: 1.50 })">
         <div class="add-on-name">Data Pack 1.5</div>
         <div class="add-on-price"><span class="price-green">1.5$</span> / 7 Days</div>
       </div>
-      <div class="add-on-card" @click="$emit('purchase', 'Data Pack 6')">
+      <div class="add-on-card" @click="$emit('purchase', { name: 'Data Pack 6', price: 6.00 })">
         <div class="add-on-name">Data Pack 6</div>
         <div class="add-on-price"><span class="price-green">6$</span> / 30 Days</div>
       </div>
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 defineEmits<{
-  (e: 'purchase', packName: string): void;
+  (e: 'purchase', pack: { name: string, price: number }): void;
 }>();
 </script>
 

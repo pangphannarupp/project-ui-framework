@@ -145,6 +145,10 @@ const pay = async () => {
       amount: service.value.price,
       currency: 'USD',
       partnerCode: 'ANANTARA_SPA',
+    appId: "0000000016",
+    apiKey: "pk_live_0000000016_1",
+    secretKey: "sk_live_561756573A6B4777907EDF6932131B93",
+    merchantId: "0000000001",
       metadata: {
         orderId: 'SPA_ORD_' + Date.now(),
         serviceId: service.value.id,

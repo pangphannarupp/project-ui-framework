@@ -60,18 +60,22 @@ const alertType = ref<'success' | 'failed'>('success');
 const alertTitle = ref('');
 const alertMessage = ref('');
 
-const handlePurchase = async (packName: string) => {
+const handlePurchase = async (pack: { name: string, price: number }) => {
   try {
     const result = await MiniApp.requestPayment({
         serviceType: MiniApp.ServiceType.KHQR_PURCHASE,
         prepayId: "PREPAY_" + Date.now(),
-        amount: 10.00,
+        amount: pack.price,
         currency: "USD",
-        partnerCode: "METFONE",
+        partnerCode: "0000000009",
+        appId: "0000000016",
+        apiKey: "pk_live_0000000016_1",
+        secretKey: "sk_live_561756573A6B4777907EDF6932131B93",
+        merchantId: "0000000001",
         metadata: {
             orderId: "ORDER_" + Date.now(),
             accountNumber: "012345678",
-            packName: packName
+            packName: pack.name
         }
     });
     console.log("Payment status:", result.status);
@@ -79,7 +83,7 @@ const handlePurchase = async (packName: string) => {
 
     alertType.value = 'success';
     alertTitle.value = 'Payment Successful';
-    alertMessage.value = `You have successfully purchased ${packName}!\nTransaction ID: ${result.transactionId || 'SUCCESS'}`;
+    alertMessage.value = `You have successfully purchased ${pack.name}!\nTransaction ID: ${result.transactionId || 'SUCCESS'}`;
     showAlert.value = true;
   } catch (error: any) {
     console.error("Payment failed or cancelled:", error);
