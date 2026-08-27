@@ -136,10 +136,10 @@ const handlePay = async () => {
     prepayId: 'LAUNDRY_PREPAY_' + Date.now(),
     amount: store.totalCost.value,
     currency: 'USD',
-    partnerCode: 'SMART_LAUNDRY',
-    appId: "0000000016",
-    apiKey: "pk_live_0000000016_1",
-    secretKey: "sk_live_561756573A6B4777907EDF6932131B93",
+    partnerCode: '0000000010',
+    appId: "0000000010",
+    apiKey: "pk_live_0000000010_1",
+    secretKey: "sk_live_7B94BB9BCF0E4909B2722F7B72A580B9",
     merchantId: "0000000001",
     metadata: {
       machine: store.state.selectedMachine.number

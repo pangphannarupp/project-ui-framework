@@ -170,7 +170,10 @@ const handlePay = async () => {
     prepayId: 'BOOK_PREPAY_' + Date.now(),
     amount: store.grandTotal.value,
     currency: 'USD',
-    partnerCode: 'COZY_BOOKSTORE',
+    partnerCode: '0000000010',
+    appId: '0000000012',
+    apiKey: 'pk_live_0000000012_1',
+    secretKey: 'sk_live_68F2B3A53E7742FFA1718A8E3B4FA5DD',
     metadata: {
       items: store.state.cart.map(i => `${i.book.title} (${i.format})`).join(', ')
     }

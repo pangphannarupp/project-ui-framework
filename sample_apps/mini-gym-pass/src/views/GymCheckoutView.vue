@@ -92,10 +92,10 @@ const handlePay = async () => {
     prepayId: 'GYM_PREPAY_' + Date.now(),
     amount: store.state.selectedPass.price,
     currency: 'USD',
-    partnerCode: 'CYBER_FITNESS',
-    appId: "0000000016",
-    apiKey: "pk_live_0000000016_1",
-    secretKey: "sk_live_561756573A6B4777907EDF6932131B93",
+    partnerCode: '0000000010',
+    appId: '0000000008',
+    apiKey: 'pk_live_0000000008_1',
+    secretKey: 'sk_live_ACAA691B6B3F43D7AB504BE4C3F5B401',
     merchantId: "0000000001",
     metadata: {
       plan: store.state.selectedPass.title

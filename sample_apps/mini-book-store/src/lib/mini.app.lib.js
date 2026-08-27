@@ -228,6 +228,9 @@
      * @param {number} payload.amount - Payment amount (must be > 0)
      * @param {string} payload.currency - Currency code (e.g., 'USD', 'KHR')
      * @param {string} payload.partnerCode - Partner/merchant identifier
+     * @param {string} payload.apiKey - API Key
+     * @param {string} payload.secretKey - Secret
+     * @param {string} payload.appId - App ID
      * @param {Object} [payload.metadata] - Extra custom parameters
      * @returns {Promise<Object>} Resolves with { status: "SUCCESS", transactionId: string, data: Object }
      */
@@ -283,12 +286,23 @@
           });
         }
 
+        if (!payload.apiKey || !payload.secretKey || !payload.appId) {
+          return reject({
+            status: 'ERROR',
+            errorCode: 'MISSING_CREDENTIALS',
+            errorMessage: 'apiKey, secretKey, and appId are required'
+          });
+        }
+
         const normalizedPayload = {
           serviceType: payload.serviceType,
           prepayId: payload.prepayId,
           amount: payload.amount,
           currency: String(payload.currency).toUpperCase(),
           partnerCode: payload.partnerCode,
+          apiKey: payload.apiKey,
+          secretKey: payload.secretKeyKey,
+          appId: payload.appId,
           metadata: payload.metadata || {}
         };
 
