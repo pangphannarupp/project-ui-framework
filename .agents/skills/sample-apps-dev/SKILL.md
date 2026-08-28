@@ -10,9 +10,11 @@ This skill outlines how to manage and run the sample projects inside the workspa
 ## Workflow Steps
 
 1. **Vue/Web Sample Apps & Portals**:
-   - Located in `sample_apps/` (e.g., `mini-portal-management`, `mini-pos`, `mini-zoo-ticket`, `mini-cinema`, `mini-bus-ticket`, `mini-food-court`, `mini-smart-parking`, `mini-appointment-booking`, `mini-ev-charge`, `mini-lucky-wheel`, `smart-mini-app`).
+   - Located in `sample_apps/` (e.g., `mini-portal-management`, `mini-pos`, `mini-zoo-ticket`, `mini-clothes-store`, etc.).
+   - **MANDATORY**: ALWAYS use **Vue 3** and **TypeScript** via Vite.
    - Use Node.js workflows (`npm install` and `npm run dev`).
-   - **MANDATORY**: All sample and management apps MUST use components from `@phanna/ui-framework` (e.g. `PPButton`, `PPIconButton`, `PPInput`, `PPTextField`, `PPSelect`, `PPDatePicker`, `PPTimePicker`, `PPRichTextEditor`, `PPTable`, `PPPagination`, `PPBottomSheet`, `PPAlert`, `PPConfirm`, `PPQRCode`, `PPSpinWheel`, `PPProgressGauge`, `PPStepper`, `PPChip`, `PPBadge`, `PPAvatar`, `PPSegment`, `PPSwitch`, `PPSlider`, `PPToast`, etc.) instead of raw unstyled HTML elements.
+   - **MANDATORY**: All sample and management apps MUST use components from `@phanna/ui-framework` (e.g. `PPButton`, `PPIconButton`, `PPInput`, etc.) instead of raw unstyled HTML elements.
+   - For proper setup, refer to the `sample-projects` rule (use `import '@phanna/ui-framework/style.css'`, `app.use(UIFramework)`, and include Tailwind CDN in `index.html`).
    - **MANDATORY UI DIVERSITY**: Every sample app template MUST have a **distinct visual design, unique navigation pattern, and domain-specific interactive canvas** (e.g. architectural floor plans, 3D sculptors, cyber HUD dashboards, metallic hardware kiosks, editorial magazine layouts, conveyor track simulators) rather than repeating generic card list views.
 
 2. **Flutter Sample App**:
