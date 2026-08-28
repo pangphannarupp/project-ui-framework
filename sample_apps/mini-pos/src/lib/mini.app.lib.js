@@ -661,6 +661,7 @@
     }
   };
 
+  window.MiniApp = MiniApp;
   return MiniApp;
 });
 
