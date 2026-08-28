@@ -230,9 +230,6 @@
      * @param {number} payload.amount - Payment amount (must be > 0)
      * @param {string} payload.currency - Currency code (e.g., 'USD', 'KHR')
      * @param {string} payload.partnerCode - Partner/merchant identifier
-     * @param {string} payload.apiKey - API Key
-     * @param {string} payload.secretKey - Secret
-     * @param {string} payload.appId - App ID
      * @param {Object} [payload.metadata] - Extra custom parameters
      * @returns {Promise<Object>} Resolves with { status: "SUCCESS", transactionId: string, data: Object }
      */
@@ -287,14 +284,6 @@
           });
         }
 
-        if (!payload.apiKey || !payload.secretKey || !payload.appId) {
-          return reject({
-            status: 'ERROR',
-            errorCode: 'MISSING_CREDENTIALS',
-            errorMessage: 'apiKey, secretKey, and appId are required'
-          });
-        }
-
         const normalizedPayload = {
           serviceType: payload.serviceType,
           prepayId: payload.prepayId,
@@ -304,7 +293,7 @@
           metadata: payload.metadata || {},
           appId: payload.appId,
           apiKey: payload.apiKey || payload.appKey,
-          secretKey: payload.secretKeyKey || payload.secretKey,
+          secret: payload.secret || payload.secretKey,
           merchantId: payload.merchantId,
           merchantName: payload.merchantName
         };
@@ -407,7 +396,7 @@
      */
     exit: function (showConfirmationDialog) {
       const showConfirm = showConfirmationDialog !== false; // defaults to true
-      
+
       // 1. Android SuperApp Interface
       if (window.SuperApp && typeof window.SuperApp.exitMiniApp === 'function') {
         window.SuperApp.exitMiniApp(showConfirm);

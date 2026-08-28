@@ -396,7 +396,7 @@
      */
     exit: function (showConfirmationDialog) {
       const showConfirm = showConfirmationDialog !== false; // defaults to true
-      
+
       // 1. Android SuperApp Interface
       if (window.SuperApp && typeof window.SuperApp.exitMiniApp === 'function') {
         window.SuperApp.exitMiniApp(showConfirm);
