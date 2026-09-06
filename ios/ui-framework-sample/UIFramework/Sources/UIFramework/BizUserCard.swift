@@ -14,6 +14,7 @@ public struct BizUserCard: View {
     public let isMaster: Bool
 
 
+    public let hasSmartPay: Bool
     public let onMoreTap: (() -> Void)?
     
     public init(
@@ -21,14 +22,14 @@ public struct BizUserCard: View {
         phone: String,
         status: BizUserStatus = .active,
         isMaster: Bool = false,
+        hasSmartPay: Bool = false,
         onMoreTap: (() -> Void)? = nil
     ) {
         self.name = name
         self.phone = phone
         self.status = status
         self.isMaster = isMaster
-
-
+        self.hasSmartPay = hasSmartPay
         self.onMoreTap = onMoreTap
     }
     

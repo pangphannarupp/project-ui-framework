@@ -17,6 +17,10 @@ contents
 contents/
 **/contents
 **/contents/**
+.build
+.build/
+**/.build
+**/.build/**
 
 # IDE & Editor files
 .idea

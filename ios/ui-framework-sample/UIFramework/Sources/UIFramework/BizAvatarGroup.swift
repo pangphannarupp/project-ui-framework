@@ -1,0 +1,50 @@
+import SwiftUI
+
+/**
+ * BizAvatarGroup - SwiftUI component matching Web UI-Framework `PPAvatarGroup.vue`.
+ */
+public struct BizAvatarGroup: View {
+    public var items: [String]
+    public var max: Int
+    public var size: String
+    public var shape: String
+    public var action: () -> Void
+
+    public init(
+        items: [String] = [],
+        max: Int = 4,
+        size: String = "md",
+        shape: String = "circle",
+        action: @escaping () -> Void = {}
+    ) {
+        self.items = items
+        self.max = max
+        self.size = size
+        self.shape = shape
+        self.action = action
+    }
+
+    public var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("AvatarGroup")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(Color(hex: "#1A2A5E"))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+            .background(Color.white)
+            .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color(hex: "#CBD5E1"), lineWidth: 1)
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+/**
+ * Web UI-Framework parity alias for [BizAvatarGroup].
+ */
+public typealias PPAvatarGroup = BizAvatarGroup
