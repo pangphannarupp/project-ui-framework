@@ -1,0 +1,114 @@
+/// <reference types="vite/client" />
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+
+declare module '@phanna/ui-framework' {
+  const content: any
+  export default content
+  export const PPButton: any
+  export const PPIconButton: any
+  export const PPSkipButton: any
+  export const PPToggleButton: any
+  export const PPButtonGroup: any
+  export const PPInput: any
+  export const PPTextField: any
+  export const PPPhoneInput: any
+  export const PPOtpInput: any
+  export const PPSearch: any
+  export const PPAutocomplete: any
+  export const PPTagInput: any
+  export const PPNumberSpinner: any
+  export const PPSelect: any
+  export const PPDropdown: any
+  export const PPTreeSelect: any
+  export const PPSegment: any
+  export const PPSegmentButton: any
+  export const PPScrollSegment: any
+  export const PPDatePicker: any
+  export const PPDateRangePicker: any
+  export const PPMonthPicker: any
+  export const PPYearPicker: any
+  export const PPQuarterPicker: any
+  export const PPTimePicker: any
+  export const PPKhmerDatePicker: any
+  export const PPKhmerCalendar: any
+  export const PPColorPicker: any
+  export const PPSwitch: any
+  export const PPSlider: any
+  export const PPCheckbox: any
+  export const PPCheckboxGroup: any
+  export const PPRadio: any
+  export const PPRadioGroup: any
+  export const PPRating: any
+  export const PPRichTextEditor: any
+  export const PPBadge: any
+  export const PPChip: any
+  export const PPAvatar: any
+  export const PPAvatarGroup: any
+  export const PPDivider: any
+  export const PPBreadcrumb: any
+  export const PPBottomSheet: any
+  export const PPAlert: any
+  export const PPConfirm: any
+  export const PPInputDialog: any
+  export const PPConfirmSheet: any
+  export const PPFeedbackSheet: any
+  export const PPFilterSheet: any
+  export const PPSortSheet: any
+  export const PPToast: any
+  export const PPWebToast: any
+  export const PPTooltip: any
+  export const PPLanguageSheet: any
+  export const PPColorPickerSheet: any
+  export const PPAppBar: any
+  export const PPHeaderBar: any
+  export const PPBottomBar: any
+  export const PPBottomNav: any
+  export const PPNavigationDrawer: any
+  export const PPNavigationRail: any
+  export const PPSidebarNavigation: any
+  export const PPTabs: any
+  export const PPTabList: any
+  export const PPTab: any
+  export const PPTabPanels: any
+  export const PPTabPanel: any
+  export const PPScrollArea: any
+  export const PPStepper: any
+  export const PPCollapsingToolbar: any
+  export const PPTable: any
+  export const PPPagination: any
+  export const PPDraggableGrid: any
+  export const PPMasonry: any
+  export const PPTimeline: any
+  export const PPTree: any
+  export const PPCollapse: any
+  export const PPKanbanBoard: any
+  export const PPBarChart: any
+  export const PPLineChart: any
+  export const PPDonutChart: any
+  export const PPPieChart: any
+  export const PPRadarChart: any
+  export const PPScatterChart: any
+  export const PPFunnelChart: any
+  export const PPProgressGauge: any
+  export const PPFileUpload: any
+  export const PPImageCropper: any
+  export const PPImagePreview: any
+  export const PPPdfViewer: any
+  export const PPFilePreview: any
+  export const PPAudioRecorder: any
+  export const PPAudioWave: any
+  export const PPCameraCapture: any
+  export const PPVideoPlayer: any
+  export const PPSignaturePad: any
+  export const PPQRCode: any
+  export const PPSkeleton: any
+  export const PPSkeletonItem: any
+  export const PPSkeletonList: any
+  export const PPSkeletonDetail: any
+  export const PPNoResult: any
+}
+
