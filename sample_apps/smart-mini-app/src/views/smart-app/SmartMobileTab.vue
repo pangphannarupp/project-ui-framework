@@ -5,7 +5,7 @@
 
     <!-- Phone Tab -->
     <div class="phone-tab">
-      0123 456 789
+      {{ userPhoneNumber }}
     </div>
 
     <!-- Current Plan Card -->
@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { PPAlert } from '@phanna/ui-framework';
 import BuyFriendCard from './components/BuyFriendCard.vue';
 import CurrentPlanCard from './components/CurrentPlanCard.vue';
@@ -60,8 +60,34 @@ const alertType = ref<'success' | 'failed'>('success');
 const alertTitle = ref('');
 const alertMessage = ref('');
 
+const userPhoneNumber = ref('0123 456 789');
+
+onMounted(async () => {
+  try {
+    const profile = await MiniApp.getUserProfile();
+    if (profile?.phoneNumber) {
+      userPhoneNumber.value = profile.phoneNumber;
+    }
+  } catch (e) {
+    console.warn("Unable to fetch user profile on load", e);
+  }
+});
+
 const handlePurchase = async (pack: { name: string, price: number }) => {
   try {
+    let phone = userPhoneNumber.value;
+    try {
+      const profile = await MiniApp.getUserProfile();
+      if (profile?.phoneNumber) {
+        phone = profile.phoneNumber;
+        userPhoneNumber.value = profile.phoneNumber;
+      }
+    } catch (e) {
+      console.warn("Could not fetch user profile, using fallback phone number", e);
+    }
+
+    const cleanPhoneNumber = phone.replace(/\s+/g, '');
+
     const result = await MiniApp.requestPayment({
         serviceType: MiniApp.ServiceType.KHQR_PURCHASE,
         prepayId: "PREPAY_" + Date.now(),
@@ -74,9 +100,10 @@ const handlePurchase = async (pack: { name: string, price: number }) => {
         merchantId: "0000000001",
         metadata: {
             orderId: "ORDER_" + Date.now(),
-            accountNumber: "012345678",
+            accountNumber: cleanPhoneNumber,
             packName: pack.name
-        }
+        },
+        description: `<b>Package:</b> ${pack.name}<br/><b>Phone Number:</b> ${phone}<br/><b>Amount:</b> <font color="#007766"><b>$${pack.price.toFixed(2)} USD</b></font>`
     });
     console.log("Payment status:", result.status);
     console.log("Transaction ID:", result.transactionId);

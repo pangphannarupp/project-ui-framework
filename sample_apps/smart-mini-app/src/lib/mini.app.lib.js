@@ -295,7 +295,8 @@
           apiKey: payload.apiKey || payload.appKey,
           secret: payload.secret || payload.secretKey,
           merchantId: payload.merchantId,
-          merchantName: payload.merchantName
+          merchantName: payload.merchantName,
+          description: payload.description
         };
 
         const callbackName = createUniqueCallbackName('payment');
@@ -396,7 +397,7 @@
      */
     exit: function (showConfirmationDialog) {
       const showConfirm = showConfirmationDialog !== false; // defaults to true
-      
+
       // 1. Android SuperApp Interface
       if (window.SuperApp && typeof window.SuperApp.exitMiniApp === 'function') {
         window.SuperApp.exitMiniApp(showConfirm);
@@ -661,7 +662,6 @@
     }
   };
 
-  window.MiniApp = MiniApp;
   return MiniApp;
 });
 
